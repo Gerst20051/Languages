@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>Shell HTTPD Server (shttpd)</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=framework;  uid=//apple_ref/doc/header/shttpd_daemon;  shortname=shttpd_daemon; name=Shell HTTPD Server (shttpd) --><a name="//apple_ref/doc/header/shttpd_daemon"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="ShellHTTPDServer(shttpd)">Shell HTTPD Server (shttpd)</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<div class="declaration_indent">
+</div>
+<!-- begin discussion --><!-- headerDoc=frameworkdiscussion;uid=//apple_ref/doc/framework/shttpd_daemon;name=start -->
+<p>This code example is a mostly functional HTTP/1.1 web server written using
+shell scripts.  The main purpose of these scripts is
+provide a practical example of several techniques:
+</p>
+<ul>
+<li> Finding the exact path of the script and sourcing subroutines from
+files in locations relative to the script directory.</li>
+
+<li> Using the nc (netcat) utility for script-based networking.</li>
+<li> Using circular pipes.</li>
+<li> Using complex data structures (in binary_tree.sh)</li>
+<li> Parsing text (in parsers.sh)</li>
+</ul>
+<p>Use the Makefile to build the a copy of the realpath binary and
+a patched copy of the nc binary from netcat (provided as a patch).
+For full functionality, you must also provide a copy of PHP compiled
+with the CGI SAPI, and you must provide its path in the configuration
+file, "shttpd.conf".
+<!-- headerDoc=frameworkdiscussion;uid=//apple_ref/doc/framework/shttpd_daemon;name=end -->
+<!-- end discussion -->
+</p>
+<hr>
+<br><p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>

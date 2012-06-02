@@ -1,0 +1,1096 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>binary_tree.sh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=Header;  uid=//apple_ref/doc/header/binary_tree.sh;   name=binary_tree.sh --><a name="//apple_ref/doc/header/binary_tree.sh"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="binary_tree.sh">binary_tree.sh</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<div class="declaration_indent">
+</div>
+<!-- begin discussion --><p>A binary tree algorithm written in a shell script.  The main functions of
+interest are <code><a href="index.html#//apple_ref/shell/func/newTree" logicalPath="//apple_ref/shell/func/newTree" target="_top">newTree</a></code>, <code><a href="index.html#//apple_ref/shell/func/deleteTree" logicalPath="//apple_ref/shell/func/deleteTree" target="_top">deleteTree</a></code>, <code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code>, 
+<code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code>, <code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code>, <code><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></code>,
+<code><a href="index.html#//apple_ref/shell/func/iterateTree" logicalPath="//apple_ref/shell/func/iterateTree" target="_top">iterateTree</a></code>, and <code><a href="index.html#//apple_ref/shell/func/mergeTrees" logicalPath="//apple_ref/shell/func/mergeTrees" target="_top">mergeTrees</a></code>.
+</p>
+<p>This is a minimal binary tree implementation that does not support removing
+existing values from the tree once inserted.  However, such functionality
+can be trivially retrofitted on top by adding or clearing a "deleted"
+attribute on nodes using <code><a href="index.html#//apple_ref/shell/func/setTreeField" logicalPath="//apple_ref/shell/func/setTreeField" target="_top">setTreeField</a></code> if desired.
+</p>
+<p>To use this shell script, source it after setting DISABLE_TESTS to "true".
+To run tests, execute the script directly.
+<!-- end discussion -->
+</p>
+<hr>
+<br><a name="HeaderDoc_groups"><h2>Groups</h2></a>
+
+<h3>Global Variables</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Variables used internally.  No user-serviceable parts inside.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/data/IFS" logicalPath="//apple_ref/shell/data/IFS" target="_top">IFS</a></tt></dt>
+<dd><p>Field separator.  Do not change.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/NEWLINE" logicalPath="//apple_ref/shell/data/NEWLINE" target="_top">NEWLINE</a></tt></dt>
+<dd><p>A newline character.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/OID" logicalPath="//apple_ref/shell/data/OID" target="_top">OID</a></tt></dt>
+<dd><p>The starting object ID.  This is an internal counter.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>Insertion Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Functions used for inserting a key into a tree.  Be sure to
+choose whether you want to use numerical or string key comparisons
+during insertion and choose the appropriate function accordingly.
+</p>
+<p>After inserting, you can use <code><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></code> to get the
+node name of the resulting node if desired.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></tt></dt>
+<dd><p>Retrieves the last node inserted.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></tt></dt>
+<dd><p>Inserts a new key into a binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></tt></dt>
+<dd><p>Inserts a new key into a binary tree.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>Search Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Functions used for searching for a key in a tree.  Be sure to
+choose whether you want to use numerical or string key comparisons
+for the search and choose the appropriate function accordingly.
+The comparison type usde for searching must match the comparison
+type used during insertion or the results are undefined.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>Node Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Functions that operate on a single node in the tree.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeField" logicalPath="//apple_ref/shell/func/setTreeField" target="_top">setTreeField</a></tt></dt>
+<dd><p>Sets a field value for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeLeft" logicalPath="//apple_ref/shell/func/setTreeLeft" target="_top">setTreeLeft</a></tt></dt>
+<dd><p>Sets the left subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeRight" logicalPath="//apple_ref/shell/func/setTreeRight" target="_top">setTreeRight</a></tt></dt>
+<dd><p>Sets the right subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeField" logicalPath="//apple_ref/shell/func/treeField" target="_top">treeField</a></tt></dt>
+<dd><p>Retrieves a field value for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeKey" logicalPath="//apple_ref/shell/func/treeKey" target="_top">treeKey</a></tt></dt>
+<dd><p>Retrieves the key associated with a node object.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeLeft" logicalPath="//apple_ref/shell/func/treeLeft" target="_top">treeLeft</a></tt></dt>
+<dd><p>Retrieves the left subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeRight" logicalPath="//apple_ref/shell/func/treeRight" target="_top">treeRight</a></tt></dt>
+<dd><p>Retrieves the right subtree for a node in the tree.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>General Tree Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Operations that create, delete, iterate, and merge trees.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/deleteTree" logicalPath="//apple_ref/shell/func/deleteTree" target="_top">deleteTree</a></tt></dt>
+<dd><p>Deletes a binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/iterateTree" logicalPath="//apple_ref/shell/func/iterateTree" target="_top">iterateTree</a></tt></dt>
+<dd><p>Iterates through a subtree, calling a function for each node.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/mergeTrees" logicalPath="//apple_ref/shell/func/mergeTrees" target="_top">mergeTrees</a></tt></dt>
+<dd><p>Copies all of the keys in one tree into another.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/newTree" logicalPath="//apple_ref/shell/func/newTree" target="_top">newTree</a></tt></dt>
+<dd><p>Creates a new binary tree.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>Debug Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>Functions that print debug information about binary trees,
+tree nodes, and so on.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echoblue" logicalPath="//apple_ref/shell/func/echoblue" target="_top">echoblue</a></tt></dt>
+<dd><p>Prints a line of text in blue letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echogreen" logicalPath="//apple_ref/shell/func/echogreen" target="_top">echogreen</a></tt></dt>
+<dd><p>Prints a line of text in green letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echored" logicalPath="//apple_ref/shell/func/echored" target="_top">echored</a></tt></dt>
+<dd><p>Prints a line of text in red letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/printNode" logicalPath="//apple_ref/shell/func/printNode" target="_top">printNode</a></tt></dt>
+<dd><p>Prints a node structure for debugging purposes.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/printTree" logicalPath="//apple_ref/shell/func/printTree" target="_top">printTree</a></tt></dt>
+<dd><p>Prints out the contents of a tree for debugging purposes.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>Internal Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>No user-serviceable parts inside.  These functions are used
+internally by the other functions and should generally not
+be called from outside unless you really know what you are
+doing.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/deleteNode" logicalPath="//apple_ref/shell/func/deleteNode" target="_top">deleteNode</a></tt></dt>
+<dd><p>Deletes a node in a tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/iterateSubtree" logicalPath="//apple_ref/shell/func/iterateSubtree" target="_top">iterateSubtree</a></tt></dt>
+<dd><p>Iterates through a subtree, calling a function for each node.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/newTreeNode" logicalPath="//apple_ref/shell/func/newTreeNode" target="_top">newTreeNode</a></tt></dt>
+<dd><p>Creates a new node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/reinsert" logicalPath="//apple_ref/shell/func/reinsert" target="_top">reinsert</a></tt></dt>
+<dd><p>Internal helper function.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/subtreeSearch" logicalPath="//apple_ref/shell/func/subtreeSearch" target="_top">subtreeSearch</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/subtreeSearchNumeric" logicalPath="//apple_ref/shell/func/subtreeSearchNumeric" target="_top">subtreeSearchNumeric</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+</dl>
+</div>
+<hr>
+<a name="HeaderDoc_functions"></a>
+<h2>Functions</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/deleteNode" target="_top">deleteNode</a></tt></dt>
+<dd><p>Deletes a node in a tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/deleteTree" target="_top">deleteTree</a></tt></dt>
+<dd><p>Deletes a binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echoblue" target="_top">echoblue</a></tt></dt>
+<dd><p>Prints a line of text in blue letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echogreen" target="_top">echogreen</a></tt></dt>
+<dd><p>Prints a line of text in green letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/echored" target="_top">echored</a></tt></dt>
+<dd><p>Prints a line of text in red letters.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></tt></dt>
+<dd><p>Retrieves the last node inserted.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/insertKey" target="_top">insertKey</a></tt></dt>
+<dd><p>Inserts a new key into a binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></tt></dt>
+<dd><p>Inserts a new key into a binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/iterateSubtree" target="_top">iterateSubtree</a></tt></dt>
+<dd><p>Iterates through a subtree, calling a function for each node.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/iterateTree" target="_top">iterateTree</a></tt></dt>
+<dd><p>Iterates through a subtree, calling a function for each node.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/mergeTrees" target="_top">mergeTrees</a></tt></dt>
+<dd><p>Copies all of the keys in one tree into another.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/newTree" target="_top">newTree</a></tt></dt>
+<dd><p>Creates a new binary tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/newTreeNode" target="_top">newTreeNode</a></tt></dt>
+<dd><p>Creates a new node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/printNode" target="_top">printNode</a></tt></dt>
+<dd><p>Prints a node structure for debugging purposes.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/printTree" target="_top">printTree</a></tt></dt>
+<dd><p>Prints out the contents of a tree for debugging purposes.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/reinsert" target="_top">reinsert</a></tt></dt>
+<dd><p>Internal helper function.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeField" target="_top">setTreeField</a></tt></dt>
+<dd><p>Sets a field value for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeLeft" target="_top">setTreeLeft</a></tt></dt>
+<dd><p>Sets the left subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/setTreeRight" target="_top">setTreeRight</a></tt></dt>
+<dd><p>Sets the right subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/subtreeSearch" target="_top">subtreeSearch</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/subtreeSearchNumeric" target="_top">subtreeSearchNumeric</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeField" target="_top">treeField</a></tt></dt>
+<dd><p>Retrieves a field value for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeKey" target="_top">treeKey</a></tt></dt>
+<dd><p>Retrieves the key associated with a node object.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeLeft" target="_top">treeLeft</a></tt></dt>
+<dd><p>Retrieves the left subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeRight" target="_top">treeRight</a></tt></dt>
+<dd><p>Retrieves the right subtree for a node in the tree.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></tt></dt>
+<dd><p>Searches a binary tree for a given key.
+</p></dd>
+</dl>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/deleteNode;   name=deleteNode --><a name="//apple_ref/shell/func/deleteNode"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="deleteNode">deleteNode</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Deletes a node in a tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/deleteNode" logicalPath="//apple_ref/shell/instm/deleteNode //apple_ref/shell/clm/deleteNode //apple_ref/shell/intfcm/deleteNode //apple_ref/shell/intfm/deleteNode //apple_ref/shell/func/deleteNode" target="_top"><span class="function">deleteNode</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node to delete.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This algorithm does not support deleting arbitrry nodes.
+This is an internal function that is used by <code><a href="index.html#//apple_ref/shell/func/deleteTree" logicalPath="//apple_ref/shell/func/deleteTree" target="_top">deleteTree</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/deleteTree;   name=deleteTree --><a name="//apple_ref/shell/func/deleteTree"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="deleteTree">deleteTree</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Deletes a binary tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/deleteTree" logicalPath="//apple_ref/shell/instm/deleteTree //apple_ref/shell/clm/deleteTree //apple_ref/shell/intfcm/deleteTree //apple_ref/shell/intfm/deleteTree //apple_ref/shell/func/deleteTree" target="_top"><span class="function">deleteTree</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The name of the tree to delete.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/echoblue;   name=echoblue --><a name="//apple_ref/shell/func/echoblue"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="echoblue">echoblue</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a line of text in blue letters.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/echoblue" logicalPath="//apple_ref/shell/instm/echoblue //apple_ref/shell/clm/echoblue //apple_ref/shell/intfcm/echoblue //apple_ref/shell/intfm/echoblue //apple_ref/shell/func/echoblue" target="_top"><span class="function">echoblue</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/echogreen;   name=echogreen --><a name="//apple_ref/shell/func/echogreen"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="echogreen">echogreen</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a line of text in green letters.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/echogreen" logicalPath="//apple_ref/shell/instm/echogreen //apple_ref/shell/clm/echogreen //apple_ref/shell/intfcm/echogreen //apple_ref/shell/intfm/echogreen //apple_ref/shell/func/echogreen" target="_top"><span class="function">echogreen</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/echored;   name=echored --><a name="//apple_ref/shell/func/echored"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="echored">echored</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a line of text in red letters.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/echored" logicalPath="//apple_ref/shell/instm/echored //apple_ref/shell/clm/echored //apple_ref/shell/intfcm/echored //apple_ref/shell/intfm/echored //apple_ref/shell/func/echored" target="_top"><span class="function">echored</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/getLastNodeName;   name=getLastNodeName --><a name="//apple_ref/shell/func/getLastNodeName"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="getLastNodeName">getLastNodeName</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Retrieves the last node inserted.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/instm/getLastNodeName //apple_ref/shell/clm/getLastNodeName //apple_ref/shell/intfcm/getLastNodeName //apple_ref/shell/intfm/getLastNodeName //apple_ref/shell/func/getLastNodeName" target="_top"><span class="function">getLastNodeName</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the last node inserted via <code>stdout</code>.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>After creating a new node with <code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code> or a
+new tree with <code><a href="index.html#//apple_ref/shell/func/newTree" logicalPath="//apple_ref/shell/func/newTree" target="_top">newTree</a></code>, call this to obtain its
+note ID.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/insertKey;   name=insertKey --><a name="//apple_ref/shell/func/insertKey"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="insertKey">insertKey</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Inserts a new key into a binary tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/instm/insertKey //apple_ref/shell/clm/insertKey //apple_ref/shell/intfcm/insertKey //apple_ref/shell/intfm/insertKey //apple_ref/shell/func/insertKey" target="_top"><span class="function">insertKey</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The name of the binary tree.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to insert.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Obtain the node name of the newly created node using <code><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></code>.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>If a node already exists with this value, the
+existing node is returned.
+</p>
+<p>This tree insertion uses string comparisons.  You must use <code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code> with this
+function (and not <code><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></code>.  For numeric searches, use <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/insertKeyNumeric;   name=insertKeyNumeric --><a name="//apple_ref/shell/func/insertKeyNumeric"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="insertKeyNumeric">insertKeyNumeric</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Inserts a new key into a binary tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/instm/insertKeyNumeric //apple_ref/shell/clm/insertKeyNumeric //apple_ref/shell/intfcm/insertKeyNumeric //apple_ref/shell/intfm/insertKeyNumeric //apple_ref/shell/func/insertKeyNumeric" target="_top"><span class="function">insertKeyNumeric</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The name of the binary tree.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to insert.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Obtain the node name of the newly created node using <code><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></code>.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>If a node already exists with this value, the
+existing node is returned.
+</p>
+<p>This tree insertion uses string comparisons.  You must use <code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code> with this
+function (and not <code><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></code>.  For numeric searches, use <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/iterateSubtree;   name=iterateSubtree --><a name="//apple_ref/shell/func/iterateSubtree"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="iterateSubtree">iterateSubtree</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Iterates through a subtree, calling a function for each node.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/iterateSubtree" logicalPath="//apple_ref/shell/instm/iterateSubtree //apple_ref/shell/clm/iterateSubtree //apple_ref/shell/intfcm/iterateSubtree //apple_ref/shell/intfm/iterateSubtree //apple_ref/shell/func/iterateSubtree" target="_top"><span class="function">iterateSubtree</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Do not call this directly.  Call <code><a href="index.html#//apple_ref/shell/func/iterateTree" logicalPath="//apple_ref/shell/func/iterateTree" target="_top">iterateTree</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/iterateTree;   name=iterateTree --><a name="//apple_ref/shell/func/iterateTree"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="iterateTree">iterateTree</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Iterates through a subtree, calling a function for each node.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/iterateTree" logicalPath="//apple_ref/shell/instm/iterateTree //apple_ref/shell/clm/iterateTree //apple_ref/shell/intfcm/iterateTree //apple_ref/shell/intfm/iterateTree //apple_ref/shell/func/iterateTree" target="_top"><span class="function">iterateTree</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The tree to traverse.</p></dd>
+<dt><code>ACTION</code></dt>
+<dd><p>The function to call on each node.</p></dd>
+<dt><code>CALLONROOT</code></dt>
+<dd><p>Set to 1 if you want to also call ACTION on the (bogus) root node.
+This is usually only set for debug printing purposes.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>For each node in the tree (in sorted order), the function
+specified by ACTION is called with a single parameter
+containing the node name of the node being traversed.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/mergeTrees;   name=mergeTrees --><a name="//apple_ref/shell/func/mergeTrees"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="mergeTrees">mergeTrees</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Copies all of the keys in one tree into another.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/mergeTrees" logicalPath="//apple_ref/shell/instm/mergeTrees //apple_ref/shell/clm/mergeTrees //apple_ref/shell/intfcm/mergeTrees //apple_ref/shell/intfm/mergeTrees //apple_ref/shell/func/mergeTrees" target="_top"><span class="function">mergeTrees</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE_SRC</code></dt>
+<dd><p>The source tree to copy.</p></dd>
+<dt><code>TREE_DST</code></dt>
+<dd><p>The destination tree into which the source tree is copied.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>For each key in TREE_SRC, an equivalent key is
+inserted in TREE_DST, including any field values
+associated with it.  In the event of a collision
+for a given key, the resulting set of field values
+for that key is the union of the two sets of field
+values, with the new values from TREE_SRC taking
+precedence.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/newTree;   name=newTree --><a name="//apple_ref/shell/func/newTree"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="newTree">newTree</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Creates a new binary tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/newTree" logicalPath="//apple_ref/shell/instm/newTree //apple_ref/shell/clm/newTree //apple_ref/shell/intfcm/newTree //apple_ref/shell/intfm/newTree //apple_ref/shell/func/newTree" target="_top"><span class="function">newTree</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The name of the tree to create.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Obtain the name of the tree using <code><a href="index.html#//apple_ref/shell/func/getLastNodeName" logicalPath="//apple_ref/shell/func/getLastNodeName" target="_top">getLastNodeName</a></code>.
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/newTreeNode;   name=newTreeNode --><a name="//apple_ref/shell/func/newTreeNode"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="newTreeNode">newTreeNode</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Creates a new node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/newTreeNode" logicalPath="//apple_ref/shell/instm/newTreeNode //apple_ref/shell/clm/newTreeNode //apple_ref/shell/intfcm/newTreeNode //apple_ref/shell/intfm/newTreeNode //apple_ref/shell/func/newTreeNode" target="_top"><span class="function">newTreeNode</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>LEFT</code></dt>
+<dd><p>The initial left value for the node (usually empty).</p></dd>
+<dt><code>RIGHT</code></dt>
+<dd><p>The initial right value for the node (usually empty).</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key for the new node.</p></dd>
+<dt><code>TREE</code></dt>
+<dd><p>The desired name for the node (usually empty).</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is an internal function.  Do not call it directly.  Use
+<code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code> or <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/printNode;   name=printNode --><a name="//apple_ref/shell/func/printNode"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="printNode">printNode</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a node structure for debugging purposes.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/printNode" logicalPath="//apple_ref/shell/instm/printNode //apple_ref/shell/clm/printNode //apple_ref/shell/intfcm/printNode //apple_ref/shell/intfm/printNode //apple_ref/shell/func/printNode" target="_top"><span class="function">printNode</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node to print.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/printTree;   name=printTree --><a name="//apple_ref/shell/func/printTree"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="printTree">printTree</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints out the contents of a tree for debugging purposes.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/printTree" logicalPath="//apple_ref/shell/instm/printTree //apple_ref/shell/clm/printTree //apple_ref/shell/intfcm/printTree //apple_ref/shell/intfm/printTree //apple_ref/shell/func/printTree" target="_top"><span class="function">printTree</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/reinsert;   name=reinsert --><a name="//apple_ref/shell/func/reinsert"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="reinsert">reinsert</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Internal helper function.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/reinsert" logicalPath="//apple_ref/shell/instm/reinsert //apple_ref/shell/clm/reinsert //apple_ref/shell/intfcm/reinsert //apple_ref/shell/intfm/reinsert //apple_ref/shell/func/reinsert" target="_top"><span class="function">reinsert</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This function is used by <code><a href="index.html#//apple_ref/shell/func/mergeTrees" logicalPath="//apple_ref/shell/func/mergeTrees" target="_top">mergeTrees</a></code> to take a node from
+one tree and duplicte it in another.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/setTreeField;   name=setTreeField --><a name="//apple_ref/shell/func/setTreeField"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setTreeField">setTreeField</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Sets a field value for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/setTreeField" logicalPath="//apple_ref/shell/instm/setTreeField //apple_ref/shell/clm/setTreeField //apple_ref/shell/intfcm/setTreeField //apple_ref/shell/intfm/setTreeField //apple_ref/shell/func/setTreeField" target="_top"><span class="function">setTreeField</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+<dt><code>FIELDNAME</code></dt>
+<dd><p>The field name.</p></dd>
+<dt><code>VAL</code></dt>
+<dd><p>The new field value.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This function allows you to store arbitrary attributes in a tree node.
+If a value already exists for the specified field name, the value is
+overwritten.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/setTreeLeft;   name=setTreeLeft --><a name="//apple_ref/shell/func/setTreeLeft"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setTreeLeft">setTreeLeft</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Sets the left subtree for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/setTreeLeft" logicalPath="//apple_ref/shell/instm/setTreeLeft //apple_ref/shell/clm/setTreeLeft //apple_ref/shell/intfcm/setTreeLeft //apple_ref/shell/intfm/setTreeLeft //apple_ref/shell/func/setTreeLeft" target="_top"><span class="function">setTreeLeft</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+<dt><code>VAL</code></dt>
+<dd><p>The new left value.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is an internal function.  Do not call it directly.  Use
+<code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code> or <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/setTreeRight;   name=setTreeRight --><a name="//apple_ref/shell/func/setTreeRight"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="setTreeRight">setTreeRight</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Sets the right subtree for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/setTreeRight" logicalPath="//apple_ref/shell/instm/setTreeRight //apple_ref/shell/clm/setTreeRight //apple_ref/shell/intfcm/setTreeRight //apple_ref/shell/intfm/setTreeRight //apple_ref/shell/func/setTreeRight" target="_top"><span class="function">setTreeRight</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+<dt><code>VAL</code></dt>
+<dd><p>The new right value.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is an internal function.  Do not call it directly.  Use
+<code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code> or <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/subtreeSearch;   name=subtreeSearch --><a name="//apple_ref/shell/func/subtreeSearch"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="subtreeSearch">subtreeSearch</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Searches a binary tree for a given key.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/subtreeSearch" logicalPath="//apple_ref/shell/instm/subtreeSearch //apple_ref/shell/clm/subtreeSearch //apple_ref/shell/intfcm/subtreeSearch //apple_ref/shell/intfm/subtreeSearch //apple_ref/shell/func/subtreeSearch" target="_top"><span class="function">subtreeSearch</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The subtree to search.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to search for.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the matching node through <code>stdout</code> if found or an empty string otherwise.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is an internal function.  Do not call it directly.  Use
+<code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/subtreeSearchNumeric;   name=subtreeSearchNumeric --><a name="//apple_ref/shell/func/subtreeSearchNumeric"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="subtreeSearchNumeric">subtreeSearchNumeric</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Searches a binary tree for a given key.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/subtreeSearchNumeric" logicalPath="//apple_ref/shell/instm/subtreeSearchNumeric //apple_ref/shell/clm/subtreeSearchNumeric //apple_ref/shell/intfcm/subtreeSearchNumeric //apple_ref/shell/intfm/subtreeSearchNumeric //apple_ref/shell/func/subtreeSearchNumeric" target="_top"><span class="function">subtreeSearchNumeric</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The subtree to search.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to search for.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the matching node through <code>stdout</code> if found or an empty string otherwise.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is an internal function.  Do not call it directly.  Use
+<code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code> instead.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeField;   name=treeField --><a name="//apple_ref/shell/func/treeField"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeField">treeField</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Retrieves a field value for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<b>See Also:</b><div class="list_indent"><dl>
+<dt><p><a href="index.html#//apple_ref/shell/func/setTreeField" logicalPath="//apple_ref/shell/cl/setTreeField //apple_ref/shell/tdef/setTreeField //apple_ref/shell/tag/setTreeField //apple_ref/shell/econst/setTreeField //apple_ref/shell/struct/setTreeField //apple_ref/shell/data/setTreeField //apple_ref/shell/clconst/setTreeField //apple_ref/shell/intf/setTreeField //apple_ref/shell/instm/setTreeField //apple_ref/shell/clm/setTreeField //apple_ref/shell/intfcm/setTreeField //apple_ref/shell/intfm/setTreeField //apple_ref/shell/func/setTreeField" target="_top">setTreeField</a></p></dt>
+<dd></dd>
+</dl></div>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeField" logicalPath="//apple_ref/shell/instm/treeField //apple_ref/shell/clm/treeField //apple_ref/shell/intfcm/treeField //apple_ref/shell/intfm/treeField //apple_ref/shell/func/treeField" target="_top"><span class="function">treeField</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+<dt><code>FIELDNAME</code></dt>
+<dd><p>The field name.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the requested field value via <code>stdout</code> or
+an empty string.
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeKey;   name=treeKey --><a name="//apple_ref/shell/func/treeKey"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeKey">treeKey</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Retrieves the key associated with a node object.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeKey" logicalPath="//apple_ref/shell/instm/treeKey //apple_ref/shell/clm/treeKey //apple_ref/shell/intfcm/treeKey //apple_ref/shell/intfm/treeKey //apple_ref/shell/func/treeKey" target="_top"><span class="function">treeKey</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the key via <code>stdout</code>.
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeLeft;   name=treeLeft --><a name="//apple_ref/shell/func/treeLeft"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeLeft">treeLeft</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Retrieves the left subtree for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeLeft" logicalPath="//apple_ref/shell/instm/treeLeft //apple_ref/shell/clm/treeLeft //apple_ref/shell/intfcm/treeLeft //apple_ref/shell/intfm/treeLeft //apple_ref/shell/func/treeLeft" target="_top"><span class="function">treeLeft</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the left subtree via <code>stdout</code>.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is mainly an internal function, though you can use
+it for debugging purposes.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeRight;   name=treeRight --><a name="//apple_ref/shell/func/treeRight"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeRight">treeRight</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Retrieves the right subtree for a node in the tree.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeRight" logicalPath="//apple_ref/shell/instm/treeRight //apple_ref/shell/clm/treeRight //apple_ref/shell/intfcm/treeRight //apple_ref/shell/intfm/treeRight //apple_ref/shell/func/treeRight" target="_top"><span class="function">treeRight</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>NODE</code></dt>
+<dd><p>The node object.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the right subtree via <code>stdout</code>.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This is mainly an internal function, though you can use
+it for debugging purposes.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeSearch;   name=treeSearch --><a name="//apple_ref/shell/func/treeSearch"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeSearch">treeSearch</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Searches a binary tree for a given key.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/instm/treeSearch //apple_ref/shell/clm/treeSearch //apple_ref/shell/intfcm/treeSearch //apple_ref/shell/intfm/treeSearch //apple_ref/shell/func/treeSearch" target="_top"><span class="function">treeSearch</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The tree to search.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to search for.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the matching node through <code>stdout</code> if found or an empty string otherwise.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This tree search uses string comparisons.  You must use <code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code> with this
+function (and not <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code>.  For numeric searches, use <code><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/func/treeSearchNumeric" target="_top">treeSearchNumeric</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/treeSearchNumeric;   name=treeSearchNumeric --><a name="//apple_ref/shell/func/treeSearchNumeric"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="treeSearchNumeric">treeSearchNumeric</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Searches a binary tree for a given key.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/treeSearchNumeric" logicalPath="//apple_ref/shell/instm/treeSearchNumeric //apple_ref/shell/clm/treeSearchNumeric //apple_ref/shell/intfcm/treeSearchNumeric //apple_ref/shell/intfm/treeSearchNumeric //apple_ref/shell/func/treeSearchNumeric" target="_top"><span class="function">treeSearchNumeric</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>TREE</code></dt>
+<dd><p>The tree to search.</p></dd>
+<dt><code>KEY</code></dt>
+<dd><p>The key to search for.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns the node name of the matching node through <code>stdout</code> if found or an empty string otherwise.
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This tree search uses numeric comparisons.  You must use <code><a href="index.html#//apple_ref/shell/func/insertKeyNumeric" logicalPath="//apple_ref/shell/func/insertKeyNumeric" target="_top">insertKeyNumeric</a></code> with this
+function (and not <code><a href="index.html#//apple_ref/shell/func/insertKey" logicalPath="//apple_ref/shell/func/insertKey" target="_top">insertKey</a></code>.  For string searches, use <code><a href="index.html#//apple_ref/shell/func/treeSearch" logicalPath="//apple_ref/shell/func/treeSearch" target="_top">treeSearch</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<a name="HeaderDoc_vars"></a>
+<h2>Globals</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/data/IFS" target="_top">IFS</a></tt></dt>
+<dd><p>Field separator.  Do not change.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/NEWLINE" target="_top">NEWLINE</a></tt></dt>
+<dd><p>A newline character.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/OID" target="_top">OID</a></tt></dt>
+<dd><p>The starting object ID.  This is an internal counter.
+</p></dd>
+</dl>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/IFS;   name=IFS --><a name="//apple_ref/shell/data/IFS"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="IFS">IFS</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Field separator.  Do not change.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/IFS //apple_ref/shell/tdef/IFS //apple_ref/shell/tag/IFS //apple_ref/shell/econst/IFS //apple_ref/shell/struct/IFS //apple_ref/shell/clconst/IFS //apple_ref/shell/intf/IFS" --><span class="type">IFS</span><!-- /a -->="$<span class="string">NEWLINE</span>" </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/NEWLINE;   name=NEWLINE --><a name="//apple_ref/shell/data/NEWLINE"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="NEWLINE">NEWLINE</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>A newline character.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/NEWLINE //apple_ref/shell/tdef/NEWLINE //apple_ref/shell/tag/NEWLINE //apple_ref/shell/econst/NEWLINE //apple_ref/shell/struct/NEWLINE //apple_ref/shell/clconst/NEWLINE //apple_ref/shell/intf/NEWLINE" --><span class="type">NEWLINE</span><!-- /a -->="
+    " </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/OID;   name=OID --><a name="//apple_ref/shell/data/OID"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="OID">OID</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The starting object ID.  This is an internal counter.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/OID //apple_ref/shell/tdef/OID //apple_ref/shell/tag/OID //apple_ref/shell/econst/OID //apple_ref/shell/struct/OID //apple_ref/shell/clconst/OID //apple_ref/shell/intf/OID" --><span class="type">OID</span><!-- /a -->=<span class="number">0</span> </pre>
+</div>
+<p></p>
+<p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>

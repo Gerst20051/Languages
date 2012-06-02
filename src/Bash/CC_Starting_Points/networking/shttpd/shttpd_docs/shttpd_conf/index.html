@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>shttpd.conf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=Header;  uid=//apple_ref/doc/header/shttpd.conf;   name=shttpd.conf --><a name="//apple_ref/doc/header/shttpd.conf"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="shttpd.conf">shttpd.conf</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<p><!-- begin abstract -->Use the links in the table of contents to the left to access the documentation.<br><!-- end abstract --></p>
+<div class="declaration_indent">
+</div>
+<hr>
+<br><a name="HeaderDoc_vars"></a>
+<h2>Globals</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/data/DEFAULTDOMAIN" target="_top">DEFAULTDOMAIN</a></tt></dt>
+<dd><p>The default domain and port (used for HTTP/1.0 requests). </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/HAS_NEW_NETCAT" target="_top">HAS_NEW_NETCAT</a></tt></dt>
+<dd><p>Set to 1 if your netcat is properly patched. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/NC" target="_top">NC</a></tt></dt>
+<dd><p>The location of a patched nc binary from netcat </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/PERL_EXECUTABLE" target="_top">PERL_EXECUTABLE</a></tt></dt>
+<dd><p>The path to the Perl interpreter (used for CGI). </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/PHP_CGI_EXECUTABLE" target="_top">PHP_CGI_EXECUTABLE</a></tt></dt>
+<dd><p>The path to the php-cgi interpreter (must be compiled with the CGI SAPI. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/REALPATH" target="_top">REALPATH</a></tt></dt>
+<dd><p>The location of a realpath binary </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/SHTTPD_PORTS" target="_top">SHTTPD_PORTS</a></tt></dt>
+<dd><p>A list of ports to listen on. </p></dd>
+</dl>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/DEFAULTDOMAIN;   name=DEFAULTDOMAIN --><a name="//apple_ref/shell/data/DEFAULTDOMAIN"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="DEFAULTDOMAIN">DEFAULTDOMAIN</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The default domain and port (used for HTTP/1.0 requests). <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/DEFAULTDOMAIN //apple_ref/shell/tdef/DEFAULTDOMAIN //apple_ref/shell/tag/DEFAULTDOMAIN //apple_ref/shell/econst/DEFAULTDOMAIN //apple_ref/shell/struct/DEFAULTDOMAIN //apple_ref/shell/clconst/DEFAULTDOMAIN //apple_ref/shell/intf/DEFAULTDOMAIN" --><span class="type">DEFAULTDOMAIN</span><!-- /a -->="<span class="string">127</span>.<span class="string">0</span>.<span class="string">0</span>.<span class="string">1</span>:<span class="string">8081</span>" </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/HAS_NEW_NETCAT;   name=HAS_NEW_NETCAT --><a name="//apple_ref/shell/data/HAS_NEW_NETCAT"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="HAS_NEW_NETCAT">HAS_NEW_NETCAT</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Set to 1 if your netcat is properly patched. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/HAS_NEW_NETCAT //apple_ref/shell/tdef/HAS_NEW_NETCAT //apple_ref/shell/tag/HAS_NEW_NETCAT //apple_ref/shell/econst/HAS_NEW_NETCAT //apple_ref/shell/struct/HAS_NEW_NETCAT //apple_ref/shell/clconst/HAS_NEW_NETCAT //apple_ref/shell/intf/HAS_NEW_NETCAT" --><span class="type">HAS_NEW_NETCAT</span><!-- /a -->=<span class="number">1</span> </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/NC;   name=NC --><a name="//apple_ref/shell/data/NC"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="NC">NC</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The location of a patched nc binary from netcat <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/NC //apple_ref/shell/tdef/NC //apple_ref/shell/tag/NC //apple_ref/shell/econst/NC //apple_ref/shell/struct/NC //apple_ref/shell/clconst/NC //apple_ref/shell/intf/NC" --><span class="type">NC</span><!-- /a -->=/<!-- a logicalPath="//apple_ref/shell/cl/usr //apple_ref/shell/tdef/usr //apple_ref/shell/tag/usr //apple_ref/shell/econst/usr //apple_ref/shell/struct/usr //apple_ref/shell/clconst/usr //apple_ref/shell/intf/usr" --><span class="type">usr</span><!-- /a -->/<!-- a logicalPath="//apple_ref/shell/cl/local //apple_ref/shell/tdef/local //apple_ref/shell/tag/local //apple_ref/shell/econst/local //apple_ref/shell/struct/local //apple_ref/shell/clconst/local //apple_ref/shell/intf/local" --><span class="type">local</span><!-- /a -->/<!-- a logicalPath="//apple_ref/shell/cl/bin //apple_ref/shell/tdef/bin //apple_ref/shell/tag/bin //apple_ref/shell/econst/bin //apple_ref/shell/struct/bin //apple_ref/shell/clconst/bin //apple_ref/shell/intf/bin" --><span class="type">bin</span><!-- /a -->/<!-- a logicalPath="//apple_ref/shell/cl/nc //apple_ref/shell/tdef/nc //apple_ref/shell/tag/nc //apple_ref/shell/econst/nc //apple_ref/shell/struct/nc //apple_ref/shell/clconst/nc //apple_ref/shell/intf/nc" --><span class="type">nc</span><!-- /a --> </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/PERL_EXECUTABLE;   name=PERL_EXECUTABLE --><a name="//apple_ref/shell/data/PERL_EXECUTABLE"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="PERL_EXECUTABLE">PERL_EXECUTABLE</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The path to the Perl interpreter (used for CGI). <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/PERL_EXECUTABLE //apple_ref/shell/tdef/PERL_EXECUTABLE //apple_ref/shell/tag/PERL_EXECUTABLE //apple_ref/shell/econst/PERL_EXECUTABLE //apple_ref/shell/struct/PERL_EXECUTABLE //apple_ref/shell/clconst/PERL_EXECUTABLE //apple_ref/shell/intf/PERL_EXECUTABLE" --><span class="type">PERL_EXECUTABLE</span><!-- /a -->="/<span class="string">usr</span>/<span class="string">bin</span>/<span class="string">perl</span>" </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/PHP_CGI_EXECUTABLE;   name=PHP_CGI_EXECUTABLE --><a name="//apple_ref/shell/data/PHP_CGI_EXECUTABLE"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="PHP_CGI_EXECUTABLE">PHP_CGI_EXECUTABLE</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The path to the php-cgi interpreter (must be compiled with the CGI SAPI. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/PHP_CGI_EXECUTABLE //apple_ref/shell/tdef/PHP_CGI_EXECUTABLE //apple_ref/shell/tag/PHP_CGI_EXECUTABLE //apple_ref/shell/econst/PHP_CGI_EXECUTABLE //apple_ref/shell/struct/PHP_CGI_EXECUTABLE //apple_ref/shell/clconst/PHP_CGI_EXECUTABLE //apple_ref/shell/intf/PHP_CGI_EXECUTABLE" --><span class="type">PHP_CGI_EXECUTABLE</span><!-- /a -->="/<span class="string">usr</span>/<span class="string">local</span>/<span class="string">php5</span>-<span class="string">cgi</span>/<span class="string">bin</span>/<span class="string">php</span>-<span class="string">cgi</span>" </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/REALPATH;   name=REALPATH --><a name="//apple_ref/shell/data/REALPATH"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="REALPATH">REALPATH</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>The location of a realpath binary <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/REALPATH //apple_ref/shell/tdef/REALPATH //apple_ref/shell/tag/REALPATH //apple_ref/shell/econst/REALPATH //apple_ref/shell/struct/REALPATH //apple_ref/shell/clconst/REALPATH //apple_ref/shell/intf/REALPATH" --><span class="type">REALPATH</span><!-- /a -->="/<span class="string">usr</span>/<span class="string">local</span>/<span class="string">bin</span>/<span class="string">realpath</span>" </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/SHTTPD_PORTS;   name=SHTTPD_PORTS --><a name="//apple_ref/shell/data/SHTTPD_PORTS"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="SHTTPD_PORTS">SHTTPD_PORTS</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>A list of ports to listen on. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/SHTTPD_PORTS //apple_ref/shell/tdef/SHTTPD_PORTS //apple_ref/shell/tag/SHTTPD_PORTS //apple_ref/shell/econst/SHTTPD_PORTS //apple_ref/shell/struct/SHTTPD_PORTS //apple_ref/shell/clconst/SHTTPD_PORTS //apple_ref/shell/intf/SHTTPD_PORTS" --><span class="type">SHTTPD_PORTS</span><!-- /a -->="<span class="string">8081</span>" </pre>
+</div>
+<p></p>
+<p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>

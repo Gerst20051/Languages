@@ -1,0 +1,478 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>handlers.sh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=Header;  uid=//apple_ref/doc/header/handlers.sh;   name=handlers.sh --><a name="//apple_ref/doc/header/handlers.sh"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="handlers.sh">handlers.sh</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<div class="declaration_indent">
+</div>
+<!-- begin discussion --><p>Request handlers, string routines, and core I/O.
+<!-- end discussion -->
+</p>
+<hr>
+<br><a name="HeaderDoc_groups"><h2>Groups</h2></a>
+
+<h3>I/O Functions</h3>
+<div class="group_desc_indent">
+<p> </p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/closeConnection" logicalPath="//apple_ref/shell/func/closeConnection" target="_top">closeConnection</a></tt></dt>
+<dd><p>Instructs the netcat process to close the connection to the client.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/getStatusText" logicalPath="//apple_ref/shell/func/getStatusText" target="_top">getStatusText</a></tt></dt>
+<dd><p>Prints a status string for a status code number.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleDirListing" logicalPath="//apple_ref/shell/func/handleDirListing" target="_top">handleDirListing</a></tt></dt>
+<dd><p>Prints a directory listing.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleError" logicalPath="//apple_ref/shell/func/handleError" target="_top">handleError</a></tt></dt>
+<dd><p>Sends an HTTP error page to the client.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleGetPostRequest" logicalPath="//apple_ref/shell/func/handleGetPostRequest" target="_top">handleGetPostRequest</a></tt></dt>
+<dd><p>Handles an HTTP GET or POST request.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleRedirect" logicalPath="//apple_ref/shell/func/handleRedirect" target="_top">handleRedirect</a></tt></dt>
+<dd><p>Sends an HTTP redirect.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleRequest" logicalPath="//apple_ref/shell/func/handleRequest" target="_top">handleRequest</a></tt></dt>
+<dd><p>Handles an HTTP request.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/print" logicalPath="//apple_ref/shell/func/print" target="_top">print</a></tt></dt>
+<dd><p>Prints a string with a terminating newline.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/splitForScript" logicalPath="//apple_ref/shell/func/splitForScript" target="_top">splitForScript</a></tt></dt>
+<dd><p>Searches for a CGI script within a relative path.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/splitURL" logicalPath="//apple_ref/shell/func/splitURL" target="_top">splitURL</a></tt></dt>
+<dd><p>Splits the query string from a URL.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/strlen" logicalPath="//apple_ref/shell/func/strlen" target="_top">strlen</a></tt></dt>
+<dd><p>Obtains the length of a string.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/tolower" logicalPath="//apple_ref/shell/func/tolower" target="_top">tolower</a></tt></dt>
+<dd><p>Converts a string to lowercase.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/toupper" logicalPath="//apple_ref/shell/func/toupper" target="_top">toupper</a></tt></dt>
+<dd><p>Converts a string to uppercase.
+</p></dd>
+</dl>
+</div>
+<hr>
+<a name="HeaderDoc_functions"></a>
+<h2>Functions</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/closeConnection" target="_top">closeConnection</a></tt></dt>
+<dd><p>Instructs the netcat process to close the connection to the client.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/getStatusText" target="_top">getStatusText</a></tt></dt>
+<dd><p>Prints a status string for a status code number.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleDirListing" target="_top">handleDirListing</a></tt></dt>
+<dd><p>Prints a directory listing.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleError" target="_top">handleError</a></tt></dt>
+<dd><p>Sends an HTTP error page to the client.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleGetPostRequest" target="_top">handleGetPostRequest</a></tt></dt>
+<dd><p>Handles an HTTP GET or POST request.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleRedirect" target="_top">handleRedirect</a></tt></dt>
+<dd><p>Sends an HTTP redirect.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/handleRequest" target="_top">handleRequest</a></tt></dt>
+<dd><p>Handles an HTTP request.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/print" target="_top">print</a></tt></dt>
+<dd><p>Prints a string with a terminating newline.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/splitForScript" target="_top">splitForScript</a></tt></dt>
+<dd><p>Searches for a CGI script within a relative path.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/splitURL" target="_top">splitURL</a></tt></dt>
+<dd><p>Splits the query string from a URL.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/strlen" target="_top">strlen</a></tt></dt>
+<dd><p>Obtains the length of a string.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/tolower" target="_top">tolower</a></tt></dt>
+<dd><p>Converts a string to lowercase.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/toupper" target="_top">toupper</a></tt></dt>
+<dd><p>Converts a string to uppercase.
+</p></dd>
+</dl>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/closeConnection;   name=closeConnection --><a name="//apple_ref/shell/func/closeConnection"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="closeConnection">closeConnection</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Instructs the netcat process to close the connection to the client.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/closeConnection" logicalPath="//apple_ref/shell/instm/closeConnection //apple_ref/shell/clm/closeConnection //apple_ref/shell/intfcm/closeConnection //apple_ref/shell/intfm/closeConnection //apple_ref/shell/func/closeConnection" target="_top"><span class="function">closeConnection</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>FIFO</code></dt>
+<dd><p>The FIFO used for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Do not close the connection if the Content-Length status is set.
+Otherwise, you may end up closing the connection on the wrong client.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/getStatusText;   name=getStatusText --><a name="//apple_ref/shell/func/getStatusText"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="getStatusText">getStatusText</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a status string for a status code number.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/getStatusText" logicalPath="//apple_ref/shell/instm/getStatusText //apple_ref/shell/clm/getStatusText //apple_ref/shell/intfcm/getStatusText //apple_ref/shell/intfm/getStatusText //apple_ref/shell/func/getStatusText" target="_top"><span class="function">getStatusText</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>CODE</code></dt>
+<dd><p>The HTTP status code number.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns s status code string through <code>stderr</code> for
+the HTTP status code in <cpde>CODE<code>.
+
+This function is not a complete list of status codes.  It only includes
+strings for result codes that shttpd.sh actually generates internally.
+
+<!-- end return value --></code></cpde></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/handleDirListing;   name=handleDirListing --><a name="//apple_ref/shell/func/handleDirListing"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="handleDirListing">handleDirListing</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a directory listing.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/handleDirListing" logicalPath="//apple_ref/shell/instm/handleDirListing //apple_ref/shell/clm/handleDirListing //apple_ref/shell/intfcm/handleDirListing //apple_ref/shell/intfm/handleDirListing //apple_ref/shell/func/handleDirListing" target="_top"><span class="function">handleDirListing</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>URL</code></dt>
+<dd><p>The original URL as received from the client.</p></dd>
+<dt><code>LOCALDIR</code></dt>
+<dd><p>The complete local path to the requested directory.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This function is callsed by <code><a href="index.html#//apple_ref/shell/func/handleGetPostRequest" logicalPath="//apple_ref/shell/func/handleGetPostRequest" target="_top">handleGetPostRequest</a></code>.  Before calling
+this function, be certain that the directory request is safe.  This function
+does no validation whatsoever.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/handleError;   name=handleError --><a name="//apple_ref/shell/func/handleError"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="handleError">handleError</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Sends an HTTP error page to the client.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/handleError" logicalPath="//apple_ref/shell/instm/handleError //apple_ref/shell/clm/handleError //apple_ref/shell/intfcm/handleError //apple_ref/shell/intfm/handleError //apple_ref/shell/func/handleError" target="_top"><span class="function">handleError</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>URL</code></dt>
+<dd><p>The URL associated with the failed request.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>You must set the value of <code>STATUS</code> to the appropriate
+HTTP error code before calling this function.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/handleGetPostRequest;   name=handleGetPostRequest --><a name="//apple_ref/shell/func/handleGetPostRequest"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="handleGetPostRequest">handleGetPostRequest</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Handles an HTTP GET or POST request.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/handleGetPostRequest" logicalPath="//apple_ref/shell/instm/handleGetPostRequest //apple_ref/shell/clm/handleGetPostRequest //apple_ref/shell/intfcm/handleGetPostRequest //apple_ref/shell/intfm/handleGetPostRequest //apple_ref/shell/func/handleGetPostRequest" target="_top"><span class="function">handleGetPostRequest</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>READFD</code></dt>
+<dd><p>The file descriptor for receiving data from <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>URL</code></dt>
+<dd><p>The original URL as received from the client.</p></dd>
+<dt><code>HTTP_VERSION</code></dt>
+<dd><p>The HTTP version specified ("HTTP/1.0" or "HTTP/1.1").</p></dd>
+<dt><code>HEADERTREE</code></dt>
+<dd><p>A binary tree of headers received from the client.</p></dd>
+<dt><code>RESPONSEHEADERTREE</code></dt>
+<dd><p>A binary tree of headers to send back to the client.</p></dd>
+<dt><code>METHOD</code></dt>
+<dd><p>The request method (GET or POST) used.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This function is callsed by <code><a href="index.html#//apple_ref/shell/func/handleRequest" logicalPath="//apple_ref/shell/func/handleRequest" target="_top">handleRequest</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/handleRedirect;   name=handleRedirect --><a name="//apple_ref/shell/func/handleRedirect"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="handleRedirect">handleRedirect</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Sends an HTTP redirect.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/handleRedirect" logicalPath="//apple_ref/shell/instm/handleRedirect //apple_ref/shell/clm/handleRedirect //apple_ref/shell/intfcm/handleRedirect //apple_ref/shell/intfm/handleRedirect //apple_ref/shell/func/handleRedirect" target="_top"><span class="function">handleRedirect</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>URL</code></dt>
+<dd><p>The original URL as received from the client.</p></dd>
+<dt><code>HOST</code></dt>
+<dd><p>The hostname:port pair that the client requested.</p></dd>
+<dt><code>HEADERTREE</code></dt>
+<dd><p>A binary tree of headers received from the client.</p></dd>
+<dt><code>RESPONSEHEADERTREE</code></dt>
+<dd><p>A binary tree of headers to send back to the client.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This function is callsed by <code><a href="index.html#//apple_ref/shell/func/handleRequest" logicalPath="//apple_ref/shell/func/handleRequest" target="_top">handleRequest</a></code>.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/handleRequest;   name=handleRequest --><a name="//apple_ref/shell/func/handleRequest"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="handleRequest">handleRequest</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Handles an HTTP request.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/handleRequest" logicalPath="//apple_ref/shell/instm/handleRequest //apple_ref/shell/clm/handleRequest //apple_ref/shell/intfcm/handleRequest //apple_ref/shell/intfm/handleRequest //apple_ref/shell/func/handleRequest" target="_top"><span class="function">handleRequest</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>READFD</code></dt>
+<dd><p>The file descriptor for receiving data from <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>REQUEST</code></dt>
+<dd><p>The request line received from the client.</p></dd>
+<dt><code>HEADERTREE</code></dt>
+<dd><p>A binary tree of headers received from the client.</p></dd>
+<dt><code>RESPONSEHEADERTREE</code></dt>
+<dd><p>A binary tree of headers to send back to the client.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/print;   name=print --><a name="//apple_ref/shell/func/print"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="print">print</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Prints a string with a terminating newline.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/print" logicalPath="//apple_ref/shell/instm/print //apple_ref/shell/clm/print //apple_ref/shell/intfcm/print //apple_ref/shell/intfm/print //apple_ref/shell/func/print" target="_top"><span class="function">print</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/splitForScript;   name=splitForScript --><a name="//apple_ref/shell/func/splitForScript"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="splitForScript">splitForScript</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Searches for a CGI script within a relative path.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/splitForScript" logicalPath="//apple_ref/shell/instm/splitForScript //apple_ref/shell/clm/splitForScript //apple_ref/shell/intfcm/splitForScript //apple_ref/shell/intfm/splitForScript //apple_ref/shell/func/splitForScript" target="_top"><span class="function">splitForScript</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>RELATIVEPATH</code></dt>
+<dd><p>The path relative to the document root.</p></dd>
+<dt><code>BASEDIR</code></dt>
+<dd><p>The document root.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->If it finds a script, the first part of the path (up to and including
+the script name) is stored in the global variable
+<code><!-- a logicalPath="//apple_ref/shell/var/SCRIPT_PATH" -->SCRIPT_PATH<!-- /a --></code> and the
+rest of the path after the script name is stored into the global
+variable <code><!-- a logicalPath="//apple_ref/shell/var/SCRIPT_REMAINDER" -->SCRIPT_REMAINDER<!-- /a --></code>.
+
+If it fails to find a script in the path,
+
+<!-- end return value --></p>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>This searches for a CGI script when it is passed in the middle
+of a URL.  For example, "http://example.org/script.cgi/foo/bar".
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/splitURL;   name=splitURL --><a name="//apple_ref/shell/func/splitURL"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="splitURL">splitURL</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Splits the query string from a URL.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/splitURL" logicalPath="//apple_ref/shell/instm/splitURL //apple_ref/shell/clm/splitURL //apple_ref/shell/intfcm/splitURL //apple_ref/shell/intfm/splitURL //apple_ref/shell/func/splitURL" target="_top"><span class="function">splitURL</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Stores the results in two global variables:
+</p>
+<p><code><!-- a logicalPath="//apple_ref/shell/var/PATHPART" -->PATHPART<!-- /a --></code> contains the script path.
+</p>
+<p><code><!-- a logicalPath="//apple_ref/shell/var/PARMPART" -->PARMPART<!-- /a --></code> contains the query string.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/strlen;   name=strlen --><a name="//apple_ref/shell/func/strlen"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="strlen">strlen</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Obtains the length of a string.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/strlen" logicalPath="//apple_ref/shell/instm/strlen //apple_ref/shell/clm/strlen //apple_ref/shell/intfcm/strlen //apple_ref/shell/intfm/strlen //apple_ref/shell/func/strlen" target="_top"><span class="function">strlen</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/tolower;   name=tolower --><a name="//apple_ref/shell/func/tolower"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="tolower">tolower</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Converts a string to lowercase.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/tolower" logicalPath="//apple_ref/shell/instm/tolower //apple_ref/shell/clm/tolower //apple_ref/shell/intfcm/tolower //apple_ref/shell/intfm/tolower //apple_ref/shell/func/tolower" target="_top"><span class="function">tolower</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/toupper;   name=toupper --><a name="//apple_ref/shell/func/toupper"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="toupper">toupper</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Converts a string to uppercase.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/toupper" logicalPath="//apple_ref/shell/instm/toupper //apple_ref/shell/clm/toupper //apple_ref/shell/intfcm/toupper //apple_ref/shell/intfm/toupper //apple_ref/shell/func/toupper" target="_top"><span class="function">toupper</span></a>() </pre>
+</div>
+<p></p>
+<p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>

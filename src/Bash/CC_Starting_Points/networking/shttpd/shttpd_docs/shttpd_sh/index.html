@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>shttpd.sh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=Header;  uid=//apple_ref/doc/header/shttpd.sh;   name=shttpd.sh --><a name="//apple_ref/doc/header/shttpd.sh"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="shttpd.sh">shttpd.sh</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<div class="declaration_indent">
+</div>
+<!-- begin discussion --><p>This script is a mostly functional HTTP/1.1 web server written using
+shell scripts.  The main purpose of this script, however, is to
+provide a practical example of several techniques:
+</p>
+<ul>
+<li> Finding the exact path of the script and sourcing subroutines from
+files in locations relative to the script directory.</li>
+
+<li> Using the nc (netcat) utility for script-based networking.</li>
+<li> Using circular pipes.</li>
+<li> Using complex data structures (in binary_tree.sh)</li>
+<li> Parsing text (in parsers.sh)</li>
+</ul>
+<!-- end discussion --><hr>
+<br><a name="HeaderDoc_functions"></a>
+<h2>Functions</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/cleanup_shttpd" target="_top">cleanup_shttpd</a></tt></dt>
+<dd><p>Tears down the web server and cleans up temporary files. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/reconnect" target="_top">reconnect</a></tt></dt>
+<dd><p>Attempts to reconnect after a sigpipe. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/testMyself" target="_top">testMyself</a></tt></dt>
+<dd><p>Works around a curious bug in which the very first connection fails. </p></dd>
+</dl>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/cleanup_shttpd;   name=cleanup_shttpd --><a name="//apple_ref/shell/func/cleanup_shttpd"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="cleanup_shttpd">cleanup_shttpd</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Tears down the web server and cleans up temporary files. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/cleanup_shttpd" logicalPath="//apple_ref/shell/instm/cleanup_shttpd //apple_ref/shell/clm/cleanup_shttpd //apple_ref/shell/intfcm/cleanup_shttpd //apple_ref/shell/intfm/cleanup_shttpd //apple_ref/shell/func/cleanup_shttpd" target="_top"><span class="function">cleanup_shttpd</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/reconnect;   name=reconnect --><a name="//apple_ref/shell/func/reconnect"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="reconnect">reconnect</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Attempts to reconnect after a sigpipe. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/reconnect" logicalPath="//apple_ref/shell/instm/reconnect //apple_ref/shell/clm/reconnect //apple_ref/shell/intfcm/reconnect //apple_ref/shell/intfm/reconnect //apple_ref/shell/func/reconnect" target="_top"><span class="function">reconnect</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/testMyself;   name=testMyself --><a name="//apple_ref/shell/func/testMyself"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="testMyself">testMyself</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Works around a curious bug in which the very first connection fails. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/testMyself" logicalPath="//apple_ref/shell/instm/testMyself //apple_ref/shell/clm/testMyself //apple_ref/shell/intfcm/testMyself //apple_ref/shell/intfm/testMyself //apple_ref/shell/func/testMyself" target="_top"><span class="function">testMyself</span></a>() </pre>
+</div>
+<p></p>
+<p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>
