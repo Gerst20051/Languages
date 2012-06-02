@@ -1,0 +1,191 @@
+This gives a sample server.cfg here with an explanation of what the command does. I bet most people do not know what things can set up,:) The file is copied (info below), but I added my minor modifications.
+
+
+
+/
+Quote:
+/ Server.cfg PL
+/ / To _KaszpiR_ http://nvt.prv.pl
+/ / Modified by Trawiator'a
+/ / Ver 0.6A 2005-11-24
+
+
+/ / Then start hlds with parameter + servercfgfile server.cfg
+/ / For example. / Hlds_run-game cstrike + map de_dust + servercfgfile server.cfg
+
+/ / Config is the preparation parameters on the FFA server
+
+
+/ / Basic setup
+
+sv_lan 1 / / set to 1 if it is the only server on the lan to Nonsteam always have to be
+maxplayers 20 / / maximum number of players, remember that the reservation systems of slots on a server usually takes 2 slots
+sv_visiblemaxplayers 16 / / number of visible slots on the server, -1 if it is automatically calculated (standard)
+/ / But then you must manually from the console to napisc server address to connect to (if the server is full)
+/ / Set the example, the value of 20 and 22 have maxplayers and in fact you have 2 free slots on the server
+
+
+banned.cfg exec / recharge bans SteamID / wonid
+Listip.cfg exec / ip bans on recharge
+
+hostname "Server Name" / / server name servers as seen through the browser (eg in favourities)
+mapchangecfgfile "server.cfg" / / do this confgi during map changes (eg to restore the old settings)
+mapcyclefile "mapcycle.txt" / / file contains a list of map by which to play after the end of the game
+motdfile "motd.txt" / / filename to display as you enter the server, this is what people do not read:)
+servercfgfile "server.cfg" / / file with major settings on the server, fired on first startup
+
+sv_proxies 1 / / number of hltv proxy that can connect to a server, a standard, more is not recommended
+sv_region 3 / / because we are in Europe set 3
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Performance
+
+fps_max 100 / / how many fps the server should have an average, the best that was around 100, but no greater than 200
+/ / Otherwise the server consumes too much CPU
+
+sys_ticrate 125 / / 125 warosc is recommended, it is best not to have more than 200, some games require 1000 but hosting companies may enforce the value of the lower
+/ / 10 000 is the extreme values, only the cast for the scavengers
+/ / Usually only eats CPU niepotrzbnie
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Net
+
+sv_maxrate 8000 / / maximum value which the server can send to each client individually,
+/ / Set value of less than 4000 players and server zlaguje
+/ / At lan 20000
+/ / Web server - zalzy to join together, try the 9999 if you have a lag, possibly gradually mzniejszaj 500
+
+sv_maxupdaterate 100 / / maximum value which the customer may have cl_updaterate,
+/ / If no more are lost packets will have
+
+sv_minrate 0 / / minimum value of what the server can send to each client individually, default 0,
+/ / Set the values of over 6000 zlaguje server and players
+/ / Recommended to krzymanie 0 value because of HLTV servers - you can just save up money for the link
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Rcon and password
+
+sv_password "/ / password required to connect to server
+/ / Ustawnaie Most servers or clan during a match
+
+/ / Rcon_password "soup" / / rcon password in the not recommended to umeszczac here, it's better if you give the parameters of the firing of the server
+/ / If you set "" it will not work rcon
+/ / Eg + rcon_password "soup"
+
+sv_rcon_banpenalty 1 / / turn on the penalties for attempts to use the wrong rcon'a (banish the ip)
+sv_rcon_minfailures 5 / / limit bad rcon commands to get ban'a
+sv_rcon_minfailuretime 30 / / time in which attempts are checked rcon,
+/ / As someone enters rcon_password bad (or not give) and perform rcon commands too much to get a ban
+/ / If only to help restart the server
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Logs
+/ / Recommended to preserve these settings if you wish to use or PsychoStats hlstats
+
+mp_logdetail 3 / / level logs, 0 - disable, 1 - only to hit an opponent standard, 2, - just hit tp, 3 - both log (tp and hostile)
+mp_logecho 1 / / 1 - turns on the login command echo, 0 - off, such as you have in server.cfg echo SERVER CFG LOADED it will have is logged
+mp_logfile 1 / / login multiplayer events (end of round, etc.), 1 - yes (standard), 0 - no
+mp_logmessages 1 / / log the commands say (chat), 1 - yes (standard), 0 - no
+sv_logbans 1 / / log giving the ban, 1 - yes (standard), 0 - no
+sv_logblocks 1 / / log blocked attempts to change the value of proprietary variable, 1 - yes (standard), 0 - no
+sv_logrelay 1 / / log connect an hltv proxy relay, 1 - yes (standard), 0 - no
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Voice
+
+sv_voicecodec "voice_speex" / / codec type, default voice_miles, recommended voice_speex - better quality at the expense of a few percent of CPU usage
+sv_voiceenable 1 / / use options on the voice server, 1 - yes (default), 0 - no
+sv_voicequality 5 / / voice quality, from 1 to 5, the more the better but the slingshot and a higher usage of the network
+sv_alltalk 0 / / 0 - (default) voice only works if, and only alive to the tp, 1 - everyone can talk with each (at the beginning and end of the match)
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Downlad
+/ / Recommended to preserve these values in order not to have problems with downloading files from the server
+
+hpk_maxsize 1 / / maximum size of the sum of the logo Cyprus of all players on the server, in megabytes
+/ / Recommended value of 2 mega
+/ / Set the arrow buttons are too high will cause the players will disconnectowani (because it must suck)
+/ / The server will load the slower pace in August
+sv_allowdownload 1 / / allow to download, 1 - yes (standard), 0 - no
+sv_allowupload 1 / / allow to upload (eg logos), 1 - yes (standard), 0 - no
+sv_send_logos 1 / / allow players to send the logo (spray on the wall)
+sv_send_resources 1 / / allow to dowload the list of required files to play on a map, 1 - yes (standard), 0 - no
+/ / Sv_downloadurl "http://szambo/hlds/dlurl/" / / url to the site where you can suck the files server (remember to restrict access to important files - addons folder, server.cfg, etc)
+mp_decals 300 / / maximum logo displayed on the server, etc.
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Game
+mp_autoteambalance 0 / / flip players to other teams if the difference in configurations, 0 - no (default), 1 - yes
+mp_buytime 0.50 / / time to buy at the beginning of the round, in a fraction of a minute (one minute = 1.0, 30 seconds = 0.25)
+mp_c4timer 35 / / time in seconds to disarm the bomb (otherwise will bum:), default 35
+mp_flashlight 1 / / 1 - You can use the flashlight (standard), 0 - disabled torch
+mp_footsteps 1 / / 1 - players can hear the steps while running (standard), 0 - disabled (Quake 1 mode), good for exercises reflex:)
+mp_freezetime 1 / / time in seconds pause at the beginning of the round (to reload and purchase of arms), set to 0 on maps aim
+mp_friendly_grenade_damage 1 / / 0 - tp grenades do not hurt (but zabiebraja armor), 1 - grenades Rania players from the team (standard)
+mp_friendlyfire 1 / / 0 - how to shoot his latter did not hurt, 1 - hurt their (standard)
+mp_ghostfrequency 0.1 / / refresh rate for observer status
+mp_hostagepenalty 0 / / number to kill the hostages after which you get a kick, 0 - disabled
+mp_limitteams 0 / / how many players can be unbalanced by jedej of the teams, 0 - no limit, 2 - maxymalnie may be in one of the teams 2 players More
+mp_maxrounds 0 / / maximum number of rounds to play, 0 - no limit (standard)
+mp_mirrordamage 0 / / how to hit her so jabys hit each other, default 0, 1 - turn on (not recommended)
+mp_roundtime 2.5 / / duration in minutes of the round, the standard is 3 minutes, or 1.75 for a quick game (not to get bored on the sown), values from 1 to 9
+mp_startmoney 800 / / number of cash at the beginning of the round
+mp_timelimit 20 / / limit play time on a map (after the change of the map), in minutes, set to 0 for no time limit,
+mp_tkpunish 0 / / punishment of death at the beginning of the next round for killing her, 0 - no (default), 1 - yes
+mp_winlimit 0 / / limit of rounds to win as any team reaches the value is a change in the map, 0 - no limit (standard)
+mp_payerid 0 / / displays the player's nickname after nacelowaniu, 0 - see wsztkich (in color) (standard), 1 - only tp and hostages, 2 - no one shows
+pausable 0 / / 0 (standard) does not allow players to pause the game on the server, 1 - allows time for the games in August so sets
+sv_maxspeed 320 / / maximum speed gear player, standard (320)
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Observers
+
+allow_spectators 1 / / allow the observer (a person completely not playing), 1 - yes (standard), 0 - no,
+mp_fadetoblack 0 / / 1 - the screen gets dark after the death of a player (required for some games), 0 - without darkening
+mp_forcecamera 1 / / overextend spectarora for: 0 - do not overextend, 1 - view from the eyes and chase the player mode, 2 - only the player's eye view, the recommended value of 1 or 2
+mp_forcechasecam 1 / / 0 - player can fly around the map, 1 - you can watch your typo tp, 2 - the client does not move from place where he died
+
+mp_autokick 0 / / auto-kicking for killing their long, or not sure the place of moving the
+sv_timeout 90 / / time in seconds, if a player does not respond at this time is considered to be disconnected from the server (as someone in August Comp zwiesi / die for moments of connection)
+sv_spectatormaxspeed 900 / / maximum flying speed of the observer, normally a player runs at a speed of 320, the standard is 500
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Other
+
+mp_autocrosshair 0 / / default 0
+sv_aim 0 / / 0 ((standard) autocelowanie off, 1 - enable auto aim (not recommended)
+sv_airaccelerate 10 / / akcleracja in the air (bunnyjump), the value from 0 to 10, 10 standard
+sv_airmove 1 / / allows you to move in the air (bunnyjump), 1 - yes (standard), 0 - no
+sv_challengetime 180 / / time in seconds if the player does not connect to the game at that time will be deemed to be disconnected, increase if the players have a lot of weak Comps or recover from a server: D
+sv_cheats 0 / / 0 (standard) does not allow commands give weapon, god, noclip and stuff, 1 - to developers or serwero maps for fun
+sv_clienttrace 1 / / (standard) 1
+sv_friction 4 / / slip on the surface while running, has an effect on the speed of the complete arrest in August, 4 (standard)
+sv_gravity 800 / / gravity, default 800, the more the harder it is to jump (with some small values of the descent of the stair is a lethal grenades fall down under their feet)
+/ / 0 off gravitation - as it already does not jump fall
+/ / Value of 100, 200, 400 sanajczesciej found on servers niekonwecjonalnych
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Status of the server via web
+/ / Check the status of the server also consumes little CPU and join together, the default values are adequate
+
+max_queries_global 20 / / how often you can check the status of the total server
+max_queries_sec 3 / / how often the customer can check the status of the server (all seeing eye, scripts www)
+max_queries_window 30 / / size of the time window to check the requests, as you are having problems in HLSW timeout set to 10
+
+
+
+////////////////////////////////////////////////// /////////////////////////////////////////////////
+/ / Extra configs
+/ / Exec addons / wwcl / scripts / wwcl_config.cfg / / do confgi wwcl (if you have this plugin, and how not to do wrong will not happen)
+/ / Exec addons / cdeath / cdeath.cfg / / do confgi Cheating-Death (if you have this plugin, and how not to do wrong will not happen)
+
+
+
+Say server settings loaded
+/ / End 

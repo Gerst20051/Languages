@@ -1,0 +1,70 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="GlobalizationSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent" Height="768">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,16,0,27">
+            <TextBlock x:Name="ApplicationTitle" Text="{Binding Path=Localizedresources.AppTitle, Source={StaticResource LocalizedStrings}}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding Path=Localizedresources.PageTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-8,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <ScrollViewer x:Name="ContentViewer" Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel Height="824" HorizontalAlignment="Left" Margin="9,6,0,0" Name="stackPanel2" VerticalAlignment="Top" Width="443" Background="{StaticResource PhoneBackgroundBrush}">
+                <TextBlock Height="30" Name="textBlock1" Text="{Binding Path=Localizedresources.TextLabelLocale, Source={StaticResource LocalizedStrings}}" Width="443" Foreground="{StaticResource PhoneAccentBrush}" />
+
+                <ListBox Height="207" HorizontalAlignment="Left" Margin="9,6,0,10" Name="locList" VerticalAlignment="Top" Width="441" SelectedIndex="-1" SelectionChanged="LocList_SelectedIndexChanged">
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameFr, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameDe, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameIt, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameEs, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameEnUK, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameEnUS, Source={StaticResource LocalizedStrings}}" FontSize="22"/>
+                    <ListBoxItem Content="{Binding Path=Localizedresources.LangRegionNameDaDK, Source={StaticResource LocalizedStrings}}" FontSize="22" />
+                </ListBox>
+                <StackPanel Height="580" HorizontalAlignment="Left" Margin="0,10,0,0" Name="stackPanel1" VerticalAlignment="Top" Width="441">
+                    <TextBlock Height="30" Name="textBlock2" Text="{Binding Path=Localizedresources.TextLabelRegionFormat, Source={StaticResource LocalizedStrings}}" Width="443" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBlock Height="30" Name="regionalFrmt" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock3" Text="{Binding Path=Localizedresources.TextLabelDispLang, Source={StaticResource LocalizedStrings}}" Width="443"  Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Height="30" Name="displayLang" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock4" Text="{Binding Path=Localizedresources.TextLabelLngDate, Source={StaticResource LocalizedStrings}}" Width="443"  Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Height="30" Name="longDate" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock5" Text="{Binding Path=Localizedresources.TextLabelShrtDate, Source={StaticResource LocalizedStrings}}" Width="443"  Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Height="30" Name="shortDate" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock6" Text="{Binding Path=Localizedresources.TextLabelLngTime, Source={StaticResource LocalizedStrings}}" Width="443"  Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Height="30" Name="longTime" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock7" Text="{Binding Path=Localizedresources.TextLabelCurrency, Source={StaticResource LocalizedStrings}}" Width="443"  Foreground="{StaticResource PhoneAccentBrush}"/>
+                    <TextBlock Height="30" Name="currencyFrmt" Text=" " Width="443" />
+
+                    <TextBlock Height="30" Name="textBlock8" Text="{Binding Path=Localizedresources.SortText, Source={StaticResource LocalizedStrings}}" Width="443" Foreground="{StaticResource PhoneAccentBrush}" />
+                    <TextBox Height="151" Name="sortedStrings" Text=" " Width="443" AcceptsReturn="True" Background="{StaticResource PhoneBackgroundBrush}" IsEnabled="False"/>
+
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+
+</phone:PhoneApplicationPage>

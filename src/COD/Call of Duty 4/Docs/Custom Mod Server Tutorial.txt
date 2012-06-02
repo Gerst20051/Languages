@@ -1,0 +1,103 @@
+http://iwnation.com/forums/index.php?showtopic=29394
+
+Here's a brief walk through on how to set up custom maps on your server. The info is mostly compiled from several other posts that can be found on this site with a little editing by me.
+
+First off you have to run your custom map server as a modded server so that the clients can download your maps and files. Here's a brief tutorial on how to set up a modded server.
+
+How to set up a modded server
+
+1. Create a new folder in the COD4 'mods' folder (next to 'ModWarfare'). You can call it what you like. For illustration purposes, I will call mine 'awe4'. The entire path should look something like this:
+
+C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\mods\awe4
+
+This is your fs_game mods/folder. Remember to keep everything in lower case, as it avoids several quirks about the root path to fs_game.
+
+So, in your command line you would add something like this:
+
++set fs_game mods/awe4
+
+A forward slash and lower-case 'm' in mods. So the entire command line would look something like this:
+
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe" +set dedicated 2 +set fs_game mods/awe4 +exec server.cfg +map_rotate
+
+2. On your redirect space, create a root folder that you will use for all your servers. I will call mine 'cod4'. Inside this folder, create a folder called 'mods' (all lower case). Inside that create another folder named after your fs_game folder. I will call mine 'awe4'.
+
+3. On your server, into the 'awe4' folder place your mod IWD. Mine is called 'z_awe4.iwd'. Also place in there mod.ff.
+
+4. Copy those files from your server to your redirect space - i.e. z_awe4.iwd and mod.ff.
+
+In your server config file, enter your redirect details. They are exactly the same as vCOD/UO/COD2.
+
+Mine are:
+
+set sv_allowdownload "1"
+set sv_wwwDownload 1
+set sv_wwwbaseURL "http://www.tallys-world.com/cod4/"
+set sv_wwwdldisconnected "0"
+
+On previous versions of COD the disconnected setting could be a 1 but for now until IW puts out a fix for it leave this setting at 0.
+
+Notice that you quote only up to the root of where you store your download files. As in previous COD titles, you dont have to quote the whole destination root directory url - the game will find mods/awe4 for you.
+
+That should cover the basics on how to set up a mod and thanks to Tally for his original post on the subject. Now onto how to set up the custom maps.
+
+Custom map setup information:
+
+When you download a custom map from it's source you should find at least 3 files. The mp_mapname.ff, mp_mapnameload.ff and mp_mapname.iwd. The main map file is the mp_mapname.ff file.
+
+To run the custom maps from your server you need to make a new folder called "usermaps". This folder is placed in your root directory where you have your game installed right next to the other folders such as Docs, main, miles and so on. It should look something like this:
+
+C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\usermaps
+
+Inside the usermaps folder each map should have it's own folder that's titled the name of the map. So it should look something like this:
+
+C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\usermaps\mp_mapname
+
+You then place the two ff files into this folder so the mp_mapname.ff and the mp_mapnameload.ff both go into this folder.
+
+The mp_mapname.iwd goes into your fs_game mod folder along with the files from your mod so it goes along side of the mod.ff file, the cfg's and mod.iwd. At this point I will also add that you can combine your map iwd's into one iwd if you so wish. This keeps the number of downloads to your clients to a lower number.
+
+Redirect setup for custom maps
+
+The next thing to do is to create a new folder at your website where you are hosting your files. In your redirect directory you should already have a root folder with your fs_game folder inside it and your mod files inside that. In our case our root folder is called cod4. Inside that we have our mod folder called awe4. Along side of the mod folder you need to create a new folder called usermaps. You place a copy of your custom map folder containing the ff files inside this usermaps folder just like you did on your server. Then the mapname.iwd goes in your mod folder or in our case the Awe4 folder. 
+
+You should now have a root folder at your download site with two folders inside it. One is your mod or fs_game folder with your mod files and map.iwd's and the other is your usermaps folder with the individual map folders inside it and inside the map folders the two ff files.
+
+Note that if you are getting errors from a new map that the map's iwd and mp_mapnameload.ff are not always needed to run the map in all cases. Try starting the server up with only the mp_mapname.ff file and let the mapmaker know that there is a potential issue.
+
+Lastly you need to update your map rotation to run the new maps.
+
+
+Startup Configs
+
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe"
+
++set dedicated 2 +set fs_game mods/awe4 +exec server.cfg +map_rotate
++set dedicated 2 +map_rotate
++set net_ip xxx.xxx.xxx.xxx
++set net_port xxxxx
++set fs_game mods/modwarfare
++set dedicated 2 +set sv_punkbuster 1 +exec mp-server.cfg +map_rotate
++set dedicated 2 +set sv_punkbuster 1 +set net_ip xxx.xxx.xxx.xxx +exec mp_server.cfg +map_rotate
++set dedicated 2 +set sv_punkbuster 1 +exec server.cfg +map_rotate +set net__ip 10.0.0.1 +set net_port 28960
++g_gametype koth +g_map mp_backlot
+
+
+Saved Server Startup Configs
+=============================================
+
+COD4 Server
+---------------------------------------------
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe" +set dedicated 2 +exec server.cfg +devmap mp_broadcast
+
+COD4 Server AWE4
+---------------------------------------------
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe" +set dedicated 2 +exec server.cfg +devmap mp_broadcast +set fs_game "mods/awe4"
+
+COD4 Server PeZBOT
+---------------------------------------------
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe" +set dedicated 2 +exec server.cfg +devmap mp_broadcast +set fs_game "mods/PeZBOT" +set svr_pezbots 10 +set svr_pezbots_team "autoassign"
+
+COD4 Server ROTU
+---------------------------------------------
+"C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe" +set dedicated 2 +exec server.cfg +map mp_surv_samsite +set fs_game "mods/reignoftheundead"

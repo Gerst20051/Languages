@@ -1,0 +1,27 @@
+seta sv_punkbuster 1 
+wait 
+pb_sv_enable
+
+// Server name
+set sv_hostname "My CoD4 Server" //Change this to whatever you want your server to be named in the server browser
+
+// Server password
+set g_password "" // blank means NO password
+
+// Rconpassword
+set rcon_password "change_me" // Change this to your rcon password!
+
+// Maximum Clients
+set sv_maxclients "32"
+set sv_privateclients "6"
+
+// Max Ping
+set sv_maxping "225"
+
+// Rate
+set sv_maxRate "25000"
+
+// Map_rotation
+set sv_mapRotation "gametype war map mp_backlot gametype war map mp_bloc gametype war map mp_bog gametype war map mp_cargoship gametype war map mp_citystreets gametype war map mp_convoy gametype war map mp_countdown gametype war map mp_crash gametype war map mp_crossfire gametype war map mp_farm gametype war map mp_overgrown gametype war map mp_pipeline gametype war map mp_showdown gametype war map mp_strike gametype war map mp_vacant"
+
+set sv_maprotationcurrent ""

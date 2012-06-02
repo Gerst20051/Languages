@@ -1,0 +1,122 @@
+Alright here comes the second part of my tweaks and tips topic, here you will find many funny things to do such as changing the color of the name of your friends, changing the HUD, and even a special gift from me in the end !   
+
+- Binds :
+So here we will talk about the most common thing in cod4, binds. You can see it as a function dedicated to a key you have chosen. For instance you can swap your class, change your name, say something, ... with just one key !
+
+To change your name with a key, just type in your cfg this line 
+   bind P "name seRvant . sabeR"
+
+Of course change my name by yours, and every time you'll press this key your name will change accordingly. Now if like me you have many names you can't assign all the names to a key then type this
+   bind M "toggle name "vKM <3" cura "Gae Bolg""
+
+If there is a space in your name like vKM <3 for me you have to put it like this "vKM <3" for it to be considered as ONE name for the others you can just put space between your names
+   bind P "toggle name Albert Rodolph Henry"
+
+Each press of the key will change your name following the order of writing you did.
+Now, how to bind a sentence to a key, it should be useful for you admins to bind a key to say "Do not use ..., Respect the rules" for instance.
+   bind L say "Enjoy your stay on the RvO server"
+
+If you want to put colors in your sentences you have to put something like that before the word 
+Do not use ^1Grenade-launchers  (here Grenade-launchers will be RED), the colors are the following
+
+^1 = red 
+^2 = yellow 
+^3 = green 
+^4 = dark blue 
+^5 = light blue 
+^6 = pink 
+^7 = white 
+^8 = this one depends on which side you are (brown for spetz/opfor and grey for SAS/marines)
+^9 = grey 
+^0 = black  
+
+Now something utterly useless yet pretty funny, when you knife someone it is possible to make it so that your character will say Sorry in the same time ^^. Here is the command
+   bind MWHEELDOWN "+melee; wait; openscriptmenu quickresponses 4; wait; -melee"
+
+Now your character will say "Sorry" while knifing the enemy. if you want to say something else 
+   "openScriptMenu quickcommands 1" // On Me!
+    "openScriptMenu quickcommands 2" // Move In!     
+   "openScriptMenu quickstatements 1" // Contact!          
+   "openScriptMenu quickstatements 2" // Multiple Contacts!          
+   "openScriptMenu quickresponses 1" // Roger          
+   "openScriptMenu quickresponses 2" // Negative
+
+Just replace the number with the sentence you want to say.
+
+Now something I personally like, change my teammates name color. I hate that green like color so I created my own blue like the sky. However ... the color resets every time an event occur (like dropbomb, plant, new round, etc ..) so there is a little problem. We'll have to couple it with our most used key, I think for everyone it is the move forward one. Here is the command 
+   bind Z "+forward; g_teamColor_MyTeam 0.2 0.7 0.8 1; g_teamcolor_enemyteam "0.8 0.2 0.2 1"
+
+Change the numbers if you don't like my color =), Now your teammates will have their names in a beautiful sky like blue and the enemy an evil red color. On a side note you will then be able to see them better than before !
+I think that's all for this part once again if i remember something I'll update this post.
+
+-HUD/Radar : 
+You can slightly change your compass/radar and you can make smaller/bigger icons, it improves your orientation and customize your game even more !
+
+To change your friends icon on the compass you will need 2 commands 
+   seta compassFriendlyHeight "18.75"
+   seta compassFriendlyWidth "18.75"
+
+Change the numbers at your will. VERY IMPORTANT ! You cannot change your own icon it is now disallowed, dunno why but it can't be helped. You can be kicked from many servers if you try but you'll never get banned don't worry.The only things that could lead to a ban in your cfg are gamma binds and the burst fire script. the worse you could ever get is a kick on some servers.
+
+Now to change the game's icons like Bomb site A/B in the game
+   seta waypointiconwidth "13.37"
+   seta waypointiconheight "13.37"
+
+Same as above but for the compass
+   seta compassObjectiveHeight "20"   seta compassObjectiveWidth "20"
+
+Now you got your own personalized interface.
+
+-Scoreboard :
+This is something you can change to your pleasure, you can change everything in it and end with something like this 
+http://forum.i3d.net/attachments/modifications-cod4/943160171d1235546192-cod4-modify-your-scoreboard-28095615.jpgSome 
+
+Some basic scoreboard commands  
+   seta cg_scoreboardMyColor "1 0.6 0 0"   
+   seta cg_scoreboardPingGraph "1"
+   seta cg_ScoresPing_BgColor "0.25098 0.25098 0.25098 0.501961"
+   seta cg_ScoresPing_HighColor "0.8 0 0 1"
+   seta cg_ScoresPing_LowColor "1 0.2 0 1"
+   seta cg_ScoresPing_MaxBars "4"
+   seta cg_ScoresPing_MedColor "0.8 0.8 0 1"   
+
+ScoreboardMyColor will change the color of your name in the scoreboard   
+Set PingGraph to "1" if you want a graphical representation of ping rather than numerical.   
+MaxBars then allows you to specify how many vertical bars represent your ping.   
+Bg = BackgroundHighColor = the color to represent high ping (e.g. red)
+LowColor = for low ping (e.g. green)
+MedColor = medium ping (e.g. yellow)
+
+Sadly, just like your teammates name it resets after a while so we better bind it to the scoreboard key itself ! For me it is F4 so it will be this
+   bind F4 "+scores;g_ScoresColor_Allies 0 0 0 1;g_ScoresColor_Axis 0 0 0 1;g_scorescolor_free 0 0 0 1;pb_sleep 500;g_teamname_axis ^8Defence^7;g_teamname_allies ^9Attack^7;g_teamColor_Allies 0.2 0.2 0.75 1;g_teamColor_Axis 0.75 0.2 0.2 1"
+
+Do not be afraid by the size of the command, it includes all the scoreboard commands for me and i have something like that
+ http://fr.xfire.com/profile/vergilslayer21/screenshots/?view#107059514 
+
+For instance if you want to change the promod like colors behind the player names like I did you will have to change those 3 things.
+   g_ScoresColor_Allies 0 0 0 1   
+   g_ScoresColor_Axis 0 0 0 1
+   g_scorescolor_free 0 0 0 1
+
+Remember that it is in RGBA format. If you want to change the teams name just replace Attack and Defence by the names you want, you will be the only ones seeing it. You can rename them LOL FAG ARMY if you please. Just watchout for side switch you could be the guys under the LOL FAG ARMY at next round ^^.
+
+That's all for the scoreboard (It is probably the most difficult thing to try so if you need any help ask me here or add me Xfire I'll do what I can)
+
+-Others :
+Here are all the things i didn't know where to place, first change the place of your fps indicator (activated by cg_drawfps 1), I'm sorry but I don't remember the coordinates of the screen corners so you will have to test it yourself.
+   seta cg_debugInfoCornerOffset "0 0" This is default
+
+If you want to read only what your teammates are saying and not the enemy (rage, flame, ... multiple reasons) here is the command
+   seta cg_teamChatsOnly 1
+
+There are still so many things .. like put the chat box where you want and such, If you are interested in some other things just tell me I'll see if I can help.
+
+Now my gift to you, have you ever dreamed you were superman ? Then on cod4 you can be him, on Strike at least. For those that don't know what I'm talking about you have to see this 
+
+It's pretty sick especially in clanwars when the enemy is trying to defuse and you just rape him from above he is like wtf aha. So I'll give you the binds that will allow you to do this ! However it is pretty difficult to learn it by yourselves that's why I would gladly show you how to do it. 
+    bind W ";+moveright; wait; wait; -moveright"
+   bind < ";+moveleft; wait; wait; -moveleft"
+
+With those binds you will be able to move 1 pixel to the right/left which is ESSENTIAL in order to do that glitch, ppl on youtube just say move slightly to the right/left .. It would take years to do it that way even the slightest press on left/right key is too much.
+
+So here is the end of it ! I hope you learned some useful things, thanks for your patience, sorry for the english, and if you have trouble getting something to work just tell ! It was my pleasure.

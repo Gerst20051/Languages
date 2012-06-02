@@ -1,0 +1,2101 @@
+CoD4: MW MP Config Commands
+
+My Changes
+--------------------------------------
+r_drawdecals 0 // 1
+r_drawsun 0 // 1
+r_drawwater 0 // 1
+r_detail 0 // 1
+r_outdoorfeather 0 // 8
+
+r_lodbiasrigid 0 // 0 static objects (-1000=better to 0=lowest)
+r_lodbiasskinned 0 // 0 skinned objects (-1000=better to 0=lowest)
+r_lodscalerigid 4 // 1 static objects (1=best to 4=worst)
+r_lodscaleskinned 4 // 1 skinned objects (1=best to 4=worst)
+
+Effect Code
+--------------------------------------
+Spawn indicated item - give 
+Full health - give health 
+Get all items - give all 
+Ammunition - give ammo 
+Invincibility - god 
+Ignored by enemy - notarget 
+No clipping mode - noclip 
+Toggle debug mode - debug <0-1> 
+Toggle developer mode - developer <0-1> 
+Fly mode - ufo 
+Teleport to a specific map node - jumptonode 
+Suicide - kill 
+List all cvars - cvarlist 
+Dump all cvars to console - cvardump 
+Reset all cvars - cvar_restart 
+List all console commands - cmdlist 
+List all shaders of current map - shaderlist 
+List all images of current map - imagelist 
+List all sounds currently used - snd_list 
+List all entities currently used - entitylist 
+List all currently bound keys - bindlist 
+View graphics information - gfxinfo 
+Save game - savegame 
+Load saved game - loadgame 
+Reset variable to default value - reset 
+Play a cinematic file - cinematic 
+Set crosshair transparency; default is 1.0 - cg_crosshairAlpha 
+Set gravity value; default is 800 - g_gravity 
+Set HUD transparency; default is 1.0 - cg_hudAlpha 
+Set second that dead bodies remain onscreen - ai_corpsecount 
+Set shellshock duration - cg_shellshock 
+Set skill level - g_gameSkill 
+Set weapon knockback power; default is 1000 - g_knockback 
+Show miss distance when hitting NPCs - cg_showMiss <0-1> 
+Spawn indicated model - testmodel 
+Toggle AI - g_ai <0-1> 
+Toggle bullet debug mode - g_debugBullets <0-1> 
+Toggle bullet marks - cg_marks <0-1> 
+Toggle console debugging. - con_debug <0-1> 
+Toggle crosshair - cg_drawCrosshair <0-1> 
+Toggle ejecting shells - cg_brass <0-1> 
+Toggle entity bounding boxes - g_drawEntBBoxes v 
+Toggle fog - r_fog <0-1> 
+Toggle framerate displae - cg_drawFPS <0-1> 
+Toggle FX - fx_draw <0-1> 
+Toggle FX debugging. - fx_debug <0-1> 
+Toggle FX freezing - fx_freeze <0-1> 
+Toggle fx. If set to 0, fx will be disabled - fx_enable <0-1> 
+Toggle game timer - cg_drawTimer <0-1> 
+Toggle hit debug mode - g_debugShowHit <0-1> 
+Toggle HUD - cg_drawStatus <0-1> 
+Toggle HUD and crosshair - cg_draw2D <0-1> 
+Toggle letterbox format - cg_letterbox <0-1> 
+Toggle NPC health display - g_debugDamage <0 or 1> 
+Toggle objects and backgrounds - r_drawWorld <0-1> 
+Toggle objects and NPCs - r_drawEntities <0-1> 
+Toggle player and AI movement debug mode - g_debugMove <0-1> 
+Toggle player and AI movement debugging. - cl_debugMove <0-1> 
+Toggle rendring - cg_noRender <0-1> 
+Toggle shadows. - cg_shadows <0-1> 
+Toggle spawning - g_spawnai <0-1> 
+Toggle subtitles - cg_subtitles <0-1> 
+Toggle third person view - cg_thirdPerson <0-1> 
+Toggle vehicle debug mode - g_vehicleDebug <0-1> 
+Toggle wireframe mode - r_showtris <0-1> 
+Unknown - testgun 
+Unknown - debug_tankall <0-1> 
+Unknown - chain <0-1> 
+Unknown - ai_nocriticalsections <0-1> 
+Unknown - cg_skybox <0-1> 
+Unknown - cg_stats <0-1> 
+Unknown - cg_noPredict <0-1> 
+Unknown - cg_selectPlayer 
+Unknown - cg_tracerChance 
+Unknown - cg_ignore <0-1> 
+Unknown - cl_run <0-1> 
+Unknown - cl_running <0-1> 
+Unknown - dmflags <0-1> 
+Unknown - g_changelevel_time
+
+Frame rate related
+--------------------------------------
+cg_brass 0
+cg_marks 0
+cg_marks_ents_player_only 0
+r_drawdecals 0
+r_drawsun 0
+r_drawwater 0
+r_detail 0
+r_picmip 3
+r_picmip_bump 3
+r_picmip_manual 1
+r_picmip_spec 3
+r_picmip_water 0
+
+Network
+--------------------------------------
+snaps 30
+cl_maxpackets 100
+rate 25000
+com_maxfps (from 125-250)
+
+Visibility
+--------------------------------------
+r_gamma (0.1-3)
+cg_fov 65 (through to 80)
+sensitivity (from 0.1-30)
+
+
+Written by jockyitch	   
+Thursday, 29 November 2007
+Here is a list of configuration settings and their function. We will keep this list up to date:
+
+Kudos to the following who helped populate this:
+
+Crazy56 on GlobalWarFighter forums
+Sparks on MODSonline.com 
+Bulletworm on IWNation Forums
+
+Known Clientside Variables
+--------------------------------------
+seta r_aaalpha "0" //anti-aliasing transparency method (0=off 1=fast Dither 2=SuperSample) 
+seta r_aasamples "1" //antialiasing 1 to 16 (1=Off 16=Maximun) 
+seta r_altmodellightingupdate "0" //Alternate lighting method (0=Alternate 1=Normal) needs restart 
+seta r_autopriority "1"//When the game is minimized, change to low priority (1=lowpriority 0=no) 
+seta r_cachemodellighting "1"//Cache for models lighting (0=none 1=Speedup) 
+seta r_cachesmodellighting "1"//Cache for statics models lighting (0=none 1=Speedup) 
+seta r_depthprepass "1"//Currently unknown (0=Default 1=Speedup) 
+seta r_depthprepassmodels "1"//Currently unknown (0=Default 1=Speedup) 
+seta r_detail "0"//Detailed Shaders(0=none 1=Activated) 
+seta r_displayRefresh "100 Hz"//Monitor Refresh (typically: 60 Hz, 75 Hz, 100 Hz) 
+seta r_distortion "0"//Fire HeatHAze distortion (0=none 1=Activated) 
+seta r_dlightlimit "0"//Number of dynamic lights (0 to 4) 
+seta r_dof_enable "0"//Depth of Field (0=none 1=activated) 
+seta r_drawdecals "0"//Enable World decals render (0=none 1=activated) 
+seta r_drawsun "0"//Sun effects(0=none 1=activated) 
+seta r_drawwater "0"//Water animation(0=none 1=activated) 
+seta r_envmapexponent "0.05"//Reflection exponent (0.05 to 20) 
+seta r_envmapmaxintensity "0.01"//Reflection intensity based on glancing angle (0.01 to 2) 
+seta r_envmapminintensity "0"//Reflection intensity based on glancing angle (0 to 2) 
+seta r_envmapoverride "0"//Reflection intensity based on glancing angle (0=none 1=Override) 
+seta r_envmapspecular "0"//Environment Map specular lighting (0=none 1=activated) 
+seta r_envmapsunintensity "0"//Max sun specular on env materials (0=none to 4=full) 
+seta r_fastskin "1"//Cache Skin (0=none 1=activated) 
+seta r_floatz "1"//Floatz, DOF, Laser Sight effects, do not disable (0=none 1=activated).
+seta r_glow_allowed "0"//Must be activated for Glow (0=none 1=allow glow) 
+seta r_gpusync "0"//Improves mouse response, but gives FPS hit (0=none 1=adaptive 2=agressive) 
+seta r_lodbiasrigid "0"//Level of detail for static objects (-1000=better to 0=lowest) 
+seta r_lodbiasskinned "0"//Level of detail for skinned objects (-1000=better to 0=lowest) 
+seta r_lodscalerigid "4"//Level of detail for static objects (1=best to 4=worst) 
+seta r_lodscaleskinned "4"//Level of detail for skinned objects (1=best to 4=worst) 
+seta r_normal "1"//Allow Shaders to use normal maps (0=none 1=Activated) 
+seta r_mode "800x600"//Graphics Resolution 
+seta r_multiGPU "0"//Activate for use SLI or CrossFire (0=single GPU 1=two or more GPUs) 
+seta r_outdoor "1"//Prevents particles from appearing indoors (0=they appear 1=Default, none) 
+seta r_outdoorfeather "0"//Z-feathering for Outdoors, smothed grass, Smoke (0 to infinite) 
+seta r_picmip "3"//Texture Quality (0=Extra to 3=Low) - some servers require 2 or lower.
+seta r_picmip_bump "3"//Bump Maps Quality, for relief textures (0=Extra to 3=Low) 
+seta r_picmip_spec "3"//Specular Map Quality, for lights (0=Extra to 3=Low) 
+seta r_picmip_water "0"//Water Quality (0=None 1=Normal) 
+seta r_picmip_manual "1"//Set to Manual the texture selection (0=Automatic 1=Manual) 
+seta r_rendererinuse "0"//0=Shader 2.0 // 1=Shader 3.0 // 2=Default 
+seta r_resamplescene "1"//Sharpen filter and color correction applied(0=none 1=enabled) 
+seta r_sun_from "0"//Set sun flares from dvars (0=none 1=activated, this may be a cheat) 
+seta r_textfilteranisomax "16"//Max Anisotropic max filtering(1=none 16=full anisotropic) 
+seta r_textfilteranisomin "1"//Min Anisotropic filtering (1=none 16=full anisotropic) 
+seta r_textfiltermipmode "3"//0=normal 1=Trilinear 2=Bilinear 3=Disable Mipmap 
+seta r_uselayeredmaterials "0"//0=none 1=Enable on Shader 3.0 videocard 
+seta r_vsync "0"// Enable Vsync (0=none 1=activated) 
+
+Cheat Protected:
+--------------------------------------
+seta r_fullbright "0"//Toggles rendering with or without lighting (0 or 1) 
+seta r_glow "0"//Enable Glow (0=none 1=activated) 
+seta r_lowestloddist "-1"//Distance for change to Lowest LOD (-1=close to "infinite"=far) 
+seta r_lowloddist "-1"//Distance for change to Low LOD (-1=close to "infinite"=far) 
+seta r_highloddist "-1"//Distance for change to High LOD (-1=close to "infinite"=far) 
+seta r_mediumloddist "-1"//Distance for change to Medium LOD (-1=close to "infinite"=far) 
+
+Client Side Variables:
+--------------------------------------
+seta ai_corpseCount "5"
+seta cg_blood "1"
+seta cg_brass "1"
+seta cg_centerPrintY "-60"
+seta cg_chatHeight "8"
+seta cg_chatTime "12000"
+seta cg_connectionIconSize "0"
+seta cg_crosshairAlpha "1"
+seta cg_crosshairAlphaMin "0.5"
+seta cg_crosshairDynamic "0"
+seta cg_crosshairEnemyColor "1"
+seta cg_cursorHints "4"
+seta cg_debugInfoCornerOffset "0 0"
+seta cg_descriptiveText "1"
+seta cg_drawBreathHint "1"
+seta cg_drawCrosshair "1"
+seta cg_drawCrosshairNames "1"
+seta cg_drawFPS "Off"
+seta cg_drawFPSLabels "1"
+seta cg_drawFriendlyNames "1"
+seta cg_drawLagometer "0"
+seta cg_drawMantleHint "1"
+seta cg_drawSnapshot "0"
+seta cg_drawTurretCrosshair "1"
+seta cg_enemyNameFadeIn "250"
+seta cg_enemyNameFadeOut "250"
+seta cg_fov "65"
+seta cg_friendlyNameFadeIn "0"
+seta cg_friendlyNameFadeOut "1500"
+seta cg_gameBoldMessageWidth "390"
+seta cg_gameMessageWidth "455"
+seta cg_headIconMinScreenRadius "0.015"
+seta cg_hintFadeTime "100"
+seta cg_hudChatIntermissionPosition "5 110"
+seta cg_hudChatPosition "5 204"
+seta cg_hudDamageIconHeight "64"
+seta cg_hudDamageIconInScope "0"
+seta cg_hudDamageIconOffset "128"
+seta cg_hudDamageIconTime "2000"
+seta cg_hudDamageIconWidth "128"
+seta cg_hudGrenadeIconEnabledFlash "0"
+seta cg_hudGrenadeIconHeight "25"
+seta cg_hudGrenadeIconInScope "0"
+seta cg_hudGrenadeIconMaxHeight "104"
+seta cg_hudGrenadeIconMaxRangeFlash "500"
+seta cg_hudGrenadeIconMaxRangeFrag "250"
+seta cg_hudGrenadeIconOffset "50"
+seta cg_hudGrenadeIconWidth "25"
+seta cg_hudGrenadePointerHeight "12"
+seta cg_hudGrenadePointerPivot "12 27"
+seta cg_hudGrenadePointerWidth "25"
+seta cg_hudMapBorderWidth "2"
+seta cg_hudMapFriendlyHeight "15"
+seta cg_hudMapFriendlyWidth "15"
+seta cg_hudMapPlayerHeight "20"
+seta cg_hudMapPlayerWidth "20"
+seta cg_hudMapRadarLineThickness "0.15"
+seta cg_hudProneY "-160"
+seta cg_hudSayPosition "5 180"
+seta cg_hudStanceHintPrints "0"
+seta cg_hudVotePosition "5 220"
+seta cg_invalidCmdHintBlinkInterval "600"
+seta cg_invalidCmdHintDuration "1800"
+seta cg_laserLight "0"
+seta cg_mapLocationSelectionCursorSpeed "0.6"
+seta cg_marks "1"
+seta cg_marks_ents_player_only "0"
+seta cg_overheadIconSize "0.7"
+seta cg_overheadNamesGlow "0 0 0 1"
+seta cg_overheadNamesMaxDist "10000"
+seta cg_overheadNamesSize "0.5"
+seta cg_overheadRankSize "0.5"
+seta cg_predictItems "1"
+seta cg_scoreboardBannerHeight "35"
+seta cg_scoreboardHeaderFontScale "0.35"
+seta cg_scoreboardHeight "435"
+seta cg_scoreboardItemHeight "18"
+seta cg_scoreboardPingHeight "0.7"
+seta cg_scoreboardPingWidth "0.036"
+seta cg_scoreboardRankFontScale "0.25"
+seta cg_scoreboardScrollStep "3"
+seta cg_scoreboardWidth "500"
+seta cg_ScoresPing_BgColor "0.25098 0.25098 0.25098 0.501961"
+seta cg_ScoresPing_HighColor "0.8 0 0 1"
+seta cg_ScoresPing_Interval "100"
+seta cg_ScoresPing_LowColor "0 0.74902 0 1"
+seta cg_ScoresPing_MaxBars "4"
+seta cg_ScoresPing_MedColor "0.8 0.8 0 1"
+seta cg_scriptIconSize "0"
+seta cg_sprintMeterDisabledColor "0.8 0.1 0.1 0.2"
+seta cg_sprintMeterEmptyColor "0.7 0.5 0.2 0.8"
+seta cg_sprintMeterFullColor "0.8 0.8 0.8 0.8"
+seta cg_subtitleMinTime "3"
+seta cg_subtitles "1"
+seta cg_subtitleWidthStandard "520"
+seta cg_subtitleWidthWidescreen "520"
+seta cg_teamChatsOnly "0"
+seta cg_viewZSmoothingMax "16"
+seta cg_viewZSmoothingMin "1"
+seta cg_viewZSmoothingTime "0.1"
+seta cg_voiceIconSize "0"
+seta cg_weaponCycleDelay "0"
+seta cg_weaponHintsCoD1Style "1"
+seta cg_youInKillCamSize "6"
+seta cl_allowDownload "1"
+seta cl_anonymous "0"
+seta cl_connectionAttempts "10"
+seta cl_freelook "1"
+seta cl_maxpackets "30"
+seta cl_maxPing "800"
+seta cl_mouseAccel "0"
+seta cl_packetdup "1"
+seta cl_pitchspeed "140"
+seta cl_punkbuster "1"
+seta cl_voice "1"
+seta cl_wwwDownload "1"
+seta cl_yawspeed "140"
+seta com_introPlayed "1"
+seta com_maxfps "85"
+seta com_recommendedSet "1"
+seta compassClampIcons "1"
+seta compassCoords "740 3590 400"
+seta compassDebug "0"
+seta compassECoordCutoff "37"
+seta compassFriendlyHeight "18.75"
+seta compassFriendlyWidth "18.75"
+seta compassMaxRange "2500"
+seta compassMinRadius "0.0001"
+seta compassMinRange "0.0001"
+seta compassObjectiveArrowHeight "20"
+seta compassObjectiveArrowOffset "2"
+seta compassObjectiveArrowRotateDist "5"
+seta compassObjectiveArrowWidth "20"
+seta compassObjectiveDrawLines "1"
+seta compassObjectiveHeight "20"
+seta compassObjectiveIconHeight "16"
+seta compassObjectiveIconWidth "16"
+seta compassObjectiveMaxHeight "70"
+seta compassObjectiveMaxRange "2048"
+seta compassObjectiveMinAlpha "1"
+seta compassObjectiveMinHeight "-70"
+seta compassObjectiveNumRings "10"
+seta compassObjectiveRingSize "80"
+seta compassObjectiveRingTime "10000"
+seta compassObjectiveTextHeight "18"
+seta compassObjectiveTextScale "0.3"
+seta compassObjectiveWidth "20"
+seta compassPlayerHeight "18.75"
+seta compassPlayerWidth "18.75"
+seta compassRadarLineThickness "0.4"
+seta compassRadarPingFadeTime "4"
+seta compassRadarUpdateTime "4"
+seta compassRotation "1"
+seta compassSize "1"
+seta compassSoundPingFadeTime "2"
+seta compassTickertapeStretch "0.5"
+seta con_errormessagetime "8"
+seta con_gameMsgWindow0FadeInTime "0.25"
+seta con_gameMsgWindow0FadeOutTime "0.5"
+seta con_gameMsgWindow0Filter "gamenotify obituary"
+seta con_gameMsgWindow0LineCount "4"
+seta con_gameMsgWindow0MsgTime "5"
+seta con_gameMsgWindow0ScrollTime "0.25"
+seta con_gameMsgWindow0SplitscreenScale "1.5"
+seta con_gameMsgWindow1FadeInTime "0.25"
+seta con_gameMsgWindow1FadeOutTime "0.01"
+seta con_gameMsgWindow1Filter "boldgame"
+seta con_gameMsgWindow1LineCount "5"
+seta con_gameMsgWindow1MsgTime "8"
+seta con_gameMsgWindow1ScrollTime "0.25"
+seta con_gameMsgWindow1SplitscreenScale "1.5"
+seta con_gameMsgWindow2FadeInTime "0.75"
+seta con_gameMsgWindow2FadeOutTime "0.5"
+seta con_gameMsgWindow2Filter "subtitle"
+seta con_gameMsgWindow2LineCount "7"
+seta con_gameMsgWindow2MsgTime "5"
+seta con_gameMsgWindow2ScrollTime "0.25"
+seta con_gameMsgWindow2SplitscreenScale "1.5"
+seta con_gameMsgWindow3FadeInTime "0.25"
+seta con_gameMsgWindow3FadeOutTime "0.5"
+seta con_gameMsgWindow3Filter ""
+seta con_gameMsgWindow3LineCount "5"
+seta con_gameMsgWindow3MsgTime "5"
+seta con_gameMsgWindow3ScrollTime "0.25"
+seta con_gameMsgWindow3SplitscreenScale "1.5"
+seta con_inputBoxColor "0.25 0.25 0.2 1"
+seta con_inputHintBoxColor "0.4 0.4 0.35 1"
+seta con_matchPrefixOnly "1"
+seta con_minicon "0"
+seta con_miniconlines "5"
+seta con_minicontime "4"
+seta con_outputBarColor "1 1 0.95 0.6"
+seta con_outputSliderColor "0.15 0.15 0.1 0.6"
+seta con_outputWindowColor "0.35 0.35 0.3 0.75"
+seta con_typewriterColorGlowCheckpoint "0.6 0.5 0.6 1"
+seta con_typewriterColorGlowCompleted "0 0.3 0.8 1"
+seta con_typewriterColorGlowFailed "0.8 0 0 1"
+seta con_typewriterColorGlowUpdated "0 0.6 0.18 1"
+seta con_typewriterDecayDuration "700"
+seta con_typewriterDecayStartTime "6000"
+seta con_typewriterPrintSpeed "50"
+seta customclass1 "Custom Slot 1"
+seta customclass2 "Custom Slot 2"
+seta customclass3 "Custom Slot 3"
+seta customclass4 "Custom Slot 4"
+seta customclass5 "Custom Slot 5"
+seta drew_notes "4"
+seta dynEnt_active "1"
+seta fx_marks "1"
+seta fx_marks_ents "1"
+seta fx_marks_smodels "1"
+seta fx_sort "1"
+seta g_allowvote "1"
+seta g_antilag "1"
+seta g_banIPs ""
+seta g_clonePlayerMaxVelocity "80"
+seta g_deadChat "0"
+seta g_dropForwardSpeed "10"
+seta g_dropHorzSpeedRand "100"
+seta g_dropUpSpeedBase "10"
+seta g_dropUpSpeedRand "5"
+seta g_log "games_mp.log"
+seta g_logSync "0"
+seta g_oldVoting "1"
+seta g_playerCollisionEjectSpeed "25"
+seta g_redCrosshairs "1"
+seta g_useGear "0"
+seta g_useholdspawndelay "500"
+seta g_voiceChatTalkingDuration "500"
+seta g_voteAbstainWeight "0.5"
+seta hud_deathQuoteFadeTime "1000"
+seta hud_enable "1"
+seta hud_fade_ammodisplay "0"
+seta hud_fade_compass "0"
+seta hud_fade_healthbar "2"
+seta hud_fade_offhand "0"
+seta hud_fade_sprint "1.7"
+seta hud_fade_stance "1.7"
+seta hud_fadeout_speed "0.1"
+seta hud_flash_period_offhand "0.5"
+seta hud_flash_time_offhand "2"
+seta hud_health_pulserate_critical "0.5"
+seta hud_health_pulserate_injured "1"
+seta hud_health_startpulse_critical "0.33"
+seta hud_health_startpulse_injured "1"
+seta in_mouse "1"
+seta loc_forceEnglish "0"
+seta loc_language "0"
+seta m_filter "0"
+seta m_forward "0.25"
+seta m_pitch "0.022"
+seta m_side "0.25"
+seta m_yaw "0.022"
+seta monkeytoy "0"
+seta mss_khz "44"
+seta name "Jock Yitch"
+seta net_noipx "0"
+seta net_noudp "0"
+seta net_socksEnabled "0"
+seta net_socksPassword ""
+seta net_socksPort "1080"
+seta net_socksServer ""
+seta net_socksUsername ""
+seta r_aaAlpha "dither (fast)"
+seta r_aaSamples "4"
+seta r_altModelLightingUpdate "1"
+seta r_aspectRatio "auto"
+seta r_autopriority "0"
+seta r_customMode ""
+seta r_debugLineWidth "1"
+seta r_depthPrepass "0"
+seta r_depthPrepassModels "0"
+seta r_displayRefresh "100 Hz"
+seta r_distortion "1"
+seta r_dlightLimit "4"
+seta r_dof_enable "0"
+seta r_drawDecals "1"
+seta r_drawSun "1"
+seta r_drawWater "1"
+seta r_fastSkin "1"
+seta r_fullscreen "1"
+seta r_gamma "1.41"
+seta r_glow "1"
+seta r_glow_allowed "1"
+seta r_ignorehwgamma "0"
+seta r_inGameVideo "1"
+seta r_lodBias "0"
+seta r_lodBiasRigid "0"
+seta r_lodBiasSkinned "0"
+seta r_lodScale "1"
+seta r_lodScaleRigid "1"
+seta r_lodScaleSkinned "1"
+seta r_mode "800x600"
+seta r_monitor "0"
+seta r_multiGpu "0"
+seta r_normal "1"
+seta r_picmip "0"
+seta r_picmip_bump "0"
+seta r_picmip_manual "0"
+seta r_picmip_spec "0"
+seta r_picmip_water "0"
+seta r_polygonOffsetBias "-1"
+seta r_polygonOffsetScale "-1"
+seta r_portalBevels "0.7"
+seta r_preloadShaders "0"
+seta r_rendererPreference "Default"
+seta r_specular "1"
+seta r_texFilterAnisoMax "4"
+seta r_texFilterAnisoMin "1"
+seta r_texFilterMipMode "Unchanged"
+seta r_vsync "0"
+seta r_zFeather "0"
+seta ragdoll_enable "0"
+seta ragdoll_max_simulating "0"
+seta rate "25000"
+seta sc_enable "0"
+seta sensitivity "5"
+seta server1 ""
+seta server10 ""
+seta server11 ""
+seta server12 ""
+seta server13 ""
+seta server14 ""
+seta server15 ""
+seta server16 ""
+seta server2 ""
+seta server3 ""
+seta server4 ""
+seta server5 ""
+seta server6 ""
+seta server7 ""
+seta server8 ""
+seta server9 ""
+seta sm_enable "1"
+seta sm_maxLights "4"
+seta snaps "20"
+seta snd_bits "16"
+seta snd_cinematicVolumeScale "0.85"
+seta snd_debugReplace "0"
+seta snd_drawEqChannels "0"
+seta snd_drawEqEnts "0"
+seta snd_enableEq "0"
+seta snd_errorOnMissing "0"
+seta snd_khz "44"
+seta snd_levelFadeTime "250"
+seta snd_outputConfiguration "Windows default"
+seta snd_slaveFadeTime "500"
+seta snd_touchStreamFilesOnLoad "0"
+seta snd_volume "0.8"
+seta sv_allowDownload "1"
+seta sv_floodProtect "1"
+seta sv_hostname "BASHandSlash"
+seta sv_maxclients "24"
+seta sv_maxPing "0"
+seta sv_maxRate "5000"
+seta sv_minPing "0"
+seta sv_punkbuster "1"
+seta sv_reconnectlimit "3"
+seta sv_voice "1"
+seta sv_wwwBaseURL ""
+seta sv_wwwDlDisconnected "0"
+seta sv_wwwDownload "0"
+seta sys_configSum "4379996"
+seta sys_configureGHz "2.92348"
+seta sys_cpuGHz "3.0107"
+seta sys_gpu "NVIDIA GeForce 7900 GTX"
+seta sys_sysMB "1024"
+seta thereisacow "1337"
+seta ui_bigFont "0.4"
+seta ui_browserFriendlyfire "-1"
+seta ui_browserKillcam "-1"
+seta ui_browserMod "0"
+seta ui_browserShowDedicated "0"
+seta ui_browserShowEmpty "1"
+seta ui_browserShowFull "0"
+seta ui_browserShowNoPassword "1"
+seta ui_browserShowPassword "-1"
+seta ui_browserShowPunkBuster "-1"
+seta ui_browserShowPure "1"
+seta ui_currentMap "5"
+seta ui_currentNetMap "5"
+seta ui_dedicated "0"
+seta ui_drawCrosshair "1"
+seta ui_extraBigFont "0.55"
+seta ui_gametype "0"
+seta ui_joinGametype "3"
+seta ui_maxclients "32"
+seta ui_netGametype "2"
+seta ui_netGametypeName "sd"
+seta ui_netSource "1"
+seta ui_serverStatusTimeOut "7000"
+seta ui_smallFont "0.25"
+seta vehDriverViewHeightMax "50"
+seta vehDriverViewHeightMin "-15"
+seta vid_xpos "3"
+seta vid_ypos "22"
+seta voice_deadChat "0"
+seta voice_global "0"
+seta voice_localEcho "0"
+seta winvoice_mic_mute "1"
+seta winvoice_mic_reclevel "65535"
+seta winvoice_mic_scaler "1"
+seta winvoice_save_voice "0"
+Complete Console and Config_mp Command Listing
+
+-back
+-moveright
+-breath_sprint
++breath_sprint
+scriptUsage
+-gostand
+-leanright
+-frag
+-moveleft
+-reload
+-actionslot
+dvarlist_saved
+-scores
+dvarlist
+-melee
+-activate
+-forward
++forward
++moveright
+-attack
++attack
+updatehunkusage
+snd_list
+snd_refreshSpeakerMaps
+printentities
+echo
+stats
+jumptonode
+setviewpos
+levelshot
+ufo
+noclip
+notarget
+demigod
+god
+take
+give
+kill
+cg_ufo
+cg_noclip
+cg_shellshock_save
+cg_shellshock_load
+cg_shellshock
++actionslot
+fade
+weapprev
+weapnext
++scores
+viewpos
+phys_go
+phys_stop
+closemenu
+openmenu
+r_smc_flush
+r_smc_stats
+r_savesun
+r_loadsun
+reloadmaterialtextures
+r_applyPicmip
+imagelist
+screenshotJpeg
+screenshot
+map
+difficultyEasy
+set
+cinematic
+snd_deactivateEq
+snd_setEqType
+snd_setEqQ
+snd_setEqGain
+snd_setEqFreq
+snd_setEq
+snd_playLocal
+snd_deactivateEnvironmentEffects
+snd_setEnvironmentEffects
+localizeSoundAliasFiles
+cubemapShot
++decAnimWeight
++incAnimWeight
+shellExecute
+startSingleplayer
+startMultiplayer
+sl
+pause
+unskippablecinematic
+logo
+stoprecord
+record
+timedemo
+demo
+disconnect
+snd_restart
+vid_restart
+cmd
+-nightvision
++nightvision
+-sprint
++sprint
++gostand
+gocrouch
+goprone
+toggleprone
+togglecrouch
+raisestance
+lowerstance
+-toggleads_throw
++toggleads_throw
+-speed_throw
++speed_throw
+-throw
++throw
+leaveads
+toggleads
+-mlook
++mlook
+-stance
++stance
+-prone
++prone
++leanright
+-leanleft
++leanleft
+-usereload
++usereload
++reload
++activate
+-smoke
++smoke
++frag
+-melee_breath
++melee_breath
+-holdbreath
++holdbreath
++melee
+-speed
++speed
++moveleft
+-strafe
++strafe
+-lookdown
++lookdown
+-lookup
++lookup
++back
+-right
++right
+-left
++left
+-movedown
++movedown
+-moveup
++moveup
+centerview
+clear
+ragdoll_baselerp_bone
+ragdoll_limit
+ragdoll_joint
+ragdoll_selfpair
+ragdoll_bone
+ragdoll_clear
+exec
+ragdoll_pin_bone
+savegame_lastcommit
+devsave
+stringUsage
+difficultyFu
+difficultyHard
+difficultyMedium
+loadgame_continue
+nextlevel
+loadgame
+spdevmap
+devmap
+spmap
+map_restart
+fast_restart
+in_restart
+writedefaults
+writeconfig
+quit
+meminfo
+con_showchannel
+con_hidechannel
+seta
+bind
+unbindall
+con_visiblechannellist
+con_channellist
+touchFile
+fdir
+dir
+fullpath
+path
+bindlist
+unbind
+wait
+vstr
+dvar_float
+dvar_int
+dvar_bool
+dvardump
+reset
+setdvartotime
+setfromlocString
+setfromdvar
+sets
+togglep
+toggle
+209 commands
+
+Variables that affect graphics quality:
+
+VERY LOW QUALITY
+--------------------------------------
+seta r_lodbiasrigid "0"//Level of detail of static objects (-1000=better to 0=lowest) 
+seta r_lodbiasskinned "0"//Level of detail of skinned objects (-1000=better to 0=lowest) 
+seta r_lodscalerigid "4"//Level of detail of static objects (1=best to 4=worst) 
+seta r_lodscaleskinned "4"//Level of detail of skinned objects (1=best to 4=worst) 
+
+MAXIMUM QUALITY
+--------------------------------------
+seta r_lodbiasrigid "-1000"//Level of detail of static objects (-1000=better to 0=lowest) 
+seta r_lodbiasskinned "-1000"//Level of detail of skinned objects (-1000=better to 0=lowest) 
+seta r_lodscalerigid "1"//Level of detail of static objects (1=best to 4=worst) 
+seta r_lodscaleskinned "1"//Level of detail of skinned objects (1=best to 4=worst) 
+
+Boosting Framerate
+--------------------------------------
+a) Changes to the basic client settings can produce FPS boosts. Some of these are shown below: 
+Console Settings: 
+seta ai_corpseCount 0 
+seta cg_blood "0"
+seta cg_brass "0"
+seta fx_marks "0"
+seta r_aaAlpha 0 
+seta r_aaSamples 1
+seta r_drawwater 0  
+seta r_fastskin 1
+seta r_lodscalerigid "1" VS seta r_lodscalerigid "4" ~10% 
+seta r_lodbiasrigid "-1000" VS seta r_lodbiasrigid "0" ~30%
+seta r_rendererpreference "shader model 2.0" 
+seta r_texFilterMipMode "Force Bilinear" 
+seta r_zfeather 0 
+Ingame settings: 
+
+Model Detail "NORMAL" VS Model Detail "LOW" ~15% 
+Shadows Enabled VS Shadows Disabled ~20% 
+Dinamic Lights "Normal" VS Dinamic Lights "OFF" ~5% 
+Smoke Smoothing "ON" VS Smoke Smoothing "OFF" ~10% 
+ 
+
+b) High frame rate boosts will occur if you remove fog and remove effects. This can be done by putting put clientr_fog 0 and clientfx_draw 0 in the server config. Of course this will remove these items for everyone on the server. Some effects removed by fx_draw are muzzle flashes, flashbangs and nade explosions. This can result in a 30 fps boost.
+Type the following in the modernwarfare.gsc, server side:
+if ( getdvar("clientr_fog") == "0" ) 
+{ 
+self setClientDvar( "r_fog", "0" ); 
+} 
+
+if ( getdvar("clientfx_draw") == "0" ) 
+{ 
+self setClientDvar( "fx_draw", "0" ); 
+} 
+c) Similar to b), you could set:
+
+fx_drawClouds (which removes the clouds of dust after an explosion) can be set to 0.
+ 
+
+Dvars:
+
+Legend 
+--------------------------------------
+ai_ - The Computer AIartificial intelligence = ComputerKI 
+aim_ - Target and Hit Settings
+cl_ - Client Settings (your PC)
+com_ - Computer 
+compass - Compass
+con_ - Ingame console 
+dynEnt - dynamic entities and graphics settings 
+fs_ - File System
+fx_ - Graphics Settings
+g_ - game settings
+hud_ - HUD 
+in_ - Input devices 
+loc_ - Language settings 
+m_ - Mouse settings
+mis_ - miscellanous 
+phys_ - physics
+player_ - player settings 
+r_ - render settings 
+snd_ - Sound
+sv_ - Server Settings
+sys_ - System Settings
+ui_ - User Interface 
+veh - vehicles
+
+aa_ads_damage_dealt "0"
+aa_deaths "0"
+aa_enemy_damage_taken "552"
+aa_enemy_deaths "2"
+aa_player_damage_dealt "0"
+aa_player_damage_taken "0"
+aa_player_kills "0"
+aa_time_tracking "33.6"
+aa_zoneaa_main_bog_a "on"
+actionSlotsHide "0"
+C ai_accuracyDistScale "1"
+A ai_badPathSpam "0"
+A ai_corpseCount "10"
+C ai_count "32"
+C ai_coverScore_coverType "2"
+C ai_coverScore_distance "16"
+C ai_coverScore_engagement "4"
+C ai_coverScore_nodeAngle "4"
+C ai_coverScore_playerLos "8"
+C ai_coverScore_priority "8"
+C ai_coverScore_targetDir "4"
+C ai_coverScore_visibility "8"
+A C ai_debugAccuracy "0"
+C ai_debugAnimDeltas "0"
+C ai_debugClaimedNodes "0"
+C ai_debugCoverEntityNum "-1"
+A C ai_debugCoverSelection "0"
+ai_debugEntIndex "-1"
+C ai_debugFindPath "0"
+C ai_debugFindPathDirect "0"
+C ai_debugFindPathLock "0"
+C ai_debugFindPathWidth "0"
+C ai_debugGrenadeFailSafe "0"
+C ai_debugGrenadeHintArc "150"
+C ai_debugMayMove "0"
+A C ai_debugMeleeAttackSpots "0"
+C ai_debugPlayerLOS "0"
+A C ai_debugThreatSelection "0"
+C ai_disableSpawn "0"
+C ai_eventDistBadPlace "256"
+C ai_eventDistBullet "96"
+C ai_eventDistDeath "1024"
+C ai_eventDistExplosion "1024"
+C ai_eventDistFootstep "512"
+C ai_eventDistFootstepLite "256"
+C ai_eventDistGrenadePing "512"
+C ai_eventDistGunShot "2048"
+C ai_eventDistNewEnemy "1024"
+C ai_eventDistPain "512"
+C ai_eventDistProjImpact "256"
+C ai_eventDistProjPing "128"
+C ai_eventDistSilencedShot "128"
+C ai_foliageSeeThroughDist "128"
+C ai_friendlyFireBlockDuration "2000"
+C ai_friendlySuppression "1"
+C ai_friendlySuppressionDist "128"
+C ai_moveOrientMode "invalid"
+C ai_noDodge "0"
+C ai_pathMomentum "0.78"
+C ai_pathNegotiationOverlapCost "300"
+C ai_playerADS_LOSRange "150"
+C ai_playerADSTargetTime "10000"
+ai_playerFarAccuracy "0.1"
+ai_playerFarRange "2000"
+C ai_playerLOSHalfWidth "15"
+C ai_playerLOSMinTime "1500"
+C ai_playerLOSRange "150"
+ai_playerNearAccuracy "0.5"
+ai_playerNearRange "800"
+C ai_showBadPlaces "0"
+A ai_ShowCanshootChecks "0"
+A C ai_showClaimedNode "0"
+C ai_showDodge "0"
+C ai_showFriendlyChains "0"
+C ai_showNearestNode "0"
+C ai_showNodes "0"
+C ai_showNodesDist "384"
+C ai_showPaths "0"
+C ai_showPotentialThreatDir "0"
+A C ai_showRegion "0"
+C ai_showSuppression "-1"
+C ai_showVisData "0"
+C ai_showVisDataDist "1000"
+C ai_showVolume "-1"
+C ai_threatUpdateInterval "500"
+C aim_accel_turnrate_debug "0"
+C aim_accel_turnrate_enabled "1"
+C aim_accel_turnrate_lerp "1200"
+C aim_autoaim_debug "0"
+C aim_autoaim_enabled "1"
+C aim_autoaim_lerp "40"
+C aim_autoaim_region_height "120"
+C aim_autoaim_region_width "160"
+C aim_automelee_debug "0"
+C aim_automelee_enabled "1"
+C aim_automelee_lerp "40"
+C aim_automelee_range "128"
+C aim_automelee_region_height "240"
+C aim_automelee_region_width "320"
+C aim_input_graph_debug "0"
+C aim_input_graph_enabled "1"
+C aim_input_graph_index "3"
+C aim_lockon_debug "0"
+C aim_lockon_deflection "0.05"
+C aim_lockon_enabled "1"
+C aim_lockon_region_height "90"
+C aim_lockon_region_width "90"
+C aim_lockon_strength "0.6"
+C aim_scale_view_axis "1"
+C aim_slowdown_debug "0"
+C aim_slowdown_enabled "1"
+C aim_slowdown_pitch_scale "0.4"
+C aim_slowdown_pitch_scale_ads "0.5"
+C aim_slowdown_region_height "90"
+C aim_slowdown_region_width "90"
+C aim_slowdown_yaw_scale "0.4"
+C aim_slowdown_yaw_scale_ads "0.5"
+C aim_target_sentient_radius "10"
+C aim_turnrate_pitch "90"
+C aim_turnrate_pitch_ads "55"
+C aim_turnrate_yaw "260"
+C aim_turnrate_yaw_ads "90"
+A airlift_min_spec "0"
+ammoCounterHide "0"
+angles "0"
+A animated_trees_enabled "1"
+arcademode "0"
+arcademode_full "0"
+autodifficulty_frac "25"
+autodifficulty_original_setting "0"
+autodifficulty_playerDeathTimer "0"
+bcs_enable "on"
+bcs_filterInform "off"
+bcs_filterOrder "off"
+bcs_filterReaction "off"
+bcs_filterResponse "off"
+bcs_filterThreat "off"
+bcs_threatLimitInLocation "on"
+bcs_threatLimitInPlayerFOV "on"
+bcs_threatLimitSpeakerDist "512"
+bcs_threatLimitTargetingPlayer "off"
+bcs_threatLimitTargettedBySelf "off"
+bcs_threatLimitThreatDist "2048"
+bcs_threatPlayerRelative "off"
+C bg_aimSpreadMoveSpeedThreshold "11"
+C bg_bobAmplitudeDucked "0.0075 0.0075"
+C bg_bobAmplitudeProne "0.02 0.005"
+C bg_bobAmplitudeSprinting "0.02 0.014"
+C bg_bobAmplitudeStanding "0.007 0.007"
+C bg_bobMax "8"
+C bg_fallDamageMaxHeight "350"
+C bg_fallDamageMinHeight "200"
+C bg_foliagesnd_fastinterval "500"
+C bg_foliagesnd_maxspeed "180"
+C bg_foliagesnd_minspeed "40"
+C bg_foliagesnd_resetinterval "500"
+C bg_foliagesnd_slowinterval "1500"
+C bg_ladder_yawcap "100"
+C bg_legYawTolerance "20"
+C bg_maxGrenadeIndicatorSpeed "20"
+C bg_prone_yawcap "85"
+C bg_shock_lookControl "0"
+C bg_shock_lookControl_fadeTime "0.001"
+C bg_shock_lookControl_maxpitchspeed "0"
+C bg_shock_lookControl_maxyawspeed "0"
+C bg_shock_lookControl_mousesensitivityscale "0"
+C bg_shock_movement "1"
+C bg_shock_screenBlurBlendFadeTime "0.001"
+C bg_shock_screenBlurBlendTime "0.001"
+C bg_shock_screenFlashShotFadeTime "0"
+C bg_shock_screenFlashWhiteFadeTime "0"
+C bg_shock_screenType "blurred"
+C bg_shock_sound "0"
+C bg_shock_soundDryLevel "1"
+C bg_shock_soundEnd "shellshock_end"
+C bg_shock_soundEndAbort "shellshock_end_abort"
+C bg_shock_soundFadeInTime "0.25"
+C bg_shock_soundFadeOutTime "2.5"
+C bg_shock_soundLoop "shellshock_loop"
+C bg_shock_soundLoopEndDelay "-1.5"
+C bg_shock_soundLoopFadeTime "2"
+C bg_shock_soundLoopSilent "shellshock_loop_silent"
+C bg_shock_soundModEndDelay "-0.75"
+C bg_shock_soundRoomType "generic"
+C bg_shock_soundWetLevel "0.5"
+C bg_shock_viewKickFadeTime "0.001"
+C bg_shock_viewKickPeriod "0.75"
+C bg_shock_viewKickRadius "0"
+C bg_shock_volume_ambient "0.2"
+C bg_shock_volume_announcer "0.9"
+C bg_shock_volume_auto "0.5"
+C bg_shock_volume_auto2 "0.5"
+C bg_shock_volume_auto2d "0.5"
+C bg_shock_volume_autodog "0.9"
+C bg_shock_volume_body "0.2"
+C bg_shock_volume_body2d "0.2"
+C bg_shock_volume_bulletimpact "0.5"
+C bg_shock_volume_bulletwhizby "0.5"
+C bg_shock_volume_effects1 "0.5"
+C bg_shock_volume_effects2 "0.5"
+C bg_shock_volume_element "0.5"
+C bg_shock_volume_hurt "0.4"
+C bg_shock_volume_item "0.2"
+C bg_shock_volume_local "0.2"
+C bg_shock_volume_local2 "0.2"
+C bg_shock_volume_menu "1"
+C bg_shock_volume_mission "0.9"
+C bg_shock_volume_music "0.5"
+C bg_shock_volume_musicnopause "0.5"
+C bg_shock_volume_nonshock "0.5"
+C bg_shock_volume_physics "0.5"
+C bg_shock_volume_player1 "0.4"
+C bg_shock_volume_player2 "0.4"
+C bg_shock_volume_reload "0.2"
+C bg_shock_volume_reload2d "0.2"
+C bg_shock_volume_shellshock "1"
+C bg_shock_volume_vehicle "0.1"
+C bg_shock_volume_vehiclelimited "0.1"
+C bg_shock_volume_voice "0.2"
+C bg_shock_volume_weapon "0.5"
+C bg_shock_volume_weapon2d "0.5"
+C bg_swingSpeed "0.2"
+C bg_viewKickMax "90"
+C bg_viewKickMin "5"
+C bg_viewKickRandom "0.4"
+C bg_viewKickScale "0.8"
+A bog_b_min_spec "0"
+C bullet_penetrationEnabled "1"
+C bullet_penetrationMinFxDist "30"
+A cg_blood "1"
+A cg_bloodLimit "0"
+A cg_bloodLimitMsec "330"
+cg_bobWeaponAmplitude "0.16"
+cg_bobWeaponLag "0.25"
+cg_bobWeaponMax "10"
+cg_bobWeaponRollAmplitude "1.5"
+A cg_brass "1"
+C cg_centertime "3"
+cg_cinematicFullscreen "1"
+A C cg_crosshairAlpha "1"
+A C cg_crosshairAlphaMin "0.5"
+A C cg_crosshairDynamic "0"
+A C cg_crosshairEnemyColor "1"
+A cg_cursorHints "3"
+C cg_debug_overlay_viewport "0"
+C cg_debugevents "0"
+A cg_debugInfoCornerOffset "0 0"
+cg_draw2D "1"
+A cg_drawBreathHint "1"
+A cg_drawCrosshair "1"
+A cg_drawFPS "Off"
+A cg_drawFPSLabels "1"
+A C cg_drawFriendlyFireCrosshair "0"
+C cg_drawGun "1"
+C cg_drawHealth "0"
+cg_drawHUD "1"
+A cg_drawMantleHint "1"
+C cg_drawMaterial "Off"
+cg_drawpaused "1"
+C cg_drawPerformanceWarnings "1"
+C cg_drawPlayerPosInFreeMove "1"
+cg_drawScriptUsage "0"
+C cg_drawShellshock "1"
+A cg_drawTurretCrosshair "1"
+C cg_dumpAnims "-1"
+cg_errordecay "100"
+C cg_footsteps "1"
+cg_fov "65"
+A cg_gameBoldMessageWidth "390"
+A cg_gameMessageWidth "500"
+C cg_gun_move_f "0"
+C cg_gun_move_minspeed "0"
+C cg_gun_move_r "0"
+C cg_gun_move_rate "0"
+C cg_gun_move_u "0"
+C cg_gun_ofs_f "0"
+C cg_gun_ofs_r "0"
+C cg_gun_ofs_u "0"
+C cg_gun_rot_minspeed "0"
+C cg_gun_rot_p "0"
+C cg_gun_rot_r "0"
+C cg_gun_rot_rate "0"
+C cg_gun_rot_y "0"
+C cg_gun_x "0"
+C cg_gun_y "0"
+C cg_gun_z "0"
+A cg_hintFadeTime "100"
+A cg_hudDamageIconHeight "64"
+A cg_hudDamageIconInScope "0"
+A cg_hudDamageIconOffset "128"
+A cg_hudDamageIconTime "2000"
+A cg_hudDamageIconWidth "128"
+A cg_hudGrenadeIconEnabledFlash "0"
+A cg_hudGrenadeIconHeight "25"
+A cg_hudGrenadeIconInScope "1"
+A cg_hudGrenadeIconMaxHeight "104"
+A cg_hudGrenadeIconMaxRangeFlash "500"
+A cg_hudGrenadeIconMaxRangeFrag "256"
+A cg_hudGrenadeIconOffset "50"
+A cg_hudGrenadeIconWidth "25"
+A cg_hudGrenadePointerHeight "12"
+A cg_hudGrenadePointerPivot "12 27"
+cg_hudGrenadePointerPulseFreq "1.7"
+cg_hudGrenadePointerPulseMax "1.85"
+cg_hudGrenadePointerPulseMin "0.3"
+A cg_hudGrenadePointerWidth "25"
+A cg_hudMapBorderWidth "2"
+A cg_hudMapFriendlyHeight "15"
+A cg_hudMapFriendlyWidth "15"
+A cg_hudMapPlayerHeight "20"
+A cg_hudMapPlayerWidth "20"
+A C cg_hudMapRadarLineThickness "0.15"
+cg_hudStanceFlash "1 1 1 1"
+A cg_hudStanceHintPrints "0"
+A cg_invalidCmdHintBlinkInterval "600"
+A cg_invalidCmdHintDuration "1800"
+C cg_laserEndOffset "0.5"
+C cg_laserFlarePct "0.2"
+C cg_laserForceOn "0"
+A cg_laserLight "1"
+C cg_laserLightBeginOffset "13"
+C cg_laserLightBodyTweak "15"
+C cg_laserLightEndOffset "-3"
+C cg_laserLightRadius "3"
+C cg_laserRadius "0.8"
+C cg_laserRange "1500"
+C cg_laserRangePlayer "1500"
+A cg_mapLocationSelectionCursorSpeed "0.6"
+A cg_marks_ents_player_only "0"
+A cg_nopredict "0"
+cg_objectiveListWrapCountStandard "600"
+cg_objectiveListWrapCountWidescreen "530"
+cg_showmiss "0"
+A cg_small_dev_string_fontscale "1"
+A cg_sprintMeterDisabledColor "0.8 0.1 0.1 0.2"
+A cg_sprintMeterEmptyColor "0.7 0.5 0.2 0.8"
+A cg_sprintMeterFullColor "0.8 0.8 0.8 0.8"
+A cg_subtitleMinTime "3"
+A cg_subtitles "1"
+A cg_subtitleWidthStandard "360"
+A cg_subtitleWidthWidescreen "520"
+C cg_tracerchance "0.2"
+C cg_tracerlength "160"
+C cg_tracerScale "1"
+C cg_tracerScaleDistRange "25000"
+C cg_tracerScaleMinDist "5000"
+C cg_tracerScrewDist "100"
+C cg_tracerScrewRadius "0.5"
+C cg_tracerSpeed "7500"
+C cg_tracerwidth "4"
+C cg_viewVehicleInfluence "1"
+A cg_viewZSmoothingMax "16"
+A cg_viewZSmoothingMin "1"
+A cg_viewZSmoothingTime "0.1"
+A cg_weaponCycleDelay "0"
+cg_weaponHintsCoD1Style "1"
+C chaplinCheat "0"
+A cheat_items_set1 "33554432"
+A cheat_items_set2 "0"
+A cheat_points "1"
+cl_analog_attack_threshold "0.8"
+cl_anglespeedkey "1.5"
+cl_avidemo "0"
+cl_forceavidemo "0"
+A cl_freelook "1"
+C cl_freemove "0"
+C cl_freemoveScale "1"
+A cl_mouseAccel "0"
+cl_noprint "0"
+cl_paused "0"
+A cl_pitchspeed "140"
+cl_showmouserate "0"
+cl_shownet "0"
+cl_stanceHoldTime "300"
+cl_testAnimWeight "0"
+A cl_yawspeed "140"
+com_animCheck "0"
+com_filter_output "0"
+A com_introPlayed "0"
+A com_maxfps "0"
+com_maxFrameTime "100"
+R com_playerProfile "bullet-worm"
+A com_recommendedSet "1"
+com_statmon "0"
+R C com_timescale "1"
+compass "1"
+A C compassClampIcons "1"
+A compassCoords "740 3590 400"
+A compassECoordCutoff "37"
+C compassEnemyFootstepEnabled "0"
+C compassEnemyFootstepMaxRange "500"
+C compassEnemyFootstepMaxZ "100"
+C compassEnemyFootstepMinSpeed "140"
+A compassFriendlyHeight "18.75"
+A compassFriendlyWidth "18.75"
+compassIconOtherVehHeight "40"
+compassIconOtherVehWidth "40"
+compassIconTankHeight "35"
+compassIconTankWidth "35"
+A C compassMaxRange "3500"
+A compassMinRadius "0.0001"
+A compassMinRange "0.0001"
+A compassObjectiveArrowHeight "20"
+A compassObjectiveArrowOffset "2"
+A compassObjectiveArrowRotateDist "5"
+A compassObjectiveArrowWidth "20"
+compassObjectiveDetailDist "10"
+A compassObjectiveDrawLines "1"
+A compassObjectiveHeight "20"
+A compassObjectiveIconHeight "16"
+A compassObjectiveIconWidth "16"
+compassObjectiveMaxHeight "70"
+A compassObjectiveMaxRange "2048"
+A compassObjectiveMinAlpha "1"
+compassObjectiveMinDistRange "2"
+compassObjectiveMinHeight "-70"
+compassObjectiveNearbyDist "8"
+A compassObjectiveNumRings "10"
+A compassObjectiveRingSize "80"
+A compassObjectiveRingTime "10000"
+A compassObjectiveTextHeight "18"
+A compassObjectiveTextScale "0.3"
+A compassObjectiveWidth "20"
+A compassPlayerHeight "25"
+A compassPlayerWidth "25"
+A C compassRadarLineThickness "0.4"
+A C compassRadarPingFadeTime "4"
+A C compassRadarUpdateTime "4"
+A compassRotation "1"
+A compassSize "1"
+A C compassSoundPingFadeTime "2"
+A compassTickertapeStretch "0.5"
+con_default_console_filter "*"
+A con_errormessagetime "8"
+A con_gameMsgWindow0FadeInTime "0.25"
+A con_gameMsgWindow0FadeOutTime "0.5"
+AL con_gameMsgWindow0Filter "gamenotify obituary"
+A con_gameMsgWindow0LineCount "6"
+A con_gameMsgWindow0MsgTime "5"
+A con_gameMsgWindow0ScrollTime "0.25"
+A con_gameMsgWindow0SplitscreenScale "1.5"
+A con_gameMsgWindow1FadeInTime "0.25"
+A con_gameMsgWindow1FadeOutTime "0.01"
+AL con_gameMsgWindow1Filter "boldgame"
+A con_gameMsgWindow1LineCount "6"
+A con_gameMsgWindow1MsgTime "8"
+A con_gameMsgWindow1ScrollTime "0.25"
+A con_gameMsgWindow1SplitscreenScale "1.5"
+A con_gameMsgWindow2FadeInTime "0.75"
+A con_gameMsgWindow2FadeOutTime "0.5"
+AL con_gameMsgWindow2Filter "subtitle"
+A con_gameMsgWindow2LineCount "7"
+A con_gameMsgWindow2MsgTime "5"
+A con_gameMsgWindow2ScrollTime "0.25"
+A con_gameMsgWindow2SplitscreenScale "1.5"
+A con_gameMsgWindow3FadeInTime "0.25"
+A con_gameMsgWindow3FadeOutTime "0.5"
+AL con_gameMsgWindow3Filter ""
+A con_gameMsgWindow3LineCount "6"
+A con_gameMsgWindow3MsgTime "5"
+A con_gameMsgWindow3ScrollTime "0.25"
+A con_gameMsgWindow3SplitscreenScale "1.5"
+A con_inputBoxColor "0.25 0.25 0.2 1"
+A con_inputHintBoxColor "0.4 0.4 0.35 1"
+A con_matchPrefixOnly "1"
+A con_minicon "0"
+A con_miniconlines "5"
+A con_minicontime "4"
+A con_outputBarColor "1 1 0.95 0.6"
+A con_outputSliderColor "0.15 0.15 0.1 0.6"
+A con_outputWindowColor "0.35 0.35 0.3 0.75"
+con_typewriterColorBase "1 1 1"
+A con_typewriterColorGlowCheckpoint "0.6 0.5 0.6 1"
+A con_typewriterColorGlowCompleted "0 0.3 0.8 1"
+A con_typewriterColorGlowFailed "0.8 0 0 1"
+A con_typewriterColorGlowUpdated "0 0.6 0.18 1"
+A con_typewriterDecayDuration "700"
+A con_typewriterDecayStartTime "6000"
+A con_typewriterPrintSpeed "50"
+credits_active "0"
+credits_load "0"
+debug "0"
+debug_bcprint "off"
+debug_bcshowqueue "off"
+debug_friendlyfire "0"
+developer "0"
+I developer_script "0"
+A disable_tank_shock_minspec "0"
+A drew_notes "5"
+A dynEnt_active "1"
+C dynEnt_bulletForce "1000"
+C dynEnt_explodeForce "12500"
+C dynEnt_explodeMaxEnts "20"
+C dynEnt_explodeMinForce "40"
+C dynEnt_explodeSpinScale "3"
+C dynEnt_explodeUpbias "0.5"
+C dynEntPieces_angularVelocity "0 0 0"
+C dynEntPieces_impactForce "1000"
+C dynEntPieces_velocity "0 0 0"
+fallback "0"
+finished_demo "0"
+C fixedtime "0"
+C friction "5.5"
+friendlyfire_dev_disabled "0"
+friendlyNameFontColor "0.9 1 0.9 0.7"
+friendlyNameFontGlowColor "0 0.3 0 1"
+friendlyNameFontObjective "1"
+friendlyNameFontSize "0.3"
+I fs_basegame ""
+I fs_basepath "C:\Program Files\Games\Call of Duty 4 - Modern Warfare Demo"
+I fs_cdpath ""
+I fs_copyfiles "0"
+fs_debug "0"
+S I fs_game ""
+I fs_homepath "C:\Program Files\Games\Call of Duty 4 - Modern Warfare Demo"
+LC fs_ignoreLocalized "0"
+C fx_count "0"
+fx_cull_effect_spawn "0"
+fx_cull_elem_draw "1"
+fx_cull_elem_spawn "1"
+C fx_debugBolt "0"
+C fx_draw "1"
+C fx_drawClouds "1"
+C fx_enable "1"
+C fx_freeze "0"
+C fx_mark_profile "0"
+A fx_marks "1"
+A fx_marks_ents "1"
+A fx_marks_smodels "1"
+C fx_profile "0"
+C fx_visMinTraceDist "80"
+C g_ai "1"
+C g_aiEventDump "-1"
+g_changelevel_time "4"
+g_connectpaths "0"
+A g_deathDelay "3000"
+C g_debugBullets "0"
+C g_debugDamage "0"
+C g_debugLocDamage "0"
+C g_drawEntBBoxes "0"
+C g_drawGrenadeHints "0"
+C g_dumpAnims "-1"
+C g_dumpAnimsCommands "-1"
+C g_earthquakeEnable "1"
+C g_enteqDelay "150"
+C g_enteqDist "4000"
+C g_enteqEnable "1"
+C g_entinfo "off"
+C g_entinfo_AItext "brief"
+C g_entinfo_maxdist "2048"
+C g_entinfo_scale "1"
+C g_entinfo_type "AI only"
+R C g_fogColorReadOnly "0.545098 0.392157 0.219608 1"
+R C g_fogHalfDistReadOnly "4556.45"
+R C g_fogStartDistReadOnly "477.057"
+C g_friendlyfireDist "175"
+C g_friendlyNameDist "15000"
+S R L g_gameskill "0"
+g_gravity "800"
+g_knockback "1000"
+g_listEntity "0"
+C g_minGrenadeDamageSpeed "400"
+g_no_script_spam "0"
+R L g_player_maxhealth "100"
+C g_playerTrailTime "500"
+R g_reloading "0"
+LC g_spawnai "1"
+g_speed "190"
+A g_useGear "1"
+g_useholdtime "0"
+C g_vehicleDebug "0"
+C g_vehicleDrawPath ""
+C g_vehicleTexScrollScale "0"
+R gamedate "Sep 27 2007"
+S R gamename "main"
+R hiDef "1"
+hostileNameFontColor "1 0.9 0.9 0.7"
+hostileNameFontGlowColor "0.6 0 0 1"
+A hud_deathQuoteFadeTime "1000"
+hud_drawHUD "1"
+A hud_fade_ammodisplay "8"
+A hud_fade_compass "8"
+A hud_fade_healthbar "2"
+A hud_fade_offhand "8"
+A hud_fade_sprint "1.7"
+A hud_fade_stance "1.7"
+A hud_fadeout_speed "0.1"
+A hud_flash_period_offhand "0.5"
+A hud_flash_time_offhand "2"
+hud_gasMaskOverlay "0"
+A hud_health_pulserate_critical "0.5"
+A hud_health_pulserate_injured "1"
+A hud_health_startpulse_critical "0.33"
+A hud_health_startpulse_injured "1"
+hud_healthOverlay_phaseEnd_fromAlpha "0.2"
+hud_healthOverlay_phaseEnd_pulseDuration "700"
+hud_healthOverlay_phaseEnd_toAlpha "0"
+hud_healthOverlay_phaseOne_pulseDuration "150"
+hud_healthOverlay_phaseOne_toAlphaAdd "0.3"
+hud_healthOverlay_phaseThree_pulseDuration "400"
+hud_healthOverlay_phaseThree_toAlphaMultiplier "0.6"
+hud_healthOverlay_phaseTwo_pulseDuration "320"
+hud_healthOverlay_phaseTwo_toAlphaMultiplier "0.7"
+hud_healthOverlay_pulseStart "0.35"
+hud_healthOverlay_pulseStop "0.9"
+A hud_letterBoxFadeTime "1000"
+hud_missionFailed "0"
+hud_showStance "1"
+C hudElemPausedBrightness "0.4"
+A in_gpuSync "1"
+AL in_mouse "1"
+C inertiaAngle "-1000"
+C inertiaDebug "0"
+C inertiaMax "50"
+introscreen "1"
+C jump_height "39"
+C jump_ladderPushVel "128"
+C jump_slowdownEnable "0"
+C jump_spreadAdd "64"
+C jump_stepSize "18"
+AL loc_forceEnglish "0"
+AL loc_language "0"
+L loc_translate "1"
+loc_warnings "1"
+loc_warningsAsErrors "0"
+logfile "1"
+lowAmmoWarningColor1 "0.901961 0.901961 0.901961 0.8"
+lowAmmoWarningColor2 "1 1 1 1"
+lowAmmoWarningNoAmmoColor1 "0.8 0 0 0.8"
+lowAmmoWarningNoAmmoColor2 "1 0 0 1"
+lowAmmoWarningNoReloadColor1 "0.701961 0.701961 0 0.8"
+lowAmmoWarningNoReloadColor2 "1 1 0 1"
+lowAmmoWarningPulseFreq "1.7"
+lowAmmoWarningPulseMax "1.5"
+lowAmmoWarningPulseMin "0"
+A m_filter "0"
+A m_forward "0.25"
+A m_pitch "0.022"
+A m_side "0.25"
+A m_yaw "0.022"
+C mantle_check_angle "60"
+C mantle_check_radius "0.1"
+C mantle_check_range "20"
+C mantle_debug "0"
+C mantle_enable "1"
+C mantle_view_yawcap "60"
+S R mapname "bog_a"
+C melee_debug "0"
+mgTurret "off"
+A min_spec_ai "0"
+R mis_01 "0"
+mis_cheat "0"
+R mis_difficulty "00000000000000000000000000000000000000000000000000"
+missileDebugAttractors "0"
+missileDebugDraw "0"
+missileDebugText "0"
+C missileHellfireMaxSlope "0.5"
+C missileHellfireUpAccel "1000"
+C missileJavAccelClimb "300"
+C missileJavAccelDescend "3000"
+C missileJavClimbAngleDirect "85"
+C missileJavClimbAngleTop "50"
+C missileJavClimbCeilingDirect "0"
+C missileJavClimbCeilingTop "3000"
+C missileJavClimbHeightDirect "10000"
+C missileJavClimbHeightTop "15000"
+C missileJavClimbToOwner "700"
+C missileJavSpeedLimitClimb "1000"
+C missileJavSpeedLimitDescend "6000"
+C missileJavTurnDecel "0.05"
+C missileJavTurnRateDirect "60"
+C missileJavTurnRateTop "100"
+C missileWaterMaxDepth "60"
+A monkeytoy "0"
+name "bullet-worm"
+nextdemo ""
+nextmap "map_restart"
+nightVisionDisableEffects "0"
+nightVisionFadeInOutTime "0.1"
+nightVisionPowerOnTime "0.3"
+noai "off"
+overrideNVGModelWithKnife "0"
+phys_autoDisableAngular "1"
+phys_autoDisableLinear "20"
+phys_autoDisableTime "0.9"
+phys_bulletSpinScale "3"
+phys_bulletUpBias "0.5"
+phys_cfm "0.0001"
+phys_collUseEntities "0"
+phys_contact_cfm "1e-005"
+phys_contact_cfm_ragdoll "0.001"
+phys_contact_erp "0.8"
+phys_contact_erp_ragdoll "0.3"
+phys_csl "1"
+phys_dragAngular "0.5"
+phys_dragLinear "0.03"
+phys_drawAwake "0"
+phys_drawAwakeTooLong "0"
+phys_drawCollisionObj "0"
+phys_drawCollisionWorld "0"
+phys_drawcontacts "0"
+phys_drawDebugInfo "0"
+phys_dumpcontacts "0"
+phys_erp "0.8"
+phys_frictionScale "1"
+phys_gravity "-800"
+phys_gravityChangeWakeupRadius "120"
+phys_interBodyCollision "0"
+phys_jitterMaxMass "200"
+phys_joint_cfm "0.0001"
+phys_joint_stop_cfm "0.0001"
+phys_joint_stop_erp "0.8"
+phys_mcv "20"
+phys_mcv_ragdoll "1000"
+phys_minImpactMomentum "250"
+phys_narrowObjMaxLength "4"
+phys_noIslands "0"
+phys_qsi "15"
+phys_reorderConst "1"
+phys_visibleTris "0"
+C pickupPrints "0"
+C player_adsExitDelay "0"
+C player_backSpeedScale "0.7"
+C player_breath_fire_delay "0"
+C player_breath_gasp_lerp "6"
+C player_breath_gasp_scale "4.5"
+C player_breath_gasp_time "1"
+C player_breath_hold_lerp "4"
+C player_breath_hold_time "4.5"
+C player_breath_snd_delay "1"
+C player_breath_snd_lerp "2"
+C player_burstFireCooldown "0.2"
+player_cheated "0"
+C player_damageMultiplier "0.210526"
+C player_deathInvulnerableTime "4000"
+C player_deathInvulnerableToMelee "0"
+C player_deathInvulnerableToProjectile "1"
+C player_debugHealth "0"
+player_died_recently "0"
+C player_dmgtimer_flinchTime "500"
+C player_dmgtimer_maxTime "750"
+C player_dmgtimer_minScale "0"
+C player_dmgtimer_stumbleTime "500"
+C player_dmgtimer_timePerPoint "100"
+R C player_footstepsThreshhold "0"
+player_healthEasy "500"
+player_healthFu "115"
+player_healthHard "165"
+player_healthMedium "275"
+C player_lean_rotate_crouch_left "1.25"
+C player_lean_rotate_crouch_right "1"
+C player_lean_rotate_left "1.25"
+C player_lean_rotate_right "1.25"
+C player_lean_shift_crouch_left "12.5"
+C player_lean_shift_crouch_right "13"
+C player_lean_shift_left "5"
+C player_lean_shift_right "2.5"
+C player_maxGrenadeCatchHeight "80"
+C player_meleeChargeFriction "1200"
+C player_meleeDamageMultiplier "0.4"
+C player_meleeHeight "10"
+C player_meleeRange "64"
+C player_meleeWidth "10"
+C player_move_factor_on_torso "0"
+R C player_moveThreshhold "10"
+C player_radiusDamageMultiplier "1"
+C player_scopeExitOnDamage "0"
+C player_spectateSpeedScale "1"
+C player_sprintCameraBob "0.5"
+player_sprintForwardMinimum "105"
+C player_sprintMinTime "1"
+C player_sprintRechargePause "0"
+C player_sprintSpeedScale "1.5"
+C player_sprintStrafeSpeedScale "0.667"
+C player_sprintTime "4"
+C player_strafeAnimCosAngle "0.5"
+C player_strafeSpeedScale "0.8"
+C player_sustainAmmo "0"
+C player_throwbackInnerRadius "72"
+C player_throwbackOuterRadius "192"
+C player_turnAnims "0"
+C player_view_pitch_down "85"
+C player_view_pitch_up "85"
+A r_aaAlpha "dither (fast)"
+AL r_aaSamples "4"
+AL r_altModelLightingUpdate "1"
+AL r_aspectRatio "auto"
+A r_autopriority "0"
+C r_blur "0"
+C r_brightness "0"
+r_cacheModelLighting "1"
+r_cacheSModelLighting "1"
+r_clear "dev-only blink"
+r_clearColor "0 0 0 0"
+r_clearColor2 "0 0 0 0"
+C r_colorMap "Unchanged"
+C r_contrast "1"
+AL r_customMode ""
+A r_debugLineWidth "1"
+C r_debugShader "none"
+A r_depthPrepass "0"
+C r_desaturation "1"
+r_detail "1"
+C r_diffuseColorScale "1"
+AL r_displayRefresh "60 Hz"
+A r_distortion "1"
+A r_dlightLimit "4"
+C r_dof_bias "0.5"
+A r_dof_enable "1"
+C r_dof_farBlur "1.8"
+C r_dof_farEnd "7000"
+C r_dof_farStart "1000"
+C r_dof_nearBlur "6"
+C r_dof_nearEnd "60"
+C r_dof_nearStart "10"
+C r_dof_tweak "0"
+C r_dof_viewModelEnd "8"
+C r_dof_viewModelStart "2"
+A r_drawDecals "1"
+A r_drawSun "1"
+A r_drawWater "1"
+r_envMapExponent "5"
+r_envMapMaxIntensity "0.5"
+r_envMapMinIntensity "0.2"
+r_envMapOverride "0"
+r_envMapSpecular "1"
+r_envMapSunIntensity "2"
+A r_fastSkin "0"
+r_filmTweakBrightness "0"
+r_filmTweakContrast "1.4"
+r_filmTweakDarkTint "0.7 0.85 1"
+r_filmTweakDesaturation "0.2"
+r_filmTweakEnable "0"
+r_filmTweakInvert "0"
+r_filmTweakLightTint "1.1 1.05 0.85"
+C r_filmUseTweaks "0"
+L r_floatz "1"
+C r_fog "1"
+C r_forceLod "none"
+C r_fullbright "0"
+AL r_fullscreen "1"
+A r_gamma "1"
+C r_glow "1"
+A r_glow_allowed "1"
+r_glow_allowed_script_forced "0"
+C r_glowTweakBloomCutoff "0.5"
+C r_glowTweakBloomDesaturation "0"
+C r_glowTweakBloomIntensity0 "1"
+C r_glowTweakEnable "0"
+C r_glowTweakRadius0 "5"
+C r_glowUseTweaks "0"
+r_gpuSync "adaptive"
+C r_highLodDist "-1"
+r_ignore "0"
+AL r_ignorehwgamma "0"
+A r_inGameVideo "1"
+C r_lightMap "Unchanged"
+R r_lightTweakAmbient "0.125"
+R r_lightTweakAmbientColor "0.670588 0.721569 0.941177 1"
+R r_lightTweakDiffuseFraction "0.4"
+C r_lightTweakSunColor "0.894118 0.94902 1 1"
+R r_lightTweakSunDiffuseColor "0.717647 0.776471 1 1"
+C r_lightTweakSunDirection "-22 247 0"
+C r_lightTweakSunLight "0.5"
+L r_loadForRenderer "1"
+C r_lockPvs "0"
+A r_lodBiasRigid "0"
+A r_lodBiasSkinned "0"
+A r_lodScaleRigid "1"
+A r_lodScaleSkinned "1"
+r_logFile "0"
+C r_lowestLodDist "-1"
+C r_lowLodDist "-1"
+C r_mediumLodDist "-1"
+AL r_mode "1024x768"
+LC r_modelVertColor "1"
+AL r_monitor "0"
+A r_multiGpu "0"
+C r_norefresh "0"
+r_normal "1"
+C r_normalMap "Unchanged"
+r_outdoor "1"
+r_outdoorAwayBias "32"
+r_outdoorDownBias "0"
+r_outdoorFeather "8"
+A r_picmip "0"
+A r_picmip_bump "0"
+A r_picmip_manual "0"
+A r_picmip_spec "0"
+AL r_picmip_water "0"
+A r_polygonOffsetBias "-1"
+A r_polygonOffsetScale "-1"
+A r_portalBevels "0.7"
+r_portalBevelsOnly "0"
+r_portalMinClipArea "0.02"
+C r_portalMinRecurseDepth "2"
+C r_portalWalkLimit "0"
+AL r_preloadShaders "0"
+r_pretess "1"
+r_reflectionProbeGenerate "0"
+r_reflectionProbeGenerateExit "0"
+r_reflectionProbeRegenerateAll "0"
+R r_rendererInUse "Shader model 3.0"
+AL r_rendererPreference "Default"
+C r_resampleScene "1"
+C r_scaleViewport "1"
+C r_showFbColorDebug "None"
+C r_showFloatZDebug "0"
+C r_showLightGrid "0"
+C r_showMissingLightGrid "0"
+C r_showPixelCost "off"
+C r_showPortals "0"
+C r_singleCell "0"
+r_skinCache "1"
+C r_skipPvs "0"
+r_smc_enable "1"
+r_smp_backend "1"
+r_smp_worker "1"
+R r_smp_worker_thread0 "0"
+R r_smp_worker_thread1 "0"
+A r_specular "1"
+C r_specularColorScale "2.42"
+C r_specularMap "Unchanged"
+C r_spotLightBrightness "14"
+C r_spotLightEndRadius "196"
+C r_spotLightEntityShadows "1"
+C r_spotLightFovInnerFraction "0.7"
+C r_spotLightShadows "1"
+C r_spotLightSModelShadows "1"
+C r_spotLightStartRadius "36"
+r_sse_skinning "1"
+C r_sun_from_dvars "0"
+r_sun_fx_position "0 0 0"
+r_sunblind_fadein "0.5"
+r_sunblind_fadeout "3"
+r_sunblind_max_angle "5"
+r_sunblind_max_darken "0.75"
+r_sunblind_min_angle "30"
+r_sunflare_fadein "1"
+r_sunflare_fadeout "1"
+r_sunflare_max_alpha "1"
+r_sunflare_max_angle "2"
+r_sunflare_max_size "2500"
+r_sunflare_min_angle "45"
+r_sunflare_min_size "0"
+r_sunflare_shader "sun_flare"
+r_sunglare_fadein "0.5"
+r_sunglare_fadeout "3"
+r_sunglare_max_angle "5"
+r_sunglare_max_lighten "0.75"
+r_sunglare_min_angle "30"
+r_sunsprite_shader "sun"
+r_sunsprite_size "16"
+A r_texFilterAnisoMax "4"
+A r_texFilterAnisoMin "1"
+C r_texFilterDisable "0"
+C r_texFilterMipBias "0"
+A r_texFilterMipMode "Unchanged"
+L r_useLayeredMaterials "0"
+L r_vc_makelog "0"
+r_vc_showlog "0"
+AL r_vsync "0"
+r_warningRepeatDelay "5"
+C r_zfar "0"
+A r_zFeather "1"
+C r_znear "4"
+C r_znear_depthhack "0.1"
+C radius_damage_debug "0"
+C ragdoll_baselerp_time "1000"
+C ragdoll_bullet_force "500"
+C ragdoll_bullet_upbias "0.5"
+C ragdoll_debug "0"
+ragdoll_dump_anims "0"
+A ragdoll_enable "1"
+C ragdoll_explode_force "18000"
+C ragdoll_explode_upbias "0.8"
+C ragdoll_fps "20"
+C ragdoll_jitter_scale "1"
+C ragdoll_jointlerp_time "3000"
+C ragdoll_max_life "4500"
+A ragdoll_max_simulating "16"
+C ragdoll_rotvel_scale "1"
+C ragdoll_self_collision_scale "1.2"
+RunForTime "0"
+A s0 "0"
+A s1 "0"
+A s10 "0"
+A s11 "0"
+A s12 "0"
+A s13 "0"
+A s14 "0"
+A s15 "0"
+A s16 "0"
+A s17 "0"
+A s18 "0"
+A s2 "0"
+A s3 "0"
+A s4 "0"
+A s5 "0"
+A s6 "0"
+A s7 "0"
+A s8 "0"
+A s9 "0"
+saved_gameskill "0"
+C sc_blur "2"
+C sc_count "24"
+C sc_debugCasterCount "24"
+C sc_debugReceiverCount "24"
+sc_enable "0"
+C sc_fadeRange "0.25"
+C sc_length "400"
+C sc_offscreenCasterLodBias "0"
+C sc_offscreenCasterLodScale "20"
+C sc_shadowInRate "2"
+C sc_shadowOutRate "5"
+C sc_showDebug "0"
+C sc_showOverlay "0"
+C sc_wantCount "12"
+C sc_wantCountMargin "1"
+scr_ai_auto_fire_rate "1.0"
+scr_art_visionfile "bog_a"
+scr_cinematic_autofocus "1"
+C scr_dof_enable "1"
+scr_expDeathMayMoveCheck "on"
+scr_playerInvulTimeScale "1"
+scr_RequiredMapAspectratio "1"
+A sensitivity "5"
+R sf_use_bw "0"
+R sf_use_chaplin "0"
+R sf_use_clustergrenade "0"
+R sf_use_contrast "0"
+R sf_use_ignoreammo "0"
+R sf_use_invert "0"
+R sf_use_slowmo "0"
+R sf_use_tire_explosion "0"
+S R shortversion "1.0"
+A sm_enable "1"
+C sm_fastSunShadow "1"
+sm_lightScore_eyeProjectDist "64"
+sm_lightScore_spotProjectFrac "0.125"
+A sm_maxLights "4"
+sm_polygonOffsetBias "0.5"
+sm_polygonOffsetScale "2"
+C sm_qualitySpotShadow "1"
+C sm_spotEnable "1"
+sm_spotShadowFadeTime "1"
+C sm_strictCull "1"
+C sm_sunEnable "1"
+C sm_sunSampleSizeNear "0.25"
+C sm_sunShadowCenter "0 0 0"
+C sm_sunShadowScale "1"
+A snd_cinematicVolumeScale "0.85"
+C snd_draw3D "Off"
+snd_drawInfo "None"
+C snd_enable2D "1"
+C snd_enable3D "1"
+A snd_enableEq "1"
+C snd_enableReverb "1"
+C snd_enableStream "1"
+A snd_errorOnMissing "0"
+AL snd_khz "44"
+A C snd_levelFadeTime "250"
+AL snd_outputConfiguration "Windows default"
+A C snd_slaveFadeTime "500"
+A snd_touchStreamFilesOnLoad "0"
+A snd_volume "0.8"
+start " ** melee breach alley shanty bog zpu cobras end "
+start_timeaa_main_bog_a "0"
+starting_ads_damage_dealtaa_main_bog_a "0"
+starting_deathsaa_main_bog_a "0"
+starting_enemy_damage_takenaa_main_bog_a "0"
+starting_enemy_deathsaa_main_bog_a "0"
+starting_player_damage_dealtaa_main_bog_a "0"
+starting_player_damage_takenaa_main_bog_a "0"
+starting_player_killsaa_main_bog_a "0"
+C stopspeed "100"
+RI sv_cheats "0"
+sv_framerate_smoothing "1"
+A sv_lastSaveGame "profiles/bullet-worm/save\autosave/bog_a.svg"
+S R sv_mapname ""
+R sv_running "1"
+S sv_saveOnStartMap "1"
+C sv_znear "0"
+IA sys_configSum "222167764"
+IA sys_configureGHz "9.00994"
+R sys_cpuGHz "2.40002"
+R sys_cpuName "Intel® Core™2 CPU 6600 @ 2.40GHz"
+IA sys_gpu "NVIDIA GeForce 8800 GTS"
+sys_lockThreads "none"
+I sys_smp_allowed "1"
+R sys_SSE "1"
+IA sys_sysMB "1024"
+A takeCoverWarnings "0"
+C timescale "1"
+C turretPlayerAvoidScale "1.7"
+turretScopeZoom "20"
+turretScopeZoomMax "20"
+turretScopeZoomMin "5"
+turretScopeZoomRate "15"
+ui_autoContinue "0"
+A ui_bigFont "0.4"
+ui_borderLowLightScale "0.6"
+ui_campaign "american"
+ui_cinematicsTimestamp "0"
+A ui_extraBigFont "0.55"
+ui_hideMap "0"
+ui_hint_text "@NULL_EMPTY"
+R ui_isSaving "0"
+ui_level_cheatpoints "2"
+ui_level_player_cheatpoints "1"
+ui_load_level "bog_a"
+A ui_mousePitch "0"
+R ui_multiplayer "0"
+ui_nextMission "0"
+ui_playerProfileAlreadyChosen "0"
+R ui_playerProfileCount "0"
+ui_playerProfileNameNew ""
+R ui_playerProfileSelected ""
+ui_savegame ""
+ui_saveMessageMinTime "1"
+C ui_showList "0"
+ui_showMenuOnly ""
+A ui_smallFont "0.25"
+ui_victoryquote "@VICTORYQUOTE_EVERY_MANS_LIFE_ENDS"
+uiscript_debug "0"
+I useFastFile "1"
+C vehHelicopterDecelerationFwd "0.5"
+C vehHelicopterDecelerationSide "1"
+C vehHelicopterFreeLookReleaseSpeed "8"
+vehHelicopterHeadSwayDontSwayTheTurret "1"
+C vehHelicopterHeadSwayOnPitch "0.2"
+C vehHelicopterHeadSwayOnRollHorz "0.1"
+C vehHelicopterHeadSwayOnRollVert "2"
+C vehHelicopterHeadSwayOnYaw "0.1"
+C vehHelicopterHoverSpeedThreshold "400"
+C vehHelicopterInvertUpDown "0"
+vehHelicopterJitterJerkyness "0.3"
+C vehHelicopterLookaheadTime "1"
+C vehHelicopterMaxAccel "45"
+C vehHelicopterMaxAccelVertical "30"
+C vehHelicopterMaxPitch "10"
+C vehHelicopterMaxRoll "35"
+C vehHelicopterMaxSpeed "150"
+C vehHelicopterMaxSpeedVertical "65"
+C vehHelicopterMaxYawAccel "90"
+C vehHelicopterMaxYawRate "120"
+C vehHelicopterRightStickDeadzone "0.3"
+C vehHelicopterScaleMovement "1"
+C vehHelicopterSoftCollisions "0"
+C vehHelicopterStrafeDeadzone "0.3"
+C vehHelicopterTiltFromAcceleration "2"
+C vehHelicopterTiltFromControllerAxes "0"
+C vehHelicopterTiltFromDeceleration "2"
+C vehHelicopterTiltFromFwdAndYaw "0"
+C vehHelicopterTiltFromFwdAndYaw_VelAtMaxTilt "1"
+C vehHelicopterTiltFromVelocity "1"
+C vehHelicopterTiltMomentum "0.4"
+C vehHelicopterTiltSpeed "1.2"
+vehHelicopterYawAltitudeControls "Altitude and yaw are both controlled by the thumbstick"
+C vehHelicopterYawOnLeftStick "5"
+vehHudDrawPipOnStickWhenFreelooking "1"
+vehHudLineWidth "8"
+vehHudReticleBouncingDiamondSize "24"
+vehHudReticleBouncingRadius "80"
+vehHudReticleBouncingSpeed "400"
+vehHudReticlePipOnAStickCenterCircle "8"
+vehHudReticlePipOnAStickCenterCircleBuffer "0.25"
+vehHudReticlePipOnAStickMovingCircle "32"
+vehHudReticlePipOnAStickMovingCircleBuffer "1"
+vehHudTargetScreenEdgeClampBufferBottom "134"
+vehHudTargetScreenEdgeClampBufferLeft "120"
+vehHudTargetScreenEdgeClampBufferRight "126"
+vehHudTargetScreenEdgeClampBufferTop "139"
+vehHudTargetSize "50"
+R version "CoD4 1.0 build 13600 Wed Sep 19 23:21:04 2007 win-x86"
+A vid_xpos "3"
+A vid_ypos "22"
+waypointDebugDraw "0"
+waypointDistScaleRangeMax "3000"
+waypointDistScaleRangeMin "1000"
+waypointDistScaleSmallest "0.8"
+waypointIconHeight "36"
+waypointIconWidth "36"
+waypointOffscreenCornerRadius "105"
+waypointOffscreenDistanceThresholdAlpha "30"
+waypointOffscreenPadBottom "30"
+waypointOffscreenPadLeft "103"
+waypointOffscreenPadRight "0"
+waypointOffscreenPadTop "0"
+waypointOffscreenPointerDistance "30"
+waypointOffscreenPointerHeight "12"
+waypointOffscreenPointerWidth "25"
+waypointOffscreenRoundedCorners "1"
+waypointOffscreenScaleLength "500"
+waypointOffscreenScaleSmallest "1"
+C waypointPlayerOffsetCrouch "56"
+C waypointPlayerOffsetProne "30"
+C waypointPlayerOffsetStand "74"
+waypointSplitscreenScale "1.8"
+waypointTweakY "-17"
+R wideScreen "1" 
+
+1202 Dvars

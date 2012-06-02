@@ -1,0 +1,38 @@
+//promod live v2 - sample server config v1.1
+//for public ruleset customizations, see z_custom_ruleset.iwd
+
+//info strings
+sets _Admin ""
+sets _Email ""
+sets _Website ""
+sets _Location ""
+sets sv_hostname "Promod LIVE V2.04"
+
+//scorebot info strings, no need to modify
+sets __promod_attack_score "" // attackers info, score
+sets __promod_defence_score "" // defenders info, score
+sets __promod_ticker "" // the info ticker
+sets __promod_version "" // displays promod version
+sets __promod_mode "" // displays promod mode
+
+//password settings
+set rcon_password "xxx" // remote console password
+set sv_privatePassword "" // private slots password
+set g_password "" // server password
+
+//player slots, maxclients - privateclients = public slots
+set sv_maxclients 11 // maximum number of clients
+set sv_privateclients "" // number of private slots
+
+//client download settings
+seta sv_wwwDownload "0" // enable download redirection
+seta sv_wwwBaseURL "" // defines url to download from
+seta sv_wwwDlDisconnected "0" // disconnect clients while downloading
+
+//map rotation, change to your liking
+set sv_maprotationcurrent ""
+set sv_mapRotation "set sv_mapRotation "gametype sd map mp_backlot gametype sd map mp_crash gametype sd map mp_crossfire gametype sd map mp_citystreets gametype sd map mp_strike"
+
+//promod settings
+set promod_mode "match_mr 12" // promod mode, for a list of promod modes see attached readme in your downloaded promod204 folder(you can change the number of max round by this command) 
+set promod_enable_scorebot "0" // match-modes only

@@ -1,0 +1,96 @@
+Alright, I'll post every tweaks and tips I know on cod4, there will be useful things and completely useless yet funny binds ^^, lets start by some useful things. Oh and forgive my english please, if there is something you don't understand or something that doesn't work, I'll be glad to reply and help you out as much as I can   
+
+First I'll list the modification that are available with the promod, they should all work in normal too:
+
+- Promod Controls :
+These controls can be very important in clanwars especially the DropBomb thing. So i found a way to bind it to a key here is the line you have to add to your cfg file 
+   bind O "openscriptmenu quickpromod 2"  
+
+(here of course if you want another key to be assigned just change the O by the one you want) 
+Now every time I press on O my player will just drop the bomb where he is, this is a crucial thing if you mistakenly stole the bomb from your friend.
+
+I don't think something like killing yourself is important but it would work the same 
+   bind x "openscriptmenu quickpromod 3" for timeout 
+   bind x "openscriptmenu quickpromod 4" for suicide
+
+Next, don't you think it is really boring to press Esc. then choose a class etc etc when you want to choose another weapon ? then here is the solution :
+   bind 1 "openscriptmenu quickpromod assault"
+   bind 2 "openscriptmenu quickpromod specops"  
+   bind 3 "openscriptmenu quickpromod demolitions" 
+   bind 4 "openscriptmenu quickpromod sniper"
+
+(These are the numbers above & é " ' at least on my G15 :p)
+Done, now every time I press on each of this keys my weapons will immediately change. Remember that your classes are registered by the promod if you choose an M4 then by pressing the key "1" you'll always have the M4 back if you want something else you'll have to get through the process of choosing your weapon, camo, special grenade etc at least once (same for the other classes). Please note that those binds won't work when you're dead ! But if you press them before 10 secondes after the beginning of a round it will change.
+
+And you can also change which special grenade you want, flash/smoke with that bind 
+   bind I "openscriptmenu quickpromod grenade"
+
+- Promod Graphics : 
+Here I'll explain what exactly the promod allow us to change in our graphics. First you have to know the promod is different from the normal maps. It is something pretty light but all the modification they have done boost your fps by 15% at least.
+
+DrawDecals, this is one of the most used tweaks in all cfg boost you could ever use, it significantly increase your fps but your game will be really really ugly, (uni-colored walls, ugly ground, ...) If you want to test it yourself here is the line.
+  r_DrawDecals 0  (to revert it back as before put 1 instead of 0)
+
+But there is something you can do about that for instance, if you want to do your best in clanwars but still enjoy the graphics when you're playing for fun without every time having to change the line here is the process, we will bind the command to a key to be able to toggle between the 2.
+  bind ALT "toggle r_drawdecals 1 0"
+
+Now every time I press on ALT key my game will change between DrawDecals 1 and 0 
+   
+DrawSun, well no need any explanation here however this doesn't really change anything but here is the command if you want to get rid of the sun.
+   r_DrawSun 0 (again, if you want to get it back just put 1 instead of 0)
+
+Explosion Distortion, this happens when something explodes in front of you there will be a graphical "distortion" effect, this will be beautiful but you won't see anything behind it and it greatly decrease your fps when it happens so if you want to get rid of it.
+  r_distortion 1 0   
+
+The Shadows, ah such a beautiful thing .. the promod doesn't allow it, it gave too much of an advantage so they removed it. DO NOT TRY to activate the shadows in promod as you will hear a terrible sound until you disable it. But if like me you want a beautiful game when you're not in promod we can toggle it.
+   sm_enable 1 0   bind K "toggle sm_enable 1 0"
+
+Eject Brass, now that's something useful as it will disable the empty shell of your weapon when you're shooting, It means that you should no longer have fps drops when you're shooting now with it.
+   cg_Brass 1 0   bind x "toggle cg_Brass 1 0"
+I'm sure you want some more !!! there are still so many things.. I don't even know where to start :p
+I think now I'll list the MOST useful thing you can change. So here come part 3 !
+
+- Others :
+THE thing every player HAS to change, the fov (field of view) you just have to try it to see it yourself but I think you really should give it a try if you never did.
+   cg_fov 65 80
+
+And if like me you like to change depending on which map it is or which weapon you have
+   bind = "toggle cg_fov 65 73 80"  
+
+(Why 73 ? Because :p, you can put up to 8 different numbers i think, means 8 different fov, choose the one that suits you the most)
+Ok this one is a bit different because ANY number between 65 and 80 will work, it is as your player's preference. You will see much more things at close range but you'll have less visibility at long range. test it and choose the one you like the most ! Also if you think a fov 8à is not enough you can go even further. The following command can ONLY be applied directly in the cfg with the game not open else it won't work.
+   cg_fovScale 1.125 (I don't think you can go any further)
+   bind x "toggle cg_fovScale 1 1.125" (aka default, max)
+
+Now something really useful, the sensitivity. If like me you find it hard to settle it with the cod4 menu there is a way to fix that.
+   sensitivity x.xxxx  (yeah you can settle it a 0.000000001 if you want, long live to the accuracy)
+
+If you want to see how many fps you have constantly
+   cg_drawFPS 1
+
+(they should appear in one of the screen corners, we'll see later how to change its place)
+Now you got a counter that display your amount of fps. Next is put a limit to them, belive me 90 constant is better than having them up to 130 then down to 100 ( = lag )
+   com_maxfps 125 (or 250, the 2 most used numbers)
+   bind ) "toggle com_maxfps 125 250"
+
+(yeah you will find some servers that kick you for having too high fps .. However I never got kicked for 125 so when I see there is a limit i just press the key and I'm down to 125)
+
+Then there is a way to reduce lags, or at least allow more of your bandwidth to go for the game.
+   snaps 30  (reduce lag)
+   cl_maxpackets 100 (should already be like this because of the promod)
+
+To reduce the lags coming from your PC there are some things i never tested myself so I can't tell what will happen I don't think they are not allowed but who knows ... So I'll only write the ones I'm sure won't trouble your game experience, However if someone ask for them I won't refuse.
+   rate 25000 (This should reduce the effort your computer have to do to handle the game)
+  
+And one last thing, if you want to have an indicator for the flash grenade just like the normal ones here is the line
+   seta cg_hudGrenadeIconEnabledFlash "1"
+
+EDIT 1 : Aha I knew I would forgot something, one of the things I use the most ...
+If you are pissed of having to press Esp then leave to leave here is some binds that will greatly simplify your life.
+   bind F9 "disconnect"  (this one will bring you back on the server list, really useful)
+   bind F10 "quit"  (this one just shut down the game)
+
+EDIT 1 : I remember someone asked for my cfg, if you still want it I will share it here no problem =)
+
+Ok that was the useful and serious part, there were so many things to tell so I won't be surprise if I have forgot something ... I'll update this post if I remember something.
+Stay tuned for the FUNNY part !! It will include how to change the teams name (ye you can call the enemy team fags if you want), customize the scoreboard and many others !!!

@@ -1,0 +1,39 @@
+seta sv_punkbuster 1
+wait
+pb_sv_enable
+
+// Server name
+set sv_hostname "YOUR HOST NAME" //Change this to whatever you want your server to be named in the server browser
+
+//===============================================================================
+// Public Information  - OPTIONAL
+//===============================================================================
+sets _Admin         "name"
+sets _Email         "blahblah@blahblah.com"
+sets _Website      "my very cool website.com"
+sets _Location      "Dallas - USA"
+set scr_motd      "A MOTD HERE 
+
+// Server password
+set g_password "" // blank means NO password
+
+// Rconpassword
+set rcon_password "xxxx" // Change this to your rcon password!
+
+// Maximum Clients
+set sv_maxclients "32"
+set sv_privateclients "6"
+
+// Max Ping
+set sv_maxping "250"
+
+// Rate
+set sv_maxRate "25000"
+
+//set Game Type
+set g_gametype "koth"
+
+// Map_rotation
+set sv_mapRotation "gametype koth map mp_backlot gametype koth map mp_bloc gametype koth map mp_bog gametype koth map mp_cargoship gametype koth map mp_citystreets gametype koth map mp_convoy gametype koth map mp_countdown gametype koth map mp_crash gametype koth map mp_crossfire gametype koth map mp_farm gametype koth map mp_overgrown gametype koth map mp_pipeline gametype koth map mp_shipment gametype koth map mp_showdown gametype koth map mp_strike gametype koth map mp_vacant"
+
+set sv_maprotationcurrent ""

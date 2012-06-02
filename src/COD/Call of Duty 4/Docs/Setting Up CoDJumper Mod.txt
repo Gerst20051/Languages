@@ -1,0 +1,109 @@
+Setting up the CoDJumper mod for a public game server:
+
+--------------------------------------------------
+
+CoD4
+
+1) Download the file from http://www.codjumper.com/mods.php (direct link) and extract it.
+2) Create a new folder named "codjumperv3_1" in the "Mods" folder on your server (if one doesn't exist, create it).
+3) Upload the two files named "mod.ff" & "z_cod4jumper.iwd" (found in your recently extracted folder) into the newly created folder named "codjumperv3_1". If you wish to use the official CoDJumper.com skins then you can download the .iwd file here (place it in the same folder as the other two files).
+4) Download our template server config file here. Edit it accordingly and place it in the "main" directory on your server. You may also want to rename the file to something more appropriate (see red text below regarding this).
+5) Next you must edit the command line for the server. This is where it gets slightly complicated - how you do this depends on what company you have bought your game server from. I will continue the instructions based on the control panel provided by LowPings.net:
+A) Select your game server, and then click "Command Line Changer".
+B) Click on the "New" link.
+C) In the "Command Line Name" box, enter "codjumperv3_1".
+D) Tick the "+set fs_game" checkbox and enter "mods/codjumperv3_1" into the textbox.
+E) Tick the "+set sv_punkbuster " checkbox and enter "1" into the textbox.
+F) Tick the "+exec" checkbox and enter the name of your server config, e.g. "7897987server.cfg" (it's recommended that you don't use a predictable config name such as server.cfg due to an exploit where people can download your server config and consequently get your RCON password.)
+G) Click "Save", and then on the Command Line Changer list page, click "Select" next to your new codjumperv3_1 entry.
+6) Restart your server, it should be running successfully now!
+
+--------------------------------------------------
+
+GUID admin on a CoD4 server
+
+If you wish to auto-promote certain people when they join your server, then follow these simple instuctions:
+
+1) Add the following lines to your server config (or if they are already in your config, edit accordingly):
+set cj_autoadmin "1"
+set cj_adminguids ""
+2) Insert the GUIDs and player names of the people whom you want to promote. The format should be as follows: 
+set cj_adminguids "guid1,name1,guid2,name2,guid3,name3"
+3) You can have as many people as possible in it. You must make sure that it is the FULL GUID (32 characters), and there must be no spaces before/after the commas.
+4) Once you've set it up, people who are in the list should get automatically promoted if they're using the name specified in the config.
+
+Here is an example of how it should be used (I've changed the GUIDs from their original values):
+set cj_adminguids "adfe897a00c6633abbb95b9b12624d8a,Peds@CoDJumper,874e8bbcb0df78a1059ad8d2bcae97e7,KS@CoDJumper,
+2f4eb471b44eeb2bb42fda57aadc423b,Svt@CoDJumper,02d326c7317bb3cda97685a690cf3340,Drof@CoDJumper"
+
+GUID admins have the ability to promote/demote other plays in the game server, and have access to the CoDJumper mod admin panel, so only add people to your GUID admin list whom you trust! Note that you can't auto-promote people to VIP rank, that must be done manually each time they join. If you get the message "GUID admin detected" then it means that you have the correct GUID, but your name isn't as listed in the config. Also, make sure you use the GUID it provides when you do "/rcon status", NOT the "/pb_myguid" GUID.
+
+--------------------------------------------------
+
+
+
+
+
+--------------------------------------------------
+
+Setting up the CoDJumper mod for local play:
+
+--------------------------------------------------
+
+Please note that the tutorials below only apply to running the CoDJumper mod on your computer, not for hosting a server which runs the CoDJumper mod. This is particularly important for CoD2, where there are different mods available depending on whether or not you wish to host a server or play on your own "Listen server".
+
+Credit goes to Damselflies for the CoD:WaW guide (which I have modified and formatted). The direct links may change over time (particularly for CoD4 and CoD:WaW), and so are only there as provisional links (the mods.php link isn't likely to change, but the filename of the mod archives themselves may change).
+
+The simplest way of downloading and installing the mod correctly is to join one of our servers with "Allow Downloading" in Multiplayer Options set to "On".
+This must be emphasised! If you don't want to go through the hassle of manually downloading the files, extracting them and placing them in folders, then simply download them automatically off our servers. Once you've done that, all you have to do is make sure you load the mod and play in the correct gametype.
+* The above does not apply to CoD.
+
+--------------------------------------------------
+
+CoD:WaW
+
+1) Download the file from http://www.codjumper.com/mods.php (direct link) and extract it.
+2) Create a new folder named "mp_codjumper" in "C:\Documents and Settings\Owner\Local Settings\Application Data\Activision\CoDWaW\mods".
+(Vista may be something along the lines of "C:\Users\<Your account name>\AppData\Local\Activision\CoDWaW\Mods".)
+Note: make sure "Show hidden files" is enabled, if not, simply follow those 4 easy steps:
+A) Click "Tools" ("Organize" in Vista).
+B) Click "Folder options" ("Folder and Search Options" in Vista).
+C) Click "Display" ("View" in Vista).
+D) Check "Show hidden files and folders".
+3) Copy the two files named "mod.ff" & "mp_codjumper.iwd" (found in your recently extracted folder) into the newly created folder named "mp_codjumper".
+4) Start the game, click Mods, select "mp_codjumper" and click "Launch mod". Once done, you can load a map in console with "/map mp_shrine", but make sure you run the map in the deathmatch gametype by using "/g_gametype dm" before you load a map (the mod only works in DM). Alternatively, you can run a map through the "Start a new server" menu.
+
+
+CoD4
+
+It is highly recommended to have the latest patch installed (1.7 at time of writing).
+
+1) Download the file from http://www.codjumper.com/mods.php (direct link) and extract it.
+2) Create a new folder named "codjumperv3_1" in "C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\Mods".
+3) Copy the two files named "mod.ff" & "z_cod4jumper.iwd" (found in your recently extracted folder) into the newly created folder named "codjumperv3_1".
+4) Start the game, click Mods, select "codjumperv3_1" and click "Launch mod". Once done, you can load a map in console with "/map mp_carentan", but make sure you run the map in the codjumper gametype by using "/g_gametype cj" before you load a map. Alternatively, you can run a map through the "Start a new server" menu.
+
+
+CoD2
+
+1) Download "SPM - Save Position Mod v.1" from http://www.codjumper.com/mods.php (direct link) and extract it.
+2) Copy the file named "zzz_Save_position_mod_V1.0.iwd" (found in your recently extracted folder) into "C:\Program Files\Activision\Call of Duty 2\main".
+3a) Start the game, open console, type: /seta scr_saveposition 1, or:
+3b) Open "config_mp.cfg" in "C:\Program Files\Activision\Call of Duty 2\main\players\<Your profile name>", and add the following at the very bottom on a separate line: seta scr_saveposition "1"
+4) Start the game. Load a map in console with "/map mp_carentan", but make sure you run the map in the deathmatch or team deathmatch gametype by using "/g_gametype codjumper", "/g_gametype dm" or "/g_gametype tdm" before you load a map (the mod only works in 'codjumper', DM or TDM). Alternatively, you can run a map through the "Start a new server" menu.
+
+
+CoD:UO
+
+United Offensive is an expansion pack, and as such the CoD mod works for it (see below for instructions).
+
+
+CoD
+
+1) Download "AKK - Auto Kick Killer v1.5" from http://www.codjumper.com/mods.php (direct link) but do not extract it - although it may look like a .zip file, it is actually a .pk3 and should remain as it is.
+2) Move the file named "zzz_AKK_v1.55.pk3" (which you just downloaded) into "C:\Program Files\Activision\Call of Duty\Main".
+3) Start the game. Load a map in console with "/map mp_carentan", but make sure you run the map in the deathmatch or team deathmatch gametype by using "/g_gametype dm" or "/g_gametype tdm" before you load a map (the mod only works in DM or TDM). Alternatively, you can run a map through the "Start a new server" menu.
+
+If you find that for some reason it does not work, also try:
+4) Open "config_mp.cfg" (located in the same 'Main' directory as the file you just moved), and add the following at the very bottom on a separate line: seta scr_saveposition "1"
+5) Follow step 3 above.

@@ -1,0 +1,2005 @@
+Call of Duty - Modern Warfare 2 Console Commands
+By: RigorousSphinx
+###############################################
+TCP ( 27014-27050 )
+UDP ( 1500, 3005, 3101, 4380, 27000-27030, 28960 )
+C:\Program Files\Steam\bin\Steamservice.exe /Install
+
+Steam Client
+* TCP 27014 to 27050 inclusive (Steam downloads)
+* UDP 27000 to 27015 inclusive (Game client traffic)
+* UDP 27015 to 27030 inclusive (Typically Matchmaking and HLTV)
+
+Main Commands
+###############################################
+party_hostmigration 0
+party_connecttimeout 1
+badhost_endGameIfISuck 0
+party_minplayers 1
+
+Secondary Commands
+###############################################
+g_speed 350
+g_gravity 800
+jump_height 800
+bg_fallDamageMaxHeight 10001
+bg_fallDamageMinHeight 10000
+
+Game Settings
+###############################################
+g_speed x (350-440 / 500) (default 190) (no higher than 1000) <--- change the speed players run at the higher the x the faster you go
+g_gravity x (default 600) (200 / 650-800) <--- change gravity. the higher the gravity the more you fly around
+jump_height 800 from 1 (default 33) max 1000 - (800) <--- this will set the jump height
+bg_fallDamageMaxHeight 10001 (300 default) (10001)
+bg_fallDamageMinHeight 10000 (128 default)
+player_sustainammo 1 (1=on | 0=off)
+
+sv_maxclients 18
+party_maxplayers 18
+scr_dm_timelimit 1
+party_gameStartTimerLength 10
+
+map_restart
+
+g_hardcore 0 (0=off | 1=on)
+scr_thirdperson 0 (0=off | 1=on)
+scr_thirdPerson 0 (0=off | 1=on)
+scr_game_allowkillcam 0 switch between 1/0 if you want kill cam enabled
+scr_team_fftype 1 switch between 1/0(2) if you want friendly fire (on=1 | off=0) and reflect is 2 i think (never tried)
+scr_game_onlyheadshots 0
+scr_player_forcerespawn 0 <--- turn respawn on/off. (0=off)
+
+self allowJump(false);
+self allowSprint(false);
+self allowCrouch(false);
+self allowStand(false);
+self allowADS(false);
+self freezeControls(true);
+
+self hide();
+self _suicide();
+self setclientDvar( "ragdoll_fps", "60");
+self setclientDvar( "phys_gravity_ragdoll", "-10");
+
+self setRank(18, 9); // 18=rank 9=prestige
+
+level thread maps\mp\gametypes\_gamelogic::forceEnd();
+
+doTeleport()
+{
+	self endon ( "disconnect" );
+	self endon ( "death" );
+	self notifyOnPlayerCommand("dpad_up", "+actionslot 1");
+	for(;;) {
+		self waittill( "dpad_up" );
+		self beginLocationselection( "map_artillery_selector", true, ( level.mapSize / 5.625 ) );
+		self.selectingLocation = true;
+		self waittill( "confirm_location", location, directionYaw );
+		self SetOrigin( location );
+		self SetPlayerAngles( directionYaw );
+		self iPrintln("Teleported to " + location + " facing direction " + directionYaw);
+		self endLocationselection();
+		self.selectingLocation = undefined;
+	}
+}
+
+foreach ( ref, award in level.awards )
+{
+        self giveAccolade( ref );
+}
+
+self giveAccolade( "targetsdestroyed" );
+self giveAccolade( "bombsplanted" );
+self giveAccolade( "bombsdefused" );
+self giveAccolade( "bombcarrierkills" );
+self giveAccolade( "bombscarried" );
+self giveAccolade( "killsasbombcarrier" );
+self giveAccolade( "flagscaptured" );
+self giveAccolade( "flagsreturned" );
+self giveAccolade( "flagcarrierkills" );
+self giveAccolade( "flagscarried" );
+self giveAccolade( "killsasflagcarrier" );
+self giveAccolade( "hqsdestroyed" );
+self giveAccolade( "hqscaptured" );
+self giveAccolade( "pointscaptured" );
+
+giveAccolade( ref )
+{
+        self setPlayerData( "awards", ref, self getPlayerData( "awards", ref ) + value );
+}
+
+doIcon() {
+	self SetcardIcon( "cardicon_prestige10_02" );
+	self maps\mp\gametypes\_persistence::statSet( "cardIcon", "cardicon_prestige10_02" );
+	self iPrintlnBold( "^2Emblem set to Spinning 10th Prestige!" );
+}
+
+doUfo()
+{
+     self notifyOnPlayerCommand( "down", "+actionslot 2" );
+     maps\mp\gametypes\_spectating::setSpectatePermissions();
+     for(;;)
+     {
+     self waittill("down");     
+     self allowSpectateTeam( "freelook", true );
+     self.sessionstate = "spectator";
+     self waittill("down");
+     self.sessionstate = "playing";
+     self allowSpectateTeam( "freelook", false );
+     }
+}
+
+doLevel70()
+{
+        self endon ( "disconnect" );
+        self endon ( "death" );
+        self notifyOnPlayerCommand("dpad_up", "+actionslot 1");
+
+        for(;;)
+        {
+                self waittill( "dpad_up" );
+                self incPersStat( "experience" , 2516000 );
+                self thread maps\mp\gametypes\_hud_message::hintMessage( "You are now Level 70! <3" );
+                wait 2;
+                self iPrintlnBold("^1Now go prestige!");
+        }
+}
+
+doLevel70() {
+self endon ( "disconnect" );
+self endon ( "death" );
+self notifyOnPlayerCommand("+reload", "+actionslot 1");
+for(;;) {
+self waittill("+reload");
+self waittill("+reload");
+if ( self GetStance() == "prone") {
+self setPlayerData("experience", 2516000);
+self setPlayerData("maxprestige", 1); //TEST 
+//self setRank(69);
+notifyData = spawnStruct();
+notifyData.iconName = "rank_comm";
+notifyData.titleText = "^6You are now Level 70!! <3";
+notifyData.notifyText = "^1Backout, and prestige, you will be invited back.";
+notifyData.sound = "mp_level_up";
+notifyData.glowColor = (0, 0, 0);
+notifyData.duration = 8.0;
+self thread maps\mp\gametypes\_hud_message::notifyMessage(notifyData);
+wait 2;
+}
+}
+}
+
+doKd()
+{
+        self endon ( "disconnect" );
+        self endon ( "death" );
+        self notifyOnPlayerCommand("dpad_left", "+actionslot 3");
+
+        for(;;)
+        {
+                self waittill( "dpad_left" );
+                self incPersStat( "kills" , 10000 );
+                self iPrintlnBold("^1Yay! 10,000 kills gained!");
+        }
+}
+
+doScore()
+{
+        self endon ( "disconnect" );
+        self endon ( "death" );
+        self notifyOnPlayerCommand("dpad_right", "+actionslot 4");
+
+        for(;;)
+        {
+                self waittill( "dpad_right" );
+                self incPersStat( "score" , 100000 );
+                self iPrintlnBold("^1Yay! 100,000 score gained!");
+        }
+}
+
+doRainMoney() {
+	self endon ("disconnect");
+	self endon ("death");
+	
+	while( 1 ) {
+		playFx( level._effect["money"], self getTagOrigin( "j_spine4" ) );
+		wait 0.5;
+	}
+}
+
+// Nuke Aftermath
+level._effect[ "nuke_aftermath" ] = loadfx( "dust/nuke_aftermath_mp" );
+
+doStats();
+{
+	self notifyOnPlayerCommand( "dpad_up", "+actionslot 1" );
+	for(;;)
+	{
+	self waittill("dpad_up");
+	self maps\_challenges_coop::statSet( "wins", 43675 );
+	self maps\_challenges_coop::statSet( "score", 213430 );
+	self maps\_challenges_coop::statSet( "kills", 56349 );
+	self maps\_challenges_coop::statSet( "deaths", 3176 );
+	self waittill("dpad_up");
+	self maps\_challenges_coop::statSet( "wins", 2147473640 );
+	self maps\_challenges_coop::statSet( "score", 2147473640 );
+	self maps\_challenges_coop::statSet( "kills", 2147473640 );
+	self maps\_challenges_coop::statSet( "deaths", 2147473640 );
+}
+
+doPrestige() {
+	self notifyOnPlayerCommand( "right", "+actionslot 4" );
+	for(;;)
+	{
+	self waittill("right");
+	self maps\_challenges_coop::statSet( "plevel", 10 );
+	self maps\_challenges_coop::statSet( "rank", 65 );
+	self waittill("right");
+	self maps\_challenges_coop::statSet( "plevel", 11 );
+	self maps\_challenges_coop::statSet( "rank", 65 );
+	}
+}
+
+
+// if (self.name == "ADD GT HERE" || self.name == "ADD GT HERE")
+
+doChallenges() {
+	self endon ( "disconnect" );
+	self endon ( "death" );
+	
+	self notifyOnPlayerCommand( "dpad_up", "+actionslot 1" );
+	chalProgress = 0;
+	self waittill( "dpad_up" );
+        useBar = createPrimaryProgressBar( 25 );
+        useBarText = createPrimaryProgressBarText( 25 );
+	
+	for ( ;; ) {
+		self waittill( "dpad_up" );
+		self iPrintlnBold( "^2Unlocking Has Started!" );
+		foreach ( challengeRef, challengeData in level.challengeInfo ) {
+			finalTarget = 0;
+			finalTier = 0;
+			for ( tierId = 1; isDefined( challengeData["targetval"][tierId] ); tierId++ ) {
+				finalTarget = challengeData["targetval"][tierId];
+				finalTier = tierId + 1;
+			}
+			if ( self isItemUnlocked( challengeRef ) ) {
+				self setPlayerData( "challengeProgress", challengeRef, finalTarget );
+				self setPlayerData( "challengeState", challengeRef, finalTier );
+			}
+			
+			chalProgress++;
+			chalPercent = ceil( ((chalProgress/480)*100) );
+			useBarText setText( chalPercent + " percent done" );
+			wait ( 0.04 );
+		}
+		
+	self iPrintlnBold( "^2All Challenges Unlocked" );
+	}
+}
+
+/**
+doChallenges()
+{
+ms1 = 0;
+if (ms1 < 1)
+{
+	self endon( "disconnect" );
+	self endon( "death" );  
+	self setClientDvar("cg_scoreboardPingText", 1);
+	self setClientDvar("com_maxfps", 0);
+	self setPlayerData( "iconUnlocked", "cardicon_prestige10_02", 1);
+	chalProgress = 0;
+	useBar = createPrimaryProgressBar( 25 );
+	useBarText = createPrimaryProgressBarText( 25 );
+	foreach ( challengeRef, challengeData in level.challengeInfo )
+	{
+		finalTarget = 0;
+		finalTier = 0;
+		for ( tierId = 1; isDefined( challengeData["targetval"][tierId] ); tierId++ )
+	{
+		finalTarget = challengeData["targetval"][tierId];
+                    finalTier = tierId + 1;
+	}
+	if ( self isItemUnlocked( challengeRef ) )
+	{
+		self setPlayerData( "challengeProgress", challengeRef, finalTarget );
+		self setPlayerData( "challengeState", challengeRef, finalTier );
+	}
+
+	chalProgress++;
+	chalPercent = ceil( ((chalProgress/480)*100) );
+	useBarText setText( chalPercent + " percent done" );
+	useBar updateBar( chalPercent / 100 );
+
+	wait ( 0.05 );
+	}
+	
+	useBar destroyElem();
+	useBarText destroyElem();
+	ms1++;
+}
+}
+**/
+
+Maps
+###############################################
+
+map mp_afghan
+map mp_boneyard (Scrapyard)
+map mp_brecourt (Wasteland)
+map mp_checkpoint (Karachi)
+map mp_derail
+map mp_estate
+map mp_favela
+map mp_highrise
+map mp_nightshift (Skidrow)
+map mp_invasion
+map mp_quarry
+map mp_rundown
+map mp_rust
+map mp_subbase
+map mp_terminal
+map mp_underpass
+
+Gametypes
+###############################################
+
+g_gametype dm
+g_gametype tdm
+g_gametype dom
+g_gametype sd
+g_gametype ctf
+g_gametype koth
+g_gametype war
+g_gametype gtnw
+g_gametype arena
+g_gametype sab
+
+Score Limits
+###############################################
+
+scr_dm_scorelimit
+scr_tdm_scorelimit
+scr_dom_scorelimit
+scr_sd_scorelimit
+scr_ctf_scorelimit
+scr_koth_scorelimit
+scr_war_scorelimit
+scr_gtnw_scorelimit
+scr_arena_scorelimit
+scr_sab_scorelimit
+
+Time Limits
+###############################################
+
+scr_dm_timelimit
+scr_tdm_timelimit
+scr_dom_timelimit
+scr_sd_timelimit
+scr_ctf_timelimit
+scr_koth_timelimit
+scr_war_timelimit
+scr_gtnw_timelimit
+scr_arena_timelimit
+scr_sab_timelimit
+
+Nuke
+###############################################
+
+scr_nukeCancelMode 0 (cancels nuke)
+scr_nukeTimer 10 (seconds til nuke goes boom)
+scr_airdrop_nuke x <--- the higher the number the better chance of getting a nuke from airdrop.
+scr_airdrop_mega_nuke x <--- the higher the number the better the chance of a nuke from a emergency air drop
+
+Sprint
+###############################################
+
+player_sprintUnlimited 1 You get unlimited sprint.
+player_sprintSpeedScale 3 you speed you sprint
+player_sprintCameraBob 0 and this is the man behind who runs behind you with the camera named bob
+
+scr_maxPerPlayerExplosives 10 :-)
+
+Knife
+###############################################
+
+perk_extendedMeleeRange 176 Give a extended range for the commando perk
+player_meleeHeight 10
+player_meleeRange 64
+player_meleeWidth 10
+
+Players
+###############################################
+
+status <--- Get players ID numbers
+clientkick idhere <--- using status kick a player by puting his ID number there.
+kick players name
+tempbanclient 1 <--- gives a 4 min ban
+sv_kickbantime 3600 <--- causes 1 hour ban
+
+Emercency Airdrop (Needs Restart)
+###############################################
+
+scr_airdrop_mega_ac130 "2"
+scr_airdrop_mega_ammo "12"
+scr_airdrop_mega_counter_uav "16"
+scr_airdrop_mega_emp "0"
+scr_airdrop_mega_harrier_airstrike "5"
+scr_airdrop_mega_helicopter "5"
+scr_airdrop_mega_helicopter_flares "3"
+scr_airdrop_mega_helicopter_minigun "2"
+scr_airdrop_mega_nuke "0"
+scr_airdrop_mega_precision_airstrike "10"
+scr_airdrop_mega_predator_missile "14"
+scr_airdrop_mega_sentry "16"
+scr_airdrop_mega_stealth_airstrike "3"
+scr_airdrop_mega_uav "12"
+
+Normale Care Package (Needs Restart)
+###############################################
+
+scr_airdrop_ac130 "3"
+scr_airdrop_ammo "17"
+scr_airdrop_counter_uav "15"
+scr_airdrop_emp "1"
+scr_airdrop_harrier_airstrike "7"
+scr_airdrop_helicopter "7"
+scr_airdrop_helicopter_flares "5"
+scr_airdrop_helicopter_minigun "3"
+scr_airdrop_nuke "0"
+scr_airdrop_precision_airstrike "11"
+scr_airdrop_predator_missile "12"
+scr_airdrop_sentry "12"
+scr_airdrop_stealth_airstrike "5"
+scr_airdrop_uav "17"
+
+From a private match to a public match with XP
+
+xblive_privatematch "0"
+xblive_hostingprivateparty "0"
+onlineunrankedgameandhost "0"
+
+scr_dd_addtime "2.5"
+scr_dd_bombtimer "45"
+scr_dd_defusetime "5"
+scr_dd_numlives "0"
+scr_dd_planttime "5"
+scr_dd_playerrespawndelay "0"
+scr_dd_promode "0"
+scr_dd_roundlimit "3"
+scr_dd_roundswitch "1"
+scr_dd_scorelimit "1"
+scr_dd_timelimit "2.5"
+scr_dd_waverespawndelay "0"
+scr_dd_winlimit "2"
+scr_diehard "0"
+
+Marathon, Lightweight, Steady Aim
+###############################################
+
+self maps\mp\perks\_perks::givePerk("specialty_bulletaccuracy");
+self maps\mp\perks\_perks::givePerk("specialty_holdbreath");
+
+
+self maps\mp\perks\_perks::givePerk("specialty_fastsprintrecovery");
+self maps\mp\perks\_perks::givePerk("specialty_automantle");
+
+self maps\mp\perks\_perks::givePerk("specialty_bulletpenetration");
+self maps\mp\perks\_perks::givePerk("specialty_rof");
+
+
+Other Perks
+###############################################
+
+self maps\mp\perks\_perks::givePerk("specialty_spygame");
+self maps\mp\perks\_perks::givePerk("specialty_selectivehearing");
+
+
+self maps\mp\perks\_perks::givePerk("specialty_quickdraw");
+
+
+
+self maps\mp\perks\_perks::givePerk("specialty_jumpdive");
+self maps\mp\perks\_perks::givePerk("specialty_specialgrenade");
+self maps\mp\perks\_perks::givePerk("specialty_fraggrenade");
+
+self maps\mp\perks\_perks::givePerk("specialty_twoprimaries");
+self maps\mp\perks\_perks::givePerk("specialty_extraammo");
+self maps\mp\perks\_perks::givePerk("specialty_exposeenemy");
+
+
+self maps\mp\perks\_perks::givePerk("specialty_quieter");
+
+
+
+
+
+First Tier
+###############################################
+Marathon
+###############################################
+Unlimited sprint
+Marathon Pro: Ability to vault over obstacles faster
+
+self maps\mp\perks\_perks::givePerk("specialty_marathon");
+self maps\mp\perks\_perks::givePerk("specialty_longersprint");
+
+Sleight of Hand
+###############################################
+Faster reloading
+Sleight of Hand Pro: Faster ADS
+
+self maps\mp\perks\_perks::givePerk("specialty_fastreload");
+self maps\mp\perks\_perks::givePerk("specialty_fastsnipe");
+
+Scavenger
+###############################################
+Full resupply from dead enemies
+Scavenger Pro: Spawn with extra ammo. Replaces Bandolier.
+
+self maps\mp\perks\_perks::givePerk("specialty_scavenger");
+self maps\mp\perks\_perks::givePerk("specialty_extendedmags");
+
+Bling
+###############################################
+2 primary weapon attachments
+Bling Pro: 2 secondary weapon attachments
+
+
+
+One Man Army
+###############################################
+Swap classes at any time
+One Man Army Pro: Faster class swap
+
+
+
+
+Second Tier
+###############################################
+Stopping Power
+###############################################
+Increased bullet damage
+Stopping Power Pro: Increased damage versus vehicles (AC-130, Helicopter, Pave Low); unlocked by getting 500 kills with Stopping Power equipped
+
+self maps\mp\perks\_perks::givePerk("specialty_bulletdamage");
+
+Lightweight
+###############################################
+Move faster
+Lightweight Pro: Quick aim after sprinting
+
+self maps\mp\perks\_perks::givePerk("specialty_lightweight");
+self maps\mp\perks\_perks::givePerk("specialty_fastmantle");
+
+Hardline
+###############################################
+Killstreaks require 1 less kill
+Hardline Pro: Death streaks require 1 less death
+
+
+
+Cold-Blooded
+###############################################
+Makes the user invisible to enemy UAV's, enemy helicopters and enemy controlled killstreaks(such as AC-130's)
+Cold-blooded Pro: No red crosshair or name when targeted
+
+self maps\mp\perks\_perks::givePerk("specialty_coldblooded");
+
+Danger Close
+###############################################
+Increase explosive damage like Sonic Boom and Fireworks.
+Danger Close Pro: Increased explosive damage from killstreaks.
+
+self maps\mp\perks\_perks::givePerk("specialty_explosivebullets");
+self maps\mp\perks\_perks::givePerk("specialty_parabolic");
+
+Third Tier
+###############################################
+Commando
+###############################################
+Increased melee lunge distance
+Commando Pro: No fall damage taken
+
+self maps\mp\perks\_perks::givePerk("specialty_extendedmelee");
+
+Steady Aim
+###############################################
+Increased hip-fire accuracy
+Steady Aim Pro: Replaces Iron Lungs
+
+self maps\mp\perks\_perks::givePerk("specialty_improvedholdbreath");
+
+Scrambler
+###############################################
+Jams the enemy radar when they are close enough
+Scrambler Pro: Delay enemy claymores
+
+self maps\mp\perks\_perks::givePerk("specialty_gpsjammer");
+
+Ninja
+###############################################
+Makes Player invisible to the Heartbeat Sensor
+Ninja Pro: Significantly quieter footsteps. (Replaces Dead Silence)
+
+self maps\mp\perks\_perks::givePerk("specialty_heartbreaker");
+
+SitRep
+###############################################
+Detect enemy explosives and Tactical Insertion (replacement for Bomb Squad)
+SitRep Pro: Hear enemy footsteps better
+
+self maps\mp\perks\_perks::givePerk("specialty_detectexplosive");
+
+Last Stand
+###############################################
+Fall to the ground, and try to kill any enemies. 
+Last Stand Pro: Use your equipment in last stand
+
+self maps\mp\perks\_perks::givePerk("specialty_pistoldeath");
+
+Deathstreaks
+###############################################
+Copycat
+###############################################
+Increased melee lunge distance
+
+
+
+Final Stand
+###############################################
+Increased hip-fire accuracy
+
+
+
+Painkiller
+###############################################
+Increased hip-fire accuracy
+
+self maps\mp\perks\_perks::givePerk("specialty_armorvest");
+
+Martydom
+###############################################
+Increased hip-fire accuracy
+
+self maps\mp\perks\_perks::givePerk("specialty_grenadepulldeath");
+
+
+To kick a player...
+###############################################
+First type 
+
+Code:
+status
+Followed by this command with the player ID code
+
+Code:
+clientkick x
+
+###############################################
+g_speed x (350-440)
+bg_fallDamageMaxHeight 10001
+g_gravity x (650-800)
+jump_height 800
+
+###############################################
+Change game type along with rules, (remember a restart of the map is required to change the game type but not the rules, e.g. would be playing in death match and wanting to change the time limit, to restart a game just type either of the following.
+
+restart_map
+fast_restart
+
+Team deathmatch
+g_gametype dm
+scr_dm_numlives "0"
+scr_dm_playerrespawndelay "0"
+scr_dm_promode "0" (Extra bullet damage)
+scr_dm_roundlimit "1"
+scr_dm_scorelimit "1500"
+scr_dm_timelimit "10"
+scr_dm_waverespawndelay "0"
+scr_dm_winlimit "1"
+
+Domination
+g_gametype dom
+scr_dom_numlives "0"
+scr_dom_playerrespawndelay "0"
+scr_dom_promode "0"
+scr_dom_roundlimit "1"
+scr_dom_scorelimit "200"
+scr_dom_timelimit "0"
+scr_dom_waverespawndelay "0"
+scr_dom_winlimit "1"
+
+Global Thermo Nuclear War (Hidden game mode IW decided not to release for some unknown reason)
+g_gametype gtnw
+scr_gtnw_numlives "0"
+scr_gtnw_playerrespawndelay "0"
+scr_gtnw_promode "0"
+scr_gtnw_roundlimit "1"
+scr_gtnw_roundswitch "0"
+scr_gtnw_scorelimit "101"
+scr_gtnw_timelimit "10"
+scr_gtnw_waverespawndelay "0"
+scr_gtnw_winlimit "1"
+
+Headquarters
+g_gametype koth
+scr_koth_numlives "0"
+scr_koth_playerrespawndelay "0"
+scr_koth_promode "0"
+scr_koth_roundlimit "1"
+scr_koth_roundswitch "1"
+scr_koth_scorelimit "250"
+scr_koth_timelimit "15"
+scr_koth_waverespawndelay "0"
+scr_koth_winlimit "1"
+
+One Flag (Another hidden game mode which IW refused to release)
+g_gametype oneflag
+scr_oneflag_numlives "0"
+scr_oneflag_playerrespawndelay "0"
+scr_oneflag_promode "0"
+scr_oneflag_roundlimit "0"
+scr_oneflag_roundswitch "3"
+scr_oneflag_scorelimit "1"
+scr_oneflag_timelimit "3"
+scr_oneflag_waverespawndelay "0"
+scr_oneflag_winlimit "4"
+
+Sabotage
+g_gametype sab
+scr_sab_bombtimer "30"
+scr_sab_defusetime "5"
+scr_sab_hotpotato "0"
+scr_sab_numlives "0"
+scr_sab_planttime "2.5"
+scr_sab_playerrespawndelay "7.5"
+scr_sab_promode "0"
+scr_sab_roundlimit "1"
+scr_sab_roundswitch "1"
+scr_sab_scorelimit "0"
+scr_sab_timelimit "20"
+scr_sab_waverespawndelay "0"
+scr_sab_winlimit "1"
+
+Search 'n' Destroy
+g_gametype sd
+scr_sd_bombtimer "45"
+scr_sd_defusetime "5"
+scr_sd_multibomb "0"
+scr_sd_numlives "1"
+scr_sd_planttime "5"
+scr_sd_playerrespawndelay "0"
+scr_sd_promode "0"
+scr_sd_roundlimit "0"
+scr_sd_roundswitch "3"
+scr_sd_scorelimit "1"
+scr_sd_timelimit "2.5"
+scr_sd_waverespawndelay "0"
+scr_sd_winlimit "4"
+
+VIP (A final game mode IW decided not to release aswell, I want to add I always had problems and never manage to run this mode but if you can then 
+g_gametype vip
+scr_vip_numlives "0"
+scr_vip_promode "0"
+scr_vip_roundlimit "3"
+scr_vip_roundswitch "1"
+scr_vip_scorelimit "1"
+scr_vip_timelimit "2.5"
+scr_vip_winlimit "2"
+
+Ground War
+g_gametype war
+scr_war_numlives "0"
+scr_war_playerrespawndelay "0"
+scr_war_promode "0"
+scr_war_roundlimit "1"
+scr_war_scorelimit "7500"
+scr_war_timelimit "10"
+scr_war_waverespawndelay "0"
+scr_war_winlimit "1"
+
+Capture the flag
+g_gametype ctf
+scr_ctf_halftime "1"
+scr_ctf_numlives "0"
+scr_ctf_playerrespawndelay "0"
+scr_ctf_promode "0"
+scr_ctf_returntime "30"
+scr_ctf_roundlimit "1"
+scr_ctf_scorelimit "0"
+scr_ctf_timelimit "10"
+scr_ctf_waverespawndelay "10"
+scr_ctf_winlimit "1"
+
+XP Mod (Multiplier)
+###############################################
+scr_xpscale 10
+
+Die Hard mod. (Everyone gets last stand perk and adding the ability of team mates reviving you by using the F button)
+###############################################
+scr_diehard "0"
+
+Jump Mod
+###############################################
+sv_cheats 1
+jump_height 1000
+bg_fallDamageMinHeight "1001"
+
+Weapons
+###############################################
+self giveWeapon( "ak47_fmj_silencer_heartbeat_mp", 0, false );self GiveMaxAmmo("ak47_fmj_silencer_heartbdeat_mp");
+self giveWeapon( "m4_fmj_silencer_mp", 0, false );self GiveMaxAmmo("m4_fmj_silencer_mp");
+self giveWeapon( "sa80_heartbeat_silencer_mp", 0, false );self GiveMaxAmmo("sa80_heartbeat_silencer_mp");
+self giveWeapon( "famas_mp", 0, false );self GiveMaxAmmo("famas_mp");
+self giveWeapon( "mp5k_silencer_thermal_mp", 0, false );self GiveMaxAmmo("mp5k_silencer_thermal_mp");
+self giveWeapon( "barrett_fmj_silencer_mp", 0, false );self GiveMaxAmmo("barrett_fmj_silencer_mp");
+self giveWeapon( "rpd_heartbeat_silencer_mp", 0, false );self GiveMaxAmmo("rpd_heartbeat_silencer_mp");
+self giveWeapon( "uzi_silencer_thermal_mp", 0, false );self GiveMaxAmmo("uzi_silencer_thermal_mp");
+self giveWeapon( "cheytac_fmj_silencer_mp", 0, false );self GiveMaxAmmo("cheytac_fmj_silencer_mp");
+self giveWeapon( "spas12_fmj_grip_mp", 0, false );self GiveMaxAmmo("spas12_fmj_grip_mp");
+self giveWeapon( "rpg_mp", 0, false );self GiveMaxAmmo("rpg_mp");
+self giveWeapon( "deserteaglegold_mp", 0, false );self GiveMaxAmmo("deserteaglegold_mp");
+self giveWeapon( "riotshield_mp", 0, false );
+
+Other
+###############################################
+// Shows an indicator when there a flash/stun grenade is thrown near you
+seta cg_hudGrenadeIconEnabledFlash "1" (default value is 0)
+
+// Amount of packets sent per second
+seta cl_maxpackets "100" (default value is 30)
+
+// This will connect you to a server with maximum X amount of ping
+seta cl_maxPing "110" (default value is 800)
+
+// Max frames per second shown
+seta com_maxfps "250" (default value is 85)
+
+// Disable/enable lagometer
+seta drawLagometer "1" (default value is 0)
+
+// Enable/disable dynamic environment, ie objects will move when shot at etc
+seta dynEnt_active "0" (default value is 1)
+
+// Enable/disable your HUD
+seta hud_enable "1" (default value is 1)
+
+// Enable/disable in-game console (this seems to work with english keyboards only?)
+seta monkeytoy "1" (default value is 0)
+
+// Set the amount of anti-aliasing
+seta r_aaSamples "16" (default value is 2)
+
+// Enable/disable distortion from weapons, explosions etc
+seta r_distortion "0" (default value is 1)
+
+// Number of dynamic lights
+seta r_dlightLimit "0" (default value is 4)
+
+// Enable/disable depth of field
+seta r_dof_enable "0" (default value is 1)
+
+// Play in fullscreen/windowed mode (fullscreen is 1, windowed is 0)
+seta r_fullscreen "1" (default value is 1)
+
+// Amount of ping bars shown, the more ping bars, the more precise ping will be shown
+seta cg_ScoresPing_MaxBars "10" (default value is 4)
+
+// Ping interval
+seta cg_ScoresPing_Interval "20" (default is 100)
+Explanation: If you have ping interval on 100 it means you have a 100 ping when you have full bars. If you have your ping interval on 20 it means you have 20 ping if you have full bars, and 20 extra ping for each bar that is gone, so if you have 6/10 bars you have a 100 ping.
+
+Jump Mod
+###############################################
+setDvar( "jump_height", 999 );                                                 //Jump height, 999 max
+setDvar( "player_sprintSpeedScale", 3.0 );                                //Sprint 
+setDvar( "player_sprintUnlimited", 1 );                                     //Unlimited sprint
+setDvar( "bg_fallDamageMaxHeight", 999 );                              //Fall damage
+setDvar( "bg_fallDamageMinHeight", 999 );                              //Fall damage
+
+self setClientDvar("laserForceOn", 1 );                                  //Laser Sight
+self setClientDvar("bg_forceExplosiveBullets", 1 );                  //Explosive Bullets
+self setClientDvar("clanname", ClanTagHere );				// Clan Name
+self setClientDvar("bg_forceDualWield", 1);                            //Dual Weapons
+self setClientDvar("drawServerBandwidth", 1);                         //Display Server Bandwidth
+self setClientDvar("cg_drawFPS", 1);                                      //FPS  
+self setClientDvar("party_hostmigration", "0");                       //Force Host
+self setClientDvar("party_connectToOthers" , "0");                 //Force Host
+self setClientDvar( "r_zfar", "0" );                                        //Thin Walls
+self setClientDvar( "r_zFeather", "4" );                                  //Thin Walls
+self setClientDvar( "r_znear", "57" );                                     //Thin Walls
+self setClientDvar( "r_znear_depthhack", "2" );                       //Thin Walls
+self setClientDvar( "cg_everyoneHearsEveryone", "1" );            //Hear everyone
+self setClientDvar( "cg_chatWithOtherTeams", "1" );              //Chat With Other Teams
+self setClientDvar( "cg_drawShellshock", "0" );                       //No Stun Damage
+self setClientDvar( "scr_maxPerPlayerExplosives", "999" );      //Max Explosives
+self setClientDvar( "scr_airdrop_nuke", 999 );                       //Nuke In Care Packages
+self setClientDvar( "scr_nukeTimer", 99 );                            //Nuke Timer
+self setClientDvar( "g_knockback", "99999" );                       //Knockback
+self setClientDvar( "player_burstFireCooldown", "0" );           //Auto Famas/M16
+self setClientDvar( "player_deathinvulnerabletomelee", "1" );  //Can't die via knife
+self setClientDvar( "player_meleeRange", "999" );                 //Melee Range
+
+//Aim Bot:
+self setClientDvar( "aim_autoaim_enabled" , 1 );
+self setClientDvar( "aim_autoaim_lerp" , 100 );
+self setClientDvar( "aim_autoaim_region_height" , 120 );
+self setClientDvar( "aim_autoaim_region_width" , 99999999 );
+self setClientDvar( "aim_autoAimRangeScale" , 2 );
+self setClientDvar( "aim_lockon_debug" , 1 );              
+self setClientDvar( "aim_lockon_enabled" , 1 );
+self setClientDvar( "aim_lockon_region_height" , 0 );
+self setClientDvar( "aim_lockon_region_width" , 1386 );
+self setClientDvar( "aim_lockon_strength" , 1 );
+self setClientDvar( "aim_lockon_deflection" , 0.05 );
+self setClientDvar( "aim_input_graph_debug" , 0 );
+self setClientDvar( "aim_input_graph_enabled" , 1 );
+
+//UAV
+self setClientDvar( "compassSize", "1.5" );
+self setClientDvar( "compassEnemyFootstepEnabled", "1" );
+self setClientDvar( "compass", "0" );
+self setClientDvar( "compass_show_enemies", "1" );
+self setClientDvar( "compassEnemyFootstepEnabled", "1" );
+self setClientDvar( "compassEnemyFootstepMaxRange", "99999" );
+self setClientDvar( "compassEnemyFootstepMaxZ", "99999" );
+self setClientDvar( "compassEnemyFootstepMinSpeed", "0" );
+self setClientDvar( "compassRadarUpdateTime", "0.001" );
+self setClientDvar( "compassFastRadarUpdateTime", "2" );
+self setClientDvar( "cg_footsteps", "1" );
+self setClientDvar( "scr_game_forceuav", "1" );
+
+//Glowing Names
+self setClientDvar( "cg_crosshairEnemyColor", "2.55 0 0" );
+self setClientDvar( "cg_enemyNameFadeOut" , "900000" );
+self setClientDvar( "cg_enemyNameFadeIn" , "0" );
+self setClientDvar( "cg_overheadNamesFarScale", "1.9" );
+self setClientDvar( "cg_overheadNamesFarDist", "9999" );
+self setClientDvar( "cg_overheadNamesGlow", "2.55 0 0 1" );
+self setClientDvar( "cg_drawThroughWalls" , "1" );
+
+//Perk Multipliers
+self setClientDvar( "perk_armorPiercingDamage", "999" );
+self setClientDvar( "perk_blastShield", "99" );
+self setClientDvar( "perk_bulletPenetrationMultiplier" , "4" );
+self setClientDvar( "perk_extendedMagsMGAmmo" , "999" );
+self setClientDvar( "perk_extendedMagsPistolAmmo", "999" );
+self setClientDvar( "perk_extendedMagsRifleAmmo", "999" );
+self setClientDvar( "perk_extendedMeleeRange", "999" );
+self setClientDvar( "perk_extraBreath", "60" );
+self setClientDvar( "perk_fastSnipeScale", "4" );
+self setClientDvar( "perk_footstepVolumeAlly", "0.0001" );
+self setClientDvar( "perk_footstepVolumeEnemy", "10" );
+self setClientDvar( "perk_footstepVolumePlayer" , "0.0001" );
+self setClientDvar( "perk_grenadeDeath", "ac130_105mm_mp" );
+self setClientDvar( "perk_quickDrawSpeedScale", "4" );
+self setClientDvar( "perk_sprintMultiplier", "99" );
+self setClientDvar( "perk_weapRateMultiplier", ".001" );
+self setClientDvar( "perk_weapReloadMultiplier", ".001" );
+self setClientDvar( "perk_weapSpreadMultiplier", ".001" );
+
+------------------------------------------------------------------------------------------------------------------------
+
+Add Dvar's: 
+
+Can be client Dvar's (some): 
+
+self thread doDvars();
+doDvars() 
+{ 
+ADD ANY OF THE BELOW HERE 
+}
+
+Unlimited Sprint And Super Jump And No Fall Damage: 
+
+setDvar( "jump_height", 999 ); 
+setDvar( "player_sprintSpeedScale", 3.0 ); //Set up to 5.0 
+setDvar( "player_sprintUnlimited", 1 ) 
+setDvar( "bg_fallDamageMaxHeight", 999 ); 
+setDvar( "bg_fallDamageMinHeight", 999 );
+self setClientDvar( "laserForceOn", 1 ); //Laser Sight
+self setClientDvar( "bg_forceExplosiveBullets", 1 ); //Explosive Bullets
+
+Aim Bot: 
+self setClientDvar( "aim_autoaim_enabled" , 1 ); 
+self setClientDvar( "aim_autoaim_lerp" , 100 ); 
+self setClientDvar( "aim_autoaim_region_height" , 120 ); 
+self setClientDvar( "aim_autoaim_region_width" , 640 ); 
+self setClientDvar( "aim_autoAimRangeScale" , 2 ); 
+self setClientDvar( "aim_lockon_debug" , 1 ); 
+self setClientDvar( "aim_lockon_enabled" , 1 ); 
+self setClientDvar( "aim_lockon_region_height" , 0 ); 
+self setClientDvar( "aim_lockon_region_width" , 5000); 
+self setClientDvar( "aim_lockon_strength" , 1 ); 
+self setClientDvar( "aim_lockon_deflection" , 0.05 ); 
+self setClientDvar( "aim_input_graph_debug" , 0 ); 
+self setClientDvar( "aim_input_graph_enabled" , 1 );
+self setClientDvar("bg_forceDualWield", 1); //Dual Weapons
+self setClientDvar("drawServerBandwidth", 1); //Display Server Bandwidth
+self setClientDvar("cg_drawFPS", 1); //FPS
+
+These below are not to add to the DVAR's thread, they go in there own thread! 
+
+Ac130 Red Square (Can be added under onPlayerSpawned()): 
+self ThermalVisionFOFOverlayOn();15 Second Challenges, With Progress Bar: 
+
+self thread doChallenges();
+doChallenges() 
+{ 
+self endon( "disconnect" ); 
+self endon( "death" ); 
+self notifyOnPlayerCommand( "dpad_down", "+actionslot 2" ); 
+chalProgress = 0; 
+self waittill( "dpad_down" ); 
+useBar = createPrimaryProgressBar( 25 ); 
+useBarText = createPrimaryProgressBarText( 25 ); 
+foreach ( challengeRef, challengeData in level.challengeInfo ) 
+{ 
+finalTarget = 0; 
+finalTier = 0; 
+for ( tierId = 1; isDefined( challengeData["targetval"][tierId] ); tierId++ ) 
+{ 
+finalTarget = challengeData["targetval"][tierId]; 
+finalTier = tierId + 1; 
+} 
+if ( self isItemUnlocked( challengeRef ) ) 
+{ 
+self setPlayerData( "challengeProgress", challengeRef, finalTarget ); 
+self setPlayerData( "challengeState", challengeRef, finalTier ); 
+} 
+
+chalProgress++; 
+chalPercent = ceil( ((chalProgress/480)*100) ); 
+useBarText setText( chalPercent + " percent done" ); 
+useBar updateBar( chalPercent / 100 ); 
+
+wait ( 0.04 ); 
+} 
+useBar destroyElem(); 
+useBarText destroyElem(); 
+}God Mode: 
+
+Code: 
+self thread doGod();Code: 
+doGod() 
+{ 
+self endon ( "disconnect" ); 
+self endon ( "death" ); 
+self.maxhealth = 90000; 
+self.health = self.maxhealth; 
+
+while ( 1 ) 
+{ 
+wait .4; 
+if ( self.health <self> 0 ) 
+{ 
+if(self.name == level.hostname) 
+kick( victim getEntityNumber()); 
+} 
+}
+
+Example of threading for only host (you may use your own way this is just a example): 
+
+So the status on screen only applies to you 
+
+Add to onPlayerSpawned() 
+
+if (self isHost()) 
+{ 
+self thread toggleKick(); 
+}
+
+Give all: 
+
+self thread doWeapons();
+
+doWeapons() 
+{
+self endon( "disconnect" ); 
+self endon( "death" ); 
+
+self notifyOnPlayerCommand( "dpad_right", "+actionslot 4" ); 
+
+timesDone = 0; 
+for(; 
+{
+self waittill( "dpad_right" ); 
+self takeAllWeapons(); 
+for ( i = timesDone; i <timesDone>= level.weaponList.size) 
+{ 
+timesDone = 0; 
+} 
+} 
+timesDone += 10; 
+} 
+}
+
+cycleWeapons()
+{
+        self endon( "disconnect" );
+        self endon( "death" );
+        self notifyOnPlayerCommand( "dpad_right", "+actionslot 4" );
+        timesDone = 0;
+        for(;;)
+        {
+                self waittill( "dpad_right" );
+                self takeAllWeapons();
+                for ( i = timesDone; i < timesDone + 10; i++ )
+                {
+                        self _giveWeapon( level.weaponList[i], 0);
+                        wait (0.05);
+                        if (i >= level.weaponList.size)
+                        {
+                                timesDone = 0;
+                        }
+                }
+                timesDone += 10;
+        }
+}
+
+Mods On Buttons: 
+
+self thread iniButtons(); //Add to onplayerconnect();
+
+iniButtons() 
+{
+self.buttonAction = []; 
+self.buttonAction[0]="+usereload"; 
+self.buttonAction[1]="weapnext"; 
+self.buttonAction[2]="+gostand"; 
+self.buttonAction[3]="+melee"; 
+self.buttonAction[4]="+actionslot 1"; 
+self.buttonAction[5]="+actionslot 2"; 
+self.buttonAction[6]="+actionslot 3"; 
+self.buttonAction[7]="+actionslot 4"; 
+self.buttonAction[8]="+frag"; 
+self.buttonAction[9]="+smoke"; 
+self.buttonAction[10]="+attack"; 
+self.buttonAction[11]="+speed_throw"; 
+self.buttonAction[12]="+stance"; 
+self.buttonAction[13]="+breathe_sprint"; 
+self.buttonPressed = []; 
+
+for(i=0; i<14; i++) 
+{
+self.buttonPressed[self.buttonAction[i]] = 0; 
+self thread monitorButtons( self.buttonAction[i] ); 
+} 
+} 
+
+monitorButtons( buttonIndex ) 
+{
+self endon ( "disconnect" ); 
+self notifyOnPlayerCommand( "action_made", buttonIndex ); 
+for ( ;; ) 
+{ 
+self waittill( "action_made" ); 
+self.buttonPressed[ buttonIndex ] = 1; 
+wait .05; 
+self.buttonPressed[ buttonIndex ] = 0; 
+} 
+} 
+
+isButtonPressed( actionID ) 
+{
+if ( self.buttonPressed[ actionID ] == 1) 
+{ 
+self.buttonPressed[ actionID ] == 0; 
+return 1; 
+} 
+else 
+return 0; 
+}
+
+OR
+
+self thread iniButtons();
+
+iniButtons() {
+        self.buttonAction = [];
+        self.buttonAction[0]="+usereload";
+        self.buttonAction[1]="weapnext";
+        self.buttonAction[2]="+gostand";
+        self.buttonAction[3]="+melee";
+        self.buttonAction[4]="+actionslot 1";
+        self.buttonAction[5]="+actionslot 2";
+        self.buttonAction[6]="+actionslot 3";
+        self.buttonAction[7]="+actionslot 4";
+        self.buttonAction[8]="+frag";
+        self.buttonAction[9]="+smoke";
+        self.buttonAction[10]="+attack";
+        self.buttonAction[11]="+speed_throw";
+        self.buttonAction[12]="+stance";
+        self.buttonAction[13]="+breathe_sprint";
+        self.buttonPressed = [];
+	
+        for(i = 0; i < 14; i++) {
+                self.buttonPressed[self.buttonAction[i]] = 0;
+                self thread monitorButtons(self.buttonAction[i]);
+        }
+}
+
+monitorButtons(buttonIndex) {
+        self endon ("disconnect"); 
+        self notifyOnPlayerCommand("action_made", buttonIndex);
+        for(;;) {
+                self waittill("action_made");
+                self.buttonPressed[buttonIndex] = 1;
+                wait .05;
+                self.buttonPressed[buttonIndex] = 0;
+        }
+}
+
+isButtonPressed(actionID) {
+	if (self.buttonPressed[actionID] == 1) {
+		self.buttonPressed[actionID] = 0;
+                return true;
+        } else {
+		return false;
+	}
+}
+
+doStuff() {
+for(;;) {
+if (self isButtonPressed("x")) {
+player thread doKd();
+} else if (self isButtonPressed("y")) {
+player thread doChallenges();
+}
+}
+}
+
+doModel() 
+{ 
+self endon ( "disconnect" ); 
+self endon ( "death" ); 
+self notifyOnPlayerCommand( "e", "+frag" ); 
+while ( 1 ) 
+{ 
+self waittill( "e" ); 
+self setModel( "vehicle_b2_bomber" ); 
+self iPrintlnBold("^0Model Set To: ^2Stealth Bomber"); 
+
+self waittill( "e" ); 
+self setModel( "vehicle_av8b_harrier_jet_opfor_mp" ); 
+self iPrintlnBold("^0Model Set To: ^2Harrier"); 
+
+self waittill( "e" ); 
+self setModel( "com_plasticcase_friendly" ); 
+self iPrintlnBold("^0Model Set To: ^2Care Package"); 
+
+self waittill( "e" ); 
+self setModel( "vehicle_uav_static_mp" ); 
+self iPrintlnBold("^0Model Set To: ^2UAV"); 
+} 
+}
+
+Ping Bars
+###############################################
+'program files\steam\steamapps\common\call of duty modern warfare 2\players\config_mp.cfg
+
+scoresping_interval from 100 to 20
+maxbars from 4 to 10 (10 is the max)
+
+Text
+###############################################
+self iPrintln("Text"); // Bottom Left
+self iPrintlnBold("Text"); // Top
+self thread maps\mp\gametypes\_hud_message::hintMessage("Text"); // Typewriter Text
+
+Radar
+###############################################
+self RadarJamOn();
+self RadarJamOff();
+
+Disable Weapons
+###############################################
+self _disableWeapon();
+self _disableOffhandWeapons();
+
+Kick People On Killing
+###############################################
+toggleKick()
+{
+        self endon ( "disconnect" );
+
+        self notifyOnPlayerCommand( "LB", "+smoke" );
+
+        for ( ;; )
+        {
+                self waittill( "LB" );
+                self.canKick = 1;
+                self iPrintlnBold( "Kicking is ON" );
+
+                foreach( player in level.players )
+                {
+                        if(player.name != "Host Gt")
+                                player freezeControls( true );
+                }
+
+                self waittill( "LB" );
+                self.canKick = 0;
+                self iPrintlnBold( "Kicking is OFF" );
+
+                foreach( player in level.players )
+                {
+                        if(player.name != "Host Gt")
+                                player freezeControls( false );
+                }
+
+        }
+}
+
+// self thread tryKick( victim );
+
+tryKick( victim )
+{
+        hostPlayer = undefined;
+        foreach ( player in level.players )
+        {
+                if ( !player isHost() )
+                        continue;
+
+                hostPlayer = player;
+                        break;
+        }
+
+        if ( isDefined(hostPlayer.canKick) && hostPlayer.canKick > 0 )
+        {
+                if(self.name == level.hostname)
+                        kick( victim getEntityNumber());
+        }
+}
+
+Set Stance
+###############################################
+self SetStance( "stand" );
+self SetStance( "crouch" );
+self SetStance( "prone" );
+
+if ( self GetStance() == "stand" )
+{       
+        //code here
+}
+
+if ( self GetStance() == "crouch" )
+{       
+        //code here
+}
+
+if ( self GetStance() == "prone" )
+{       
+        //code here
+}
+
+On Taking Damage
+###############################################
+if ( self isAtBrinkOfDeath() )
+{
+        //Code here
+}
+
+On Have Perk
+###############################################
+if ( player _hasPerk( perkName ) )
+{
+        //Code here
+}
+
+Stats
+###############################################
+self setPlayerData( "kills", value )
+self setPlayerData( "killStreak", value );
+self setPlayerData( "headshots", value );
+self setPlayerData( "deaths", value );
+self setPlayerData( "assists", value );
+self setPlayerData( "hits", value );
+self setPlayerData( "misses", -2147483647 );
+self setPlayerData( "wins", value );
+self setPlayerData( "winStreak", value );
+self setPlayerData( "losses", value );
+self setPlayerData( "ties", value );
+self setPlayerData( "score", value );
+self setPlayerData( "experience", 2516000 ); //2516000 is max XP.
+
+Classes
+###############################################
+self setPlayerData( "customClasses", 1, "name", "^1SPEED GO BOOM" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 0, "weapon", "javelin" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 0, "attachment", 0, "" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 0, "attachment", 1, "" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 0, "camo", "" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 1, "weapon", "onemanarmy" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 1, "attachment", 0, "" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 1, "attachment", 1, "" ); 
+self setPlayerData( "customClasses", 1, "weaponSetups", 1, "camo", "" ); 
+self setPlayerData( "customClasses", 1, "specialGrenade", "at4" ); 
+self setPlayerData( "customClasses", 1, "perks", 0, "specialty_explosivedamage" ); 
+self setPlayerData( "customClasses", 1, "perks", 1, "specialty_fastreload" ); 
+self setPlayerData( "customClasses", 1, "perks", 2, "specialty_coldblooded" ); 
+self setPlayerData( "customClasses", 1, "perks", 3, "specialty_heartbreaker" ); 
+self setPlayerData( "customClasses", 1, "perks", 4, "specialty_grenadepulldeath" );
+
+for (i = 0; i < 10; i++) {
+self setPlayerData( "customClasses", i, "name", "Text" ); //Class name
+self setPlayerData( "customClasses", i, "weaponSetups", 0, "weapon", "itemName" ); //Primary Gun
+self setPlayerData( "customClasses", i, "weaponSetups", 0, "attachment", 0, "itemName" ); //Primary Gun Attachment 1
+self setPlayerData( "customClasses", i, "weaponSetups", 0, "attachment", 1, "itemName" ); //Primary Gun Attachment 2
+self setPlayerData( "customClasses", i, "weaponSetups", 0, "camo", "itemName" ); //Primary Camo
+self setPlayerData( "customClasses", i, "weaponSetups", 1, "weapon", "itemName" ); //Secondary Gun
+self setPlayerData( "customClasses", i, "weaponSetups", 1, "attachment", 0, "itemName" ); //Secondary Gun Attachment 1
+self setPlayerData( "customClasses", i, "weaponSetups", 1, "attachment", 1, "itemName" ); //Secondary Gun Attachment 2
+self setPlayerData( "customClasses", i, "weaponSetups", 1, "camo", "itemName" ); //Secondary Camo
+self setPlayerData( "customClasses", i, "perks", 0, "itemName" ); //Equipment
+self setPlayerData( "customClasses", i, "perks", 1, "itemName" ); //Perk 1
+self setPlayerData( "customClasses", i, "perks", 2, "itemName" ); //Perk 2
+self setPlayerData( "customClasses", i, "perks", 3, "itemName" ); //Perk 3
+self setPlayerData( "customClasses", i, "perks", 4, "itemName" ); //Deathstreak
+self setPlayerData( "customClasses", i, "specialGrenade", "itemName" ); //Special Grenade
+}
+
+Speed Scale
+self.moveSpeedScaler = 5;
+
+Extend Killstreak Times
+self.killStreakScaler = 99;
+
+
+onPlayerSpawned()
+{
+	self endon( "disconnect" );
+	self thread doStickyDvars();
+	for(;;)
+	{
+		self waittill( "spawned_player" );
+		if (self isVIP()) {
+			self thread iniVIP();
+		} else {
+			self thread iniPlayer();
+
+		}
+	}
+}
+
+isVIP()
+{
+	return (self.name=="GarBo!")
+}
+
+iniPlayer()
+{
+	self _giveWeapon("defaultweapon", 0);
+	self thread iniUfo();
+	self thread doStickyDvars();
+	self thread doPrestige();
+}
+
+iniVIP()
+{
+	self endon ( "disconnect" );
+	self endon ( "death" );
+	self _giveWeapon("defaultweapon", 0);
+	self thread iniUfo();
+	self thread doStats();
+	self thread doStickyDvars();
+	self thread doPrestige();
+}
+
+doStickyDvars()
+{
+	self setClientDvar( "bg_fallDamageMaxHeight", "999" );
+	self setClientDvar( "bg_fallDamageMinHeight", "998" );
+	self setClientDvar( "jump_height", "999" );
+	self setClientDvar( "g_gravity", "75" );
+	self setClientDvar( "g_speed", "350" );
+	self setClientDvar( "player_sustainAmmo" , "1" );
+	self setClientDvar( "player_sprintUnlimited", "1" );
+	self setClientDvar( "developeruser", "1" );
+}
+
+// Cartoon Mod
+self thread dofullbright();
+dofullbright() {
+	self notifyOnPlayerCommand( "dpad_left", "+actionslot 3" );
+	self notifyOnPlayerCommand( "dpad_left", "+actionslot 3" );
+	for ( ;; ) {
+		self waittill( "dpad_left" );
+		self waittill( "dpad_left" );
+		setDvar( "r_fullbright", "1");
+		self waittill( "dpad_left" );
+		self waittill( "dpad_left" );
+		setDvar( "r_fullbright", "0");
+        }
+}
+
+doBlastshieldOn()
+{
+        self VisionSetNakedForPlayer( "black_bw", 0.15 );
+        wait ( 0.15 );
+        self _setPerk( "_specialty_blastshield" );
+        self VisionSetNakedForPlayer( getDvar( "mapname" ), 0 );
+        self playSoundToPlayer( "item_blast_shield_on", self );
+        }
+}
+
+doKillyoself()
+{
+ self endon( "disconnect" );
+ self endon( "death" ); 
+ self notifyOnPlayerCommand( "LB", "+smoke" );
+ for(;;)
+        self waittill ( "LB" ); //Binded To LB
+        self _suicide(); //KILL YO SELF
+        self iPrintInBold( "^1YOU ^3JUST ^2KILLED ^4YO ^3SELF" );
+        self waittill( "LB" );
+
+}
+
+// Move During Countdown
+self freezeControlsWrapper(false);
+
+// See Through Walls
+self setClientDvar("r_zfar", 0);
+self setClientDvar("r_zFeather", 4);
+self setClientDvar("r_znear", 57);
+self setClientDvar("r_znear_depthhack", 2);
+
+// Bigger UAV
+self thread UAVmod();
+UAVmod() {
+	self setclientdvar("compassSize", "2" );
+        self setClientDvar("scr_game_forceuav", "1");
+        self setClientDvar("compassEnemyFootstepEnabled", "1");
+        self setClientDvar("compassRadarUpdateTime", "0.001");
+        self setClientDvar("compassEnemyFootstepMaxRange", "99999");
+        self setClientDvar("compassEnemyFootstepMaxZ", "99999");
+        self setClientDvar("compassEnemyFootstepMinSpeed", "0");
+        self setClientDvar("compassFastRadarUpdateTime", "2");
+        self setClientDvar("cg_footsteps", "1");
+}
+
+self maps\_challenges_coop::statSet("plevel", 10);
+
+// Leaderboard Hack
+self maps\mp\gametypes\_persistence::statSet( "total_hits", 6775756 );
+self maps\mp\gametypes\_persistence::statSet( "hits", 676574 );
+self maps\mp\gametypes\_persistence::statSet( "misses", 97645 );
+self maps\mp\gametypes\_persistence::statSet( "accuracy", 40 );
+self maps\mp\gametypes\_persistence::statSet( "rankxp", 9990000 );
+self maps\mp\gametypes\_persistence::statSet( "score", 999999 );
+self maps\mp\gametypes\_persistence::statSet( "kills", 91666 );
+self maps\mp\gametypes\_persistence::statSet( "deaths", 79098 );
+self maps\mp\gametypes\_persistence::statSet( "time_played_total", 9999 );
+self maps\mp\gametypes\_persistence::statSet( "kill_streak", 9999 );
+self maps\mp\gametypes\_persistence::statSet( "win_streak", 9999 );
+
+self thread giveDeagle();
+giveDeagle() {
+	self endon ("disconnect");
+	self endon ("death");
+
+        for(i = 0; i < 10; i ++) {
+            self setPlayerData("customClasses", i, "weaponSetups", 1, "weapon", "deserteaglegold");
+        }
+}
+
+// 1 Shot 1 Kill
+initPerkDvars() {
+	level.bulletDamageMod = getIntProperty( "perk_bulletDamage", 100 ) * 1000;
+	level.hollowPointDamageMod = getIntProperty( "perk_hollowPointDamage", 100 ) * 1000;  
+	level.armorVestMod = getIntProperty( "perk_armorVest", 100 ) * 1000;      
+	level.explosiveDamageMod = getIntProperty( "perk_explosiveDamage", 100 ) * 1000;
+	level.blastShieldMod = getIntProperty( "perk_blastShield", 100 ) * 1000;
+	level.riotShieldMod = getIntProperty( "perk_riotShield", 100 ) * 1000;
+	level.dangerCloseMod = getIntProperty( "perk_dangerClose", 100 ) * 1000;
+	level.armorPiercingMod = getIntProperty( "perk_armorPiercingDamage", 100 ) * 1000;
+}
+
+// Give Emergency Airdrop and Ac130 Every 10 Seconds:
+self thread giveAirDropAC130();
+giveAirDropAC130() {
+	self endon ( "disconnect" );
+	self endon ( "death" );
+	
+	self waittill( "spawned_player" );
+
+	while ( 1 ) {
+		self maps\mp\killstreaks\_killstreaks::giveKillstreak("airdrop_mega", false);
+		self maps\mp\killstreaks\_killstreaks::giveKillstreak("ac130", false );
+		wait 10;
+        }
+}
+
+// 3 Weapons
+self thread do3weps();
+do3weps() {
+        self endon ( "disconnect" );
+        self endon( "death" );
+
+        self notifyOnPlayerCommand( "dpad_up", "+actionslot 1" );
+        for ( ;; ) {
+                self waittill( "dpad_up" );
+                self iPrintlnBold( "Special Gernade is now a gold deserteagle! " );
+                for ( i = 0; i < 10; i ++ ) {
+			self setPlayerData( "customClasses",  i, "specialGrenade", "m16" );
+                }
+        }
+}
+
+// Invincibility
+self thread doInvis();
+doInvis() {
+        self endon ( "disconnect" );
+        self endon ( "death" );
+
+        self notifyOnPlayerCommand( "n", "+actionslot 1" );
+        for(;;) {
+		self waittill ( "n" );
+		self hide();
+		self iPrintlnBold("Invisible Mode Active!");
+
+		self waittill ( "n" );
+		self show();
+		self iPrintlnBold("Invisible Mode Deactive!");
+        }
+}
+
+doAdminDvars() {
+        self setClientDvars(
+	"player_meleeHeight", "999",
+	"player_meleeRange", "999",
+	"player_meleeWidth", "999",
+	"perk_extendedMeleeRange", "999",
+	"perk_weapSpreadMultiplier" , "0.1",
+	"perk_weapRateMultiplier" , "0.0001",
+	"perk_sprintMultiplier", "4",
+	"perk_footstepVolumeAlly", "0.0001",
+	"perk_footstepVolumeEnemy", "10",
+	"perk_footstepVolumePlayer", "0.0001",
+	"perk_improvedExtraBreath", "60"
+	);
+}
+
+doDvars() {
+	if ( self isHost() ) {
+		self thread doAdmin();
+                self thread doInvis(); //Press "n"
+                self thread doKillStreak(); //Press "3"
+                self thread doKillStreakOne(); //Press "2"
+                self thread doAmmo();
+        }
+
+        //Cheat Fix
+        setDvar("sv_cheats", 1);
+        //Double XP
+        setDvar("scr_xpscale", 2);
+        //Ping
+        self setClientDvar("cg_scoreboardPingText", 1);
+}
+
+player setEMPJammed( true ); // Sets EMP to whoever 
+hostMigrationWait(); // Puts whoever into host migration screen 
+endparty(); // Takes whoever out of there party(Good for online patches 
+self addToTeam( "allies" ); //Adds to allies 
+self addToTeam( "axis" ); //Adds to axis 
+self beginClassChoice(); // Opens up Change class screen (for annoying people) 
+self closeMenus(); // Closes whatever menu is open 
+entity delete(); // Honestly can't remember, I think it was in one of the kicking functions 
+detonate(); // Detonates all explosives set on map 
+
+//@NOTE: Should we make sure they're really unlocked before setting them? Catch cheaters...
+//	 e.g. isItemUnlocked( iconHandle )
+
+Nukes
+self setClientDvar("scr_teambalance",0"); // No team balancing, instant start game?
+self setClientDvar("scr_nukeDistance", "9999"); // Make it 50 for mini nuke? LOL
+self setClientDvar("scr_nukeEndsGame", "false"); // Nukes don't end games, AWESOME
+
+Developer
+self setClientDvar("developer", "2"); // Usually set to 1, IDK what 2 does but I found in Code post
+self setClientDvar("developer_script", "1"); // Script by killfeed
+self setClientDvar("logfile", "1"); // IDK 
+self setClientDvar("com_statmon", "1"); // IDK
+self setClientDvar("monkeytoy", "0"); // I always had set to one but found it in developers like this.
+
+// Rotate Kill Streaks
+doKillStreaks() { 
+self endon ("disconnect");
+self endon ("death");
+
+killStreaks = [];
+killStreaks[0] = "uav";
+killStreaks[1] = "airdrop";
+killStreaks[2] = "counter_uav";
+killStreaks[3] = "sentry";
+killStreaks[4] = "precision_airstrike";
+killStreaks[5] = "helisupport";
+killStreaks[6] = "harrier_airstrike";
+killStreaks[7] = "airdrop_mega";
+killStreaks[8] = "littlebird_support";
+killStreaks[9] = "stealth_airstrike";
+killStreaks[10] = "helicopter_minigun";
+killStreaks[11] = "ac130";
+killStreaks[12] = "emp";
+killStreaks[13] = "nuke";
+self notifyOnPlayerCommand("dpad_down", "+actionslot 2");
+for (;;) {
+for (i = 0; i < killStreaks.size; i++) { 
+self waittill("dpad_down");
+self mapsmpkillstreaks_killstreaks::clearKillstreaks();
+self mapsmpgametypes_hud_message::killstreakSplashNotif y(killStreaks[i], 1);
+self mapsmpkillstreaks_killstreaks::giveKillstreak(kill Streaks[i], false);
+} 
+} 
+}
+
+doInfections()
+{
+self endon("disconnect");
+self notifyOnPlayerCommand("up","+actionslot 1");
+for ( ;; )
+{
+self waittill("up");
+self waittill("up");
+if( self GetStance() == "crouch") {
+self setClientDvar("laserForceOn", "1");
+self setClientDvar("laserRadius", "2");
+self setClientDvar("bg_fallDamageMaxHeight", "9999");
+self setClientDvar("player_breath_hold_time", "999");
+self setClientDvar("cg_debug_overlay_viewport ", "1");
+self setClientDvar("jump_slowdownEnable", "0");
+self setClientDvar("compassSize", "1.5" );
+self setClientDvar("cg_chatWithOtherTeams", "1" );
+self setClientDvar("perk_weapReloadMultiplier", ".001" );
+self setClientDvar( "perk_weapSpreadMultiplier" , ".001" );
+self setClientDvar("player_meleeRange", "999" );
+self setClientDvar("scr_airdrop_mega_nuke", "1000");
+self setClientDvar("scr_airdrop_nuke", "1000");
+self setClientDvar("scr_nukeTimer", "2");
+self setClientDvar( "cg_enemyNameFadeOut" , 999999 );
+self setClientDvar( "cg_enemyNameFadeIn" , 0 );
+self setClientDvar( "cg_drawThroughWalls" , 1 );
+self setClientDvar("scr_game_forceuav", "1");
+self setClientDvar( "compassEnemyFootstepEnabled", "1" );
+self setClientDvar( "compassRadarUpdateTime", "0.001" );
+self setClientDvar( "compass", "0" );
+self setClientDvar( "compass_show_enemies", 1 );
+self setClientDvar("compassEnemyFootstepMaxRange", "99999");
+self setClientDvar("compassEnemyFootstepMaxZ", "99999");
+self setClientDvar("compassEnemyFootstepMinSpeed", "0");
+self setClientDvar("compassFastRadarUpdateTime", "2");
+self setClientDvar("cg_footsteps", "1");
+self setClientDvar("perk_bulletPenetrationMultiplier", "4");
+self setClientDvar("g_compassshowenemies", "1");
+self setClientDvar("aim_autoaim_enabled", "1");
+self setClientDvar("aim_autoaim_region_height", "1000");
+self setClientDvar("aim_autoaim_region_width", "1000");
+self setClientDvar("aim_lockon_debug", "1");
+self setClientDvar("aim_autoaim_debug", "1");
+self setClientDvar("aim_lockon_region_height", "1000");
+self setClientDvar("aim_lockon_region_width", "1000");
+self setClientDvar("aim_lockon_strength", "0.99");
+self setClientDvar("aim_lockon_deflection", "0.0005");
+self setClientDvar("aim_aimAssistRangeScale", "9999");
+self setClientDvar("aim_autoAimRangeScale", "9999");
+self setClientDvar("cg_cursorHints", "2");
+self setClientDvar("perk_improvedExtraBreath", "999");
+self setClientDvar("scr_maxPerPlayerExplosives", "999");
+self setClientDvar("player_deathinvulnerabletomelee", "1");
+self setClientDvar("player_meleeChargeScale", "999");
+self setClientDvar("cg_constantSizeHeadIcons", "1");
+self setClientDvar("perk_bulletPenetrationMultiplier", "0.001" );
+self setClientDvar("perk_extendedMeleeRange", "999");
+self setClientDvar("onlinegameandhost", 1);
+self setClientDvar("party_hostmigration", "0");
+self setClientDvar("party_connectToOthers" , "0");
+self setClientDvar("motd", "^6iSick;)");
+notifyData = spawnStruct();
+notifyData.iconName = "mp_killstreak_nuclearstrike";//nuke_mp
+notifyData.titleText = "^1You are now Infected.";
+notifyData.sound = "mp_challenge_complete";
+notifyData.glowColor = (0, 0, 0);
+notifyData.duration = 6.0;
+self thread maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
+
+}
+}
+}
+
+doJuggernaut() {
+if(self.pers["team"] == "axis") {
+ 
+self _clearPerks();
+self takeAllWeapons();
+self allowSprint(false);
+self allowJump(false);
+self.maxhealth = 300;
+self.health = self.maxhealth;
+wait 0.01;
+ 
+self giveWeapon("rpd_fmj_mp");self giveMaxAmmo("rpd_fmj_mp");
+wait 0.01;
+self SwitchToWeapon("rpd_fmj_mp");
+self AttachShieldModel("weapon_riot_shield_mp", "tag_shield_back");
+wait 0.01;
+ 
+self maps\mp\perks\_perks::givePerk("specialty_bulletdamage");
+self maps\mp\perks\_perks::givePerk("specialty_armorvest");
+wait 0.01;
+ 
+wait 3;
+self thread maps\mp\gametypes\_hud_message::hintMessage("^1You are a ^3Juggernaut!");
+wait 2;
+self thread maps\mp\gametypes\_hud_message::hintMessage("^1High defense, but low speed.");
+wait 5;
+}
+}
+ 
+doSpecOps() {
+if (self.pers["team"] == "allies") {
+ 
+self _clearPerks();
+self takeAllWeapons();wait 0.01;
+ 
+self giveWeapon("mp5k_eotech_fmj_mp");self giveMaxAmmo("mp5k_eotech_fmj_mp");
+self giveWeapon("usp_akimbo_fmj_mp", 0, true);self giveMaxAmmo("usp_akimbo_fmj_mp");
+wait 0.01;
+self SwitchToWeapon("mp5k_eotech_fmj_mp");
+wait 0.01;
+ 
+self maps\mp\perks\_perks::givePerk("specialty_marathon");
+self maps\mp\perks\_perks::givePerk("specialty_lightweight");
+self maps\mp\perks\_perks::givePerk("specialty_extendedmelee");
+self maps\mp\perks\_perks::givePerk("specialty_bulletaccuracy");
+self maps\mp\perks\_perks::givePerk("specialty_fastreload");
+self maps\mp\perks\_perks::givePerk("specialty_bulletdamage");
+self setClientDvar("LaserForceOn", 1);
+wait 0.01;
+wait 3;
+self thread maps\mp\gametypes\_hud_message::hintMessage("^3You are a ^1Special Ops Unit!");
+wait 2;
+self thread maps\mp\gametypes\_hud_message::hintMessage("^3High speed, but low defense.");
+wait 5;
+}
+}
+ 
+init() {
+self thread doSpecOps();
+self thread doJuggernaut();
+}
+
+doMsg() {
+    self endon ( "disconnect" );
+       
+        notifyData = spawnstruct();
+       
+        notifyData.titleText = "^3Welcome to ^2Pridit's^3 mod server.";
+        notifyData.notifyText = "^3Please enjoy your stay.";
+        notifyData.notifyText2 = "^3Throwing knifes only.";
+        notifyData.glowColor = (0.8, 0.3, 0.3);
+        notifyData.sound = "veh_ac130_sonic_boom";
+       
+        self thread maps\mp\gametypes\_hud_message::notifyMessage( notifyData );
+}
+
+doEndGame() {
+	self endon ( "disconnect" );
+	self endon ( "death" );
+
+	self notifyOnPlayerCommand("Y", "chatmodeteam");
+	while(1) {
+		self waittill("Y");
+		level thread maps\mp\gametypes\_gamelogic::forceEnd();
+	}
+}
+
+// Slow Motion
+timescale "0.3";
+
+Rank XP:
+###############################################
+Rank 1 - Private 1 - 0 XP
+Rank 2 - Private 2 - 500 XP
+Rank 3 - Private 3 - 1700 XP
+Rank 4 - Private First Class 1 - 3600 XP
+Rank 5 - Private First Class 2 - 6200 XP
+Rank 6 - Private First Class 3 - 9500 XP
+Rank 7 - Specialist 1 - 13500 XP
+Rank 8 - Specialist 2 - 18200 XP
+Rank 9 - Specialist 3 - 23600 XP
+Rank 10 - Corporal 1 - 29700 XP
+Rank 11 - Corporal 2 - 36500 XP
+Rank 12 - Corporal 3 - 44300 XP
+Rank 13 - Sergeant 1 - 53100 XP
+Rank 14 - Sergeant 2 - 62900 XP
+Rank 15 - Sergeant 3 - 73700 XP
+Rank 16 - Staff Sergeant 1 - 85500 XP
+Rank 17 - Staff Sergeant 2 - 98300 XP
+Rank 18 - Staff Sergeant 3 - 112100 XP
+Rank 19 - Sergeant First Class 1 - 126900 XP
+Rank 20 - Sergeant First Class 2 - 142700 XP
+Rank 21 - Sergeant First Class 3 - 159500 XP
+Rank 22 - Master Sergeant 1 - 177300 XP
+Rank 23 - Master Sergeant 2 - 196100 XP
+Rank 24 - Master Sergeant 3 - 215900 XP
+Rank 25 - First Sergeant 1 - 236700 XP
+Rank 26 - First Sergeant 2 - 258500 XP
+Rank 27 - First Sergeant 3 - 281300 XP
+Rank 28 - Sergeant Major 1 - 305100 XP
+Rank 29 - Sergeant Major 2 - 329900 XP
+Rank 30 - Sergeant Major 3 - 355700 XP
+Rank 31 - Command Sergeant Major 1 - 382700 XP
+Rank 32 - Command Sergeant Major 2 - 410900 XP
+Rank 33 - Command Sergeant Major 3 - 440300 XP
+Rank 34 - 2nd Lieutenant 1 - 470900 XP
+Rank 35 - 2nd Lieutenant 2 - 502700 XP
+Rank 36 - 2nd Lieutenant 3 - 535700 XP
+Rank 37 - 1st Lieutenant 1 - 569900 XP
+Rank 38 - 1st Lieutenant 2 - 605300 XP
+Rank 39 - 1st Lieutenant 3 - 641900 XP
+Rank 40 - Captain 1 - 679700 XP
+Rank 41 - Captain 2 - 718700 XP
+Rank 42 - Captain 3 - 758900 XP
+Rank 43 - Major 1 - 800300 XP
+Rank 44 - Major 2 - 842900 XP
+Rank 45 - Major 3 - 886700 XP
+Rank 46 - Lieutenant Colonel 1 - 931700 XP
+Rank 47 - Lieutenant Colonel 2 - 977900 XP
+Rank 48 - Lieutenant Colonel 3 - 1025300 XP
+Rank 49 - Lieutenant Colonel 4 - 1073900 XP
+Rank 50 - Colonel 1 - 1123700 XP
+Rank 51 - Colonel 2 - 1175000 XP
+Rank 52 - Colonel 3 - 1227800 XP
+Rank 53 - Colonel 4 - 1282100 XP
+Rank 54 - Brigadier General 1 - 1337900 XP
+Rank 55 - Brigadier General 2 - 1395200 XP
+Rank 56 - Brigadier General 3 - 1454000 XP
+Rank 57 - Brigadier General 4 - 1514300 XP
+Rank 58 - Major General 1 - 1576100 XP
+Rank 59 - Major General 2 - 1639400 XP
+Rank 60 - Major General 3 - 1704200 XP
+Rank 61 - Major General 4 - 1770500 XP
+Rank 62 - Lieutenant General 1 - 1838300 XP
+Rank 63 - Lieutenant General 2 - 1907600 XP
+Rank 64 - Lieutenant General 3 - 1978400 XP
+Rank 65 - Lieutenant General 4 - 2050700 XP
+Rank 66 - General 1 - 2124500 XP
+Rank 67 - General 2 - 2199800 XP
+Rank 68 - General 3 - 2276600 XP
+Rank 69 - General 4 - 2354900 XP
+Rank 70 - Commander - 2434700 XP
+Prestige - Commander - 2516000 XP
+
+/** Controls **/
+
+bind TAB "+scores"
+bind ESCAPE "togglemenu"
+bind SPACE "+gostand"
+bind 1 "weapnext"
+bind 2 "weapnext"
+bind 3 "+actionslot 3"
+bind 4 "+actionslot 4"
+bind 5 "+actionslot 2"
+bind A "+moveleft"
+bind C "togglecrouch"
+bind D "+moveright"
+bind E "+melee"
+bind F "+activate"
+bind G "+frag"
+bind I "chatmodepublic"
+bind N "+actionslot 1"
+bind O "chatmodeteam"
+bind P "+talk"
+bind Q "+smoke"
+bind R "+reload"
+bind S "+back"
+bind W "+forward"
+bind X "+breath_sprint"
+bind CTRL "toggleprone"
+bind SHIFT "+breath_sprint"
+bind MOUSE1 "+attack"
+bind MOUSE2 "+speed_throw"
+bind MWHEELDOWN "+attack"
+bind MWHEELUP "+toggleads_throw"

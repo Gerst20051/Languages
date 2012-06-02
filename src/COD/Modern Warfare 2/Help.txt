@@ -1,0 +1,28 @@
+
+Q -// ****************************************************
+
+Hello
+Since this afternoon, I cant play MW2, each time I load a mod with liberation, when the game opens, the screen comes black and it appears the windows cursor(loading one), but nothing happens, it never loads, I have to ALt+Tab+Supr(del) to end game. I know that Liberation 1.06 came out today morning. I tried with also with Liberation 1.05 and 1.03, same result. I reinstalled game and also verified game cache and nothing, the same problem always appear. 
+How can I play again?
+
+A -// ****************************************************
+
+you have to go to MW2's fastfile directory:
+C:\Program Files (x86)\Steam\steamapps\common\call of duty modern warfare 2\zone\english\
+
+then delete this file (make a backup if you want):
+mp_playlists_dlc2.ff
+
+start up MW2 and it should now work
+
+Q -// ****************************************************
+
+How to load MW2 Fullscreen?
+
+A -// ****************************************************
+
+You can try (Alt + Enter) at the menu screen
+or
+seta r_fullscreen "1" (default value is 1) // Play in fullscreen/windowed mode (fullscreen is 1, windowed is 0)
+
+Q -// ****************************************************

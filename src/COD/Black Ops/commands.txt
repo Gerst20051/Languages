@@ -1,0 +1,10 @@
+Call of Duty: Black Ops Commands
+
+bind KP_END movie_start Film.avi 
+bind KP_PGDN movie_stop Film.avi 
+
+These two commands will allow you to start and stop recording anytime you are playing in a game or watching in theatre mode. You can change the keys to whatever you want and the file name to whatever you want also. 'What you see is what I have assigned. I'm not sure if you can change the extension though. 
+
+seta r_clipSize "xxx" 
+
+Change the number to either 720 or 1080. 

@@ -1,0 +1,345 @@
+//************************************************** ****************************
+// Call of Duty 4
+//************************************************** ****************************
+//************************************************** ****************************
+// Public Information - taken from http://forums.gameservers.com/viewto...000&highlight=
+//************************************************** ****************************
+sets sv_hostname "^5>E*V< ^2European Vikings *RECRUITING"
+sets _Admin "LordAragorn"
+sets _Email "lordaragorns@hotmail.com"
+sets _Website "http://www.europeanvikings.mojforum.si"
+sets _Location "EUROPE"
+sets _Irc ""
+sets _Mod "sd"
+sets _ModVer "1.4"
+sets _ModUpdate "yes"
+sets _Maps "COD2 Stock"
+set scr_motd "Welcome on >E*V< server. Visit us on http://www.europeanvikings.mojforum.si/"
+
+//************************************************** ****************************
+// Common Server Settings
+//************************************************** ****************************
+// Log Settings
+set g_logsync "2"
+set logfile "1"
+set g_log "games_mp.log"
+set sv_log_damage "1"
+
+// Network options
+set net_ip "213.19.131.32" // Set your servers IP address
+set net_port "28960" // Set your port number
+set com_hunkMegs "512"
+set net_noipx "1" // Allow ONLY tcp/ip protocol, player/server communications
+
+// Server Network Mode
+set dedicated "2" // 0 = Listen, 1 = LAN, 2 = Internet
+// Password Settings
+set rcon_password "*****" //SET HERE YOUR OWN PASSWORD
+set sv_privatePassword ""
+
+// The following can be used to lock out the server so that only those
+// players that have been provide the password can connect. Good for
+// matches, practices, etc.
+set g_password ""
+
+// Player slots setup
+set sv_maxclients "16" // MAX server player slots, this is TOTAL player slots
+set sv_privateclients ""
+
+// Ping
+set sv_minPing "0"
+set sv_maxping "350"
+
+// Client Download Settings. (0=off/1=on) Used for MODs and custom maps
+// See included Quick Setup Guide for instructions.
+set sv_allowdownload "1"
+seta sv_wwwDownload "0"
+seta sv_wwwBaseURL ""
+seta sv_wwwDlDisconnected "1"
+
+// Rate
+set sv_maxRate "25000"
+
+
+// Drop inactive players
+set sv_timeout "300"
+set sv_zombietime "1"
+set g_inactivity "0"
+set g_inactivityspectator "0"
+
+// AntiFlooding Settings
+set sv_floodProtect "1"
+set sv_reconnectlimit "3"
+
+// Anti Cheat Settings
+set sv_disableClientConsole "0"
+set cl_autocmd "0"
+set sv_cheats "0"
+set sv_pure "1"
+set g_banIPs ""
+set g_no_script_spam "1"
+set sv_punkbuster "1"
+
+// Temporary Ban duration, in seconds
+set sv_kickBanTime "3600"
+
+// In-game voice communication system
+set sv_voice "0"
+set sv_voiceQuality "1"
+set voice_deadChat "0"
+set voice_global "0"
+set voice_localEcho "0"
+set winvoice_mic_mute "1"
+
+//************************************************** ****************************
+// Misc
+//************************************************** ****************************
+set sv_allowAnonymous "0"
+set g_antilag "0"
+set g_compassShowEnemies "0"
+//ui_maxclients 32
+
+//************************************************** ****************************
+// limits the number of players that can choose each class type
+//************************************************** ****************************
+set class_assault_limit 99
+set class_specops_limit 99
+set class_heavygunner_limit 99
+set class_demolitions_limit 99
+set class_sniper_limit 99
+
+//************************************************** ****************************
+// perks
+//************************************************** ****************************
+set perk_allow_specialty_parabolic 1
+set perk_allow_specialty_gpsjammer 1
+set perk_allow_specialty_holdbreath 1
+set perk_allow_specialty_quieter 1
+set perk_allow_specialty_longersprint 1
+set perk_allow_specialty_detectexplosive 1
+set perk_allow_specialty_explosivedamage 1
+set perk_allow_specialty_pistoldeath 1
+set perk_allow_specialty_grenadepulldeath 1
+set perk_allow_specialty_bulletdamage 1
+set perk_allow_specialty_bulletpenetration 1
+set perk_allow_specialty_bulletaccuracy 1
+set perk_allow_specialty_rof 1
+set perk_allow_specialty_fastreload 1
+set perk_allow_specialty_extraammo 1
+set perk_allow_specialty_armorvest 1
+set perk_allow_specialty_fraggrenade 1
+set perk_allow_specialty_specialgrenade 1
+set perk_allow_c4_mp 1
+set perk_allow_claymore_mp 1
+set perk_allow_rpg_mp 1
+
+//************************************************** ****************************
+// assault class default loadout
+//************************************************** ****************************
+set class_assault_primary m16
+set class_assault_primary_attachment gl
+set class_assault_secondary beretta
+set class_assault_secondary_attachment none
+set class_assault_perk1 specialty_null
+set class_assault_perk2 specialty_bulletdamage
+set class_assault_perk3 specialty_longersprint
+set class_assault_grenade concussion_grenade
+set class_assault_camo camo_none
+set class_assault_frags 1
+set class_assault_special 1
+
+//************************************************** ****************************
+// specops class default loadout
+//************************************************** ****************************
+set class_specops_primary mp5
+set class_specops_primary_attachment none
+set class_specops_secondary usp
+set class_specops_secondary_attachment silencer
+set class_specops_perk1 c4_mp
+set class_specops_perk2 specialty_explosivedamage
+set class_specops_perk3 specialty_bulletaccuracy
+set class_specops_grenade flash_grenade
+set class_specops_camo camo_none
+set class_specops_frags 1
+set class_specops_special 1
+
+//************************************************** ****************************
+// heavygunner class default loadout
+//************************************************** ****************************
+set class_heavygunner_primary saw
+set class_heavygunner_primary_attachment none
+set class_heavygunner_secondary usp
+set class_heavygunner_secondary_attachment none
+set class_heavygunner_perk1 specialty_specialgrenade
+set class_heavygunner_perk2 specialty_armorvest
+set class_heavygunner_perk3 specialty_bulletpenetration
+set class_heavygunner_grenade concussion_grenade
+set class_heavygunner_camo camo_none
+set class_heavygunner_frags 1
+set class_heavygunner_special 1
+
+//************************************************** ****************************
+// demolitions class default loadout
+//************************************************** ****************************
+set class_demolitions_primary winchester1200
+set class_demolitions_primary_attachment none
+set class_demolitions_secondary beretta
+set class_demolitions_secondary_attachment none
+set class_demolitions_perk1 rpg_mp
+set class_demolitions_perk2 specialty_explosivedamage
+set class_demolitions_perk3 specialty_longersprint
+set class_demolitions_grenade smoke_grenade
+set class_demolitions_camo camo_none
+set class_demolitions_frags 1
+set class_demolitions_special 1
+
+//************************************************** ****************************
+// sniper class default loadout
+//************************************************** ****************************
+set class_sniper_primary m40a3
+set class_sniper_primary_attachment none
+set class_sniper_secondary beretta
+set class_sniper_secondary_attachment silencer
+set class_sniper_perk1 specialty_specialgrenade
+set class_sniper_perk2 specialty_bulletdamage
+set class_sniper_perk3 specialty_bulletpenetration
+set class_sniper_grenade flash_grenade
+set class_sniper_camo camo_none
+set class_sniper_frags 1
+set class_sniper_special 1
+
+set class_assault_movespeed 0.95
+set class_specops_movespeed 1.00
+set class_heavygunner_movespeed 0.875
+set class_demolitions_movespeed 1.00
+set class_sniper_movespeed 1.00
+
+set scr_enable_nightvision 1
+set scr_enable_music 1
+set scr_enable_hiticon 1
+
+//************************************************** ****************************
+// Enables Dropping of Specified Weapon Class
+//************************************************** ****************************
+set class_assault_allowdrop 1
+set class_specops_allowdrop 1
+set class_heavygunner_allowdrop 1
+set class_demolitions_allowdrop 1
+set class_sniper_allowdrop 1
+
+//************************************************** ****************************
+// Assault Rifles
+//************************************************** ****************************
+set weap_allow_m16 1
+set weap_allow_ak47 1
+set weap_allow_m4 1
+set weap_allow_g3 1
+set weap_allow_g36c 1
+set weap_allow_m14 1
+set weap_allow_mp44 1
+
+//************************************************** ****************************
+// Assault Attachments
+//************************************************** ****************************
+set attach_allow_assault_none 1
+set attach_allow_assault_gl 0
+set attach_allow_assault_reflex 1
+set attach_allow_assault_silencer 1
+set attach_allow_assault_acog 1
+
+//************************************************** ****************************
+// SMG
+//************************************************** ****************************
+set weap_allow_mp5 1
+set weap_allow_skorpion 1
+set weap_allow_uzi 1
+set weap_allow_ak74u 1
+set weap_allow_p90 1
+
+//************************************************** ****************************
+// SMG Attachments
+//************************************************** ****************************
+set attach_allow_smg_none 1
+set attach_allow_smg_reflex 1
+set attach_allow_smg_silencer 1
+set attach_allow_smg_acog 1
+
+//************************************************** ****************************
+// Shotguns
+//************************************************** ****************************
+set weap_allow_m1014 1
+set weap_allow_winchester1200 1
+
+//************************************************** ****************************
+// Shotgun Attachments
+//************************************************** ****************************
+set attach_allow_shotgun_none 1
+set attach_allow_shotgun_reflex 1
+set attach_allow_shotgun_grip 1
+
+//************************************************** ****************************
+// LMG
+//************************************************** ****************************
+set weap_allow_saw 1
+set weap_allow_rpd 1
+set weap_allow_m60e4 1
+
+//************************************************** ****************************
+// LMG Attachments
+//************************************************** ****************************
+set attach_allow_lmg_none 1
+set attach_allow_lmg_reflex 1
+set attach_allow_lmg_grip 1
+set attach_allow_lmg_acog 1
+
+//************************************************** ****************************
+// Sniper Rifles
+//************************************************** ****************************
+set weap_allow_dragunov 1
+set weap_allow_m40a3 1
+set weap_allow_barrett 1
+set weap_allow_remington700 1
+set weap_allow_m21 1
+
+//************************************************** ****************************
+// Sniper Attachments
+//************************************************** ****************************
+set attach_allow_sniper_none 1
+set attach_allow_sniper_acog 1
+
+//************************************************** ****************************
+// Pistols
+//************************************************** ****************************
+set weap_allow_beretta 1
+set weap_allow_colt45 1
+set weap_allow_usp 1
+set weap_allow_deserteagle 1
+set weap_allow_deserteaglegold 1
+
+//************************************************** ****************************
+// Pistol Attachments
+//************************************************** ****************************
+set attach_allow_pistol_none 1
+set attach_allow_pistol_silencer 1
+
+//************************************************** ****************************
+// Grenades
+//************************************************** ****************************
+set weap_allow_frag_grenade 1
+set weap_allow_concussion_grenade 1
+set weap_allow_flash_grenade 1
+set weap_allow_smoke_grenade 1
+
+//************************************************** ****************************
+// First gametype to load
+// "dm" - free for all deathmatch
+// "dom" - domination
+// "koth" - headquarters
+// "sab" - sabotage
+// "sd" - search & destroy
+// "war" - team deathmatch
+//************************************************** ****************************
+set g_gametype "sd"
+
+
+set sv_mapRotation "gametype sd map mp_backlot gametype sd map mp_bloc gametype sd map mp_bog gametype sd map mp_cargoship gametype sd map mp_citystreets gametype sd map mp_convoy gametype sd map mp_countdown gametype sd map mp_crash gametype sd map mp_crossfire gametype sd map mp_farm gametype sd map mp_overgrown gametype sd map mp_pipeline gametype sd map mp_shipment gametype sd map mp_showdown gametype sd map mp_strike gametype sd map mp_vacant"

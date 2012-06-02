@@ -1,0 +1,81 @@
+// Gametype Settings
+
+// King of the Hill
+
+set koth_autodestroytime "60"
+set koth_capturetime "20"
+set koth_delayPlayer "0"
+set koth_destroytime "10"
+set koth_kothmode "0"
+set koth_spawnDelay "60"
+set koth_spawntime "0"
+set scr_koth_numlives "0"
+set scr_koth_playerrespawndelay "1"
+set scr_koth_roundlimit "1"
+set scr_koth_roundswitch "1"
+set scr_koth_scorelimit "350"
+set scr_koth_timelimit "15"
+set scr_koth_waverespawndelay "0"
+
+// Death Match
+
+set scr_dm_numlives "0"
+set scr_dm_playerrespawndelay "1"
+set scr_dm_roundlimit "1"
+set scr_dm_scorelimit "0"
+set scr_dm_timelimit "15"
+set scr_dm_waverespawndelay "0"
+
+// Domination
+
+set scr_dom_numlives "0"
+set scr_dom_playerrespawndelay "1"
+set scr_dom_roundlimit "1"
+set scr_dom_scorelimit "200"
+set scr_dom_timelimit "0"
+set scr_dom_waverespawndelay "0"
+
+// Sabotoge
+
+set scr_sab_bombtimer "30"
+set scr_sab_defusetime "5"
+set scr_sab_hotpotato "0"
+set scr_sab_numlives "0"
+set scr_sab_planttime "2.5"
+set scr_sab_playerrespawndelay "7"
+set scr_sab_roundlimit "0"
+set scr_sab_roundswitch "1"
+set scr_sab_scorelimit "3"
+set scr_sab_timelimit "5"
+set scr_sab_waverespawndelay "0"
+
+// Search & Destroy
+
+set scr_sd_bombtimer "60"
+set scr_sd_defusetime "7"
+set scr_sd_multibomb "0"
+set scr_sd_numlives "1"
+set scr_sd_planttime "7"
+set scr_sd_playerrespawndelay "0"
+set scr_sd_roundlimit "0"
+set scr_sd_roundswitch "2"
+set scr_sd_scorelimit "5"
+set scr_sd_timelimit "3"
+set scr_sd_waverespawndelay "0"
+
+// War
+
+set scr_war_numlives "0"
+set scr_war_playerrespawndelay "1"
+set scr_war_roundlimit "1"
+set scr_war_scorelimit "0"
+set scr_war_timelimit "15"
+set scr_war_waverespawndelay "0"
+
+direct respawn in hardcore...
+
+set scr_war_playerrespawndelay -9
+set scr_war_waverespawndelay -9
+
+set scr_dm_playerrespawndelay -9
+set scr_dm_waverespawndelay -9

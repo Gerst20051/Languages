@@ -1,0 +1,70 @@
+Call of Duty: Black Ops Tweaks
+Performance Commands
+
+/cg_drawfps 1
+
+A good one to enter first. This shows you your FPS count, making it more easier to tell when the various tweaks and console commands you try are actually having a consistent impact.
+
+/stoprecord
+
+Didn't show any improvement on our test rig, but other people claim it helps with the stuttering.
+
+/com_maxfps 100
+
+Locks the maximum FPS rate, hopefully making performance more consistent, if not faster.
+
+/snaps 30
+/cl_maxpackets 100
+/rate 3000
+
+seta r_dof_enable "0" - Set this to "0" ("1" enables the depth of field visual effect)
+
+seta r_multiGpu "0" - IF you DO NOT have a dual nVidia SLI graphics card setup or dual ATI CrossFire graphics card setup set this to "0" ("1" enables the full use of a multi graphics card setup)
+
+seta r_multithreaded_device "1" - Set this to "1" ("0" disables the full use of multicore CPUs. Set it to "0" if you DO NOT have a multicore CPU)
+
+seta cg_brass "0" - Set this to "0" ("1" enables shells being spit out by weapons when firing)
+
+seta cg_blood "0" - Set this to "0" ("1" enables blood squirting out of people when shot)
+
+seta cl_maxpackets "100" - Set to "100" (This slightly improves multiplayer gameplay smoothness)
+
+seta snaps "30" - (This might improve multiplayer gameplay smoothness)
+
+Call of Duty: Black Ops Tweaks
+
+r_multiGpu
+This should only be enabled if you have multiple graphics cards or a graphics card with multiple GPUs. If you don't have multiple GPUs, don't know what this means, or are having issues with your MultiGPU solution, please set this to "0".
+
+r_multithreaded_device
+This setting should be enabled for EVERYBODY as the minimum requirements for Black Ops clearly states that you need a multithreaded (multicore) CPU to run the game. However, some people have noticed that by setting this to "0" some of the skipping lag is relieved. Test this out only as a last resort.
+
+r_vsync
+VSync prevents screen tearing. If you don't know what that is, just set it to "0" because you probably don't care anyway. Otherwise, VSync usually doesn't have any negative performance issues with today's graphics cards. However, there may be a few performance issues linked to VSync with the current release of Black Ops. Try setting this to "0" for compatibility.
+
+r_blur_allowed
+This setting enables Blur shader effects. If you have a strong shader card, this setting may be negligible. Otherwise, just go ahead and set this to "0".
+
+r_distortion
+This setting enables Distortion shader effects. If you have a strong shader card, this setting may be negligible. Otherwise, just go ahead and set this to "0".
+
+r_dof_enable
+This setting enables Depth of Field shader effects. If you have a strong shader card, this setting may be negligible. Otherwise, just go ahead and set this to "0".
+
+r_glow_allowed
+This setting enables Glow (HDR?) shader effects. Normally, this should have a negligible performance impact. HOWEVER, this setting seems to be buggy! Performance improved DRAMATICALLY when I set this option to "0".
+
+rate
+Rate is the rate at which the client sends packets to the server. If you set this too low, below 10000 or so, you run the risk of sending insufficient data to the server and lagging out. Set this too high, above 50000 or so, and you run the risk of flooding your connection to the server. This setting should be adjusted according to your connection speed and may take some fine tuning.
+
+cl_maxpackets
+This setting controls how many packets the client will hold to ensure packet transmission. If you set this setting to low, below 20 or so, then you run the risk of being disconnected prematurely. If you set this setting too high, then you run the risk of continually resending redundant data and lowering your ping (or worse, getting choked). This setting is very hard to tune because it depends on so many factors beyond your own connection. Most people put this at half their max fps because that is the sweet spot for food hit registry. The log files are showing a lot of dropped packets so until they fix this mess 100 is your best bet.
+
+r_blur_allowed 0
+r_distortion 0
+r_dof_enable 0
+r_glow_allowed 0
+cg_brass 0
+r_cachemodellighting 1
+r_cacheSmodellighting 1
+If you do not have a multi-GPU - r_multiGpu 0

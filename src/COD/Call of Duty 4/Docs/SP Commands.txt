@@ -1,0 +1,42 @@
+Here are some simple single player tips, tricks, and cheats for the Call of Duty 4 single player mode on PC.
+
+Start up Call of Duty 4 single player, go into your options, and make sure that the console is enabled.
+
+Press your ~ (tilde) key anytime you want to enter these codes in – you can keep entering them.
+First off, type seta thereisacow "1337", this enables most of the cheats.
+
+In order to pick a level, use spdevmap mapname
+
+Here are some handy console commands that may help you through the game:
+
+ufo – you can fly through walls to get places – be careful, this can mess things up a little, and you may get stuck
+give – gives you an item. If you type give all, you will get all weapons
+god – god mode!
+demigod – god mode, but some things still happen like screen shaking and such
+notarget – you will be invisible to enemies
+give ammo – instant ammo
+jump_height – allows you to change the physics in the game – like moon shoes
+timescale – let’s you play with time – fast or slow
+cg_LaserForceOn – laser sight, baby!
+
+To insert the following codes, enable the console from the in-game options. Press ~ and type in “seta thereisacow 1337?, pressing Enter thereafter. From here, type “spdevmap bog_a” and press Enter again. Then, you can insert the following cheats. this is how you do it
+
+* cg_drawgun – Drop your gun
+* cg_fov – Zoom with any gun
+* cg_LaserForceOn 1 – Laser site with any gun
+* demigod – God Mode (with shaking screen)
+* give (item) – Acquire any item
+* give all – Get any weapon
+* give ammo – Full ammo
+* god – God Mode (without screen shaking)
+* jump_height # – Adjust gravity (39 is default)
+* noclip – No Clipping
+* notarget – Dumb AI
+* r_fullbright – Brighter features
+* timescale # – Adjust the time (1.00 is default)
+* ufo – No Clipping (II)
+
+Map Names:
+ac130,aftermath,airlift,airplane,ambush,armada,blackout,bog_a,bog_b
+,cargoship,coup,hunted,icbm,jeepride,killhouse,launchfacilty_a,
+launchfacilty_b,scoutsniper,sniperescape,village_assault,village_defend

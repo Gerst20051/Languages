@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" -->
+<html dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<title>Understanding lag and lagometer</title>
+<style type="text/css">
+<!--
+body {
+font-family: ;
+font-size: 12px ;
+letter-spacing: 1px;
+}
+/* Quote & Code blocks */
+.code, .quote, .php {
+font-size: 11px;
+	border: black; border-style: solid;
+	border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px
+}
+.Forum {
+font-weight : bold;
+font-size: 18px;
+}
+.Topic {
+font-weight : bold;
+font-size: 14px;
+}
+.genmed {
+font-size: 12px;
+}
+hr.sep { height: 0px; border: solid #D1D7DC 0px; border-top-width: 1px;}
+-->
+</style>
+</head>
+<body>
+<span class="Topic">Technical Questions - Understanding lag and lagometer</span>
+<br /><hr />
+<span style="font-weight:bold">What is LAG, how to use the lagometer?</span>
+<br /><br />
+The lagometer is a tool provided to diagnose the condition of your connection, and to let you know when things are proceeding normally and when they are not. The following is a brief explanation in text and pictures of what the lagometer does and what it indicates.
+<br /><br />
+First, you need to turn it on. In the console, type:
+<br /><br />
+<span style="font-family:Courier New">cg_lagometer 1</span>
+<br /><br />
+When you close the console, you should see this:
+<br /><br />
+<img src="lagometer.jpg" alt="Image" title="Image" border="0" />
+<br /><br />
+This is a one-quarter-size shot of my screen at 1024 x 768. The inset is the lagometer rendered full-size as it appears to me in-game.
+<br /><br />
+"Very nice," you say, "but what the heck am I looking at, and what does it mean?"
+<br /><br />
+Glad you asked! The lagometer is a graphical representation of the interaction between the server and your "client," which is the game running on your computer.
+<br /><br />
+The server "serves" data representing the "gamestate" (the "world" that the server is simulating mathematically) by sending it to all clients (every player connected to the server) simultaneously 20 times per second (every 50 milliseconds). These "snapshots" (as they are officially known) are then "rendered" by your client and its video system to display the part of the gameworld and its events which are visible to you from your gameworld viewpoint.
+<br /><br />
+Of course, despite the fact that every client gets a gamestate snapshot for the entire gameworld 20 times a second, your client only needs to render the part of the world it can logically "see." The other data is there, but not rendered (except in the case of cheating, which is why it is possible to "see through walls," etc. with cheats.)
+<br /><br />
+But if the snapshots are coming in only 20 times a second, and your client is rendering many more frames per second (typically about 80, or 4 times the snapshot rate), where does the information for the extra frames come from? Clearly, the client is not rendering each snapshot 4 times, since that would make a very choppy "slideshow" kind of presentation. Instead, each client calculates and "interpolates" its own data between the "real" data contained in successive snapshots, and renders these "interpolated" frames so you get a smooth animation of moving objects (primarily other players) in the game.
+<br /><br />
+This system works out pretty well, since it is reasonable to assume that if a player is moving due north in 2 successive snapshots that his position will follow a smooth linear progression in the interpolated frames.
+<br /><br />
+When you look at the lagometer display, you see that it is divided horizontally by a dashed white line, like the one painted on a highway where it is okay to pass. This is the divider between the upper "your client's rendered frames" area, and the lower "snapshots your client got from the server" area. (comment by BoonDock: this devider is not exisiting in ET!)
+<br /><br />
+The display above the white lines advances one pixel for every frame your client renders. The lower display advances one pixel for each snapshot that your client receives. This is why the upper display always moves faster than the lower one.
+<br /><br />
+Below is a series of lagometer screenshots from my client connected to the AWITS server. (or ET) Let's examine them in detail to see what information they contain:
+<br /><br />
+<span style="font-weight:bold">Number 1</span> is a normal, stable lagometer display, with a narrow, flat green line at the bottom, which reflects a fairly low (50) and stable ping. The upper blue line has only a tiny bit of yellow in it. Yellow above the blue line is undesirable, since these are frames that are extrapolated by your client, which means that it is making a kind of educated guess about where moving objects are, in the absence of "real" snapshot data from the server.
+<br /><br />
+<span style="font-weight:bold">Number 2</span> contains many yellow triangles above the blue, but there is still blue in between them. The blue indicates frames that are interpolated between valid snapshots, but the yellow means that the client is extrapolating outside of valid snapshot data. The height of the yellow indicates the time since the last valid snapshot, which is why triangles form. The longer the time without a valid snapshot, the higher the yellow line, until valid snapshot data is again rendered and the yellow suddenly disappears. When this happens, the client will put players back where the server says they should be, which may not be where the client had extrapolated their movements. The game would appear choppy as the cycle of extrapolate/correct/extrapolate/correct continued.
+<br /><br />
+<span style="font-weight:bold">Number 3</span> shows a large yellow triangle forming at the edge of the lagometer. As time passes without a valid snapshot having been rendered, the height of the triangle grows accordingly. This is a graphic representation of the phenomenon of lag. Note that there are spikes in the green, showing that the client's ping is momentarily climbing.
+<br /><br />
+<div style="text-align:center"><img src="lagtypes.jpg" alt="Image" title="Image" border="0" /></div>
+<br /><br />
+<span style="font-weight:bold">Number 4</span> shows red spikes, which mean that snapshots have been dropped by the network, either in transmission (packet loss) or because the client can't handle them (cpu tied up by other tasks, like taking repeated screenshots.) CoD and all Quake-engine games use UDP packets because they are fast and easy to handle, but they have no retransmission or error-correction capability. The server sends them and forgets about them. Once lost, they are lost for good. Red spikes like these occur from time to time, and occasional red spikes are not necessarily bad unless they are wide (each pixel in width is one snapshot lost) or frequent. During DoS attacks on our host, the lagometer will show almost solid red. (Red spikes will always be this height. There is no meaning associated with the height, which is purely arbitrary.)
+<br /><br />
+<span style="font-weight:bold">Number 5</span> shows a big yellow triangle, which would manifest in-game as a brief freeze, followed by players "teleporting" to nearby locations as the client gets correct information from the server. Remember, any yellow means the client is trying to guess where players should be in the absence of proper information from the server.
+<br /><br />
+<span style="font-weight:bold">Number 6</span> shows a long string of connected yellow. With no blue in sight, any movement by the player will result in the "skating" or "rubber-band" effect, where the player is "snapped back" to where the server last put him. This shot is not really typical of that effect, since it was the result of taking many back-to-back screenshots. When this happens spontaneously in the game, a triangle will form that grows to the top of the lagometer, so what you really see is a yellow bar all the way to the top.
+<br /><br />
+Remember, the only thing that is "really" happening in-game is what the server is calculating. If the server cannot get this information to the client, the client will render a guess about what is going on. Since players move at about 10 feet per second in the game, one missed snapshot can make a difference of 6 inches in location.
+<br /><br />
+Four missed snapshots (one-fifth of a second in duration) can make a difference of two feet! This is why your client sometimes appears to show a sure hit, but the server may register a clean miss. Playing with the lagometer on can help you understand what is "really" going on in the game.
+<br /><br />
+<span style="font-size:9px; line-height:normal">The Lagometer tutorial above is © 2004 by wadiano productions. It's written by Ron "Pair O' Noyas" Reposh, and was originally posted at <a href="http://awits.com/Community." target="_blank">http://awits.com/Community.</a> All Images and trademarks are property of Activision.</span>
+<br /><br />
+<br />
+<span style="font-weight:bold">Is there a cure against LAG?</span>
+<br /><br />
+Yep.. most of the time there sure is, but the cure depends on what information the lagometer shows.
+<br /><br />
+<span style="font-weight:bold">If you get green spikes</span>, or the server wont let you connect because your ping is to high try to:
+<br /><br />
+1 Stop all applications that uses the internet, such as Internet browsers, downloads, ICQ, Teamspeak, skype ect.
+<br /><br />
+2. If you are using a shared internet connection, step one applies to ALL the computers on the connection. Brother, Sister, mom, dad or neighbor I don't care. How to stop them is your problem <img src="images/smiles/icon_smile.gif" alt="Smile" border="0" />
+<br /><br />
+3. Scan your computer for spy ware &amp; Virus, sometimes these buggers eat alot of bandwidth. I prefer to use Spybot SD to get rid of the spy ware, but you can use whatever you like. remember to update your virus killer and do a full system scan as well, When the scan is complete, reboot your computer.
+<br /><br />
+<span style="font-weight:bold">If you get yellow spikes</span>, you should try to:
+<br /><br />
+1. Lower your graphic settings in the game, such as Video Mode, Character textures, General textures texture filter. 
+<br /><br />
+But I just bought this x-brand display adaptor with 3.6GB DDR ram and dual 4.7Ghz processors?
+<br />
+I don't care, lower your settings.. If the problem is solved, you can gradually increase the settings step by step until the problem re-occur. Another good idea could be to update the driver for your display adaptor, chipset, BIOS etc.
+<br /><br />
+2. lower your sound settings.
+</body>
+</html>

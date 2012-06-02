@@ -1,0 +1,81 @@
+Call of Duty - Modern Warfare 2 Useful DVAR's
+By: RigorousSphinx
+###############################################
+
+xbl_privatematch                        0                               //Xbox LIVE Private Match Ture/False
+jump_height                             999                             //The maximum height of a player's jump
+bg_fallDamageMaxHeight                  9999                            //The height that a player will take maximum damage when falling
+bg_fallDamageMinHeight                  9998                            //The height that a player will start to take minimum damage if they fall
+player_sprintUnlimited                  1                               //Whether players can sprint forever or not
+perk_weapRateMultiplier                 0.001                           //Percentage of weapon firing rate to use
+player_burstFireCooldown                0                               //Seconds after a burst fire before weapons can be fired again
+perk_weapReloadMultiplier               0.001                           //Percentage of weapon reload time to use
+perk_weapSpreadMultiplier               0.00001                         //Percentage of weapon spread to use
+player_meleeRange                       999                             //The maximum range of the player's mellee attack
+onlinegame                              1                               //Current game is an online game with stats, custom classes, unlocks
+scr_airdrop_mega_nuke                   5                               //Chances in getting a %i in a %i
+scr_airdrop_mega_ammo                   0
+scr_airdrop_mega_uav                    0
+scr_airdrop_mega_counter_uav            0
+scr_airdrop_mega_sentry                 0
+scr_airdrop_mega_predator_missile       0
+scr_airdrop_mega_precision_airstrike    0
+scr_airdrop_mega_harrier_airstrike      0
+scr_airdrop_mega_helicopter             0
+scr_airdrop_mega_helicopter_flares      0
+scr_airdrop_mega_stealth_airstrike      0
+scr_airdrop_mega_helicopter_minigun     1
+scr_airdrop_mega_ac130                  1
+scr_airdrop_ammo                        0
+scr_airdrop_uav                         0
+scr_airdrop_counter_uav                 0
+scr_airdrop_sentry                      0
+scr_airdrop_predator_missile            0
+scr_airdrop_precision_airstrike         0
+scr_airdrop_harrier_airstrike           0
+scr_airdrop_helicopter                  0
+scr_airdrop_helicopter_flares           0
+scr_airdrop_stealth_airstrike           0
+scr_airdrop_helicopter_minigun          1
+scr_airdrop_ac130                       1
+scr_airdrop_nuke                        5
+g_gametype                              "gtnw"                          //Current gametype
+ui_gametype                             "gtnw"                          //Gametype in menus
+xblive_playEvenIfDown                   1                               //Allow people to play online even if Live is down
+con_minicon                             1                               //Display the mini console on screen
+scr_nukeTimer                           150                             //Time for the nuke counter to start counting down at
+perk_grenadeDeath                       "remotemissile_projectile_mp"   //Name of the grenade weapon to drop
+cg_drawfps                              1                               //Draw frames per second
+cg_scoreboardPingText                   1                               //Whether to show numeric ping value
+aim_autoaim_enabled                     1                               //Turn on auto aim
+aim_autoaim_lerp                        100                             //The rate in degrees per second that the auto aim will converge to its target
+aim_autoaim_region_height               480                             //The height of the auto aim region in virtual screen coordinates (0 - 480)
+aim_autoaim_region_width                640                             //The width of the auto aim region in virtual screen coordinates (0 - 640)
+aim_autoAimRangeScale                   2                               //Scales the weapon's auto aim range
+aim_lockon_debug                        1                               //Turn on debugging info for aim lock on
+aim_lockon_enabled                      1                               //Aim lock on helps the player to stay on target
+aim_lockon_region_height                0                               //The height of the auto aim region in virtual screen coordinates(0-480)
+aim_lockon_region_width                 5000                            //The width of the auto aim region in virtual screen coordinates(0-640)
+aim_lockon_strength                     1                               //The amount of aim assistance given by the target lock on
+aim_lockon_deflection                   0.05                            //The amount of stick deflection for the lockon to activate
+aim_input_graph_debug                   0                               //Debug the view input graphs
+aim_input_graph_enabled                 1                               //Use graph for adjusting view input
+r_zfar                                  0                               //Change the distance at which culling fog reaches 100% opacity; 0 is off
+r_znear                                 57                              //Things closer than this aren't drawn.
+r_znear_depthhack                       2                               //Viewmodel near clip plane
+g_speed                                 700                             //Player speed
+timescale                               0.65                            //Scale time of each frame
+cg_drawThroughWalls                     1                               //Whether to draw friendly names through walls or not
+cg_enemyNameFadeOut                     900000                          //Time in milliseconds to fade out enemy names
+cg_enemyNameFadeIn                      0                               //Time in milliseconds to fade in enemy names
+party_connectToOthers                   0                               //If false, we will just start our own lobby rather than connect to another lobby, even if others exist
+party_hostmigration                     0                               //Whether to use host migration in lobbies
+laserForceOn                            1                               //Force laser sights on in all possible places (for debug purposes)
+cg_drawHealth                           1                               //Draw health bar
+g_gravity                               100                             //Gravity in inches per second per second
+clanName                                "IW"                            //Player clan name
+perk_bulletDamage                       -1                              //Stopping power perk multiplier
+perk_explosiveDamage                    -1                              //??? perk multiplier
+ui_mapname                              mp_shipment                     //Map name in menus (THIS ONE IS FUN TO f*** WITH YOUR FRIENDS!!LOL)
+cg_fov                                  85                              //The field of view angle in degrees
+cg_drawShellshock                       0                               //Draw shellshock & flashbang screen effects

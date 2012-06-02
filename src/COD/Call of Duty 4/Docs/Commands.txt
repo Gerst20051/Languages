@@ -1,0 +1,16 @@
+Call of Duty 4 - Modern Warfare Console Commands
+By: RigorousSphinx
+###############################################
+UDP Ports: 20800, 20810, 28960
+
+Startup Commands
+###############################################
+“C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe”
++set dedicated 2 +set sv_punkbuster 1 +exec dedicated.cfg +map_rotate
+
+Main Commands
+###############################################
+
+Text Colors
+###############################################
+^1 = Red  ^2 = Green  ^3 = Yellow  ^4 = Blue  ^5 = Cyan  ^6 = Magenta  ^7 = White  ^9 = Grey  ^0 = Black

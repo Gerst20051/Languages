@@ -1,0 +1,47 @@
+xl2eVo Patch Making TuT!
+
+I've done this thread because a few people have asked about it and nobody makes their own patches on cod4, its full of that shit one that freezes all the time lol, its really simple, pretty much the same as cod5 but different files and offsets.
+
+Before you begin you will need...
+
+HxD Hex Editor
+Notepad++
+Offzip & Packzip
+
+make a folder on your desktop called pack and put in offzip, packzip and your patch_mp.ff.
+
+I will put each step in a spoiler to make this thread as easy to read as possible..
+
+[SPOILER=]First you need to Decompress your patch_mp.ff so you need to open up cmd command prompt and type in cd desktop/pack then
+offzip -a -z -15 patch_mp.ff ./ 0[/spoiler]
+
+NEXT you need to select the files you want and delete all the other...in the spoiler is a list of all the files you MIGHT want, weapons.gsc and rank.gsc are where most mods are in existing patches.
+
+[spoiler=]
+PHP Code:
+GSCNAME            FILE     STARTOFFSET      LENGTH
+Koth.gsc           00030783      2924             5F0D
+Weapons           0002cbcc      1AC7            9E0A
+Rank part1         000295f3      A00d             5FF3
+Rank part2         0002cbcc          0              1A9B  
+[/spoiler]
+
+Once you have all your files ready with the correct offsets chosen, just open them up in Notepad++ and edit to your liking.
+
+Once you have finished editing, just make sure the files are the same size as they were before you started and recompress them...
+
+[spoiler=]Packzip -o 0x(File name here) -w -15 (File name Here).dat patch_mp.ff
+
+An example would be Packzip -o- 0x0002cbcc -w -15 0002bcc.dat patch_mp.ff
+[/spoiler]
+
+Now its all packed back up and ready to transfer to your ps3 for testing 
+
+
+Fabulous tutorial, well explained. I only found 2 mistakes, the first is in the example, 
+
+" Packzip -o 0x(File name here) -w -15 (File name Here).dat patch_mp.ff
+
+An example would be Packzip -o- 0x0002cbcc -w -15 0002bcc.dat patch_mp.ff "
+
+the top line is correct yet the bottom line should not have a - after the o. also, the the 2nd time you wrote the name you forgot a "c" before the "bcc." Everything else is fabulous and this is the best I have ever seen. Well done!

@@ -1,0 +1,1465 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.2  (Win32)">
+	<META NAME="CREATED" CONTENT="20080520;15172200">
+	<META NAME="CHANGED" CONTENT="20090721;17521565">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.5in 11in; margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		TD P { margin-bottom: 0in }
+		H1 { margin-bottom: 0.08in }
+		H1.western { font-family: "Arial", sans-serif; font-size: 16pt }
+		H1.cjk { font-family: "Lucida Sans Unicode"; font-size: 16pt }
+		H1.ctl { font-family: "Tahoma"; font-size: 16pt }
+		H2 { margin-bottom: 0.08in }
+		H2.western { font-family: "Arial", sans-serif; font-size: 14pt; font-style: italic }
+		H2.cjk { font-family: "HG Mincho Light J"; font-size: 14pt; font-style: italic }
+		H2.ctl { font-family: "Arial Unicode MS"; font-size: 14pt; font-style: italic }
+		TH P { margin-bottom: 0in }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><IMG SRC="http://guides.tntblowout.com/cod4/pics/bannercod4.jpg" NAME="bannercod4" ALIGN=MIDDLE WIDTH=468 HEIGHT=74 BORDER=0><BR>
+(cod4 v1.7 Compliant)<br>
+(updated and revised 7/21/09)</P>
+
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><B>Dedicated Server Setup and Usage Guide</B> <BR>
+This guide assumes you have remote access, FTP, and at least one IP to your Dedicated Server box.</P>
+<HR>
+<DL>
+	<DL>
+		<DL>
+			<DL>
+				<DD><A NAME="Table1|table"></A>
+				<TABLE WIDTH=931 BORDER=0 CELLPADDING=4 CELLSPACING=0>
+					<COL WIDTH=318>
+					<COL WIDTH=361>
+					<COL WIDTH=228>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Dedicated Server Installation</B></FONT></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Stock ModWarfare Setup</B></FONT></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Server Administration</B></FONT></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#1.1.Step 1 - Install The Server Files|outline">Step 1 - Install The Server Files</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 1 - The ModWarfare Server Files|outline">Step 1 - The ModWarfare Server Files</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#7.1.Logging Into Rcon|outline">Logging Into Rcon</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#1.2.Step 2 - Install The Punkbuster Files|outline">Step 2 - Install The Punkbuster Files</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 2 - Edit The Startup Command Line|outline">Step 2 - Edit The Startup Command Line</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#7.2.Custom Desktop Shortcut|outline">Custom Desktop Shortcut</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 3 - Copy The Game Files|outline">Step 3 - Copy The Game Files</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Custom Mod Setup</B></FONT></P>
+						</TD>
+						<TD WIDTH=228>
+							<P STYLE="margin-left: 0.49in"><A HREF="#7.3.Rcon Commands|outline">Rcon Commands</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 4 - Create The Startup Shortcut|outline">Step 4 - Create The Startup Shortcut</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 1 - Get The Mod File Set|outline">Step 1 - Get The Mod File Set</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#7.4.Remote Admin Tools|outline">Remote Admin Tools</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 5 - The Server Configuration File|outline">Step 5 - The Server Configuration File</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 2 - Setup The Server|outline">Step 2 - Setup The Server</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Punkbuster Information</B></FONT></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 6 - Starting and Joining The Server|outline">Step 6 - Starting and Joining The Server</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 3 - Create the Redirect Download Files|outline">Step 3 - Create the Redirect Download Files</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.1.Anti Cheat Groups|outline">Anti Cheat Groups</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#1.7.Remote Start/Stop Tools|outline">Remote Start/Stop Tools</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 4 - Setup The HTTP Redirect Download|outline">Step 4 - Setup The HTTP Redirect</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.2.General Information|outline">General Information</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Multiple Server Installation</B></FONT></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 5 - Edit The Startup Command Line|outline">Step 5 - Edit The Startup Command Line</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.3.The Server Files|outline">The Server Files</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Option 1 - Multiple Game File Installs|outline">Multiple Game File Installs</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Adding Custom Maps</B></FONT></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.4.Checking and Updating PB|outline">Checking and Updating</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Option 2 - Single Game File Install|outline">Single Game File Install</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 1 - Create the Server Files|outline">Step 1 - Create the Server Files</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.5.Additional Features|outline">Additional Features</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT><FONT COLOR="#ff0000"><B>Home PC Server Installation</B></FONT></FONT></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Step 2 - Create the Redirect Download Files|outline">Step 2 - Create the Redirect Download Files</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#8.6.Server Messages/Tasks|outline">Server Messages/Tasks</A></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Router Requirements|outline">Router Requirements</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#5.Step 3 - Testing|outline">Step 3 - Testing</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Determine Server Size|outline">Determine Server Size</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Cleaning a Map .IWD File|outline">Cleaning a Map .IWD File</A></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT></P>
+						</TD>
+					</TR>
+					<TR VALIGN=TOP>
+						<TD WIDTH=318>
+							<P ALIGN=LEFT STYLE="margin-left: 0.49in"><A HREF="#Server Setup|outline">Server Setup</A></P>
+						</TD>
+						<TD WIDTH=361>
+							<P ALIGN=LEFT></P>
+						</TD>
+						<TD WIDTH=228>
+							<P ALIGN=LEFT></P>
+						</TD>
+					</TR>
+				</TABLE>
+			</DL>
+		</DL>
+	</DL>
+</DL>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3 STYLE="font-size: 13pt">Dedicated Server Installation</FONT></FONT></H1>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="1.1.Step 1 - Install The Server Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 1 - Install The Server Files</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="font-weight: medium">Download this zip file and save it to a temp folder, it contains all the files
+for both a dedicated server and a home pc server, you will need it:
+<A HREF="http://guides.tntblowout.com/cod4/cod4_cfgs.zip">cod4_configs</A>
+</P>
+
+<P ALIGN=LEFT STYLE="font-weight: medium">Make sure your game install is fully patched and operational, including Punkbuster.<BR>
+- Open C:/Program Files/<B>Activision</B> on your pc, and copy/paste the Call of Duty 4 - Modern Warfare folder to C:\ on your hard drive. To
+simplify things, rename the copy to <B>cod4</B>.
+</P>
+
+<P ALIGN=LEFT STYLE="font-weight: medium">We now need to make sure your using a clean install of the server files, so we will clean everything up next.<BR>
+- Open the new cod4 folder and delete anything you don't see here:<BR>
+<ALIGN=LEFT STYLE="font-weight: medium"><IMG SRC="http://guides.tntblowout.com/cod4/pics/pic1.jpg" NAME="pic1" ALIGN=LEFT WIDTH=671 HEIGHT=379 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+
+<P ALIGN=LEFT STYLE="font-weight: medium">- Open the &quot;<B>main</B>&quot; folder and delete both the &quot;<B>video</B>&quot; and the &quot;<B>save</B>&quot; folder.<BR>
+- Remove anything else in the &quot;<B>main</B>&quot; folder that you don't see here:<br>
+<ALIGN=LEFT><IMG SRC="http://guides.tntblowout.com/cod4/pics/pic2.jpg" NAME="pic2" ALIGN=LEFT WIDTH=685 HEIGHT=501 BORDER=0><BR CLEAR=LEFT><BR>
+- Open the C:\cod4\<B>pb</B> folder and delete everything.<BR>
+- Upload the cod4 folder and all of its contents to <B>C:\</B> on your box.<BR>
+It is critical that the naming and file structure remain intact, do not change anything.<BR>
+This will take quite a few hours, so time it so it does not interfere with your normal pc usage.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="1.2.Step 2 - Install The Punkbuster Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step 2 - Install The Punkbuster Files</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT>The next thing to do is get the Punkbuster server files.<BR>
+- Login to your box and create a folder on the desktop called &quot;pbsetup&quot;.<BR>
+- Download pbsetup.exe from Evenbalance to your new pbsetup folder from this link: <A HREF="http://www.evenbalance.com/index.php?page=pbsetup.php">PBsetup</A><BR>
+- Run pbsetup.exe and click &quot;Add a Game&quot;. Choose Call of Duty 4. Then browse to the CoD4 folder you uploaded so that pbsetup knows where your CoD4 server is located.<BR>
+- Once you have added your CoD4 server, select/highlight the Call of Duty 4 in the list and click &quot;Check For Updates&quot;. This will download a
+number of files to your CoD4/<B>pb</B> server directory.
+</P>
+
+<P ALIGN=LEFT STYLE="font-weight: medium">You do not have to do anything else at this time, but you will have to add cfg's and cheat detection checks later.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 3 - Copy The Game Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 3 - Copy The Game Files</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- Before you do anything else, create a copy of the cod4 folder using copy/paste. You will need this if you plan to run multiple servers or if something goes
+fubar on your server you will have a fresh copy of the files. Just copy/paste it anywhere convienient.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 4 - Create The Startup Shortcut|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 4 - Create The Startup Shortcut</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none">- Login to your box and open the cod4 folder.<BR>
+- Right click the <B>iw3mp.exe</B> file and select &quot;<B>Create Shortcut</B>&quot;. Drag the new shortcut to the desktop.<BR>
+- Right click the new shortcut and select <B>Properties</B>.<BR>
+- Find the <B>Target</B> field, you will see <B>&quot;C:\cod4\iw3mp.exe&quot;</B><BR>
+- Add the following to the end of the existing target, <B>do not delete or change</B> any of the existing target!
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; color: #000000; line-height: 0.2in; text-decoration: none">
+<FONT COLOR="#000000"><B>+set dedicated 2 +set net_ip 123.456.7890 +set net_port 28960 +set sv_maxclients 32 +set sv_punkbuster 1 +exec server.cfg +map_rotate</B></FONT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; line-height: 0.2in; text-decoration: none">
+<FONT COLOR="#ff0000">Note</FONT>: Make sure there is a space between iw3mp.exe&quot; and +set dedicated 2<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Change +set net_ip to your server IP.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Change sv_maxclients to how many player slots you want.<BR>
+Click Apply and OK.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><FONT COLOR="#0000ff"><B>Command Line Information</B></FONT><BR>
+The command line is what starts your server, it sets the global variables for a server such as the IP and Port.<BR>
+There are quite a few parameters you can use but I prefer to use the basics, the rest can be used in the server cfg to make changes much easier.<BR>
+This is the startup command line for the above instructions: (Windows Only)<BR>
+<B>&quot;C:\cod4\iw3mp.exe&quot; +set dedicated 2 +set net_ip 123.456.789.012 +set net_port 28960 +set sv_maxclients 32 +set sv_punkbuster 1 +exec server.cfg +map_rotate</B>
+</P>
+
+<H2 CLASS="western"><A NAME="Step 5 - The Server Configuration File|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 5 - The Server Configuration File</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">You will find that only certain variables can be changed when your server is stock, or in RANKED mode.<BR>
+Knowing this, and in combination with the startup command, all you need to run a stock RANKED server, is the server.cfg in the above download. Read the Readme-First.txt, it explains the files.<BR>
+Edit it to your needs, don't forget to set your rcon password and put the file in the &quot;C:\cod4\<B>main</B>&quot; folder of your server installation. The folder named <B>main</B>.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 6 - Starting and Joining The Server|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 6 - Starting and Joining The Server</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Double click the shortcut to start the server.<BR>
+If you get a DirectX error, you will need to install the DX9 and DX10 files in the above download. Unzip them and put them in your dedicated server's System32 folder. (C:/Windows/System32)<BR>
+Your server should now start if you didnt make any typo's or configuration errors. Wait for 10-15 minutes and
+go see if you can find it in the server browser. You may need to refresh a few times.<BR>
+If you can't find it, stop the server for approx. 30 minutes and try again.<BR>
+You can also use your console to connect, but sometimes it won't work. Once you choose your profile in multiplayer, open your console using the tilde (~) key.<BR>
+Type in <B>/connect xxx.xxx.xxx.xxx</B> (your server ip and port) and hit enter.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="1.7.Remote Start/Stop Tools|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Remote Start/Stop Tools</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">If you have your own box, chances are you need a remote start/stop tool so you don't have to share access to the box. These are my 3 favorites:<BR>
+<A HREF="http://www.serverdoc.com/">ServerDoc</A> (FREE - Easy install)<BR>
+<A HREF="http://www.firedaemon.com/">FireDaemon</A> (30 Day Trial - Starts at $39 a Month)<BR>
+<A HREF="http://www.tcadmin.com/">TCAdmin</A> (Nice GUI - Starts at $15.95 a Month)
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><A HREF="#Table1|table">Back to Top</A>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3 STYLE="font-size: 13pt">Stock ModWarfare Setup</FONT></FONT></H1>
+
+<H2 CLASS="western"><A NAME="Step 1 - The ModWarfare Server Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 1 - The ModWarfare Server Files</FONT></FONT></H2>
+
+<P ALIGN=LEFT> - Open the ModWarfare folder in the download.<BR>
+- Choose either the multiple file set or the single file, edit the server.cfg file and set the hostname, and rcon password.<BR>
+- Upload the files in the ModWarfare folder to the Mods/ModWarfare folder of your server. Just the files, not the folder itself.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 2 - Edit The Startup Command Line|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step 2 - Edit The Startup Command Line</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">NOTE</FONT>: The game <B>does not</B> recognize the capitol &quot;M&quot; for the Mods folder, you must use lowercase &quot;m&quot;.
+</P>
+
+<P ALIGN=LEFT>ModWarfare is your fs_game <FONT COLOR="#ff0000">m</FONT>ods/mod_folder. Notice the forward slash, and lower-case 'm' in 'mods'.<BR>
+In your command line, you will be adding this:<BR>
++set fs_game <FONT COLOR="#ff0000">m</FONT>ods/ModWarfare
+</P>
+
+<P ALIGN=LEFT>A lower-case 'm' in mods, and a forward slash. 
+</P>
+
+<P ALIGN=LEFT>The entire command line would look like this:<BR>
+&quot;C:\cod4\iw3mp.exe&quot; <B>+set fs_game</B> <FONT COLOR="#ff0000"><B>m</B></FONT><FONT COLOR="#000000"><B>ods</B></FONT><FONT COLOR="#ff0000"><B>/</B></FONT><FONT COLOR="#000000"><B>ModWarfare</B></FONT><FONT COLOR="#ff0000">
+</FONT><FONT COLOR="#000000"><B>+set dedicated 2 +set net_ip
+123.456.7890 +set net_port 28960 +set sv_maxclients 32 +set
+sv_punkbuster 1 +exec server.cfg +map_rotate</B></FONT>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3 STYLE="font-size: 13pt">Custom Mod Setup</FONT></FONT></H1>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 1 - Get The Mod File Set|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step 1 - Get The Mod File Set</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Note:</FONT> To better explain this, i will use <B>awe4</B> (lowercase) as an example. BR>
+- Download the <B>awe4</B> mod from <A HREF="http://www.raidersmerciless.com/">Raiders Game Net</A> and open it.<BR>
+- If necessary, create a folder called <B>awe4</B> and move all the <B>cfg</B>'s, <B>mod.ff</B>, and <B>z_awe4.iwd</B> into the new folder. (see below)<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/awe4.jpg" NAME="awe4" ALIGN=LEFT WIDTH=678 HEIGHT=341 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>- Rename mp-server.cfg to server.cfg. Open the server.cfg file and set the hostname, rcon password, and the HTTP Redirect. (see Step 4 below)<BR>
+<FONT COLOR="#ff0000">Note</FONT>: If the server.cfg for the mod has some of the same settings in it as your startup command line, like dedicated 2 or net_ip for example, disable them. You don't need them twice.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 2 - Setup The Server|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step 2 - Setup The Server</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- With FTP, open the &quot;<B>Mods</B>&quot; folder on your server.<BR>
+- Upload the &quot;<B>awe4</B>&quot; folder you created with all the cfg's and mod files to your servers &quot;<B>Mods</B>&quot; directory.<BR>
+- You should now have <B>both</B> the &quot;<B>awe4</B>&quot; folder and the &quot;<B>ModWarfare</B>&quot; folder in the same &quot;<B>Mods</B>&quot; directory. Side by side. (see below)<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/mods.jpg" NAME="mods" ALIGN=LEFT WIDTH=458 HEIGHT=175 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 3 - Create the Redirect Download Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Step 3 - Create the Redirect Download Files</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; color: #000000">In order to for players to download the needed mod files or custom maps 
+you are running, <B>you need a redirect to a webspace</B> to make it work.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- Create a folder called &quot;<B>cod4</B>&quot;.(most people use cod4, you can use w/e)<BR>
+- Open the &quot;<B>cod4</B>&quot; folder and create a folder called &quot;<B>mods</B>&quot;.<BR>
+- Create another folder called &quot;<B>usermaps</B>&quot;, right next to the &quot;<B>mods</B>&quot; folder. If you plan to use custom maps in the future, you will need this folder.<BR>
+- Now, copy or drag the &quot;<B>awe4</B>&quot; folder from Step 1 above into the &quot;<B>mods</B>&quot; folder you just created. (see below)<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/cod4.jpg" NAME="cod4" ALIGN=LEFT WIDTH=473 HEIGHT=303 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+- Delete everything in the <B>awe4</B> folder except the <B>mod.ff</B> and <B>z_awe4.iwd</B> files. Players need these two files only, the rest is serverside.<BR>
+- Upload the &quot;<B>cod4</B>&quot; folder and its contents to your websites Root directory (html folder or public_html folder, depending on your sites setup), keeping the file structure intact.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">NOTE</FONT>:You should be able to put the url in your browser (http://www.yourwebsite.com/cod4) and see the contents of the cod4
+folder, the &quot;<B>mods</B>&quot; and &quot;<B>usermaps</B>&quot; folders.<BR>
+If you can't view the files, you either installed the cod4 folder in the wrong place, or you have a permissions problem. Discuss permissions with your webhost if need be.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 4 - Setup The HTTP Redirect Download|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3><B>Step 4 - Setup The HTTP Redirect Download</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">All you need to do now is tell the server where the &quot;<B>cod4</B>&quot; folder is, the server will do the rest from there.<BR>
+- In the server.cfg file, scroll down to the HTTP Redirect Download section.<BR>
+- Find and change this line to the website address of the &quot;<B>cod4</B>&quot; folder you created: seta sv_wwwBaseURL &quot;<FONT COLOR="#ff0000">http://www.yourwebsite.com/base_directory&quot;</FONT><BR>
+- The server will look for a folder called &quot; <B>cod4</B>&quot; at the url you specify, so for example, make the url to the download look like this:<BR>
+seta sv_wwwBaseURL &quot;<FONT COLOR="#ff0000">http://www.yourwebsite.com/cod4</FONT>&quot;.
+It is <B>always one directory above</B> the &quot;usermaps&quot; or &quot;mods&quot; folders and <B>NO</B> trailing slash.</FONT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">EXAMPLE<BR>
+set sv_allowdownload &quot;1&quot;<BR>
+seta sv_wwwDownload &quot;1&quot;<BR>
+seta sv_wwwBaseURL &quot;<FONT COLOR="#ff0000">http://www.yourwebsite.com/cod4</FONT>&quot;<BR>
+seta sv_wwwDlDisconnected &quot;0&quot; (<FONT COLOR="#ff0000">IMPORTANT</FONT>: Set this to &quot;0&quot;)</FONT>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 5 - Edit The Startup Command Line|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Step 5 - Edit The Startup Command Line</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT SIZE=3><FONT COLOR="#ff0000">NOTE</FONT>:
+The game <B>does not</B> recognize the capitol &quot;M&quot; for the Mods folder, you must use lowercase &quot;m&quot;.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">awe4 is your fs_game <FONT COLOR="#ff0000">m</FONT>ods<FONT COLOR="#ff0000">/</FONT>mod_folder. Notice the forward slash, and lower-case 'm' in 'mods'<BR>
+In your command line, you will be adding this:<BR>
++set fs_game <FONT COLOR="#ff0000">m</FONT>ods<FONT COLOR="#ff0000">/</FONT>awe4
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">A lower-case 'm' in mods, and a forward slash.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Finally, you need to change the command line to activate the awe4 mod:<BR>
+<B>+set fs_game <FONT COLOR="#ff0000">m</FONT>ods<FONT COLOR="#ff0000">/</FONT>awe4 +set dedicated 2 +set net_ip 123.456.7890 +set net_port 28960 +set
+sv_maxclients 32 +set sv_punkbuster 1 +exec server.cfg +map_rotate</B><BR>
+Thats it! Just start your server.</FONT>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3>Adding Custom Maps</FONT></FONT></H1>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">You <B>MUST</B> have either ModWarfare or a custom mod like awe4 running to use custom maps.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">IMPORTANT</FONT>:<BR>
+- Since the 1.5 patch, you no longer need to put a map .iwd file in the Mods/your_mod directory. All map files belong in their own folder, the mp_mapname directory, so don't move them even if the
+readme that comes with the map tells you to.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">For custom maps to download to players, you have to have the files in <B>two places at the same time</B>. One
+set on the server, and one set on a website or file server of some sort.<BR>
+Otherwise, the server will try to download the files to the player so slow that it can disconnect or timeout.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 1 - Create the Server Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3 STYLE="font-size: 13pt">Step 1 - Create the Server Files</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">You may already have some of the folders mentioned in this part from creating/installing a mod, so adjust where necessary.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">For this guide we will use a map called &quot;<B>mp_balarda</B>&quot; as an example.<BR>
+- Make a new folder called &quot;<B>usermaps</B>&quot;.<BR>
+- Open the &quot;<B>usermaps</B>&quot; folder and create a new folder naming it exactly the same as the map, in this case the folder would be called &quot;<B>mp_balarda</B>&quot;.<BR>
+- Unzip the map file and put the <B>mp_balarda.ff</B>, <B>mp_balarda.iwd</B>, and <B>mp_balarda_load.ff </B> files into the &quot;<B>mp_balarda</B>&quot; folder you created.<BR>
+Remember, all files of every custom map go into its own folder.<BR> 
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/usermaps.jpg" NAME="usermaps" ALIGN=LEFT WIDTH=510 HEIGHT=347 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+- Log into your server with FTP, and upload the &quot;<B>usermaps</B>&quot; folder and its contents right next to the other folders such as main, miles, Mods, pb and so on.<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/usermaps1.jpg" NAME="usermaps1" ALIGN=LEFT WIDTH=363 HEIGHT=423 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Step 2 - Create the Redirect Download Files|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3><B>Step 2 - Create the Redirect Download Files</B></FONT></FONT></H2>
+
+<P STYLE="font-weight: medium">
+- Open the &quot;<B>cod4</B>&quot; folder on your webspace or redirect site that you created earlier.<BR>
+- Upload the &quot;<B>usermaps</B>&quot; folder to the &quot;<B>cod4</B>&quot; folder, right next to the &quot;<B>mods</B>&quot; folder you created earlier.<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/cod41.jpg" NAME="cod41" ALIGN=LEFT WIDTH=473 HEIGHT=159 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- Add the map to your mapstring on the server and
+restart. (Remember, we're using ModWarfare or a custom mod, so edit the right cfg files)<BR>
+As long as you have the file structures correct and in the correct places, and your Redirect setup properly, all should work as designed.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="5.Step 3 - Testing|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3><B>Step 3 - Testing</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">To test, jump on your server, you should get the downloads as you join. If the speed drops to around 12-20KB/sec, your redirect is not working. Double check your 
+setup.<BR>
+Login with the admin password, and issue the map command <FONT COLOR="#ff0000">/rcon map mp_balarda</FONT><BR>
+Add the map to your map rotation. ex. &quot;gametype war map mp_balarda&quot;
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff; text-decoration: none"><A NAME="Cleaning a Map .IWD File|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Cleaning a Map .IWD File</FONT></FONT></H2>
+
+<P STYLE="text-decoration: none"><B>This is old info and is rarely needed anymore, but i left it here just in case.</B>
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">Many maps have what is referred to as a 'dirty' .iwd file. These can be older maps or maps not compiled correctly and contain unnecessary files 
+that can cause many errors including download looping, map rotation errors, and a few others. 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">These maps can be fixed quite easily and is effective 95% of the time.<BR>
+You will need winrar to edit or 'clean' the files. The newest trial version is available <A HREF="http://www.rarlab.com/download.htm">here</A>.
+</P>
+
+<P ALIGN=LEFT STYLE="text-decoration: none">- Install winrar<BR>
+- Double click the map .iwd file, choose 'Select a program from a list' and select Winrar.<BR>
+- Uncheck the box next to 'Always use the selected program to open this kind of file' (a safety precaution) and click ok.<BR>
+- Delete everything except the 'images' folder and the 'sounds folder if it exists.<BR>
+- Only a few maps will have fx scripts folders.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none">'Dirty' Example<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/dirty.jpg" NAME="dirty" ALIGN=LEFT WIDTH=406 HEIGHT=316 BORDER=0><BR CLEAR=LEFT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none"><BR>
+- Browse the contents of the images folder and make sure that there are only .iwi files, period, nothing else.<BR>
+- If there is a readme anywhere else in the .iwd, delete it.
+</P>
+
+<P ALIGN=LEFT STYLE="text-decoration: none">'Clean' Example<BR>
+<IMG SRC="http://guides.tntblowout.com/cod4/pics/clean.jpg" NAME="clean" ALIGN=LEFT WIDTH=405 HEIGHT=313 BORDER=0><BR CLEAR=LEFT>
+</P><BR>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; text-decoration: none">- Use winrar to repack the files, naming it exactly as it was before you opened it, but, make sure you choose ZIP under the Archive
+Format section.</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><A HREF="#Table1|table">Back to Top</A>
+</P>
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000; text-decoration: none"><FONT COLOR="#ff0000"><FONT SIZE=3><B>Multiple
+Server Installation</B></FONT></FONT></H1>
+
+<H2 CLASS="western" STYLE="color: #0000ff; text-decoration: none"><A NAME="Option 1 - Multiple Game File Installs|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3><B>Option 1 - Multiple Game File Installs</B></FONT></FONT></H2>
+
+<P STYLE="font-weight: medium; text-decoration: none">This option requires that you copy/paste the game install as many times as needed.<BR>
+- Using the install guide, install a server and get it totally functional, including punkbuster. Join the server and make sure screenshots, logfiles, everything is working.<BR>
+Once everything is verified to be working, stop the server.<BR>
+- Open C: on your box, and create a folder called &quot;<B>servers</B>&quot;, or &quot;<B>cod4servers</B>&quot;, w/e you want, but i'll use &quot;<B>servers</B>&quot;.<BR>
+- Copy/paste the working server folder into the &quot;<B>servers</B>&quot; folder and name it cod41, repeat naming the next one cod42, then cod43, you get the idea.
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">This is a good time to decide a permanent naming convention for eachs erver folder, trust me, down the road you'll be glad you did.<BR>
+One way is have different size servers and name them that way, cod420, cod424, cod432, etc. Or, you can name them by gametype, tdm, hardcore, koth.
+So think about it for a minute, then name them.
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">- Create the desktop shortcuts next, naming them the same as each server, so you can tell them apart.<BR>
+- Edit the Target fields of the shortcuts, setting the command line, assigning ip's, ports, and so on.<BR>
+- Edit your server cfgs for each server, check/edit your PB cfg's as well.<BR>
+If you have multiple IP's on your box, use one for each server. If you have only one IP, just use different port numbers. E.G. 28960, 28961, 28962 etc etc.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff; text-decoration: none"><A NAME="Option 2 - Single Game File Install|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3><B>Option 2 - Single Game File Install</B></FONT></FONT></H2>
+
+<P STYLE="font-weight: medium; text-decoration: none">This option uses one game file install, with custom command line settings and individual server file sets.<BR>
+- Using the install guide, install a server and get it totally functional, including punkbuster. Join the server and make sure screenshots, logfiles, everything is working.<BR>
+Once everythings verified, stop the server. You should have a working server at <B>C:\cod4</B><BR>
+- On your box, open C: and create a folder called &quot;<B>servers</B>&quot;.<BR>
+- Open the &quot;<B>servers</B>&quot; folder, create 3 server folder sets, cod41, cod42, cod43, each one containing a &quot;<B>main</B>&quot; folder, a &quot;<B>pb</B>&quot; folder, and a 
+&quot;<B>mods</B>&quot; folder.<BR>
+- Open the &quot;<B>mods</B>&quot; folder and create a folder called &quot;<B>modwarfare</B>&quot;.
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">Folder - cod41<BR>
+-main<BR>
+-pb<BR>
+-mods<BR>
+-mods/modwarfare
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">- Add a server.cfg to each '<B>main</B>' folder and PB cfg's to each PBfolder.<BR>
+- Open the cod4 folder and create 3 shortcuts to <B>iw3mp.exe</B> (Step 4 of install guide), rename them to reflect each server, and drag them to the desktop. <BR>
+- Using Step 4 of the install guide as a reference, change the Target line for cod41 to this:<BR>
+<B>C:\cod4\iw3mp.exe +set fs_homepath &quot;C:/servers/cod41&quot; +set fs_basepath &quot;C:/cod4&quot; +set dedicated 2 +set net_ip 123.456.789.012 +set net_port 28960 +set sv_maxclients 32 +set
+sv_punkbuster 1 +exec server.cfg +map_rotate</B>
+</P>
+
+<P STYLE="font-weight: medium; text-decoration: none">fs_homepath = Your individual server folders you created. (C:\servers\cod41, cod42, etc)<BR>
+fs_basepath = Your cod4 game files install. (C:\cod4)
+</P>
+
+<P STYLE="font-weight: medium">Repeat for the other two shortcuts.<BR>
+Each server will load all files on basepath, and then load all files on homepath. Each server will generate its own logfiles, screenshots etc.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; line-height: 0.2in"><FONT COLOR="#0000ff"><B>Installing Mods and Game Patches</B></FONT><BR>
+- Mods are installed on your servers like normal ( C:\servers\cod41\Mods\your_mod ), but you <B>MUST</B> install the same mod on the game file install ( C:\cod4\Mods\your_mod) for them to work.<BR> 
+This was either missed by the devs or is a bug. (May be fixed now)<BR>
+- Patches for the game and punkbuster will have to be applied manually to the game files install.( C:\cod4 )
+</P>
+
+<P><BR>
+</P>
+<P><A HREF="#Table1|table"><SPAN STYLE="font-weight: medium">Back to Top</SPAN></A></P>
+<P><BR>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3>Home PC Server Installation</FONT></FONT></H1>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Router Requirements|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Router Requirements</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Due to hundreds of different router configurations, there's no real way to guide you in the setup.
+However, what I can do is give you a quick overview of what you need to do, and point you in the right direction for the information you will need.
+</P>
+
+<P>What you will need to do is create a new IP, or called a static IP, in your router, and then point the proper game ports to that IP.
+You might even try placing that IP in the DMZ zone of your router as well.<BR>
+Players will connect to your server using your EXTERNAL IP, the one supplied to you by your internet service provider, while you will connect to the server using the Local option of the ingame
+browser.<BR>To begin, go to this link <A HREF="http://www.portforward.com/english/routers/port_forwarding/routerindex.htm">HERE</A> and find your router or a close model. 
+On the next page look for Call of Duty 4, the procedure will be explained from there.
+</P>
+
+<P STYLE="font-weight: medium">- You will need to allow the following ports:<BR>
+UDP 20800<BR>
+UDP 20810<BR>
+UDP 28960 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><B>Additional Resources</B><BR>
+http://www.olddogvt.net/cod-firewall<BR>
+http://www.portforward.com
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Determine Server Size|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Determine Server Size</FONT></FONT></H2>
+
+<P STYLE="font-weight: medium">- Before you put your server online, you should try to determine how many players your server will support with minimal lag and max performance.<BR>
+Rudedog of FPSadmin.com has posted this formula that works quite well in determining server max rate and max players:<BR>
+http://www.fpsadmin.com/forum/showthread.php?t=9016
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="Server Setup|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Server Setup</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- Copy your Call of Duty 4 - Modern Warfare folder and paste it into &quot;C&quot;. Rename it to
+&quot;cod4server&quot;. The path will be &quot;C:\cod4server&quot;<BR>
+The reason for this is simple, using your game install as the server, which you can, is a bad idea. If you need to reinstall your game for some reason, you'll loose your server setup.<BR>
+- If you don't know your IP, you can get it at www.whatismyip.com, write it down of course.<BR>
+- The download you retrieved earlier has server configs for both a Stock Ranked server and a set for ModWarfare, in the homepc-server folder.<BR>
+- Open the server.cfg and set your rcon password and hostname, and save.<BR>
+- Put the server.cfg in your &quot;C:\cod4server\<B>main</B>&quot; folder. The folder named <B>main</B>.<BR>
+- Create a shortcut to iw3mp.exe and name it cod4server or w/e so you know what it is, and move it to your desktop.<BR>
+- Right click the shortcut and choose &quot;Properties.<BR>
+- Edit the &quot;Target&quot; line so it looks like this, click &quot;Ok&quot; and close the properties:
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><B>C:\cod4server\iw3mp.exe +set dedicated 2 + set net_ip 123.456.789 +set net_port 28960 +set sv_punkbuster 1 +set sv_maxclients 8 +exec server.cfg +map_rotate</B>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in; line-height: 0.2in; text-decoration: none">
+<FONT COLOR="#ff0000">Note</FONT>: Make sure there is a space between iw3mp.exe and +set dedicated 2<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Change +set net_ip to your EXTERNAL IP.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Change sv_maxclients to how many player slots you want.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Make sure <B>both</B> cod4server <B>and</B> iw3mp.exe are allowed in the Windows Firewall, under the &quot;Exceptions&quot; tab usually.<BR>
+If you use a Norton or McAffee type software firewall, you will need to allow the same in their respective exceptions as well.<BR>
+(NOTE: Sometimes you just have to turn all the firewalls off, so be prepared to do so.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">- Your server should now start by using the shortcut you created.<BR>
+</P>
+
+<P><A HREF="#Table1|table">Back to Top</A>
+</P>
+
+<P><BR>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3>Server Administration</FONT></FONT></H1>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="7.1.Logging Into Rcon|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Logging Into Rcon</FONT></FONT></H2>
+
+<P STYLE="font-weight: medium">The rcon password is set in the server.cfg file, you must first login to rcon on the server before you can issue admin commands.<BR>
+Join your server and open the console with the tilde key (~).<BR>
+Type in '/rcon login yourpassword' (without the quotes) and replace yourpassword with the password you set in the server.cfg, and hit Enter.<BR>
+Note: Always use, and never forget, the forward slash &quot;/&quot; when logging in or issuing commands, you will broadcast your rcon password to the other players on the server.<BR>
+Note: To expand console to full screen, hold down Shift and hit the tilde (~) key.
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="7.2.Custom Desktop Shortcut|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Custom Desktop Shortcut</FONT></FONT></H2>
+
+<P STYLE="font-weight: medium">This creates a custom shortcut directly to your server, gives you rcon, and puts you in a private slot if you have that configured in your server.cfg.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Right click your MP desktop shortcut and choose Copy. <BR>Right click your desktop and choose Paste.<BR>
+Right click your new shortcut and choose Rename.<BR>
+Rename it to w/e you want it to be called.<BR>
+Right click the shortcut and choose Properties.<BR>
+In the Target field you will see this:<BR>
+&quot;C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe&quot;<BR>
+At the very end, after the quote mark, click there so you have a blinking cursor, then hit space one time. 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Copy this and paste it in:<BR>
++rcon login ***** +password ***** +connect xxx.xxx.xxx.xxx:28960&quot;
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">It should look like this when done:<BR>
+&quot;C:\Program Files\Activision\Call of Duty 4 - Modern Warfare\iw3mp.exe&quot; +rcon login ***** +password ***** +connect xxx.xxx.xxxx:28960&quot; 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Note</FONT>: Replace the *****'s with your passwords for rcon and private slot. Replace the x's with your server IP.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: This will take you right into the server with the last profile you selected in multiplayer.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: Also note that you can edit in the IP and Port and share this as is, the rcon and password settings will be ignored.
+</P>
+
+<P><BR>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="7.3.Rcon Commands|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3>Rcon Commands</FONT></FONT></H2>
+
+<P ALIGN=CENTER STYLE="color: #000000"><FONT COLOR="#000000"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Commonly Used Commands</B></FONT></FONT>
+</P>
+
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=62*>
+	<COL WIDTH=63*>
+	<COL WIDTH=57*>
+	<COL WIDTH=74*>
+	<TR>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER><B>Task</B></P>
+		</TD>
+		<TH WIDTH=25% VALIGN=TOP>
+			<P>Usage</P>
+		</TH>
+		<TH WIDTH=22% VALIGN=TOP>
+			<P>Example</P>
+		</TH>
+		<TH WIDTH=29% VALIGN=TOP>
+			<P>Description</P>
+		</TH>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Logging in to rcon 
+			</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon login password</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon login superdude</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Gives player
+			administrative rights on server. 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Display Server
+			Information</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon serverinfo</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon serverinfo</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Shows the current
+			server settings.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Display System
+			Information</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon systeminfo</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon systeminfo</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Shows the current
+			System Information.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Display Player
+			Information</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon status</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon status</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Displays info for all
+			players on the server.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24% HEIGHT=21>
+			<P ALIGN=CENTER>Change a Map</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon map map_name</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/ron map mp_crash</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Loads the map
+			specified by mapname.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Rotate to Next Map</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon map_rotate</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon map_rotate</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Loads next map in
+			rotation.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Reload a Map</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon map_restart</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon map_restart</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Restarts round. Any
+			gametype and round limit setting changes will take effect. 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Fast Restart a Map</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon fast_restart</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon fast_restart</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Restarts the current
+			map.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=24%>
+			<P ALIGN=CENTER>Execute a Config</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER>/rcon exec
+			filename.cfg</P>
+		</TD>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER>/rcon exec rifles.cfg</P>
+		</TD>
+		<TD WIDTH=29%>
+			<P ALIGN=CENTER>Executes a Server
+			Config File <BR>(located in your server's main directory)</P>
+		</TD>
+	</TR>
+</TABLE>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Other
+Commonly Used Commands</B></FONT>
+</P>
+
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=55*>
+	<COL WIDTH=65*>
+	<COL WIDTH=65*>
+	<COL WIDTH=71*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Task</B></FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Usage</B></FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Example</B></FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Description</B></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Change
+			Gametype</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			g_gametype type</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			g_gametype koth</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Sets
+			gametype. Requires a map restart to take effect.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Auto
+			Team Balancing</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_teambalance [0-1]</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_teambalance 1</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Force
+			team balance off (0), on (1) </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Friendly
+			Fire</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_team_fftype [0-3]</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_team_fftype 1</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>FF off
+			(0), on (1), reflect (2), shared (3) </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Spectate
+			Type</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_game_spectatetype <FONT SIZE=3>[0-2]</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_game_spectatetype <FONT SIZE=3>2</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Disabled
+			(0), Team/Players Only (1), Free (2)</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kill
+			Camera</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_game_allowkillcam <FONT SIZE=3>[0-1]</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			scr_game_allowkillcam <FONT SIZE=3>1</FONT></FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Force
+			killcam off (0), on (1)</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Private
+			Chat to Player</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			tell [client #] [message] </FONT>
+			</P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			tell 3 Hello Player</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Sends
+			private message to a player.</FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=22%>
+			<P ALIGN=CENTER><FONT SIZE=3>Chat Via
+			Console</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			say [message]</FONT></P>
+		</TD>
+		<TD WIDTH=25%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			say Hello Player</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>Messages
+			are shown in game preceded by </FONT><EM><FONT SIZE=3>console:</FONT></EM>
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><BR>
+</P>
+
+<P ALIGN=CENTER STYLE="margin-bottom: 0in"><FONT SIZE=3 STYLE="font-size: 13pt"><B>Kick and Ban Commands</B></FONT>
+</P>
+
+<TABLE WIDTH=100% BORDER=1 BORDERCOLOR="#000000" CELLPADDING=4 CELLSPACING=3>
+	<COL WIDTH=46*>
+	<COL WIDTH=71*>
+	<COL WIDTH=71*>
+	<COL WIDTH=68*>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Task</B></FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Usage</B></FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Example</B></FONT></P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER><FONT SIZE=3><B>Description</B></FONT></P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick a
+			Player by ID</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			clientkick [ID]</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			clientkick 3</FONT></P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick
+			player from server by client number. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick a
+			Player by Name</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			onlykick [Name]</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			kick Playername</FONT></P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick
+			player by name from the server. </FONT>
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick a
+			Player by Colored Name</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			kick [Name]</FONT></P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER><FONT SIZE=3>/rcon
+			kick ^1Playername</FONT></P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER><FONT SIZE=3>Kick
+			player by colored name from the server.</FONT><BR>(Must include
+			Color Codes)</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Kick All Players</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon kick all 
+			</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon kick all</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Kicks all players
+			from server.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Kick All Players</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon onlykick all 
+			</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon onlykick all</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Kicks all players
+			from server.</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Ban a Player by ID</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon banClient [ID]</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon banClient 3</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Bans a user by their
+			client number.<BR>Writes their GUID to ban.txt</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Ban a Player by Name</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon banUser [Name]</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon banUser
+			playername</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Bans a user by their
+			ingame name. <BR>Writes their GUID to ban.txt</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Temp Ban a Player by
+			ID</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon tempBanClient
+			[ID]</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon tempBanClient 3</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Kicks and temp bans
+			player by client id from server. 
+			</P>
+		</TD>
+	</TR>
+	<TR VALIGN=TOP>
+		<TD WIDTH=18%>
+			<P ALIGN=CENTER>Temp Ban a Player by
+			Name</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon tempBanUser
+			[Name]</P>
+		</TD>
+		<TD WIDTH=28%>
+			<P ALIGN=CENTER>/rcon tempBanUser
+			playername</P>
+		</TD>
+		<TD WIDTH=27%>
+			<P ALIGN=CENTER>Kicks and temporarily
+			bans player by name from server.</P>
+		</TD>
+	</TR>
+</TABLE>
+
+<P><BR><BR>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="7.4.Remote Admin Tools|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Remote Admin Tools</FONT></FONT></H2>
+
+<P STYLE="font-weight: medium">CoD4 does not have an ingame admin function other than rcon commands. Between these tools and the PB Webtool, you can perform any needed functions.<BR>
+To use these tools or PB Webtool, you must minimize your game screen or run them from another pc on a home network.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><A HREF="http://www.rconfiles.com/">Rcon Commander</A><BR>
+<A HREF="http://www.rconmax.co.uk/">Rcon Max</A><BR>
+<A HREF="http://www.codhq.com/">Modern Rcon</A><BR>
+<A HREF="http://www.hlsw.net/">Half-Life Server Watch</A><BR>
+<A HREF="http://www.tatakai.co.uk/">Tatakai Server Scan</A>
+</P>
+
+<P><BR>
+</P>
+
+<P><A HREF="#Table1|table">Back to Top</A></P>
+<P><BR>
+</P>
+
+<H1 CLASS="western" STYLE="color: #ff0000"><FONT COLOR="#ff0000"><FONT SIZE=3 STYLE="font-size: 13pt">Punkbuster Information</FONT></FONT></H1>
+
+<P ALIGN=CENTER><SPAN STYLE="font-weight: normal">Cheat detection for Punkbuster is accomplished by the use of cvar and md5 checks that you must add to your server.<br> 
+You can get these from anti-cheat groups on the internet and some are listed in this document.<BR>
+You need to join these groups and meet their requirements to gain access to the &quot;private&quot; checks they have to offer.<BR>
+I suggest you join <A HREF="http://www.pbbans.com/">PBBans</A> immediately, you can stream your logs to multiple Anti Cheat groups automatically, as well as have live banning to your server.</SPAN>
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="8.1.Anti Cheat Groups|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3>Anti Cheat Groups</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><A HREF="http://www.anticheatinc.com/">ACI</A><BR>
+<A HREF="http://www.pbbans.com/">PBBans</A><BR>
+<A HREF="http://www.punksbusted.com/">Punksbusted</A><BR>
+<A HREF="http://www.evenbalance.com/">Evenbalance</A>
+(PunkBuster)
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="8.2.General Information|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>General Information</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">Note</FONT>: Not all Punkbuster functions work from game to game, so this info is somewhat generic.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">These are links to the Evenbalance CoD4 sections.<BR>
+<FONT COLOR="#ff0000">Reference</FONT>: <A HREF="http://www.evenbalance.com/publications/cod4-ad/index.htm">Punkbuster for Admins</A><BR>
+<FONT COLOR="#ff0000">Reference</FONT>: <A HREF="http://www.evenbalance.com/publications/cod4-pl/index.htm">Punkbuster for Players</A> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">This is a link to the Punksbusted's PB Wiki.<BR>
+<FONT COLOR="#ff0000">Reference</FONT>: <A HREF="http://www.punksbusted.com/wiki/index.php/Main_Page">PsB Wiki</A>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">This is a brief description of the files included in the download:<BR>
+<FONT COLOR="#ff0000"><B>pbsv.cfg</B></FONT><BR>
+This file is Punkbusters's server cfg file. It contains all the basic settings for your server, including the commands to execute additional cfg files.<BR>
+<FONT COLOR="#ff0000"><B>pbsvuser.cfg</B></FONT><BR>
+This file is used to load all the anti-cheat checks.<BR>
+<FONT COLOR="#ff0000"><B>pbsvlog.cfg</B></FONT><BR>
+This file contains the streaming info to stream your server toboth Punksbusted and PBbans.<BR>
+<FONT COLOR="#ff0000"><B>pbbans.dat</B></FONT><BR>
+This is the PB banlist. It is currently empty.<BR>
+<FONT COLOR="#ff0000"><B>pbucon.use</B></FONT><BR>
+This file is from the live banning feature of Punkbuster. It is needed by PBbans.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">
+</P>
+
+<H2 CLASS="western"><A NAME="8.3.The Server Files|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3>The Server Files</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">The download at the beginning of this doc has all the pb files mentioned above.<BR>
+Open <B>pbsv.cfg</B> with Notepad and scroll to the section called PB WEBTOOL SETTINGS.<BR>
+Edit the <B>HttpAddr</B> with your server ip. Just the ip, no port number. It is set at 9025.<BR>
+Edit the <B>HttpKey</B> line, this is your Webtool access password, use a good password, security is everything!!<BR>
+Upload all the files from the zip to your servers '<B>pb</B>' folder.<BR>
+Restart your server.
+</P>
+
+<H2 CLASS="western"><A NAME="8.4.Checking and Updating PB|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3><B>Checking and Updating PB</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">You should now be able to go to your Punkbuster Server Webtool. The url would be like this:<B>
+http://xxx.xxx.xxx:9025</B><BR>
+The x's are your server IP, and 9025 is the port number set in the pbsv.cfg. If you get a error, double check the url you typed in, double check the pbsv.cfg, and if
+you still get an error contact your game server provider, perhaps they only allow certain ports for PB.<BR>
+Remember that if you find an error and change something, you have to restart your server and check the url again.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Assuming you can see your Webtool, look at the bottom of the page for the version number of PB running on your server. It should look like this: v1.740 v2.200 | A1407.<BR>
+The number on the left is the server version that is running, the number on the right is the required client version number.<BR>
+Go to <A HREF="http://www.evenbalance.com/">Evenbalance</A> and look at the Call of Duty 4 listing to see if yours is current, if not, go back to your Webtool.<BR>
+Put your password into the Webkey field and click the &quot;Command Screen&quot; button.<BR>
+Next, click the &quot;pb_sv_update&quot; button. In about 10-15 minutes, come back to the webtool, login, and click the &quot;pb_sv_restart&quot; button.<BR>
+Check your version number again in a few minutes, you should be good to go.<BR>
+<FONT COLOR="#ff0000">Note</FONT>: <B>DO NOT</B> click the &quot;pb_sv_writecfg&quot; button, it will wipe out your pbsv.cfg file.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#0000ff"><FONT SIZE=3><B>Other Update Methods</B></FONT></FONT><BR>
+The cfg's in the zip file above have the update command in them, under normal circumstances the server will update itself.<BR>
+- You can use pbsetup if you installed it on your box, just remember to check the PB server version number afterwards, i have had it update to the old version before.<BR>
+- You can login with rcon and execute the command <FONT COLOR="#ff0000">/rcon pb_sv_update</FONT>. A few minutes later, you need to issue the command <FONT COLOR="#ff0000">/rcon pb_sv_restart</FONT>.<BR>
+- You can get the server update file from Evenbalance, upload it to your servers pb folder and restart the server, the file is located on this page 
+<A HREF="http://www.evenbalance.com/index.php?page=dl-cod4.php">here</A>.<BR>
+- Some server providers provide a PB Update link in their gamepanels.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">
+</P>
+
+<H2 CLASS="western" STYLE="color: #0000ff"><A NAME="8.5.Additional Features|outline"></A>
+<FONT COLOR="#0000ff"><FONT SIZE=3>Additional Features</FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">There are many features to PB, they are in the <B>pbsv.cfg</B> in the download. Again, not all functions work from game to game.<BR>
+<FONT COLOR="#ff0000">Note:</FONT> The brackets &gt;<FONT COLOR="#ff0000">[]</FONT>&lt; are not used!
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">pb_sv__BadName</FONT>
+[grace_seconds] [name-or-text]<BR>
+EXAMPLE - <FONT COLOR="#ff0000">pb_sv_badname 0 www</FONT>.<BR>
+Adds a bad name to the server to disallow, such as player names, or even a clan tag.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">pb_sv_NameLock</FONT> [GUID or partial match] [Name to Lock]<BR>
+EXAMPLE - <FONT COLOR="#ff0000">pb_sv_NameLock 1234567890qwertyuiop &quot;theMechanic&quot;</FONT><BR>
+This locks a GUID to a name, anyone that trys to use that name and does not match the GUID, will be kicked from the server.<BR>
+NameLocks are not stored to disk automatically so Admins should add these to the pbsv.cfg file in order to have NameLocks extend to future server sessions. 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><FONT COLOR="#ff0000">pb_sv_powerguid</FONT> [GUID] [Powerpoints] [Name]<BR>
+EXAMPLE - <FONT COLOR="#ff0000">pb_sv_powerguid 1234567890qwertyuiop 99 theMechanic</FONT><BR>
+PB Player Power works with PBrcon to give server admins the abiltiy to have &quot;deputy admins&quot; by assigning point levels and commands to each admin.<BR>
+This way your server can be patroled by trusted players without giving out the actual rcon password to the server.<BR>
+In my example above, i have 99 power points. In reality, you should only use 99 points as your top level because if someone with 100 points joins the server, it will disable everyones power but theirs.<BR> 
+The following is an example of 3 power levels and a list of <B>some</B> of the commands you can set:
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">The example levels are as follows:<BR>
+Basic - 25 Points - Kick/Screenshots<BR>
+Intermediate - 50 Points - Kick/Screenshots/Say/Ban/Badname<BR>
+Advanced - 99 Points - All PB Commands 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">All commands are done thru console, and most commands are preceded with /pb_rcon. 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">So, say you want to kick a player for using bad language.<BR>
+Open console and type in pb_plist and hit enter.<BR>
+This will list the players, and next to each one is their slot number, the player you want to kick is in slot #3.<BR>
+Enter the command like this- /pb_rcon pb_sv_COMMANDHERE PLAYERSLOT# VARIABLE<BR>
+So you would issue this command: <FONT COLOR="#ff0000">/pb_rcon pb_sv_kick 3 10 language</FONT><BR>
+This would kick player in slot #3 for 10 minutes for language. 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Each command has some different variables required, heres the shortlist explanation: 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_plist - This will display the players, their slot number, and at least the last 8 digits of their guid.<BR>
+Usage: <FONT COLOR="#ff0000">pb_plist</FONT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_sv_badname [grace_seconds] [name-or-text] - This can be used for people with foul language in their names, or to permanently ban a clan by using their 
+tag.<BR>
+Usage: <FONT COLOR="#ff0000">/pb_rcon pb_sv_badname 0 name-or-text</FONT> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_sv_ban [name or slot #] [displayed_reason] [optional_private_reason] - Bans the player and displays the reason banned to to public.<BR>
+Usage: <FONT COLOR="#ff0000">/pb_rcon pb_sv_ban slot# reason</FONT> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_sv_getss [player_name_or_slot#] - This will get a screenshot of a player and put it in your CoD4/pb/scrnshot folder in YOUR game install.<BR>
+Usage: <FONT COLOR="#ff0000">/pb_rcon pb_sv_getss slot#</FONT> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_sv_kick [name or slot #] [minutes] [displayed_reason] - This will kick a player for a
+specified amount of time and display the reason to the public, see example above.<BR>
+Usage: <FONT COLOR="#ff0000">/pb_rcon pb_sv_kick slot# minutes reason</FONT> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">Command: pb_sv_rlist - This will display all available pbRcon commands loaded onto the server.<BR>
+Usage: <FONT COLOR="#ff0000">/pb_rcon pb_sv_rlist</FONT> 
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">This is the current list of commands set in the pbsv.cfg for PBrcon and the points required for access:<BR>
+pb_sv_rcon 99 pb_sv<BR>
+pb_sv_rcon 50 pb_sv_ban<BR>
+pb_sv_rcon 50 pb_sv_badname<BR>
+pb_sv_rcon 50 pb_sv_say<BR>
+pb_sv_rcon 25 pb_sv_map<BR>
+pb_sv_rcon 25 pb_sv_mute<BR>
+pb_sv_rcon 25 pb_sv_kick<BR>
+pb_sv_rcon 25 pb_sv_getss
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">
+</P>
+
+<H2 CLASS="western"><A NAME="8.6.Server Messages/Tasks|outline"></A><FONT COLOR="#0000ff"><FONT SIZE=3><B>Server Messages/Tasks</B></FONT></FONT></H2>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">pb_sv__Task [X] [Y] [command]<BR>
+Adds a task to PB's Task List; The Task will be executed X seconds after entry and every Y seconds thereafter; use -1 for Y if a one-time task is desired; this can be used to execute game
+server commands, PB commands, and messages.
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">For messages, what this means is the message will load X seconds after PB starts, and repeat every Y seconds.<BR>
+This is the example message command in the pbsv.cfg. 90 is X , 400 is Y, say is the command, and the message is Welcome to our server, enjoy and have fun!<BR>
+<FONT COLOR="#ff0000">pb_sv_task 90 400 say Welcome to our server,enjoy and have fun!</FONT>
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in">
+</P>
+
+<P ALIGN=LEFT STYLE="margin-bottom: 0in"><A HREF="#Table1|table">Back to Top</A></P>
+</BODY>
+</HTML>

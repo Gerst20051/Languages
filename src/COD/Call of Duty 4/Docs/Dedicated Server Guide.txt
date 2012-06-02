@@ -1,0 +1,132 @@
+Call of Duty 4 Dedicated Server Guide
+
+Required Ports
+-----
+UDP 20800
+UDP 20810
+UDP 28960
+
+starting a dedicated server
+----------------------------
+LAN server
+] iw3mp.exe +set dedicated 1
+
+Internet server
+] iw3mp.exe +set dedicated 2
+
+Modded server
+] iw3mp.exe +set dedicated [1,2] +set fs_game "mods/<modname>"
+
+start map
+] map <mapname>
+
+example usage:
+] iw3mp.exe +set dedicated 2 +exec my_server.cfg +map mp_crash
+
+my_server.cfg contains customized settings which are detailed below.
+syntax: set <dvar> <value>
+
+server commands
+---------------
+] killserver
+] quit
+] map_restart
+] say "my message"
+] tell [clientnum] "my message to you"
+
+server settings
+--------------
+map rotation
+] sv_mapRotation gametype <gametype> map <mapname> gametype <gametype> map <mapname> ...
+
+<gametype> is one of:
+"dm" - free for all deathmatch
+"dom" - domination
+"koth" - headquarters
+"sab" - sabotage
+"sd" - search & destroy
+"war" - team deathmatch
+
+] sv_hostname "my server"
+] g_gametype <gametype>
+] sv_maxclients [1-32]
+] g_password "my password"
+] sv_voice [0-1]
+] scr_teambalance [0-1]
+] g_allowvote [0-1]
+] sv_punkbuster [0-1]
+] sv_minping [0-n] (milliseconds)
+] sv_maxping [0-n] (milliseconds)
+] sv_connectTimeout [0-n] (seconds)
+] sv_timeout [0-n] (seconds)
+
+gameplay options
+----------------
+] scr_oldschool [0-1]
+] scr_hardcore [0-1]
+] scr_game_spectatetype [0-2] (Disabled, Team/Players Only, Free)
+] scr_game_allowkillcam [0-1]
+] scr_team_fftype [0-3] (Disabled, Enabled, Reflect, Shared)
+
+] scr_game_perks [0-1]
+] scr_game_onlyheadshots [0-1]
+] scr_game_forceuav [0-1]
+] scr_game_hardpoints [0-1] (i.e. artillery, uav, helicopter)
+] scr_hardpoint_allowartillery [0-1]
+] scr_hardpoint_allowuav [0-1]
+] scr_hardpoint_allowhelicopter [0-1]
+
+free for all deathmatch
+-----------------------
+] scr_dm_scorelimit [0-n]
+] scr_dm_timelimit [0-n] (minutes)
+
+domination
+-----------
+] scr_dom_scorelimit [0-n]
+] scr_dom_timelimit [0-n] (minutes)
+
+team deathmatch
+-----------------
+] scr_war_scorelimit [0-n]
+] scr_war_timelimit [0-n] (minutes)
+
+sabotage
+---------
+] scr_sab_scorelimit [1-n] (points)
+] scr_sab_timelimit [0-n] (minutes)
+] scr_sab_roundswitch [0-n] (after how many rounds)
+] scr_sab_bombtimer [0-n] (seconds)
+] scr_sab_planttime [0-n] (seconds)
+] scr_sab_defusetime [0-n] (seconds)
+] scr_sab_hotpotato [0-1] (shared bomb timer)
+
+search and destroy
+-------------------
+] scr_sd_scorelimit [1-n] (points)
+] scr_sd_timelimit [0-n] (minutes)
+] scr_sd_roundswitch [0-n] (number of rounds before switching teams)
+] scr_sd_bombtimer [0-n] (seconds)
+] scr_sd_planttime [0-n] (seconds)
+] scr_sd_defusetime [0-n] (seconds)
+] scr_sd_multibomb [0-1]
+
+headquarters
+-------------
+] scr_koth_scorelimit [1-n] (points)
+] scr_koth_timelimit [0-n] (minutes)
+] koth_autodestroytime [0-n] (seconds)
+] koth_kothmode [0-1] (classic mode, non-classic)
+] koth_spawntime [0-n] (seconds, hq spawn time)
+
+
+Fixing 1.6 Patch SV_Cheats Exploit
+-------------
+pb_sv_cvar sv_cheats IN 0
+some say this needs to be set in cod4/pb/pbsv.cfg file
+
+Browsing around has me finding references to creating the pbsv.cfg file:
+
+When in game, log into rcon and type "/rcon pb_sv_writecfg"
+
+The pbsv.cfg file should now be in the pb folder on the INX server. Note that the pb folder is hidden by default so you may need to go hunting for it with your ftp client.

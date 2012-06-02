@@ -1,0 +1,82 @@
+MW2 tweakable client side cvars:
+
+Most of these came from Tek9, thanks to Helium.
+
+seta cg_hudGrenadeIconEnabledFlash "1" (default value is 0) // Shows an indicator when there a flash/stun grenade is thrown near you
+
+seta cl_maxpackets "100" (default value is 30) // Amount of packets sent per second
+
+seta cl_maxPing "100" (default value is 800) // This will connect you to a server with maximum X amount of ping
+
+seta com_maxfps "125" (default value is 85) // Max frames per second shown
+
+seta drawLagometer "1" (default value is 0) // Disable/enable lagometer
+
+seta dynEnt_active "0" (default value is 1) // Enable/disable dynamic environment, ie objects will move when shot at etc
+
+seta hud_enable "1" (default value is 1) // Enable/disable your HUD
+
+seta r_aaSamples "16" (default value is 2) // Set the amount of anti-aliasing
+
+seta r_distortion "0" (default value is 1) // Enable/disable distortion from weapons, explosions etc
+
+seta r_dlightLimit "0" (default value is 4) // Number of dynamic lights
+
+seta r_dof_enable "0" (default value is 1) // Enable/disable depth of field
+
+seta r_fullscreen "1" (default value is 1) // Play in fullscreen/windowed mode (fullscreen is 1, windowed is 0)
+
+seta cg_ScoresPing_MaxBars "10" (default value is 4) // Total number of latency bars. The more bars, the more precise the ping will be displayed.
+
+seta cg_ScoresPing_Interval "20" (default is 100) // Ping interval
+Note: If you have ping interval on 100 it means you have a 100 ping when you have full bars. If you have your ping interval on 20 it means you have 20 ping if you have full bars, and 20 extra ping for each bar that is gone, so if you have 6/10 bars you have a 100 ping.
+
+
+I'll run through it real quick for you.
+it is not an external EXE and it is not a DLL file. you're just editing a CFG file to make sure your game performs well. 
+
+ALSO, You cannot change your FOV in multiplayer without sv_cheats 1 which is a server variable that regular users cannot change.
+using the external EXE to change your FOV however will probably get you banned.
+OR YOU MAY LOSE ALL OF YOUR ACCOLADES! (i make fun of TF2 and doesnt afraid of anything.)
+
+seta cg_hudGrenadeIconEnabledFlash "1" (default value is 0) // Shows an indicator when there a flash/stun grenade is thrown near you
+You're Safe. being able to see it wont save you, flashes generally go off as soon as or immediately after they touch the ground. so this is not helpful or giving you an advantage.
+
+seta cl_maxpackets "100" (default value is 30) // Amount of packets sent per second
+as far as i know this could be exploited to give you a really, really sh*tty ping. What advantage do you have while rubberbanding all over the place? there is no advantage given.
+
+seta cl_maxPing "100" (default value is 800) // This will connect you to a server with maximum X amount of ping
+this makes sure you do not connect to horrible overseas servers. no advantage given.
+
+seta com_maxfps "125" (default value is 85) // Max frames per second shown
+mostly useless, the human eye can only see up to 30 (possibly 60. i'm really tired). No advantage is given.
+
+seta drawLagometer "1" (default value is 0) // Disable/enable lagometer
+i am not 100% sure what this does, if someone can inform me please do. very probably does NOT give an advantage.
+
+seta dynEnt_active "0" (default value is 1) // Enable/disable dynamic environment, ie objects will move when shot at etc
+Things move when shot/grenaded. with this off they do not move. No advantage given
+
+seta hud_enable "1" (default value is 1) // Enable/disable your HUD
+there is NO WAY this could give an advantage. without your HUD in a normal gave you will not know how many bullets you have or other things including current score. No advantage given.
+
+seta r_aaSamples "16" (default value is 2) // Set the amount of anti-aliasing
+This only boosts the AA Sampling rate far past the max value of 4 ingame. no advantage given, though it does look pretty.
+
+seta r_distortion "0" (default value is 1) // Enable/disable distortion from weapons, explosions etc
+The distortion effects are pretty lame. This is pretty much the same as removing particles from TF2. No advantage given, things may run faster.
+
+seta r_dlightLimit "0" (default value is 4) // Number of dynamic lights
+i'm not sure why you would turn this off but you can. Not sure what it would do when off. No advantage (probably) given.
+
+seta r_dof_enable "0" (default value is 1) // Enable/disable depth of field
+again, i don't know untill someone tells me or i test it. Awaiting testing.
+
+seta r_fullscreen "1" (default value is 1) // Play in fullscreen/windowed mode (fullscreen is 1, windowed is 0)
+Now you can play in a window, though i think there was an option in game. no advantage given other than a slightly increased FPS.
+
+seta cg_ScoresPing_MaxBars "10" (default value is 4) // Total number of latency bars. The more bars, the more precise the ping will be displayed.
+This was posted on other threads and is incredibly useful. no advantage given.
+
+seta cg_ScoresPing_Interval "20" (default is 100) // Ping interval
+Posted in other threads, incredibly useful. No advantage given.

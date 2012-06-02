@@ -1,0 +1,98 @@
+{{lowercase|title=eyeOS}}
+{{Infobox software
+| name                    = eyeOS
+| logo                    = [[Image:EyeOSlogo.png|90px|eyeOS logo]]
+| screenshot              = [[Image:EyeOS-2.2.0.0.png|300px|center]]
+| caption                 = eyeOS 2.2.0.0 Screenshot
+| collapsible             =
+| author                  =
+| developer               =
+| released                = {{Start date|2005|08|01}}
+| discontinued            =
+| latest release version  = 2.2.0.0 <ref>[http://blog.eyeos.org/en/2010/07/28/eyeos-2-2-stable-released/]</ref>
+| latest release date     = {{Start date and age|2010|07|28}}
+| latest preview version  = 2.0 technology preview <ref>[http://blog.eyeos.org/en/2009/11/03/eyeos-2-0-technology-preview-released-to-developers/ eyeOS 2.0 Technology Preview]</ref>
+| latest preview date     = {{Start date and age|2009|11|05}}
+| frequently updated      =
+| programming language    = [[PHP]], [[XML]], [[JavaScript]]
+| operating system        =
+| platform                = [[Cross-platform]]
+| size                    =
+| language                = [[Multilingual]]
+| status                  = Active
+| genre                   = [[Web application]]
+| license                 = [[AGPL]]
+| website                 = [http://eyeos.org Official eyeOS Website]
+}}
+
+'''eyeOS''' is an [[open source]] [[web desktop]] following the [[cloud computing]] concept that seeks to enable collaboration and communication among users. It is mainly written in [[PHP]], [[XML]], and [[JavaScript]]. It acts as a platform for web applications written using the eyeOS Toolkit. It includes a Desktop environment with 67 applications and system utilities.<ref>[https://eyeos.svn.sourceforge.net/svnroot/eyeos/eyeOS/trunk/eyeOS/apps/ eyeOS default applications from project's official SVN server]</ref> It is accessible by portable devices via its mobile front end.<ref>[https://blueprints.launchpad.net/eyeos/+spec/mobile-access Blueprint: “Mobile Access”<!-- Bot generated title -->]</ref>
+
+== History ==
+The first publicly available eyeOS version was released on August 1, 2005 as eyeOS 0.6.0 in [[Barcelona]] ([[Spain]]). At the time, it greatly participated in creating the definition of a [[web operating system]] and acted as a concept. Quickly, a worldwide community of developers took part in the project and helped improve it by translating, testing and developing it.
+
+After two years of development, the eyeOS Team published eyeOS 1.0<ref>[http://news.softpedia.com/news/eyeOS-1-0-Dahlia-Available-Now-56380.shtml Softpedia talks about eyeOS 1.0 release]</ref> (on June 4, 2007). Compared with previous versions, eyeOS 1.0 introduced a complete reorganization of the code and some new web technologies, like eyeSoft, a [[Portage (software)|portage]]-based web software installation system. Moreover, eyeOS also included the eyeOS Toolkit, a set of libraries allowing easy and fast development of new web Applications.<ref>[http://www.readwriteweb.com/archives/eyeos_10_launches.php eyeOS 1.0 launches - ReadWriteWeb]</ref>
+
+With the release of eyeOS 1.1 on July 2, 2007, eyeOS changed its license and migrated from GNU [[GNU General Public License#Version 2|GPL Version 2]] to [[GNU General Public License#Version 3|Version 3]].
+
+Version 1.2 was released just a few months after the 1.1 version and integrated full compatibility with [[Microsoft Word]] files.
+
+eyeOS 1.5 Gala was released on January 15, 2008.  This version is the first to support both [[Microsoft Office]] and [[OpenOffice.org]] file formats for documents, presentations and spreadsheets. It also has the ability to import and export documents in both formats using server side scripting.<ref>[http://blog.eyeos.org/2008/01/15/eyeos-15-released-eyeos-professional-services-available eyeOS 1.5 Released | eyeOS Professional Services available<!-- Bot generated title -->]</ref>
+
+eyeOS 1.6 was released on April 25, 2008 and included many improvements such as synchronization with local computers, drag and drop, a mobile version and more.<ref>[http://blog.eyeos.org/2008/03/19/whats-coming-in-eyeos-16/ What's coming in eyeOS 1.6 - eyeOS Blog]</ref>
+
+eyeOS 1.8 Lars was released on January 7, 2009 and featured a completely rewritten file manager and a new sound API to develop media rich applications. Later, on April 1, 2009 1.8.5 was released with a new default theme and some rewritten apps such as the Word Processor or the Address Book. On July 13, 2009 1.8.6 was released with an interface for the [[iPhone]] and a new version of eyeMail with support for POP3 and IMAP.
+
+== Structure and API ==
+For developers, eyeOS provides the eyeOS Toolkit, a set of libraries and functions to develop applications for eyeOS. Using the integrated [[Portage (software)|Portage]]-based eyeSoft system, one can create their own repository for eyeOS and distribute applications through it.<ref>[http://www.linux.com/feature/118113 eyeOS - a Genuine Web OS by Linux.com]</ref>
+
+Each core part of the desktop is its own application, using javascript to send server commands as the user interacts. As actions are performed using ajax (such as launching an application), it sends event information to the server. The server then sends back tasks for the client to do in XML format, such as drawing a widget.<ref>[http://dev.eyeos.org eyeOS Developers Community]</ref>
+
+On the server, eyeOS uses [[XML]] files to store information. This makes it simple for a user to set up on the server, as it requires zero configuration other than the account information for the first user, making it simple to deploy. To avoid bottlenecks that flat files present, each user's information and settings are stored in different files, preventing [[resource starvation]] from occurring.
+
+== Awards ==
+*2007 - Received the [[Softpedia]]'s Pick award.<ref>[http://www.softpedia.com/reviews/linux/eyeOS-Review-71835.shtml eyeOS : Review by SoftPedia]</ref>
+*2007 - Finalist at the [[SourceForge]]'s Community Choice Awards '07 at the "Best Project" category. The winner for that category was [[7-Zip]].<ref>[http://sourceforge.net/community/index.php/landing-pages/cca07/ SourceForge.net: 2007 Community Choice Awards<!-- Bot generated title -->]</ref>
+*2007 - Won the [[Yahoo!]] Spain Web Revelation award in the Technology category.<ref>[http://es.promotions.yahoo.com/revelacion2007/revelacion_tecnologia/ Yahoo! Web Revelation award of Technology]</ref><ref>[http://www.elpais.com/articulo/ocio/Yahoo/premia/paginas/espanolas/singulares/extravagantes/2007/elpeputeccib/20080117elpciboci_1/Tes Yahoo! Web Releaton award of Technology in El Pais newspaper]</ref>
+*2008 - Finalist for the Webware 100 awards by [[CNET]], under the "Browsing" category.<ref>[http://www.webware.com/html/ww/100.html Webware 100 website]</ref>
+*2008 - Finalist at the SourceForge's Community Choice Awards '08 at the "Most Likely to Change the World" category. The winner for that category was Linux.<ref>[http://sourceforge.net/community/cca08]</ref>
+*2009 - Selected Project of the Month (August 2009) by SourceForge.<ref>[http://sourceforge.net/community/potm-200908/]</ref>
+
+== Community ==
+eyeOS community is formed with the eyeOS Forums <ref>[http://forums.eyeos.org/ eyeOS Forums]</ref>, which arrived at 10.000 members at April 4, 2008, the eyeOS Wiki<ref>[http://wiki.eyeos.org/ eyeOS Wiki]</ref> and the eyeOS Application Communities, available at eyeOS-Apps website hosted and provided by [[openDesktop.org]]<ref>[http://www.opendesktop.org/news/index.php/eyeOS-Apps.org?id=270&name=eyeOS-Apps.org openDesktop.org announces the eyeos-apps community]</ref> as well as Softpedia <ref>[http://linux.softpedia.com/get/Internet/eyeOS-Apps/ Softpedia eyeOS Applications Category]</ref>.
+
+==See also==
+{{Commons category|eyeOS}}
+{{Portal|Free software}}
+* [[Web desktop]]
+* [[Web portal]]
+* [[Web Operating System]]
+* [[Web 2.0]]
+* [[Web application]]
+* [[YouOS]]
+
+==References==
+{{Reflist|2}}
+
+==External links==
+*[http://eyeos.org/ eyeOS official project home page]
+*[http://blog.eyeos.org/ eyeOS] [[blog]]
+
+{{DEFAULTSORT:Eyeos}}
+[[Category:Web operating systems]]
+[[Category:Web 2.0]]
+
+[[ar:?? ?? ??]]
+[[ca:EyeOS]]
+[[de:Eyeos]]
+[[es:EyeOS]]
+[[fr:EyeOS]]
+[[it:EyeOS]]
+[[he:EyeOS]]
+[[hu:EyeOS]]
+[[nl:EyeOS]]
+[[ja:EyeOS]]
+[[no:EyeOS]]
+[[pl:EyeOS]]
+[[pt:EyeOS]]
+[[ro:EyeOS]]
+[[ru:EyeOS]]

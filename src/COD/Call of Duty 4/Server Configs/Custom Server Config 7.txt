@@ -1,0 +1,38 @@
+seta sv_punkbuster 1
+wait
+pb_sv_enable
+
+// Server name
+set sv_hostname "your server name" //Change this to whatever you want your server to be named in the server browser
+
+// Server password
+set g_password "" // blank means NO password
+
+// Rconpassword
+set rcon_password "" // Change this to your rcon password!
+
+// Maximum Clients
+set sv_maxclients "32"
+//set sv_privateclients "6"
+
+// Max Ping
+set sv_maxping "120"
+
+// Rate
+set sv_maxRate "25000"
+
+// Map_rotation
+set sv_mapRotation "gametype war map mp_backlot gametype war map mp_bloc gametype war map mp_bog gametype war map mp_cargoship gametype war map mp_citystreets gametype war map mp_convoy gametype war map mp_countdown gametype war map mp_crash gametype war map mp_crossfire gametype war map mp_farm gametype war map mp_overgrown gametype war map mp_pipeline gametype war map mp_showdown gametype war map mp_strike gametype war map mp_vacant"
+
+//set sv_maprotationcurrent ""
+
+// Master servers
+set sv_master1 "cod4master.activision.com"
+set sv_master2 "cod4authorize.activision.com"
+set sv_master3 "cod4master.infinityward.com"
+set sv_master3 "cod4update.activision.com"
+set sv_master4 "master.gamespy.com:28960"
+set sv_master5 "master0.gamespy.com"
+set sv_master6 "master1.gamespy.com"
+set sv_master7 "clanservers.net"
+set sv_gamespy "1"
