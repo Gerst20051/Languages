@@ -1,9 +1,0 @@
-;Operators in AHK
-%
-=
-<
->
-*
-/
-+
--
