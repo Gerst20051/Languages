@@ -1,0 +1,84 @@
+#include <windows.h>
+#include "mpgres.h"
+
+IDI_MPGICON ICON "mpg.ico"
+
+IDMAINMENU MENU
+BEGIN
+	POPUP "&File"
+	BEGIN
+	    MENUITEM "&Open",IDM_OPEN
+		MENUITEM "&New",IDM_NEW
+		MENUITEM "&E&xit",IDM_EXIT
+	END
+    POPUP "&Level"
+	BEGIN
+		MENUITEM "&Easy",IDM_EASY
+		MENUITEM "&Normal",IDM_NORMAL
+	END
+	POPUP "&Help"
+	BEGIN
+		MENUITEM "&About",IDM_ABOUT
+	END
+END
+IDACCEL ACCELERATORS
+BEGIN
+	"Q",	IDM_EXIT,VIRTKEY,CONTROL
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_FILEMENU        "Open, new, or quit"
+	IDM_OPEN            "Load a new picture"
+    IDM_NEW             "New game"
+    IDM_EASY            "Easy !!!!"
+    IDM_NORMAL          "Normal game mode"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDM_EXIT                "Quits this application"
+END
+
+STRINGTABLE DISCARDABLE
+BEGIN
+    IDS_HELPMENU            "Get help"
+    IDM_ABOUT               "Displays information about this application"
+END
+
+IDD_ABOUT DIALOG 6, 18, 146, 140
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "Close", IDOK, 100, 120, 40, 14
+END
+LANGUAGE LANG_DUTCH,SUBLANG_DUTCH
+
+ID_MANIFEST MANIFEST "XP.XML"
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEFLAGSMASK 0x3F
+FILEFLAGS 0x0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904b0"
+    BEGIN
+      VALUE "FileVersion", "1.0.0.0\0"
+      VALUE "ProductVersion", "1.0.0.0\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+
+

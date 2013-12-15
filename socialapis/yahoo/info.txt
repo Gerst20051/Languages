@@ -1,0 +1,27 @@
+select * from music.artist.popular
+
+http://developer.yahoo.com/yql/console/?q=select%20*%20from%20music.artist.popular&_uiFocus=music
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20music.artist.popular&format=json&diagnostics=true&callback=cbfunc
+
+
+select * from music.release.popular
+
+http://developer.yahoo.com/yql/console/?q=select%20*%20from%20music.release.popular&_uiFocus=music
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20music.release.popular&format=json&diagnostics=true&callback=cbfunc
+
+
+select * from music.video.popular
+
+http://developer.yahoo.com/yql/console/?q=select%20*%20from%20music.artist.popular&_uiFocus=music
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20music.video.popular&format=json&diagnostics=true&callback=cbfunc
+
+
+http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20music.release.popular&format=json&diagnostics=true&callback=cbfunc
+
+
+SELECT * FROM flickr.photos.search WHERE text="cat"
+
+http://query.yahooapis.com/v1/public/yql?q=SELECT * FROM flickr.photos.search WHERE text="Cat"

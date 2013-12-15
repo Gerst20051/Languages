@@ -1,0 +1,288 @@
+﻿<html>
+
+<head>
+<title>NoFunc: Playlists</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+#table {
+cursor: default;
+font-family: arial, sans-serif;
+font-size: 11px;
+user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+width: 100%;
+}
+
+#table th#hoverTH {
+background: #555;
+}
+
+#table th {
+background: #666;
+border-bottom: 1px solid #444;
+border-left: 1px solid #555;
+border-top: 1px solid #444;
+color: #fff;
+cursor: pointer;
+padding: 4px 0 4px 9px;
+text-align: left;
+}
+
+#table th span {
+color: #aaa;
+}
+
+#table tr#this td {
+background-color: #3d80df;
+border-bottom: 1px solid #3e6fb3;
+border-left: 1px solid #346dbe;
+border-right: 1px solid #5886c7;
+border-top: 1px solid #3e6fb3;
+color: #fff;
+font-weight: bold;
+}
+
+#table tr#hover td {
+background-color: #777;
+color: #fff;
+border-bottom: 1px solid #888;
+border-left: 1px solid #888;
+border-right: 1px solid #777;
+border-top: 1px solid #888;
+}
+
+#table tr td {
+padding: 3px 8px;
+border-bottom: 1px solid #fff;
+border-left: 1px solid #d9d9d9;
+border-top: 1px solid #fff;
+}
+
+#table tr.even td {
+background: #edf3fe;
+border-bottom: 1px solid #e8f0ff;
+border-right: 1px solid #fff;
+border-top: 1px solid #e8f0ff;
+}
+
+#table tr.odd td {
+background: #fff;
+border-bottom: 1px solid #fff;
+border-right: 1px solid #fff;
+border-top: 1px solid #ff;
+}
+</style>
+</head>
+
+<body id="body">
+<table id="table" cellspacing="0" onselectstart="return false">
+<thead>
+<tr class="asc" id="head">
+<th style="width: 25px">#</a></th>
+<th style="width: 350px">Title<span></span></a></th>
+<th>Artist<span></span></th>
+<th>Genre<span></span></th>
+<th style="width: 150px">Time<span></span></th>
+<th style="width: 150px">Rating<span></span></th>
+<th style="width: 17px;">&nbsp;</th>
+</tr>
+</thead>
+<tbody id="tbody">
+<tr id="this"><td></td><td>Alone in Kyoto</td><td>Air</td><td>Chillout</td><td>4:49</td><td>★★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Sexy Boy</td><td>Air</td><td>Chillout</td><td>4:58</td><td>★★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Surfin On A Rocket</td><td>Air</td><td>Chillout</td><td>3:47</td><td>★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Oracle</td><td>Amon Tobin</td><td>Chillout</td><td>4:31</td><td>★★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Sweet Life</td><td>Ashwan</td><td>Chillout</td><td>5:15</td><td>★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Horizon</td><td>Assemblage 23</td><td>Chillout</td><td>7:33</td><td>★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Gaston Avenue</td><td>Astronautalis</td><td>Chillout</td><td>4:39</td><td>★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Oceanwalk</td><td>Astronautalis</td><td>Chillout</td><td>4:52</td><td>&nbsp;</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Gentle Rain [RJD2 Remix]</td><td>Astrud Gilberto</td><td>Chillout</td><td>6:01</td><td>★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Army of Me</td><td>Atoi</td><td>Chillout</td><td>4:31</td><td>★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Frontier Psychiatrist</td><td>Avalanches</td><td>Chillout</td><td>4:50</td><td>★★★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Tangent</td><td>Beth Orton</td><td>Chillout</td><td>7:28</td><td>&nbsp;</td><td onclick="trRM(this.parentNode);">x</td></tr>
+<tr><td></td><td>Don&rsquo;t Explain [Dzihan & Kamien Remix]</td><td>Billie Holiday</td><td>Chillout</td><td>4:49</td><td>★★★</td><td onclick="trRM(this.parentNode);">x</td></tr>
+</tbody>
+</table>
+<script type="text/javascript">
+function $(v) {
+	return(document.getElementById(v));
+}
+
+function $T(v,i) {
+	return((typeof(i) == 'string' ? $(i) : (i ? i : document)).getElementsByTagName(v));
+}
+
+function agent(v) {
+	return(Math.max(navigator.userAgent.toLowerCase().indexOf(v),0));
+}
+
+function inArray(v,r) {
+	for (var i in r) if (r[i] == v) return true;
+}
+
+function iSW(w,n) {
+	if ($(w)) $(w).id = '';
+	if (n) n.id = w;
+}
+
+/* TBODY */
+
+function trMAP(a,b,z) {
+	var s = a % 2 ? 0 : 1;
+	
+	for (var i = a ? a : 0; i <= (b ? b : Trl); i++) {
+		Tr[i].className = (s = !s) ? 'even' : 'odd';
+		Tr[i].cells[0].innerHTML = (i + 1);
+		
+		if (z) trMouse(Tr[i]);
+	}
+}
+
+function trMV(w,n) {
+	w -= 1;
+	n -= 1;
+	var b = n <= w ? (n + 1) : (n - 1), z = Tb.replaceChild(Tr[w],Tr[n]);
+	Tb.insertBefore(z,Tr[b]);
+	trMAP(Math.min(w,n),Math.max(w,n));
+}
+
+function trRM(o) {
+	var v = o.rowIndex;
+	T.deleteRow(v);
+	Tr[v - 1].id = 'this';
+	Trl -= 1;
+	trMAP(v - 1);
+}
+
+function trMouse(o) {
+	o.onclick = function() {
+		if (stop) return false;
+	};
+
+	o.onmousedown = function() {
+		stop = 1;
+		iSW('this',this);
+		
+		document.onmouseup = function() {
+			var v = $('hover');
+			
+			if (v) {
+				v.id = '';
+				trMV($('this').rowIndex,v.rowIndex);
+			}
+			
+			stop = 0;
+		};
+	};
+
+	o.onmouseover = function() {
+		iSW('hover',(stop && this.id != 'this') ? this : '');
+	};
+}
+
+/* THEAD */
+
+function thMV(w,n) {
+	var r = T.rows, v = '', b = '', z = '';
+
+	for (var i = 0; i < r.length; i++) {
+		v = r[i].cells; SW(v[w],v[n],'innerHTML');
+		
+		if (i == 0) {
+			SW(v[w],v[n],'style.width');
+		}
+	}
+}
+
+function thMouse(r,R) {
+	for (var i = 0; i < r.length; i++) {
+		if ((R && !inArray(i,R)) || !R) {
+			r[i].onclick = function() {
+				resortTable(this,this.cellIndex);
+				if (this.cellIndex != 0) trMAP(0);
+			};
+
+			r[i].onmousedown = function() {
+				stopTH = 1;
+				iSW('thisTH',this);
+
+				document.onmouseup = function() {
+					var v = $('hoverTH');
+
+					if (v) {
+						v.id = '';
+						thMV($('thisTH').cellIndex,v.cellIndex);
+					}
+
+					stopTH = 0;
+				};
+			};
+
+			r[i].onmouseover = function() {
+				iSW('hoverTH',(stopTH && this.id != 'thisTH') ? this : '');
+			};
+
+		}
+	}
+}
+
+function SW(w,n,v) {
+	function f(a,b) {
+		return(eval("a." + v + (b ? "='" + b + "'" : '') + ";"));
+	};
+
+	var z = f(n);
+	f(n,f(w));
+	f(w,z);
+}
+
+/* KEY STROKE */
+
+function mkTime(v) {
+	var z = new Date().getTime(v);
+	return(z);
+}
+
+function kCode(e) {
+	var k = agent('opera') ? e.kCode:(agent('msie') ? event.keyCode : e.which);
+	return(k);
+}
+
+function kRun(e,r,fn) {
+	var k = kCode(e);
+	
+	if (inArray(k,r) && !stopK[1]) {
+		stopK = Array('',mkTime());
+		kStop(k,fn);
+	}
+}
+
+function kStop(k,fn) {
+	if (!stopK[0]) {
+		if (fn) fn(k);
+		setTimeout("kStop('" + k + "'," + fn + ")", (120 / ((mkTime() - stopK[1] > 500) ? 3 : 1)));
+	} else {
+		stopK[1] = '';
+	}
+}
+
+document.onkeydown = function(e) {
+	kRun(e,Array(37,38,39,40),function(k) {
+		var v = ((k == 40 || k == 39) ? 1 : -1);
+		iSW('this',Tr[Math.min(Trl,Math.max(0,$('this').rowIndex + v - 1))]);
+	});
+};
+
+document.onkeyup = function() {
+	stopK[0] = 1;
+};
+
+/* GLOBALS */
+
+var T = $('table'), Tb = T.tBodies[0], Tr = Tb.rows, Trl = (Tr.length - 1), stop = 0, stopTH = 0, stopK = '', cur = '';
+trMAP(0,'',1);
+thMouse($T('th','head'),Array(0,6));
+</script>
+</body>
+</html>

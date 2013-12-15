@@ -1,0 +1,68 @@
+.flashContainer{
+
+	/*	Setting the container to relative positioning
+		so we can center the control div */
+
+	position:relative;
+	overflow:hidden;
+}
+
+.progressBar{
+	display:none;
+	position:absolute;
+	width:auto;
+	height:8px;
+	left:20px;
+	right:105px;
+	bottom:20px;
+	background-color:#141414;
+	overflow:hidden;
+	cursor:pointer;
+	
+	/* A light CSS3 bottom highlight */
+	
+	-moz-box-shadow:0 1px 0 rgba(255, 255, 255, 0.3);
+	-webkit-box-shadow:0 1px 0 rgba(255, 255, 255, 0.3);
+	box-shadow:0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.progressBar .elapsed{
+	position:absolute;
+	width:0;
+	height:100%;
+	background-color:#1fa2f6;
+	border-right:1px solid #49AFF0;
+}
+
+.controlDiv{
+	/* Centering the control div */
+	position:absolute;
+	width:120px;
+	height:120px;
+	cursor:pointer;
+	top:50%;
+	left:50%;
+	margin:-60px 0 0 -60px;
+}
+
+.controlDiv.play{
+	background:url('img/play.png') no-repeat center center;
+}
+
+.controlDiv.replay{
+	background:url('img/replay.png') no-repeat center center;
+}
+
+.controlDiv.pause{
+	background:url('img/pause.png') no-repeat -99999px;
+}
+
+.flashContainer:hover .controlDiv.pause{
+	background-position:center center;
+}
+
+/* Only show the progress bar when the video is playing */
+
+.flashContainer.playing:hover .progressBar{
+	display:block;
+}

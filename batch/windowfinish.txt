@@ -1,0 +1,32 @@
+FAQ: How do I get a batch file to run when Windows 
+shuts down? I already know how to get a batch file 
+to run when Windows starts (put it in AUTOEXEC.BAT 
+or the STARTUP folder).
+
+Answer: The trick is to stop Windows from starting 
+automatically. If you remember your old Windows 3.1 
+days, you remember having to put WIN in your 
+AUTOEXEC.BAT to start Windows. Any batch file you 
+put after the WIN would be run AFTER Windows 
+finished. Amazingly, the same trick works in Windows 
+95. The only hard part is stopping Win95 from 
+launching automatically. What you need to do is edit 
+your C:\MSDOS.SYS file to include BootGUI=0 in the 
+Options section:
+[Options]
+BootGUI=0
+The only hard part is that MSDOS.SYS is a hidden, 
+system, read-only file. You'll need to remove these 
+attributes before you can edit it, then restore the 
+attributes after you finish. Or you can download 
+Microsoft's great "TweakUI" power toy. Try looking 
+in one of these spots:
+http://www.microsoft.com/windows/downloads/contents/PowerToys/W95TweakUI/default.asp
+http://www.microsoft.com/windows/downloads/bin/W95tweakui.exe
+On TweakUI's "Boot" tab, uncheck the "Start UI 
+automatically" box.
+Whether you use TweakUI or edit MSDOS.SYS manually, 
+you'll now be able to add WIN and your shutdown batch 
+file to your AUTOEXEC.BAT.
+
+http://www.ericphelps.com

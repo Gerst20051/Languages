@@ -1,0 +1,14 @@
+REGEDIT [/L:system] [/R:user] filename1
+REGEDIT [/L:system] [/R:user] /C filename2
+REGEDIT [/L:system] [/R:user] /E filename3 [regpath1]
+REGEDIT [/L:system] [/R:user] /D regpath2
+
+  /L:system       Specifies the location of the SYSTEM.DAT file.
+  /R:user         Specifies the location of the USER.DAT file.
+  filename1       Specifies the file(s) to import into the registry.
+  /C filename2    Specifies the file to create the registry from.
+  /E filename3    Specifies the file to export the registry to.
+  /S              Silent (don't ask user to confirm action).
+  regpath1        Specifies the starting registry key to export from.
+                  (Defaults to exporting the entire registry).
+  /D regpath2     Specifies the registry key to delete.

@@ -1,0 +1,28 @@
+LIBRARY 	pcandisc
+
+EXPORTS 
+; Exporting the DllMain		
+		DllEntry = DllMain
+
+;Exporting Initialize and Deinitialize functions
+		PKT_Init
+		PKT_Deinit
+		
+; Exporting Device Open and Close functions
+		PKT_Open
+		PKT_Close
+		
+; Exporting Read, Write and Seek functions
+		PKT_Read
+		PKT_Write
+		PKT_Seek
+
+; Exporting IOControl function		
+		PKT_IOControl
+
+; Exporting Power functions
+		PKT_PowerUp
+		PKT_PowerDown
+
+; Exporting custom functions
+;		PKT_GetAdapterNames

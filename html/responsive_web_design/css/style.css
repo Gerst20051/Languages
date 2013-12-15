@@ -1,0 +1,262 @@
+/* --------------------------------------------
+   HTML5 Doctor Reset
+-------------------------------------------- */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ""; content: none; }
+ins { background-color: #ff9; color: #000; text-decoration: none; }
+mark { background-color: #ff9; color: #000; font-style: italic; font-weight: bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom: 1px dotted; cursor: help; }
+table { border-collapse: collapse; border-spacing: 0; }
+hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
+input, select { vertical-align: middle; }
+
+body { font:13px/1.231 sans-serif; *font-size:small; }
+select, input, textarea, button { font:99% sans-serif; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+
+html { overflow-y: scroll; }
+a:hover, a:active { outline: none; }
+ul, ol { margin-left: 2em; }
+ol { list-style-type: decimal; }
+nav ul, nav li { margin: 0; list-style:none; list-style-image: none; }
+small { font-size: 85%; }
+strong, th { font-weight: bold; }
+td { vertical-align: top; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 15px; }
+textarea { overflow: auto; } 
+.ie6 legend, .ie7 legend { margin-left: -7px; } 
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+label, input[type="button"], input[type="submit"], input[type="image"], button { cursor: pointer; }
+button, input, select, textarea { margin: 0; }
+input:valid, textarea:valid   {  }
+input:invalid, textarea:invalid { border-radius: 1px; -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red; box-shadow: 0px 0px 5px red; }
+.no-boxshadow input:invalid, .no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+
+::-moz-selection{ background: #000; color:#fff; text-shadow: none; }
+::selection { background:#000; color:#fff; text-shadow: none; }
+a:link { -webkit-tap-highlight-color: #FF5E99; }
+button {  width: auto; overflow: visible; }
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+body, select, input, textarea { color: #444; }
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+
+
+/* --------------------------------------------
+   My Styles
+-------------------------------------------- */
+
+body { background: #edeae3; font-family: sans-serif; color: #383838; text-align: center; }
+	
+	a { color: #9f443b; text-decoration: none; }
+	a:hover { text-decoration: underline; }
+
+	#container { width: 1200px; margin: 0 auto; padding: 20px 0; text-align: left; }
+	
+		header { overflow: hidden; clear: both; margin-bottom: 30px; }
+		
+			header hgroup { float: left; }
+				header hgroup h1 { font-size: 40px; text-transform: uppercase; text-shadow: 1px 1px 0 #fff; }
+				header hgroup h2 { font-size: 26px; text-shadow: 1px 1px 0 #fff; font-weight: normal; }
+			
+			header nav { float: right; margin: 24px 0 0 0; }
+				header nav ul { margin: 0; padding: 0; overflow: hidden; }
+					header nav ul li { list-style: none; float: left; display: inline; margin: 0; padding: 0; border-right: 1px solid #938a78; font-size: 18px; text-transform: uppercase; }
+					header nav ul li:last-child { border: 0; }
+						header nav ul li a { 
+							display: block; 
+							background: #c1b7a7; 
+							padding: 12px 24px; 
+							color: #fff; 
+							text-decoration: none;
+							-webkit-transition-property: background; 
+							-webkit-transition-duration: .5s; 
+							-webkit-transition-timing-function: linear;  }
+						header nav ul li a:hover { text-decoration: none; background: #9f443b; }
+		
+		#banner { padding: 20px; font-size: 18px; line-height: 1.4; border-top: 1px solid #383838; border-bottom: 1px solid #383838; clear: both; margin-bottom: 30px; }
+			#banner p { text-shadow: 1px 1px 0 #fff; }
+		
+		#content { float: left; width: 900px; margin-right: 20px; }
+		
+			#content article { background: #fff; margin: 0 0 30px 0; padding: 20px; -webkit-border-radius: 16px; -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3); }
+					
+				#content article h3 { font-size: 26px; margin-bottom: 4px; }
+				#content article img { float: right; margin: 0 0 10px 10px; }
+				#content article p { font-size: 16px; margin-bottom: 16px; }
+				#content article p:last-child { margin-bottom: 0; }
+		
+		#sidebar { float: left; width: 280px; }
+		
+			#sidebar aside { background: #fff; margin: 0 0 30px 0; padding: 20px; -webkit-border-radius: 16px; -webkit-box-shadow: 0 0 4px rgba(0,0,0,.3); }
+				#sidebar aside h4 { color: #333; font-size: 16px; margin-bottom: 4px; }
+				#sidebar aside p { font-size: 13px; margin-bottom: 8px; }
+				#sidebar aside p:last-child { margin: 0; }
+				#sidebar aside ul { margin: 0; padding: 0; }
+					#sidebar aside ul li { list-style: none; margin-bottom: 6px; }
+						
+		footer { clear: both; border-top: 1px solid #383838; padding: 10px 20px; font-size: 14px; }
+		
+			footer nav ul { margin: 0 0 8px 0; padding: 0; }
+				footer nav ul li { list-style: none; display: inline; margin-right: 12px; }
+				
+
+/* --------------------------------------------
+   < 1200px viewport
+-------------------------------------------- */			
+				
+@media (max-width: 1200px) {
+
+	#container { width: 960px; }
+		#content { width: 700px; }
+		#sidebar { width: 240px; }
+		
+	header hgroup h1 { font-size: 32px; }
+	header hgroup h2 { font-size: 18px; }
+	
+	header nav { margin-top: 18px; }
+		header nav ul li { font-size: 16px; }
+		
+	#banner { margin-bottom: 20px; }
+		
+	#content article { margin-bottom: 12px; }
+		#content article h3 { font-size: 18px; }
+		#content article p { font-size: 14px; }
+		
+	#sidebar aside { margin-bottom: 12px; }
+
+}
+
+
+/* --------------------------------------------
+  iPad in landscape
+-------------------------------------------- */
+
+/* 	
+	TO PREVIEW ON THE DESKTOP, REPLACE THE QUERY WITH THE FOLLOW:
+	@media (max-width: 1024px) {  } 
+*/
+	
+@media (max-device-width: 1024px) and (orientation: landscape) {
+
+	#container { width: 768px; }
+		#content { width: 540px; }
+		#sidebar { width: 208px; }
+	
+	header { margin-bottom: 12px; }
+	
+	header hgroup { margin-bottom: 12px; }
+	
+	header nav { float: none; clear: both; }
+		header nav ul { width: 100%; }
+			header nav ul li { font-size: 14px; width: 191px; text-align: center; }
+				header nav ul li:last-child { width: 192px; }
+			
+	#banner { margin-bottom: 18px; }
+		
+	#content article img { float: none; margin: 0 0 10px 0; width: 100%; }
+
+}
+
+
+/* --------------------------------------------
+  iPad in portrait
+-------------------------------------------- */
+
+/* 	
+	TO PREVIEW ON THE DESKTOP, REPLACE THE QUERY WITH THE FOLLOW:
+	@media (max-width: 768px) {  } 
+*/
+
+@media (max-device-width: 1024px) and (orientation: portrait) {
+
+	#container { width: 600px; }
+		#content { float: none; width: 600px; margin: 0 0 12px 0; }
+		#sidebar { float: none; width: 600px; }
+	
+	header { margin-bottom: 12px; }
+	
+	header hgroup { margin-bottom: 12px; }
+	
+	header nav { float: none; clear: both; }
+		header nav ul { width: 100%; }
+			header nav ul li { font-size: 14px; width: 149px; text-align: center; }
+				header nav ul li:last-child { width: 150px; }
+			
+	#banner { margin-bottom: 18px; }
+	
+	#content article { padding: 20px; }
+		#content article img { float: none; margin: 0 0 10px 0; width: 100%; }
+	
+	#sidebar aside { background: #A79F91; color: #fff; float: left; width: 250px; min-height: 170px; margin-right: 20px; padding: 20px; }
+		#sidebar aside:last-child { margin: 0; }
+
+}
+
+
+/* --------------------------------------------
+  Mobile
+-------------------------------------------- */
+
+@media (max-width: 600px) {
+
+	#container, #content { float: none; width: inherit; }
+		#content { margin: 0; }
+	
+	#sidebar, #banner { display: none; }
+	
+	header { margin: 0 0 12px 0; text-align: center; }
+		header hgroup { width: 100%; margin-bottom: 12px; }
+			header hgroup h1 { font-size: 24px; }
+			header hgroup h2 { font-size: 14px; }
+	
+		header nav { float: none; clear: both; }
+			header nav ul { width: 100%; }
+				header nav ul li { float: none; display: block; width: 100%; font-size: 14px; text-align: left; border-bottom: 1px solid #938a78; }
+					header nav ul li:last-child { width: 100%; border-bottom: 0; }
+					header nav ul li a { padding: 10px; }
+	
+	#content article { padding: 10px; -webkit-border-radius: 0; }
+		#content article h3 { font-size: 16px; }
+		#content article p { font-size: 12px; }
+		#content article img { display: none; }
+	
+	#sidebar aside { background: #A79F91; color: #fff; float: left; width: 250px; min-height: 170px; margin-right: 20px; padding: 20px; }
+		#sidebar aside:last-child { margin: 0; }
+		
+	footer { padding: 10px; font-size: 12px; }
+
+}

@@ -1,0 +1,68 @@
+<html>
+</head>
+<script type="text/javascript" language="javascript">
+
+var http_request = false;
+
+function update( url ){
+
+	http_request = false;
+	if( window.XMLHttpRequest ){
+		http_request = new XMLHttpRequest();
+		if( http_request.overrideMimeType ){
+			http_request.overrideMimeType( 'text/xml' );
+		}
+	}else if( window.ActiveXObject ){
+		alert( 'Get a Real Browser' );
+		return false;
+	}
+	http_request.onreadystatechange = getData;
+	http_request.open( 'GET', url, true );
+	http_request.send( null );
+}
+
+function getData() {
+
+	if( http_request.readyState == 4 ){
+		if( http_request.status == 200 ){
+			var xmldoc = http_request.responseXML;
+			var xnode = xmldoc.getElementsByTagName('x').item(0);
+			var ynode = xmldoc.getElementsByTagName('y').item(0);
+			x = xnode.firstChild.data;
+			y = ynode.firstChild.data;
+			draw();
+
+		}else{
+			alert( 'There was a problem with the request.' );
+		}
+	}
+}
+
+function draw(){
+	zoom = 50;
+	var canvas = document.getElementById( 'canvas' );
+	if( canvas.getContext ){
+		var ctx = canvas.getContext( '2d' );
+		
+		for( gx=0; gx < 800 / zoom; gx++ ){
+			for( gy=0; gy < 600 / zoom; gy++ ){
+				ctx.clearRect( gx * zoom, gy * zoom, zoom, zoom );
+				ctx.strokeRect( gx * zoom, gy * zoom, zoom, zoom );
+			}
+		}
+		ctx.fillRect( x*zoom, y*zoom, zoom, zoom);
+	}
+}
+
+</script>
+</head>
+
+<body onLoad="draw();">
+<span style="cursor: pointer; text-decoration: underline" onclick="update('canvastest.xml');">(5,10)</span> 
+<span style="cursor: pointer; text-decoration: underline" onclick="update('canvastest2.xml');">(10,5)</span><br>
+<canvas id="canvas" width="800" height="600">
+	If you can't see this, your browser is poop.	
+</canvas>
+<p>This is not an exciting demo, but realize that the coordinate data is being read from static XML files. If you replace those files with a web application and a relational database you can make wicked powerful web applications.</p>
+</body>
+</html>

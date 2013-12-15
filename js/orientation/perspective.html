@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	<style type="text/css">
+	body > div {
+		-webkit-perspective-origin: 50% 50%;
+	}
+	
+	div#box2 {
+		-webkit-transform: rotateX(45deg);
+	}
+	</style>
+	<script type="text/javascript" src="mootools-core.js"></script>
+	
+	<script type="text/javascript">
+		window.addEvent('domready', function(){
+			var box2 = document.id('box2'),
+				container = document.getElement('div.container');
+			
+			window.addEventListener('deviceorientation', function(event){
+				var	text = [];
+				['alpha', 'beta', 'gamma'].each(function(angle){
+					text.push(angle + ': ' + Math.round(event[angle]));
+				});
+				box2.set('text', text.join(', '));
+				var angle = Math.max(0, 90 - event.beta) * 12;
+				container.style.webkitPerspective = angle;
+			}, true);
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<a href="index.html">« Back</a>
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div class="container">
+	<div id="box2" class="box">
+		Perspective!
+	</div>
+</div>
+</body>
+</html>

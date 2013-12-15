@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title></title>
+</head>
+<body>
+<div id="debug"></div>
+<script>
+starttime=+new Date()
+arr=[]
+letters=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+for(a=0;a<10000;a++){
+	str=""
+	for(b=0;b<15;b++){
+		str+=letters[Math.floor(Math.random()*26)]
+	}
+	arr[a]=str
+}
+midtime=+new Date()
+res=""
+for(a=0;a<10000;a++){
+	if(arr[a].indexOf("abc")>-1){
+		res+=arr[a]+","
+	}
+}
+endtime=+new Date()
+document.getElementById("debug").innerHTML=res+"<br>Creation: "+(midtime-starttime)+" ms<br>Search: "+(endtime-midtime)+" ms"
+</script>
+</body>
+</html>

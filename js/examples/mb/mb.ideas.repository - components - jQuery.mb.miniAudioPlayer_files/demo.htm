@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)http://pupunzi.com/mb.components/mb.miniAudioPlayer/demo/demo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>jquery.mb.miniAudioPlayer</title>
+
+  <script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.jplayer.min.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.mb.miniPlayer.js"></script>
+  <script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.metadata.js"></script>
+  <link rel="stylesheet" type="text/css" href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/miniplayer.css" title="style" media="screen">
+  <style type="text/css">
+
+    /*Generic page style*/
+
+    body{
+      font:normal 13px/16px 'trebuchet MS', sans-serif;
+      margin:10px;
+      background: #ffffff;
+    }
+    .wrapper{
+      position:relative;
+      padding-top:90px;
+      padding-left:50px;
+      width:80%;
+      margin:auto
+    }
+    .wrapper h1{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:26px;
+    }
+    button{
+      padding:3px;
+      display:inline-block;
+      cursor:pointer;
+      font:12px/14px Arial, Helvetica, sans-serif;
+      color:#fff;
+      background-color:#ccc;
+      -moz-border-radius:5px;
+      -webkit-border-radius:5px;
+      -moz-box-shadow:#999 1px 1px 3px;
+      -webkit-box-shadow:#999 1px 1px 3px;
+      border:1px solid white;
+      text-shadow: 1px -1px 2px #aaa9a9 !important;
+    }
+    button:hover{
+    /*background-color:#fff;*/
+      color:#666;
+    }
+    hr{
+      border:none;
+      background-color:#ccc;
+      height:1px;
+    }
+
+  </style>
+
+  <script type="text/javascript">
+    $(function(){
+
+      if (self.location.href == top.location.href){
+        $("body").css({font:"normal 13px/16px 'trebuchet MS', verdana, sans-serif"});
+        var logo=$("<a href='http://pupunzi.com'><img id='logo' border='0' src='http://pupunzi.com/images/logo.png' alt='mb.ideas.repository' style='display:none;'></a>").css({position:"absolute"});
+        $("body").prepend(logo);
+        $("#logo").fadeIn();
+      }
+
+      $(".audio").mb_miniPlayer({
+        width:240,
+        inLine:false
+      });
+    });
+  </script>
+</head>
+
+<body>
+<br>
+<br>
+<br>
+<br>
+<div class="wrapper">
+  <h1>mb.miniAudioPlayer.demo</h1>
+  <br>
+  This is a GUI implementation of <a href="http://www.happyworm.com/jquery/jplayer/" target="_blank"><strong>Happyworm jPlayer plugin</strong></a>, an HTML5 audio engine, developed on jQuery framework, that let you listen mp3 and ogg file over the html5 audio tag where supported or using an invisible flash player where not supported.
+  For more informations about html5 browsers' support go to <a href="http://www.happyworm.com/jquery/jplayer/latest/developer-guide.htm">jPlayer documentation site</a>.
+<br>
+<br>
+<br>
+  <a id="m1" class="audio {ogg:&#39;http://www.miaowmusic.com/ogg/Miaow-07-Bubble.ogg&#39;}" href="http://www.miaowmusic.com/mp3/Miaow-07-Bubble.mp3" style="display: none; ">miaowmusic - Bubble (mp3/ogg)</a><div id="MPC_m1" isplaying="false" class="mbMiniPlayer black shadow"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Bubble (mp3/ogg)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_m1" style="width: 100%; "><div class="jp-play-bar" id="playBar_m1" style="width: 0%; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="03:29">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play" style="opacity: 0.8; ">P</span></td></tr></tbody></table></div>
+  <span>param -&gt; all features</span>
+  <hr>
+  <a id="m2" class="audio {skin:&#39;orange&#39;, ogg:&#39;http://www.miaowmusic.com/ogg/Miaow-02-Hidden.ogg&#39;, showTime:false}" href="http://www.miaowmusic.com/mp3/Miaow-02-Hidden.mp3" style="display: none; ">miaowmusic - Hidden (ogg/mp3)</a><div id="MPC_m2" isplaying="false" class="mbMiniPlayer orange shadow"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Hidden (ogg/mp3)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_m2" style="width: 100%; "><div class="jp-play-bar" id="playBar_m2" style="width: 0%; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="04:05">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play">P</span></td></tr></tbody></table></div>
+  <span> param -&gt; showTime:false, ogg:'http://www.miaowmusic.com/ogg/Miaow-02-Hidden.ogg' (FF will play it as HTML5)</span>
+  <hr>
+  <a id="m3" class="audio {skin:&#39;blue&#39;, autoPlay:false,showRew:false}" href="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3" style="display: none; ">miaowmusic - Stirring of a Fool (mp3)</a><div id="MPC_m3" isplaying="false" class="mbMiniPlayer blue shadow"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Stirring of a Fool (mp3)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_m3" style="width: 100%; "><div class="jp-play-bar" id="playBar_m3" style="width: 0%; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="05:40">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play">P</span></td></tr></tbody></table></div>
+  <span>param -&gt; showRew:false</span>
+  <hr>
+  <a id="m4" class="audio {skin:&#39;red&#39;, autoPlay:false,showRew:false, showTime:false}" href="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3" style="display: none; ">miaowmusic - Lismore (mp3)</a><div id="MPC_m4" isplaying="false" class="mbMiniPlayer red shadow"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Lismore (mp3)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_m4" style="width: 100%; "><div class="jp-play-bar" id="playBar_m4" style="width: 0%; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="03:55">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play">P</span></td></tr></tbody></table></div>
+  <span>param -&gt; showRew:false, showTime:false</span>
+  <hr>
+  <a id="m5" class="audio {skin:&#39;green&#39;, autoPlay:false, addShadow:false}" href="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3" style="display: none; ">miaowmusic - Stirring of a Fool (mp3)</a><div id="MPC_m5" isplaying="false" class="mbMiniPlayer green"><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Stirring of a Fool (mp3)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_m5" style="width: 235px; "><div class="jp-play-bar" id="playBar_m5" style="width: 0px; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="05:40">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play">P</span></td></tr></tbody></table></div>
+  <br>
+  <div>change track:
+    <br>
+    <button onclick="$(&#39;#m5&#39;).mb_mAPchangeFile(&#39;http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3&#39;,false,&#39;Lismore (mp3)&#39;)">miaowmusic - Lismore</button>
+    <button onclick="$(&#39;#m5&#39;).mb_mAPchangeFile(&#39;http://www.miaowmusic.com/mp3/Miaow-02-Hidden.mp3&#39;,false,&#39;Hidden (mp3)&#39;)">miaowmusic - Hidden</button>
+  </div>
+  <br>
+<hr>
+  This is a gray player: <a class="audio {skin:&#39;gray&#39;, autoPlay:false, inLine:true, showVolumLevel:false, showRew:true, showTime:false, width:100, addShadow:false}" href="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3" style="display: none; ">miaowmusic - Lismore (mp3)</a><div id="MPC_mb_1310076988277" isplaying="false" class="mbMiniPlayer gray" style="display: inline-block; vertical-align: middle; "><table cellpadding="0" cellspacing="0" border="0"><tbody><tr><td style="-webkit-user-select: none; " unselectable="on"><span class="volume">Vm</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="volumeLevel" style="display: none; "><a style="height: 5px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 7px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 9px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 11px; width: 4px; opacity: 0.8; " class="sel"></a><a style="height: 13px; width: 4px; opacity: 0.2; "></a><a style="height: 15px; width: 4px; opacity: 0.2; "></a><a style="height: 17px; width: 4px; opacity: 0.2; "></a><a style="height: 19px; width: 4px; opacity: 0.2; "></a></span></td><td style="-webkit-user-select: none; " unselectable="on" class="controlsBar"><div class="controls"><span class="title">miaowmusic - Lismore (mp3)</span><div class="jp-progress" style="top: -4px; "><div class="jp-load-bar" id="loadBar_mb_1310076988277" style="width: 95px; "><div class="jp-play-bar" id="playBar_mb_1310076988277" style="width: 0px; "></div></div></div></div></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="time" style="display: none; " title="03:55">00:00</span></td><td style="-webkit-user-select: none; display: none; " unselectable="on"><span class="rew" style="display: none; ">R</span></td><td style="-webkit-user-select: none; " unselectable="on"><span class="play">P</span></td></tr></tbody></table></div>
+  <span>and it is inline</span>
+
+  <hr>
+  <br>
+  <b>jquery.mb.miniPlayer</b> is a GUI implementation of the <a href="http://www.jplayer.org/" target="_blank">jquery.jPlayer</a> plug-in realized by © Happyworm LTD. (many thanks to <a href="http://happyworm.com/blog/" target="_blank">Mark Boas</a>)
+  <br>
+  All the music are provided by <a href="http://www.miaowmusic.com/" target="_blank">© miaowmusic</a>.
+</div>
+
+<script type="text/javascript">
+	 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+ </script><script src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/ga.js" type="text/javascript"></script>
+ <script type="text/javascript">
+	 try {
+		 var pageTracker = _gat._getTracker("UA-10907260-1");
+		 pageTracker._trackPageview();
+	 } catch(err) {}
+ </script>
+
+
+
+<div id="MP_m1" style="width: 0px; height: 0px; "><img id="jp_poster_0" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_0" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-07-Bubble.mp3"></audio></div><div id="MP_m2" style="width: 0px; height: 0px; "><img id="jp_poster_1" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_1" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-02-Hidden.mp3"></audio></div><div id="MP_m3" style="width: 0px; height: 0px; "><img id="jp_poster_2" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_2" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3"></audio></div><div id="MP_m4" style="width: 0px; height: 0px; "><img id="jp_poster_3" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_3" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3"></audio></div><div id="MP_m5" style="width: 0px; height: 0px; "><img id="jp_poster_4" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_4" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-08-Stirring-of-a-fool.mp3"></audio></div><div id="MP_mb_1310076988277" style="width: 0px; height: 0px; "><img id="jp_poster_5" style="width: 0px; height: 0px; display: none; "><audio id="jp_audio_5" preload="metadata" src="http://www.miaowmusic.com/mp3/Miaow-04-Lismore.mp3"></audio></div></body></html>

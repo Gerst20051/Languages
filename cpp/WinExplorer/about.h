@@ -1,0 +1,1 @@
+void ShowAboutDialog(HWND hParent);

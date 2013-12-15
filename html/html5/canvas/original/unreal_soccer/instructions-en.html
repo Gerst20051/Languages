@@ -1,0 +1,80 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="instructions.css"/>
+</head>
+<body>
+<h1>Contents</h1>
+<ul class="square contents">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#gamestates">Game States</a></li>
+<li><a href="#controls">Controls</a></li>
+<li><a href="#mouse">Mouse</a></li>
+<li><a href="#keyboard">Keyboard</a></li>
+</ul>
+<h1><a name="introduction">Introduction</a></h1>
+<p><em>Unreal Soccer</em> is a game of <b>association football</b> (<i>soccer</i>) with quite simple rules. It is played by two opposing teams, comprising four players each. The game is mediated by a <i>referee</i>, who is a penguin.</p>
+<h3>Game Time</h3>
+<p>You can choose the length of each game, but the exact time when a game ends is decided by the referee, who can, at his penguin discretion, allow compensation for the ball being out of play a lot. The winner is the team that scores the most goals during the game time. If the score is tied by the end of the game time, the game continues until either team scores a goal.</p>
+<h3>Progression</h3>
+<p>As you beat higher-rated teams, they become available for you to use against even tougher opponents. In order to play against teams that are not yet available for you, you need to choose a game time of at least 10 minutes.</p>
+<h1><a name="gamestates">Game States</a></h1>
+<ul class="square">
+<li><em>Play</em>: The default gameplay state, in which the ball is in play, and normal game rules apply.</li>
+<li><em>Kick-off</em>: The ball is positioned in the center of the game field, and either one of the teams is exclusively allowed control of the ball. This occurs in the beginning of each half of a match, and after a goal has been scored. During kick-off, the team opposing the team doing the kick-off cannot go within a certain distance of the ball.</li>
+<li><em>Out of field</em>: When the ball goes outside of the game field, it is considered <i>out of play</i>, and needs to be fetched and reinstated into gameplay by the referee. The referee does not drop the ball until all players on the team opposing the team doing the kick-in is outside a certain distance from the ball.</li>
+<li><em>Kick-in</em>: The ball is positioned on the edge of the game field by the referee, and the team that was not responsible for putting the ball out of play is exclusively allowed control of the ball. This occurs after an <i>out of field</i>. The team opposing the team doing the kick-in cannot go within a certain distance of the ball.</li>
+<li><em>Goal</em>: When either team scores a goal, the ball needs to be fetched and repositioned in the center of the field by the referee. The ball is considered <i>out of play</i> during this period. The referee will not drop the ball until all players are on their respective side of the field, and all players on the team opposing the team doing the kick-off are a certain distance from the ball.</li>
+</ul>
+<h1><a name="controls">Controls</a></h1>
+<p>You control the actions of the players in your team by using the mouse and keyboard. Note that these instructions are based on <i>default settings</i> being used; the result of some actions can be <i>customized</i> in the game options.</p>
+<p>The following colors are used to indicate actions on the game field:</p>
+<ul>
+<li style="color: white">run to position on game field</li>
+<li style="color: yellow">kick ball to position on game field</li>
+<li style="color: darkorchid">pass to player/player is receiving a pass</li>
+<li style="color: red">player is intercepting ball/shoot towards goal</li>
+</ul>
+<p>The following symbols are used to indicate which action will be taken when hovering an object:</p>
+<ul>
+<li><img src="selectmarker.png"> this player is currently selected</li>
+<li><img src="hovermarker.png"> select this player</li>
+<li><img src="passmarker.png"> pass the ball</li>
+<li><img src="targetmarker.png"> intercept the ball</li>
+</ul>
+<p>Additionally, the following indicates that a player is holding the ball:</p>
+<ul>
+<li><img src="ballmarker.png"></li>
+</ul>
+<h2><a name="mouse">Mouse</a></h2>
+<p>You control your team mostly by using the mouse. Click on a player in your team to select the player.</p>
+<p>If the selected player is <i>holding the ball</i>, the following orders can be issued to that player:</p>
+<ul class="square">
+<li>Click on another player in your team to pass the ball to that player.</li>
+<li>Click on a position on the game field to run to that position while dribbling the ball</li>
+<li>Hold down the <em>ctrl</em> button while clicking on an unoccupied position on the game field to shoot the ball to that position.</li>
+<li>Click on a position in the opponents' goal to powerfully shoot the ball towards the opponents' goal in order to score a goal</li>
+</ul>
+<p>If the selected player is <i>not holding the ball</i>, the following orders can be issued to that player:</p>
+<ul class="square">
+<li>Click on a position in the game field to run to that position</li>
+<li>Click on the ball to quickly intercept the ball. If a player of the opposing team is holding the ball, the selected player will try to take control of the ball.</li>
+</ul>
+<h2><a name="keyboard">Keyboard</a></h2>
+<p>Use the keyboard for more efficient gameplay. This image shows which keys can be used.</p>
+<img src="keyboard.png"/>
+<ul>
+<li><em>1~4</em>: select player 1~4 in your team</li>
+<li><em>tab</em> or <em>Q</em>: select the player in your team who is closest to the ball</li>
+<li><em>A</em>: order your team to go into offensive mode</li>
+<li><em>R</em>: order your team to go into defensive mode</li>
+<li><em>ctrl</em>: modifies a mouse click to mean:
+<ul>
+<li>pass the ball to the player you are hovering instead of selecting the hovered player, <i>or</i></li>
+<li>shoot to the indicated position on the field instead of running there if no player is currently hovered</li>
+</ul>
+<li><em>space</em>: if a player other than the selected player in your team has hold of the ball, order that player to try to pass the ball to the currently selected player</li>
+<li><em>P</em>: pause the game</li>
+<li><em>X</em>: quickly exit the game</li>
+</ul>
+</body>
+</html>

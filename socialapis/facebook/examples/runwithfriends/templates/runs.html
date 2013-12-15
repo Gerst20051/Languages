@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Recent Runs{% endblock %}
+{% block body %}
+<div id="runs">
+  {% if user_recent_runs %}
+  <div id="recent-runs">
+    <h1>Your Recent Runs</h1>
+    <table>
+      <thead>
+        <tr>
+          <td>When</td>
+          <td>Miles</td>
+          <td>Where</td>
+        </tr>
+      </thead>
+      <tbody id="recent-bd">
+        {% for run in user_recent_runs %}
+        <tr>
+          <td>{{ run.date }}</td>
+          <td>{{ run.pretty_distance }}</td>
+          <td>{{ run.location }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+  <div class="main">
+    <h1>Where did you run recently?</h1>
+
+    <form action="/run" method="post">
+      <div style="display: none">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}">
+      </div>
+
+      <div>
+        <label for="location">Where did you go?</label>
+        <input id="location" name="location" class="text" type="text">
+      </div>
+      <div>
+        <label for="distance">Number of Miles</label>
+        <input id="distance" name="distance" class="text" type="text">
+      </div>
+      <div>
+        <label for="date_month">Date (MM/DD/YYYY)</label>
+        <input id="date_month" name="date_month" class="text" type="text"> /
+        <input id="date_day" name="date_day" class="text" type="text"> /
+        <input id="date_year" name="date_year" class="text" type="text">
+
+        <div class="date-fill">
+          <a onclick="dateToday()">Today</a> |
+          <a onclick="dateYesterday()">Yesterday</a>
+        </div>
+      </div>
+      <div class="buttons">
+        <input class="awesome green" type="submit" value="Add Run">
+      </div>
+    </form>
+  </div>
+
+  <div class="friends">
+    <h1>Friends</h1>
+
+    <div id="friends-runs">
+      {% if friends_runs %}
+      {% for run in friends_runs %}
+      <div class="run">
+        <div class="details">
+          <span class="distance"><tt>{{ run.pretty_distance }}</tt> miles</span>
+          <span class="date">{{ run.pretty_date }}</span>
+        </div>
+
+        <img class="pic" height="50" width="50"
+             src="{{ friends|get_picture:run.user_id }}">
+
+        <a class="name" href="/user/{{ run.user_id }}">
+          {{ friends|get_name:run.user_id }}
+        </a>
+        <div style="clear: both;"></div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div id="info">
+        You do not have any friends using Run with Friends yet!
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

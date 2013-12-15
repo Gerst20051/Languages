@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<meta name="author" content="Homenet Spaces Andrew Gerst" />
+<meta name="copyright" content="© HnS Desktop" />
+<title>Shiny Buttons</title>
+<style type="text/css">
+.demo-button {
+background-color: #666;
+background-color: rgba(128,128,128,0.75);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(64,64,64,0.75)), to(rgba(192,192,192,0.9)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(64,64,64,0.75)), to(rgba(192,192,192,0.9)));
+border: 2px solid #999;
+border-radius: 16px;
+-khtml-border-radius: 16px;
+-moz-border-radius: 16px;
+-opera-border-radius: 16px;
+-webkit-border-radius: 16px;
+box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+-khtml-box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+-moz-box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+color: #fff;
+cursor: pointer;
+display: inline-block;
+font-size: 1.5em;
+font-weight: bold;
+padding: 0.25em 0.5em 0.3em 0.5em;
+position: relative;
+text-align: center;
+text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-webkit-user-select: none;
+width: 8em;
+}
+
+.demo-button span {
+background-color: rgba(255,255,255,0.25);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(255,255,255,0.75)), to(rgba(255,255,255,0)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(255,255,255,0.75)), to(rgba(255,255,255,0)));
+border-radius: 8px;
+-khtml-border-radius: 8px;
+-moz-border-radius: 8px;
+-opera-border-radius: 8px;
+-webkit-border-radius: 8px;
+display: block;
+height: 50%;
+left: 3.5%;
+position: absolute;
+top: 0px;
+width: 94%;
+}
+
+#shiny-demo-1 {
+background-color: rgba(128,128,128,0.75);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(64,64,64,0.75)), to(rgba(192,192,192,0.9)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(64,64,64,0.75)), to(rgba(192,192,192,0.9)));
+border-color: #999;
+box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+-khtml-box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+-moz-box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+-webkit-box-shadow: rgba(192,192,192,0.75) 0px 8px 24px;
+}
+
+#shiny-demo-1,
+#shiny-demo-2 {
+margin-right: 1.5em;
+}
+
+#shiny-demo-1:hover {
+background-color: rgba(64,128,192,0.75);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(16,96,192,0.75)), to(rgba(96,192,255,0.9)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(16,96,192,0.75)), to(rgba(96,192,255,0.9)));
+border-color: #6699cc;
+box-shadow: rgba(128,192,255,0.75) 0px 8px 24px;
+-khtml-box-shadow: rgba(128,192,255,0.75) 0px 8px 24px;
+-moz-box-shadow: rgba(128,192,255,0.75) 0px 8px 24px;
+-webkit-box-shadow: rgba(128,192,255,0.75) 0px 8px 24px;
+margin-right: 1.5em;
+}
+
+#shiny-demo-2:hover {
+background-color: rgba(255,0,0,0.75);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(128,64,64,0.75)), to(rgba(192,128,128,0.9)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(128,64,64,0.75)), to(rgba(256,128,128,0.9)));
+border-color: #aa7777;
+box-shadow: rgba(256,128,128,0.5) 0px 8px 24px;
+-khtml-box-shadow: rgba(256,128,128,0.5) 0px 8px 24px;
+-moz-box-shadow: rgba(256,128,128,0.5) 0px 8px 24px;
+-webkit-box-shadow: rgba(256,128,128,0.5) 0px 8px 24px;
+}
+
+#shiny-demo-3:hover {
+background-color: rgba(0,128,0,0.75);
+background-image: -moz-linear-gradient(top, bottom, from(rgba(64,128,64,0.75)), to(rgba(128,192,128,0.9)));
+background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(64,128,64,0.75)), to(rgba(128,255,128,0.9)));
+border-color: #77cc77;
+box-shadow: rgba(128,256,128,0.6) 0px 8px 24px;
+-khtml-box-shadow: rgba(128,256,128,0.6) 0px 8px 24px;
+-moz-box-shadow: rgba(128,256,128,0.6) 0px 8px 24px;
+-webkit-box-shadow: rgba(128,256,128,0.6) 0px 8px 24px;
+}
+</style>
+</head>
+
+<body>
+<div id="shiny-demo-1" class="demo-button">Click me!<span></span></div>
+<div id="shiny-demo-2" class="demo-button">Click me!<span></span></div>
+<div id="shiny-demo-3" class="demo-button">Click me!<span></span></div>
+</body>
+
+</html>

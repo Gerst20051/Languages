@@ -1,0 +1,313 @@
+If dim(L )<4
+{0,0,0,0}->L
+-47->Xmin
+47->Xmax
+-31->Ymin
+31->Ymax
+GridOff
+AxesOff
+ClrHome
+ClrDraw
+FnOff
+Y->L
+RecallPic 8
+
+0->M
+Line(3,24,6,24,0)
+0->J
+While J!=105
+getKey->J
+If J=45
+Then
+Goto BB
+End
+If J=34 and M<2
+Then
+M+1->M
+Line(3,(-M+3)*9+6,6,(-M+3)*9+6)
+Line(3,(-M+2)*9+6,6,(-M+2)*9+6,0)
+
+End
+If J=25 and M>0
+Then
+M-1->M
+Line(3,(-M+1)*9+6,6,(-M+1)*9+6)
+Line(3,(-M+2)*9+6,6,(-M+2)*9+6,0)
+End
+End
+Goto CE
+Lbl CB
+0->M
+Lbl CF
+Menu("CUSTOMIZE","BALL STARTING PT",CA,"STARTING SLOPE",CC,"BALL SPEED",CD,"PADDLE HEIGHT",CH,"PADDLE SIZE",CI,"PADDLE SPEED",CK,"MORE OPTIONS",CG)
+
+Lbl CA
+Disp "DEFAULT IS (0,0)"
+Input "X COORDINATE:",A
+Input "Y COORDINATE:",B
+ClrHome
+Goto CF
+Lbl CC
+Disp "DEFAULT IS 1/3"
+Input "ENTER SLOPE:",C
+
+ClrHome
+While C=0
+Disp "DONT USE 0"
+Input "ENTER SLOPE:",C
+ClrHome
+End
+Goto CF
+Lbl CD
+Disp "DEFAULT IS 2"
+Input "ENTER SPEED:",D
+1->M
+ClrHome
+
+Goto CF
+Lbl CH
+Disp "DEFAULT IS 0"
+Input "PADDLE HEIGHT:",H
+ClrHome
+Goto CF
+Lbl CI
+Disp "DEFAULT IS 5"
+Input "PADDLE LENGTH:",I
+ClrHome
+Goto CF
+Lbl CK
+
+Disp "DEFAULT IS 3"
+Input "PADDLE SPEED:",K
+ClrHome
+Goto CF
+Lbl CG
+Menu("CUSTOMIZE2","INVERT COLORS",CN,"SPIN",CP,"OPPONENT",CQ,"OPPONENT DIFICUL",CL,"GO BACK",CF,"BEGIN",AB)
+
+Lbl CN
+-N->N
+Disp "COLORS INVERTED"
+Disp "PRESS ENTER"
+Pause
+ClrHome
+Goto CG
+Lbl CP
+Disp "DEFAULT IS 25"
+Input "AMOUNT OF SPIN:",P
+ClrHome
+Goto CG
+
+Lbl CQ
+If Q=0
+Then
+1->Q
+2D->D
+Disp "YOU HAVE AN"
+Disp "OPPONENT"
+Pause
+ClrHome
+Else
+0->Q
+D/2->D
+Disp "YOU NO LONGER"
+Disp "HAVE AN OPPONENT"
+
+Pause
+ClrHome
+End
+Goto CG
+Lbl CL
+Disp "DEFAULT IS 5"
+L->L (4)
+Input "DIFICULTY:",L
+L->L (3)
+
+L (4)->L
+ClrHome
+Goto CG
+Lbl CE
+ClrDraw
+L->Y
+0->L
+If M!=2
+Then
+0->A
+0->B
+1/3->C
+2->D
+1->E
+-10->F
+-10->G
+
+0->H
+5->I
+0->J
+3->K
+0->L
+.5->N
+1->O
+25->P
+0->Q
+0->R
+0->S
+0->T
+5->L (3)
+End
+If M=1
+Then
+
+Goto CB
+End
+If M=2
+Then
+1->E
+U->A
+V->B
+W->C
+L (1)->H
+L (2)->N
+Z->M
+End
+
+Lbl AB
+A->U
+B->V
+C->W
+H->L (1)
+N->L (2)
+M->Z
+If N<0
+Then
+Shade(-31,31)
+End
+
+Line(-47,H-I,-47,H+I,N+.5)
+Line(47,H-I,47,H+I,N+.5)
+Lbl AA
+While A>-46 and A<46
+Text(0,46,L)
+If M=0
+Then
+2/(1+ë^(-.6(L-10)))+2->D
+If Q=1
+Then
+2D->D
+End
+End
+getKey->J
+
+If J=45
+Then
+Goto BB
+End
+If J=25 and H<31-I
+Then
+H+K->H
+Line(-47,H-I,-47,H+I,N+.5)
+Line(-47,H-I-K,-47,H-I,abs(N-.5))
+If Q=0
+Then
+Line(47,H-I,47,H+I,N+.5)
+Line(47,H-I-K,47,H-I,abs(N-.5))
+
+End
+End
+If J=34 and H>-31+I
+Then
+H-K->H
+Line(-47,H+I,-47,H-I,N+.5)
+Line(-47,H+I,-47,H+I+K,abs(N-.5))
+If Q=0
+Then
+Line(47,H+I,47,H-I,N+.5)
+Line(47,H+I,47,H+I+K,abs(N-.5))
+End
+End
+
+Pt-Off(F(N+.5)+Aabs(N-.5),G(N+.5)+Babs(N-.5),2)
+Pt-On(A(N+.5)+Fabs(N-.5),B(N+.5)+Gabs(N-.5),2)
+A->F
+B->G
+A+ED->A
+B+CD->B
+If Q=1
+Then
+iPart((((L (3)rand)/C)+(C/abs(C)))->R
+
+If (iPart(L (3)/C)!=0
+Then
+(R/(iPart(L (3)/C)))*I+B->S
+Else
+I+B->S
+End
+Line(47,S-I,47,S+I,N+.5)
+If S>T
+
+Then
+Line(47,S-I,47,T-I,abs(N-.5))
+Else
+Line(47,S+I,47,T+I,abs(N-.5))
+End
+S->T
+End
+If Bù31 or B÷-31
+Then
+-C->C
+End
+End
+If Q=1 and A>0 and B<S+I and B>S-I
+Then
+-E->E
+
+A+ED->A
+C+(B-S)/(3I)->C
+Else
+If Q=1 and A>0
+Then
+Goto BC
+End
+End
+If BùH-I and B÷H+I
+Then
+If Q=0 or A<0
+Then
+-E->E
+A+ED->A
+L+1->L
+If J=25
+Then
+P->O
+
+End
+If J=34
+Then
+P->O
+End
+If Q=0 or A<0
+Then
+C+O(B-H)/(3I)->C
+End
+1->O
+End
+Else
+If Q=0 or A<0
+Then
+Goto BA
+End
+End
+Goto AA
+Lbl BA
+ClrHome
+Disp "GAME OVER"
+
+Disp "YOUR SCORE:"
+Output(2,12,L)
+Lbl BB
+ClrDraw
+Output(8,16," ")
+Lbl BC
+If Q=1 and A>0 and J!=45
+Then
+ClrHome
+Disp "YOU WIN"
+End 

@@ -1,0 +1,925 @@
+# Description
+# -----------
+# Testing string functions
+
+--disable_warnings
+drop table if exists t1,t2;
+--enable_warnings
+
+select 'hello',"'hello'",'""hello""','''h''e''l''l''o''',"hel""lo",'hel\'lo';
+select 'hello' 'monty';
+select length('\n\t\r\b\0\_\%\\');
+select char_length('\n\t\r\b\0\_\%\\');
+select character_length('\n\t\r\b\0\_\%\\');
+select length('\n\t\n\b\0\\_\\%\\');
+select concat('monty',' was here ','again'),length('hello'),char(ascii('h')),ord('h');
+select hex(char(256));
+select locate('he','hello'),locate('he','hello',2),locate('lo','hello',2) ;
+select instr('hello','HE'), instr('hello',binary 'HE'), instr(binary 'hello','HE'); 
+select position(binary 'll' in 'hello'),position('a' in binary 'hello');
+#
+# Bug#11728 string function LEFT,
+# strange undocumented behaviour, strict mode
+#
+select left('hello',null), right('hello',null);
+select left('hello',2),right('hello',2),substring('hello',2,2),mid('hello',1,5) ;
+select concat('',left(right(concat('what ',concat('is ','happening')),9),4),'',substring('monty',5,1)) ;
+select substring_index('www.tcx.se','.',-2),substring_index('www.tcx.se','.',1);
+select substring_index('www.tcx.se','tcx',1),substring_index('www.tcx.se','tcx',-1);
+select substring_index('.tcx.se','.',-2),substring_index('.tcx.se','.tcx',-1);
+select substring_index('aaaaaaaaa1','a',1);
+select substring_index('aaaaaaaaa1','aa',1);
+select substring_index('aaaaaaaaa1','aa',2);
+select substring_index('aaaaaaaaa1','aa',3);
+select substring_index('aaaaaaaaa1','aa',4);
+select substring_index('aaaaaaaaa1','aa',5);
+select substring_index('aaaaaaaaa1','aaa',1);
+select substring_index('aaaaaaaaa1','aaa',2);
+select substring_index('aaaaaaaaa1','aaa',3);
+select substring_index('aaaaaaaaa1','aaa',4);
+select substring_index('aaaaaaaaa1','aaaa',1);
+select substring_index('aaaaaaaaa1','aaaa',2);
+select substring_index('aaaaaaaaa1','1',1);
+select substring_index('aaaaaaaaa1','a',-1);
+select substring_index('aaaaaaaaa1','aa',-1);
+select substring_index('aaaaaaaaa1','aa',-2);
+select substring_index('aaaaaaaaa1','aa',-3);
+select substring_index('aaaaaaaaa1','aa',-4);
+select substring_index('aaaaaaaaa1','aa',-5);
+select substring_index('aaaaaaaaa1','aaa',-1);
+select substring_index('aaaaaaaaa1','aaa',-2);
+select substring_index('aaaaaaaaa1','aaa',-3);
+select substring_index('aaaaaaaaa1','aaa',-4);
+select substring_index('the king of thethe hill','the',-2);
+select substring_index('the king of the the hill','the',-2);
+select substring_index('the king of the  the hill','the',-2);
+select substring_index('the king of the  the hill',' the ',-1);
+select substring_index('the king of the  the hill',' the ',-2);
+select substring_index('the king of the  the hill',' ',-1);
+select substring_index('the king of the  the hill',' ',-2);
+select substring_index('the king of the  the hill',' ',-3);
+select substring_index('the king of the  the hill',' ',-4);
+select substring_index('the king of the  the hill',' ',-5);
+select substring_index('the king of the.the hill','the',-2);
+select substring_index('the king of thethethe.the hill','the',-3);
+select substring_index('the king of thethethe.the hill','the',-1);
+select substring_index('the king of the the hill','the',1);
+select substring_index('the king of the the hill','the',2);
+select substring_index('the king of the the hill','the',3);
+
+select concat(':',ltrim('  left  '),':',rtrim('  right  '),':');
+select concat(':',trim(leading from '  left  '),':',trim(trailing from '  right  '),':');
+select concat(':',trim(LEADING FROM ' left'),':',trim(TRAILING FROM ' right '),':');
+select concat(':',trim(' m '),':',trim(BOTH FROM ' y '),':',trim('*' FROM '*s*'),':');
+select concat(':',trim(BOTH 'ab' FROM 'ababmyabab'),':',trim(BOTH '*' FROM '***sql'),':');
+select concat(':',trim(LEADING '.*' FROM '.*my'),':',trim(TRAILING '.*' FROM 'sql.*.*'),':');
+select TRIM("foo" FROM "foo"), TRIM("foo" FROM "foook"), TRIM("foo" FROM "okfoo");
+
+select concat_ws(', ','monty','was here','again');
+select concat_ws(NULL,'a'),concat_ws(',',NULL,'');
+select concat_ws(',','',NULL,'a');
+SELECT CONCAT('"',CONCAT_WS('";"',repeat('a',60),repeat('b',60),repeat('c',60),repeat('d',100)), '"');
+
+select insert('txs',2,1,'hi'),insert('is ',4,0,'a'),insert('txxxxt',2,4,'es');
+select replace('aaaa','a','b'),replace('aaaa','aa','b'),replace('aaaa','a','bb'),replace('aaaa','','b'),replace('bbbb','a','c');
+select replace(concat(lcase(concat('THIS',' ','IS',' ','A',' ')),ucase('false'),' ','test'),'FALSE','REAL') ;
+select crc32("123");
+select repeat('monty',5),concat('*',space(5),'*');
+select reverse('abc'),reverse('abcd');
+select rpad('a',4,'1'),rpad('a',4,'12'),rpad('abcd',3,'12'), rpad(11, 10 , 22), rpad("ab", 10, 22);
+select lpad('a',4,'1'),lpad('a',4,'12'),lpad('abcd',3,'12'), lpad(11, 10 , 22);
+select rpad(741653838,17,'0'),lpad(741653838,17,'0');
+select rpad('abcd',7,'ab'),lpad('abcd',7,'ab');
+select rpad('abcd',1,'ab'),lpad('abcd',1,'ab');
+select rpad('STRING', 20, CONCAT('p','a','d') );
+select lpad('STRING', 20, CONCAT('p','a','d') );
+
+select LEAST(NULL,'HARRY','HARRIOT',NULL,'HAROLD'),GREATEST(NULL,'HARRY','HARRIOT',NULL,'HAROLD');
+
+select quote('\'\"\\test');
+select quote(concat('abc\'', '\\cba'));
+--error ER_DIVISION_BY_ZERO
+select quote(1/0), quote('\0\Z');
+select length(quote(concat(char(0),"test")));
+select hex(quote(concat(char(224),char(227),char(230),char(231),char(232),char(234),char(235))));
+select unhex(hex("foobar")), hex(unhex("1234567890ABCDEF")), unhex("345678"), unhex(NULL);
+select hex(unhex("1")), hex(unhex("12")), hex(unhex("123")), hex(unhex("1234")), hex(unhex("12345")), hex(unhex("123456"));
+
+#
+# Bug #6564: QUOTE(NULL
+#
+
+select concat('a', quote(NULL));
+
+#
+# Wrong usage of functions
+#
+
+select reverse("");
+select insert("aa",100,1,"b"),insert("aa",1,3,"b"),left("aa",-1),substring("a",1,2);
+select elt(2,1),field(NULL,"a","b","c"),reverse("");
+select locate("a","b",2),locate("","a",1);
+select ltrim("a"),rtrim("a"),trim(BOTH "" from "a"),trim(BOTH " " from "a");
+select substring_index("www.tcx.se","",3);
+select length(repeat("a",100000000)),length(repeat("a",1000*64));
+select position("0" in "baaa" in (1)),position("0" in "1" in (1,2,3)),position("sql" in ("mysql"));
+select position(("1" in (1,2,3)) in "01");
+select length(repeat("a",65500)),length(concat(repeat("a",32000),repeat("a",32000))),length(replace("aaaaa","a",concat(repeat("a",10000)))),length(insert(repeat("a",40000),1,30000,repeat("b",50000)));
+select length(repeat("a",1000000)),length(concat(repeat("a",32000),repeat("a",32000),repeat("a",32000))),length(replace("aaaaa","a",concat(repeat("a",32000)))),length(insert(repeat("a",48000),1,1000,repeat("a",48000)));
+
+#
+# Problem med concat
+#
+
+create table t1 ( domain char(50) );
+insert into t1 VALUES ("hello.de" ), ("test.de" );
+select domain from t1 where concat('@', trim(leading '.' from concat('.', domain))) = '@hello.de';
+select domain from t1 where concat('@', trim(leading '.' from concat('.', domain))) = '@test.de';
+drop table t1;
+
+#
+# Test bug in concat_ws
+#
+
+CREATE TEMPORARY TABLE t1 (
+  id int NOT NULL,
+  title varchar(255) default NULL,
+  prio int default NULL,
+  category int default NULL,
+  program int default NULL,
+  bugdesc text,
+  created datetime default NULL,
+  modified timestamp NOT NULL,
+  bugstatus int default NULL,
+  submitter int default NULL
+) ENGINE=MyISAM;
+
+INSERT INTO t1 VALUES (1,'Link',1,1,1,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa','2001-02-28 08:40:16',20010228084016,0,4);
+SELECT CONCAT('"',CONCAT_WS('";"',title,prio,category,program,bugdesc,created,modified+0,bugstatus,submitter), '"') FROM t1;
+SELECT CONCAT('"',CONCAT_WS('";"',title,prio,category,program,bugstatus,submitter), '"') FROM t1;
+SELECT CONCAT_WS('";"',title,prio,category,program,bugdesc,created,modified+0,bugstatus,submitter) FROM t1;
+SELECT bugdesc, REPLACE(bugdesc, 'xxxxxxxxxxxxxxxxxxxx', 'bbbbbbbbbbbbbbbbbbbb') from t1 group by bugdesc;
+drop table t1;
+
+#
+# Test bug in AES_DECRYPT() when called with wrong argument
+#
+
+CREATE TEMPORARY TABLE t1 (id int NOT NULL auto_increment, tmp text NOT NULL, KEY id (id)) ENGINE=MyISAM;
+INSERT INTO t1 VALUES (1, 'a545f661efdd1fb66fdee3aab79945bf');
+DROP TABLE t1;
+
+CREATE TABLE t1 (
+  wid int NOT NULL auto_increment,
+  data_podp date default NULL,
+  status_wnio enum('nowy','podp','real','arch') NOT NULL default 'nowy',
+  PRIMARY KEY(wid)
+);
+
+INSERT INTO t1 VALUES (8,NULL,'real');
+INSERT INTO t1 VALUES (9,NULL,'nowy');
+SELECT elt(status_wnio,data_podp) FROM t1 GROUP BY wid;
+DROP TABLE t1;
+
+#
+# test for #739
+
+CREATE TEMPORARY TABLE t1 (title text) ENGINE=MyISAM;
+INSERT INTO t1 VALUES ('Congress reconvenes in September to debate welfare and adult education');
+INSERT INTO t1 VALUES ('House passes the CAREERS bill');
+SELECT CONCAT("</a>",RPAD("",(55 - LENGTH(title)),".")) from t1;
+DROP TABLE t1;
+
+#
+# test for Bug #2290 "output truncated with ELT when using DISTINCT"
+#
+
+CREATE TABLE t1 (i int, j int);
+INSERT INTO t1 VALUES (1,1),(2,2);
+SELECT DISTINCT i, ELT(j, '345', '34') FROM t1;
+DROP TABLE t1;
+
+#
+# bug #3756: quote and NULL
+#
+
+create table t1(a char(4));
+insert into t1 values ('one'),(NULL),('two'),('four');
+select a, quote(a), isnull(quote(a)), quote(a) is null, ifnull(quote(a), 'n') from t1;
+drop table t1;
+
+#
+# Bug #5498: TRIM fails with LEADING or TRAILING if remstr = str
+#
+
+select trim(trailing 'foo' from 'foo');
+select trim(leading 'foo' from 'foo');
+
+#
+# crashing bug with QUOTE() and LTRIM() or TRIM() fixed
+# Bug #7495
+#
+
+select quote(ltrim(concat('    ', 'a')));
+select quote(trim(concat('    ', 'a')));
+
+# Bad results from QUOTE(). Bug #8248
+CREATE TABLE t1 SELECT 1 UNION SELECT 2 UNION SELECT 3;
+SELECT QUOTE('A') FROM t1;
+DROP TABLE t1;
+
+#
+# test for SUBSTR
+#
+select SUBSTR('abcdefg',3,2);
+select SUBSTRING('abcdefg',3,2);
+select SUBSTR('abcdefg',-3,2);
+select SUBSTR('abcdefg',-1,5);
+select SUBSTR('abcdefg',0,0);
+select SUBSTR('abcdefg',-1,-1);
+select SUBSTR('abcdefg',1,-1);
+
+select substring_index("1abcd;2abcd;3abcd;4abcd", ';', 2),substring_index("1abcd;2abcd;3abcd;4abcd", ';', -2);
+
+explain extended select concat('*',space(5),'*');
+explain extended select reverse('abc');
+explain extended select rpad('a',4,'1');
+explain extended select lpad('a',4,'1');
+explain extended select concat_ws(',','',NULL,'a');
+explain extended select elt(2,1);
+explain extended select locate("a","b",2);
+explain extended select char(0);
+explain extended select conv(130,16,10);
+explain extended select hex(130);
+explain extended select binary 'HE';
+explain extended select collation(conv(130,16,10));
+explain extended select length('\n\t\r\b\0\_\%\\');
+explain extended select concat('monty',' was here ','again');
+explain extended select length('hello');
+explain extended select char(ascii('h'));
+explain extended select ord('h');
+explain extended select quote(1/0);
+explain extended select crc32("123");
+explain extended select replace('aaaa','a','b');
+explain extended select insert('txs',2,1,'hi');
+explain extended select SUBSTR('abcdefg',3,2);
+explain extended select substring_index("1abcd;2abcd;3abcd;4abcd", ';', 2);
+
+#
+# lpad returns incorrect result (Bug #2182)
+#
+
+SELECT lpad(12345, 5, "#");
+
+#
+# Problem the the CONV() function (Bug #2972)
+#
+ 
+SELECT conv(71, 10, 36), conv('1Z', 36, 10);
+SELECT conv(71, 10, 37), conv('1Z', 37, 10), conv(0,1,10),conv(0,0,10), conv(0,-1,10);
+
+#
+# Bug in SUBSTRING when mixed with CONCAT and ORDER BY (Bug #3089)
+#
+
+create table t1 (id int, str varchar(10));
+insert into t1 values (1,'aaaaaaaaaa'), (2,'bbbbbbbbbb');
+create table t2 (id int, str varchar(10));
+insert into t2 values (1,'cccccccccc'), (2,'dddddddddd');
+select substring(concat(t1.str, t2.str), 1, 15) "name" from t1, t2 
+where t2.id=t1.id order by name;
+drop table t1, t2;
+
+#
+# Test case for conversion of long string value to integer (Bug #3472)
+#
+
+create table t1 (c1 INT, c2 INT);
+--error ER_WARN_DATA_OUT_OF_RANGE
+insert into t1 values ('21474836461','21474836461');
+--error ER_WARN_DATA_OUT_OF_RANGE
+insert into t1 values ('-21474836461','-21474836461');
+select * from t1;
+drop table t1;
+
+#
+# Bug #4878: LEFT() in integer/float context
+#
+
+select left(1234, 3) + 0;
+
+#
+# Bug #7101: bug with LEFT() when used as a field in GROUP BY aggregation
+#
+create table t1 (a int not null primary key, b varchar(40), c datetime);
+insert into t1 (a,b,c) values (1,'Tom','2004-12-10 12:13:14'),(2,'ball games','2004-12-10 12:13:14'), (3,'Basil','2004-12-10 12:13:14'), (4,'Dean','2004-12-10 12:13:14'),(5,'Ellis','2004-12-10 12:13:14'), (6,'Serg','2004-12-10 12:13:14'), (7,'Sergei','2004-12-10 12:13:14'),(8,'Georg','2004-12-10 12:13:14'),(9,'Salle','2004-12-10 12:13:14'),(10,'Sinisa','2004-12-10 12:13:14'); 
+select count(*) as total, left(c,10) as reg from t1 group by reg order by reg desc limit 0,12;
+drop table t1;
+
+#
+# Bug#7455 unexpected result: TRIM(<NULL> FROM <whatever>) gives NOT NULL
+# According to ANSI if one of the TRIM arguments is NULL, then the result
+# must be NULL too.
+#
+select trim(null from 'kate') as "must_be_null";
+select trim('xyz' from null) as "must_be_null";
+select trim(leading NULL from 'kate') as "must_be_null";
+select trim(trailing NULL from 'xyz') as "must_be_null";
+
+#
+# Bug #7751 - conversion for a bigint constant 
+#
+
+CREATE TEMPORARY TABLE t1 (
+  id int NOT NULL auto_increment,
+  a bigint default NULL,
+  PRIMARY KEY  (id)
+) ENGINE=MyISAM;
+
+--error ER_WARN_DATA_OUT_OF_RANGE
+INSERT INTO t1 VALUES ('0','16307858876001849059');
+
+SELECT CONV('e251273eb74a8ee3', 16, 10);
+
+EXPLAIN 
+SELECT id
+  FROM t1
+  WHERE a = 16307858876001849059;
+
+EXPLAIN 
+  SELECT id
+  FROM t1
+  WHERE a = CONV('e251273eb74a8ee3', 16, 10);
+
+DROP TABLE t1;
+
+#
+# Bug #6317: string function CHAR, parameter is NULL, wrong result
+#
+SELECT CHAR(NULL,121,83,81,'76') as my_column;
+SELECT CHAR_LENGTH(CHAR(NULL,121,83,81,'76')) as my_column;
+#
+# Test case for bug #8669: null aes_decrypt result in order by query
+#
+
+CREATE TABLE t1 (id int PRIMARY KEY, str char(255) NOT NULL);
+CREATE TABLE t2 (id int NOT NULL UNIQUE);
+INSERT INTO t2 VALUES (1),(2);
+INSERT INTO t1 VALUES (2, 'not valid');
+
+DROP TABLE t1, t2;
+
+#
+# Bug #10944: Mishandling of NULL arguments in FIELD()
+#
+select field(0,NULL,1,0), field("",NULL,"bar",""), field(0.0,NULL,1.0,0.0);
+select field(NULL,1,2,NULL), field(NULL,1,2,0);
+
+#
+# Bug #10124: access by integer index with a string key that is not a number  
+#
+
+CREATE TABLE t1 (str varchar(20) PRIMARY KEY);
+CREATE TABLE t2 (num int primary key);
+INSERT INTO t1 VALUES ('notnumber');
+INSERT INTO t2 VALUES (0), (1); 
+
+SELECT * FROM t1, t2 WHERE num=str;
+SELECT * FROM t1, t2 WHERE num=substring(str from 1 for 6);
+
+DROP TABLE t1,t2;
+
+#
+# Bug #11469: NOT NULL optimization wrongly used for arguments of CONCAT_WS  
+#
+
+CREATE TABLE t1(
+  id int NOT NULL auto_increment,
+  pc int NOT NULL default '0',
+  title varchar(20) default NULL,
+  PRIMARY KEY (id)
+);
+
+INSERT INTO t1 VALUES
+  (1, 0, 'Main'),
+  (2, 1, 'Toys'),
+  (3, 1, 'Games');
+
+SELECT t1.id, CONCAT_WS('->', t3.title, t2.title, t1.title) as col1
+  FROM t1 LEFT JOIN t1 AS t2 ON t1.pc=t2.id
+          LEFT JOIN t1 AS t3 ON t2.pc=t3.id;
+SELECT t1.id, CONCAT_WS('->', t3.title, t2.title, t1.title) as col1
+  FROM t1 LEFT JOIN t1 AS t2 ON t1.pc=t2.id
+          LEFT JOIN t1 AS t3 ON t2.pc=t3.id
+    WHERE CONCAT_WS('->', t3.title, t2.title, t1.title) LIKE '%Toys%';
+
+DROP TABLE t1;
+
+
+CREATE TABLE t1(
+  trackid     int NOT NULL auto_increment,
+  trackname   varchar(100) NOT NULL default '',
+  PRIMARY KEY (trackid)
+);
+
+CREATE TABLE t2(
+  artistid    int NOT NULL auto_increment,
+  artistname  varchar(100) NOT NULL default '',
+  PRIMARY KEY (artistid)
+);
+
+CREATE TABLE t3(
+  trackid     int NOT NULL,
+  artistid    int NOT NULL,
+  PRIMARY KEY (trackid,artistid)
+);
+
+INSERT INTO t1 VALUES (1, 'April In Paris'), (2, 'Autumn In New York');
+INSERT INTO t2 VALUES (1, 'Vernon Duke');
+INSERT INTO t3 VALUES (1,1);
+
+SELECT CONCAT_WS(' ', trackname, artistname) trackname, artistname
+  FROM t1 LEFT JOIN t3 ON t1.trackid=t3.trackid
+          LEFT JOIN t2 ON t2.artistid=t3.artistid
+    WHERE CONCAT_WS(' ', trackname, artistname) LIKE '%In%';
+
+DROP TABLE t1,t2,t3;
+
+#
+# Correct length reporting from substring() (BUG#10269)
+#
+create table t1 (b varchar(5));
+insert t1 values ('ab'), ('abc'), ('abcd'), ('abcde');
+select *,substring(b,1),substring(b,-1),substring(b,-2),substring(b,-3),substring(b,-4),substring(b,-5) from t1;
+select * from (select *,substring(b,1),substring(b,-1),substring(b,-2),substring(b,-3),substring(b,-4),substring(b,-5) from t1) t;
+drop table t1;
+
+#
+# Bug #9854  hex() and out of range handling
+#
+select hex(29223372036854775809), hex(-29223372036854775809);
+
+#
+# Bug #11311: Incorrect length returned from LPAD() and RPAD()
+#
+create table t1 (i int);
+insert into t1 values (1000000000),(1);
+--enable_metadata
+select lpad(i, 7, ' ') as t from t1;
+select rpad(i, 7, ' ') as t from t1;
+--disable_metadata
+drop table t1;
+
+--disable_query_log
+let $bad_test_file = "$DRIZZLETEST_VARDIR/lkjlkj" ;
+--enable_query_log
+let $replace_substring = `SELECT SUBSTRING($bad_test_file,1,128)`;
+--replace_result $replace_substring DRIZZLETEST_BAD_FILE $bad_test_file DRIZZLETEST_BAD_FILE 
+--error ER_TEXTFILE_NOT_READABLE
+eval select load_file($bad_test_file);
+
+#
+# Bug#18243: REVERSE changes its argument
+#
+
+CREATE TABLE t1 (a varchar(10));
+INSERT INTO t1 VALUES ('abc'), ('xyz');
+
+SELECT a, CONCAT(a,' ',a) AS c FROM t1
+  HAVING LEFT(c,LENGTH(c)-INSTR(REVERSE(c)," ")) = a;
+
+SELECT a, CONCAT(a,' ',a) AS c FROM t1
+  HAVING LEFT(CONCAT(a,' ',a),
+              LENGTH(CONCAT(a,' ',a))-
+                     INSTR(REVERSE(CONCAT(a,' ',a))," ")) = a;
+
+DROP TABLE t1;
+
+#
+# Bug#17526: WRONG PRINT for TRIM FUNCTION with two arguments
+#
+
+CREATE TABLE t1 (s varchar(10));
+INSERT INTO t1 VALUES ('yadda'), ('yaddy');
+
+EXPLAIN EXTENDED SELECT s FROM t1 WHERE TRIM(s) > 'ab';
+EXPLAIN EXTENDED SELECT s FROM t1 WHERE TRIM('y' FROM s) > 'ab';
+EXPLAIN EXTENDED SELECT s FROM t1 WHERE TRIM(LEADING 'y' FROM s) > 'ab';
+EXPLAIN EXTENDED SELECT s FROM t1 WHERE TRIM(TRAILING 'y' FROM s) > 'ab';
+EXPLAIN EXTENDED SELECT s FROM t1 WHERE TRIM(BOTH 'y' FROM s) > 'ab';
+
+DROP TABLE t1;
+
+#
+# Bug #31758 inet_ntoa, oct, crashes server with null + filesort 
+#
+create TEMPORARY table t1 (a bigint not null)engine=myisam;
+insert into t1 set a = 1024*1024*1024*4;
+drop table t1;
+create TEMPORARY table t1 (a char(36) not null)engine=myisam;
+insert ignore into t1 set a = ' ';
+insert ignore into t1 set a = ' ';
+select * from t1 order by (oct(a));
+drop table t1;
+
+--echo End of 4.1 tests
+
+#
+# Bug #13361: SELECT FORMAT(<decimal field with null>, 2) crashes
+#
+create table t1 (d decimal default null);
+insert into t1 values (null);
+select format(d, 2) from t1;
+drop table t1;
+
+#
+# Bug #14676: substring_index() returns incorrect results
+#
+create table t1 (c varchar(40));
+insert into t1 values ('y,abc'),('y,abc');
+select c, substring_index(lcase(c), @q:=',', -1) as res from t1;
+drop table t1;
+
+#
+# Bug #17043: Casting trimmed string to decimal loses precision
+#
+select cast(rtrim('  20.06 ') as decimal(19,2));
+select cast(ltrim('  20.06 ') as decimal(19,2));
+select cast(rtrim(ltrim('  20.06 ')) as decimal(19,2));
+
+#
+# Bug #13975: "same string" + 0 has 2 different results
+#
+select conv("18383815659218730760",10,10) + 0;
+select "18383815659218730760" + 0;
+
+#
+# Bug #21698: substitution of a string field for a constant under a function 
+#
+
+CREATE TABLE t1 (code varchar(10));
+INSERT INTO t1 VALUES ('a12'), ('A12'), ('a13');
+
+SELECT ASCII(code), code FROM t1 WHERE code='A12';
+SELECT ASCII(code), code FROM t1 WHERE code='A12' AND ASCII(code)=65;
+
+INSERT INTO t1 VALUES ('a12 '), ('A12  ');
+
+SELECT LENGTH(code), code FROM t1 WHERE code='A12';
+SELECT LENGTH(code), code FROM t1 WHERE code='A12' AND LENGTH(code)=5;
+
+ALTER TABLE t1 ADD INDEX (code);
+CREATE TABLE t2 (id varchar(10) PRIMARY KEY);
+INSERT INTO t2 VALUES ('a11'), ('a12'), ('a13'), ('a14');
+
+SELECT * FROM t1 INNER JOIN t2 ON t1.code=t2.id 
+  WHERE t2.id='a12' AND (LENGTH(code)=5 OR code < 'a00');
+EXPLAIN EXTENDED 
+SELECT * FROM t1 INNER JOIN t2 ON code=id 
+  WHERE id='a12' AND (LENGTH(code)=5 OR code < 'a00');
+
+DROP TABLE t1,t2;
+
+#
+# Bug #20752: BENCHMARK with many iterations returns too quickly
+#
+
+# not a string, but belongs with the above Bug#22684
+select benchmark(-1, 1);
+
+#
+# Please note:
+# 1) The collation of the password is irrelevant, the encryption uses
+# the binary representation of the string without charset/collation.
+# 2) These tests can not print the encoded text directly, because it's binary,
+# and doing this would cause problems with source control.
+# Instead, an md5() checksum is used, to verify the result indirectly.
+# 3) Each md5() result must be identical.
+# 4) The md5() result must never change, and must be stable across releases.
+#
+
+set @dec=5;
+select format(pi(), (1+1));
+select format(pi(), (select 3));
+select format(pi(), @dec);
+
+set @bench_count=10;
+select benchmark(10, pi());
+select benchmark(5+5, pi());
+select benchmark((select 10), pi());
+select benchmark(@bench_count, pi());
+
+
+#
+# Bug #10963
+# 4294967296 18446744073709551616
+
+select locate('he','hello',-2);
+select locate('lo','hello',-4294967295);
+select locate('lo','hello',4294967295);
+select locate('lo','hello',-4294967296);
+select locate('lo','hello',4294967296);
+select locate('lo','hello',-4294967297);
+select locate('lo','hello',4294967297);
+select locate('lo','hello',-18446744073709551615);
+select locate('lo','hello',18446744073709551615);
+select locate('lo','hello',-18446744073709551616);
+select locate('lo','hello',18446744073709551616);
+select locate('lo','hello',-18446744073709551617);
+select locate('lo','hello',18446744073709551617);
+
+select left('hello', 10);
+select left('hello', 0);
+select left('hello', -1);
+select left('hello', -4294967295);
+select left('hello', 4294967295);
+select left('hello', -4294967296);
+select left('hello', 4294967296);
+select left('hello', -4294967297);
+select left('hello', 4294967297);
+select left('hello', -18446744073709551615);
+select left('hello', 18446744073709551615);
+select left('hello', -18446744073709551616);
+select left('hello', 18446744073709551616);
+select left('hello', -18446744073709551617);
+select left('hello', 18446744073709551617);
+
+select right('hello', 10);
+select right('hello', 0);
+select right('hello', -1);
+select right('hello', -4294967295);
+select right('hello', 4294967295);
+select right('hello', -4294967296);
+select right('hello', 4294967296);
+select right('hello', -4294967297);
+select right('hello', 4294967297);
+select right('hello', -18446744073709551615);
+select right('hello', 18446744073709551615);
+select right('hello', -18446744073709551616);
+select right('hello', 18446744073709551616);
+select right('hello', -18446744073709551617);
+select right('hello', 18446744073709551617);
+
+select substring('hello', 2, -1);
+
+select substring('hello', -1, 1);
+select substring('hello', -2, 1);
+select substring('hello', -4294967295, 1);
+select substring('hello', 4294967295, 1);
+select substring('hello', -4294967296, 1);
+select substring('hello', 4294967296, 1);
+select substring('hello', -4294967297, 1);
+select substring('hello', 4294967297, 1);
+select substring('hello', -18446744073709551615, 1);
+select substring('hello', 18446744073709551615, 1);
+select substring('hello', -18446744073709551616, 1);
+select substring('hello', 18446744073709551616, 1);
+select substring('hello', -18446744073709551617, 1);
+select substring('hello', 18446744073709551617, 1);
+select substring('hello', 1, -1);
+select substring('hello', 1, -4294967295);
+select substring('hello', 1, 4294967295);
+select substring('hello', 1, -4294967296);
+select substring('hello', 1, 4294967296);
+select substring('hello', 1, -4294967297);
+select substring('hello', 1, 4294967297);
+select substring('hello', 1, -18446744073709551615);
+select substring('hello', 1, 18446744073709551615);
+select substring('hello', 1, -18446744073709551616);
+select substring('hello', 1, 18446744073709551616);
+select substring('hello', 1, -18446744073709551617);
+select substring('hello', 1, 18446744073709551617);
+select substring('hello', -1, -1);
+select substring('hello', -4294967295, -4294967295);
+select substring('hello', 4294967295, 4294967295);
+select substring('hello', -4294967296, -4294967296);
+select substring('hello', 4294967296, 4294967296);
+select substring('hello', -4294967297, -4294967297);
+select substring('hello', 4294967297, 4294967297);
+select substring('hello', -18446744073709551615, -18446744073709551615);
+select substring('hello', 18446744073709551615, 18446744073709551615);
+select substring('hello', -18446744073709551616, -18446744073709551616);
+select substring('hello', 18446744073709551616, 18446744073709551616);
+select substring('hello', -18446744073709551617, -18446744073709551617);
+select substring('hello', 18446744073709551617, 18446744073709551617);
+
+select insert('hello', -1, 1, 'hi');
+select insert('hello', -4294967295, 1, 'hi');
+select insert('hello', 4294967295, 1, 'hi');
+select insert('hello', -4294967296, 1, 'hi');
+select insert('hello', 4294967296, 1, 'hi');
+select insert('hello', -4294967297, 1, 'hi');
+select insert('hello', 4294967297, 1, 'hi');
+select insert('hello', -18446744073709551615, 1, 'hi');
+select insert('hello', 18446744073709551615, 1, 'hi');
+select insert('hello', -18446744073709551616, 1, 'hi');
+select insert('hello', 18446744073709551616, 1, 'hi');
+select insert('hello', -18446744073709551617, 1, 'hi');
+select insert('hello', 18446744073709551617, 1, 'hi');
+select insert('hello', 1, -1, 'hi');
+select insert('hello', 1, -4294967295, 'hi');
+select insert('hello', 1, 4294967295, 'hi');
+select insert('hello', 1, -4294967296, 'hi');
+select insert('hello', 1, 4294967296, 'hi');
+select insert('hello', 1, -4294967297, 'hi');
+select insert('hello', 1, 4294967297, 'hi');
+select insert('hello', 1, -18446744073709551615, 'hi');
+select insert('hello', 1, 18446744073709551615, 'hi');
+select insert('hello', 1, -18446744073709551616, 'hi');
+select insert('hello', 1, 18446744073709551616, 'hi');
+select insert('hello', 1, -18446744073709551617, 'hi');
+select insert('hello', 1, 18446744073709551617, 'hi');
+select insert('hello', -1, -1, 'hi');
+select insert('hello', -4294967295, -4294967295, 'hi');
+select insert('hello', 4294967295, 4294967295, 'hi');
+select insert('hello', -4294967296, -4294967296, 'hi');
+select insert('hello', 4294967296, 4294967296, 'hi');
+select insert('hello', -4294967297, -4294967297, 'hi');
+select insert('hello', 4294967297, 4294967297, 'hi');
+select insert('hello', -18446744073709551615, -18446744073709551615, 'hi');
+select insert('hello', 18446744073709551615, 18446744073709551615, 'hi');
+select insert('hello', -18446744073709551616, -18446744073709551616, 'hi');
+select insert('hello', 18446744073709551616, 18446744073709551616, 'hi');
+select insert('hello', -18446744073709551617, -18446744073709551617, 'hi');
+select insert('hello', 18446744073709551617, 18446744073709551617, 'hi');
+
+select repeat('hello', -1);
+select repeat('hello', -4294967295);
+select repeat('hello', 4294967295);
+select repeat('hello', -4294967296);
+select repeat('hello', 4294967296);
+select repeat('hello', -4294967297);
+select repeat('hello', 4294967297);
+select repeat('hello', -18446744073709551615);
+select repeat('hello', 18446744073709551615);
+select repeat('hello', -18446744073709551616);
+select repeat('hello', 18446744073709551616);
+select repeat('hello', -18446744073709551617);
+select repeat('hello', 18446744073709551617);
+
+select space(-1);
+select space(-4294967295);
+select space(4294967295);
+select space(-4294967296);
+select space(4294967296);
+select space(-4294967297);
+select space(4294967297);
+select space(-18446744073709551615);
+select space(18446744073709551615);
+select space(-18446744073709551616);
+select space(18446744073709551616);
+select space(-18446744073709551617);
+select space(18446744073709551617);
+
+select rpad('hello', -1, '1');
+select rpad('hello', -4294967295, '1');
+select rpad('hello', 4294967295, '1');
+select rpad('hello', -4294967296, '1');
+select rpad('hello', 4294967296, '1');
+select rpad('hello', -4294967297, '1');
+select rpad('hello', 4294967297, '1');
+select rpad('hello', -18446744073709551615, '1');
+select rpad('hello', 18446744073709551615, '1');
+select rpad('hello', -18446744073709551616, '1');
+select rpad('hello', 18446744073709551616, '1');
+select rpad('hello', -18446744073709551617, '1');
+select rpad('hello', 18446744073709551617, '1');
+
+select lpad('hello', -1, '1');
+select lpad('hello', -4294967295, '1');
+select lpad('hello', 4294967295, '1');
+select lpad('hello', -4294967296, '1');
+select lpad('hello', 4294967296, '1');
+select lpad('hello', -4294967297, '1');
+select lpad('hello', 4294967297, '1');
+select lpad('hello', -18446744073709551615, '1');
+select lpad('hello', 18446744073709551615, '1');
+select lpad('hello', -18446744073709551616, '1');
+select lpad('hello', 18446744073709551616, '1');
+select lpad('hello', -18446744073709551617, '1');
+select lpad('hello', 18446744073709551617, '1');
+
+
+#
+# BUG#17047: CHAR() and IN() can return NULL without signaling NULL
+# result
+#
+SELECT CHAR(0xff,0x8f);
+SELECT CHAR(0xff,0x8f) IS NULL;
+
+#
+# Bug #24947: problem with some string function with int parameters
+#
+#
+#select substring('abc', cast(2 as int));
+#select repeat('a', cast(2 as int));
+#select rpad('abc', cast(5 as integer), 'x');
+#select lpad('abc', cast(5 as integer), 'x');
+
+#
+# Bug#15757: Wrong SUBSTRING() result when a tmp table was employed.
+#
+create table t1(f1 longtext);
+insert into t1 values ("123"),("456");
+select substring(f1,1,1) from t1 group by 1;
+create table t2(f1 varchar(3));
+insert into t1 values ("123"),("456");
+select substring(f1,4,1), substring(f1,-4,1) from t2;
+drop table t1,t2;
+
+#
+# Bug #25197 :repeat function returns null when using table field directly as count
+#
+
+--disable_warnings
+DROP TABLE IF EXISTS t1;
+--enable_warnings
+
+CREATE TABLE `t1` (
+  `id` varchar(20) NOT NULL,
+  `tire` int NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+INSERT INTO `t1` (`id`, `tire`) VALUES ('A', 0), ('B', 1),('C', 2);
+
+SELECT REPEAT( '#', tire ) AS A,
+       REPEAT( '#', tire % 999 ) AS B, tire FROM `t1`;
+
+SELECT REPEAT('0', 0);
+SELECT REPEAT('0', -2);
+SELECT REPEAT('0', 2);
+
+DROP TABLE t1;
+
+#
+# Bug #26537: UNHEX() IS NULL comparison fails
+#
+SELECT UNHEX('G');
+SELECT UNHEX('G') IS NULL;
+
+#
+# Bug #26281: INSERT() function mishandles NUL on boundary condition
+#
+SELECT INSERT('abc', 3, 3, '1234');
+SELECT INSERT('abc', 4, 3, '1234');
+SELECT INSERT('abc', 5, 3, '1234');
+SELECT INSERT('abc', 6, 3, '1234');
+
+#
+# Bug #27932: LOCATE with argument evaluated to NULL
+#
+
+SELECT LOCATE('foo', NULL);
+SELECT LOCATE(NULL, 'o');
+SELECT LOCATE(NULL, NULL);
+SELECT LOCATE('foo', NULL) IS NULL;
+SELECT LOCATE(NULL, 'o') IS NULL;
+SELECT LOCATE(NULL, NULL) IS NULL;
+SELECT ISNULL(LOCATE('foo', NULL));
+SELECT ISNULL(LOCATE(NULL, 'o'));
+SELECT ISNULL(LOCATE(NULL, NULL));
+SELECT LOCATE('foo', NULL) <=> NULL;
+SELECT LOCATE(NULL, 'o') <=> NULL;
+SELECT LOCATE(NULL, NULL) <=> NULL;
+
+CREATE TABLE t1 (id int NOT NULL PRIMARY KEY, a varchar(10), p varchar(10));
+
+INSERT INTO t1 VALUES (1, 'foo', 'o');
+INSERT INTO t1 VALUES (2, 'foo', NULL);
+INSERT INTO t1 VALUES (3, NULL, 'o');
+INSERT INTO t1 VALUES (4, NULL, NULL);
+
+SELECT id, LOCATE(a,p) FROM t1;
+SELECT id, LOCATE(a,p) IS NULL FROM t1;
+SELECT id, ISNULL(LOCATE(a,p)) FROM t1;
+SELECT id, LOCATE(a,p) <=> NULL FROM t1;
+SELECT id FROM t1 WHERE LOCATE(a,p) IS NULL;
+SELECT id FROM t1 WHERE LOCATE(a,p) <=> NULL; 
+
+DROP TABLE t1;
+
+#
+# Bug #27130: SUBSTR with 0 as the last argument
+#
+
+SELECT SUBSTR('foo',1,0);
+SELECT SUBSTR('foo',1,0);
+SELECT SUBSTR('foo',1,0);
+
+CREATE TABLE t1 (a varchar(10), len int);
+INSERT INTO t1 VALUES ('bar', 2), ('foo', 0);
+
+SELECT SUBSTR(a,1,len) FROM t1;
+
+DROP TABLE t1; 
+
+#
+# Bug #28850: Potential bugs related to the return type of the CHAR function
+#
+
+CREATE TABLE t1 AS SELECT CHAR(0x414243) as c1;
+SELECT HEX(c1) from t1;
+DROP TABLE t1;
+
+--echo End of 5.0 tests

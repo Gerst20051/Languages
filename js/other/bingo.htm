@@ -1,0 +1,348 @@
+<HTML>
+<HEAD>
+<TITLE>Bingo</TITLE>
+<style>
+body{
+scrollbar-Face-Color:#404000;
+scrollbar-Base-Color:white;
+scrollbar-DarkShadow-Color:#404000;
+scrollbar-3dLight-Color:#404000;
+scrollbar-Arrow-Color:#404000;
+scrollbar-Highlight-Color:#404000;
+scrollbar-Shadow-Color:#404000;
+scrollbar-Track-Color:#404000;
+}
+</style>
+<script type="text/javascript">
+<!--
+// Realise by apachejeff
+// www.huntingground.freeserve.co.uk
+Active=0
+timer1=""
+function SetUp(){ // Intialise the game
+if(Active==1){return} // if game running return
+Counter=0 // count numbers called
+Game_Numbers=90
+Game_List=new Array() // array to hold Game_Numbers
+Game_Selectnum=new Array() // array to hold Selected Numbers
+Time=document.f1.t1.value*1000 // time between draws
+
+for(n=0;n<Game_Numbers;n++){ // create list of numbers to value of Game_Numbers
+Game_List[n]=n
+Game_List[n]++ // don't want zero so add 1
+//document.getElementById("List_Display").innerHTML=Game_List // use to display numbers in list
+document.getElementById("num"+Game_List[n]).style.backgroundColor="#c9bda9" // game grid colour
+}
+document.f1.b1.disabled=true // reset button
+document.f1.b2.disabled=true // start button
+document.f1.b3.disabled=false // pause button
+document.f1.ba.disabled=true // cardA button
+document.f1.bb.disabled=true // cardB button
+Active=1 // game running
+DrawNum() // run game
+}
+
+// ********** Shuffle the numbers **********
+shuffle=0
+function DrawNum(){
+rndnum=1+Math.round(Math.random()*Game_Numbers-1)
+document.getElementById("Selected_Display").innerHTML=rndnum
+shuffle++
+shuffletime=setTimeout("DrawNum()",100)
+
+if(shuffle==10){
+clearTimeout(shuffletime)
+shuffle=0
+DrawNum2()}
+}
+// ********** End Shuffle the numbers **********
+
+// ********** Draw Number **********
+function DrawNum2(){
+if(Game_List==0){ //end of list
+Active=0
+document.f1.b1.disabled=false
+document.f1.b3.disabled=true
+return}
+
+rndnum=Math.round(Math.random()*Game_Numbers-1)
+
+Chosen_Number=Game_List.splice(rndnum,1) // remove selected number from Game_List array
+Game_Selectnum[rndnum]=Chosen_Number // create array of selected numbers
+Game_Numbers-- // decrease by 1
+Counter++
+document.getElementById("called").innerHTML=Counter
+
+document.getElementById("Selected_Display").innerHTML=Chosen_Number // display selected numbers
+//document.getElementById("List_Remainder").innerHTML=Game_List // use to display unused numbers in list
+
+setTimeout("document.getElementById('num'+Chosen_Number).style.backgroundColor='#66ff66'",100) // delayed highlight of numbers cell
+timer1=setTimeout("DrawNum()",Time)
+//DrawNum()
+Check_Cards(Game_Selectnum[rndnum])
+}
+// ****** End Draw number **********
+
+//
+function pause(){
+clearTimeout(timer1)
+clearTimeout(shuffletime)
+document.f1.b1.disabled=false
+}
+
+//
+function restart(){
+document.f1.b1.disabled=true
+DrawNum()
+}
+
+//
+function Reset(){
+clearTimeout(timer1)
+clearTimeout(txtrun)
+clearTimeout(txtrerun)
+clearTimeout(txtstart)
+Active=0
+Counter=0
+cardnumcounta=0
+cardnumcountb=0
+document.getElementById("ca").innerHTML="15"
+document.getElementById("cb").innerHTML="15"
+i=0 //dualbutt
+document.f1.b3.value=" Pause "
+document.f1.b1.disabled=true
+document.f1.b2.disabled=false
+document.f1.b3.disabled=true
+document.f1.ba.disabled=false
+document.f1.bb.disabled=false
+document.getElementById("Selected_Display").style.fontSize="120"
+document.getElementById("Selected_Display").innerHTML=0
+document.getElementById("called").innerHTML=0
+for(n=1;n<=90;n++){
+document.getElementById("num"+n).style.backgroundColor="#c9bda9"
+}
+for(n=0;n<=14;n++){
+document.getElementById("carda"+n).style.backgroundColor="#c9bda9"
+document.getElementById("cardb"+n).style.backgroundColor="#c9bda9"
+}
+document.getElementById("GameOver").style.visibility="hidden"
+}
+
+// ********** Select Carda Numbers **********
+function CardSeta(){
+if(Active==1){return}
+CardA_Numbers=90
+CardMax=15
+CardA_List=new Array() // array to hold CardA_Numbers
+CardA_SelectedNum=new Array() // array to hold Selected Numbers
+
+for(na=0;na<CardA_Numbers;na++){ // create list of numbers to value of CardA_Numbers
+CardA_List[na]=na
+CardA_List[na]++ // don't want zero so add 1
+//document.getElementById("List_Display").innerHTML=CardA_List // use to display numbers in list
+}
+
+for(ra=0;ra<CardMax;ra++){ // generate a random number for CardMax times
+rndnum2=Math.round(Math.random()*CardA_Numbers-1)
+Chosen_Number2=CardA_List.splice(rndnum2,1) // remove selected number from array
+CardA_SelectedNum[ra]=Chosen_Number2 // create array of selected numbers
+CardA_SelectedNum=CardA_SelectedNum.sort(compareNumbers) // sort selected numbers
+CardA_Numbers-- // decrease by 1
+}
+
+for(da=0;da<CardMax;da++){
+document.getElementById("carda"+da).innerHTML=CardA_SelectedNum[da] // display sorted selection of numbers
+document.getElementById("carda"+da).style.backgroundColor="#c9bda9"
+}
+// document.getElementById("List_Remainder").innerHTML=CardA_List // use to display unused numbers in list
+}
+
+function compareNumbers(a, b) {
+return a - b}
+setTimeout("CardSeta()",500)
+
+// ********** End Select Carda Numbers **********
+
+// ********** Select Cardb Numbers **********
+function CardSetb(){
+if(Active==1){return}
+CardB_Numbers=90
+CardMax=15
+CardB_List=new Array() // array to hold CardB_Numbers
+CardB_SelectedNum=new Array() // array to hold Selected Numbers
+
+for(nb=0;nb<CardB_Numbers;nb++){ // create list of numbers to value of CardB_Numbers
+CardB_List[nb]=nb
+CardB_List[nb]++ // don't want zero so add 1
+//document.getElementById("List_Display").innerHTML=CardB_List // use to display numbers in list
+}
+
+for(rb=0;rb<CardMax;rb++){ // generate a random number for CardMax times
+rndnum3=Math.round(Math.random()*CardA_Numbers-1)
+Chosen_Number3=CardB_List.splice(rndnum3,1) // remove selected number from array
+CardB_SelectedNum[rb]=Chosen_Number3 // create array of selected numbers
+CardB_SelectedNum=CardB_SelectedNum.sort(compareNumbers3) // sort selected numbers
+CardB_Numbers-- // decrease by 1
+}
+
+for(db=0;db<CardMax;db++){
+document.getElementById("cardb"+db).innerHTML=CardB_SelectedNum[db] // display sorted selection of numbers
+document.getElementById("cardb"+db).style.backgroundColor="#c9bda9"
+}
+// document.getElementById("List_Remainder").innerHTML=CardB_List // use to display unused numbers in list
+}
+
+function compareNumbers3(a, b) {
+return a - b}
+setTimeout("CardSetb()",500)
+
+// ********** End Select Carda Numbers **********
+
+// ********** Check Cards **********
+cardnumcounta=0 // count numbers matched on card A
+cardnumcountb=0 // count numbers matched on card B
+function Check_Cards(c){
+for(chk=0;chk<CardMax;chk++){ // check cards
+
+if(c==CardA_SelectedNum[chk]*1){ // if number matched on card A
+document.getElementById("carda"+chk).style.backgroundColor='#66ff66' // highlight if number matched on card
+cardnumcounta++ //increase count number matched on card A
+}
+
+if(c==CardB_SelectedNum[chk]*1){ // if number matched on card B
+document.getElementById("cardb"+chk).style.backgroundColor='#66ff66' // highlight if number matched on card
+cardnumcountb++ //increase count number matched on card B
+}
+}
+
+if(cardnumcounta==CardMax||cardnumcountb==CardMax){ // if count number of cards  A or B equal CardMax
+clearTimeout(timer1) // stop game
+document.getElementById("Selected_Display").style.fontSize="79"
+draw=0
+
+if(cardnumcounta==CardMax&&cardnumcountb==CardMax){ // if count number of card A and B equal CardMax
+draw=1
+document.getElementById("Selected_Display").innerHTML="Drawn Game"
+}
+if(cardnumcounta==CardMax&&draw==0){ // if only count number of card A equals CardMax
+document.getElementById("Selected_Display").innerHTML="A Wins"}
+if(cardnumcountb==CardMax&&draw==0){ // if only count number of card B equals CardMax
+document.getElementById("Selected_Display").innerHTML="B Wins"}
+
+document.f1.b1.disabled=false // enable reset button
+document.f1.b3.disabled=true // disable pause button
+txtstart=setTimeout("txt()",5000)
+}
+document.getElementById("ca").innerHTML=CardMax-cardnumcounta // display remaining count number of card A
+document.getElementById("cb").innerHTML=CardMax-cardnumcountb // display remaining count number of card B
+}
+// ********** End Check Cards **********
+
+// ********** Dual Button **********
+var i=0
+function dualButt(){
+if(Active==0){return}
+i++
+if (i==1){
+pause()
+document.f1.b3.value="Continue"
+}
+else
+if (i==2){
+restart()
+document.f1.b3.value=" Pause "
+i=0
+}
+}
+// ********** End Dual Button **********
+
+// ********** Game Over Text Effect **********
+txtrun=""
+txtrerun=""
+txtstart=""
+font_size=100
+startcount=0
+endcount=20
+function txt(){
+startcount++
+document.getElementById("GameOver").style.fontSize=startcount*(font_size/endcount)
+document.getElementById("GameOver").filters.alpha.opacity=startcount+(100/endcount)
+document.getElementById("GameOver").style.visibility="visible"
+txtrun=setTimeout("txt()",50)
+
+if(startcount>endcount){
+clearTimeout(txtrun)
+startcount=0
+document.getElementById("GameOver").filters.alpha.opacity=100
+txtrerun=setTimeout("txt()",3000)
+}
+}
+//setTimeout("txt()",1000)
+// ********** End Game Over Text Effect **********
+// -->
+</script>
+</HEAD>
+<BODY bgcolor="#404000" onload=self.focus()>
+<DIV style="position:absolute; top:10px; left:200px; font-size:40px; width:250px;text-align:center;color:#404000; font-family:OldEnglish;letter-spacing:20px; filter: Glow(Color=#d8d8c8, Strength=10)">Bingo</DIV> 
+<DIV style="position:absolute; top:11px; left:197px; font-size:40px; width:250px;text-align:center; color:#c9bda9; font-family:OldEnglish;letter-spacing:20px">Bingo</DIV>
+
+<BR><BR><BR>
+<center>
+<span id="GameOver" style="position:absolute;left:0px;top:100px;visibility:hidden;text-align:center;width:100%; filter:alpha(opacity=0);color:red;z-index:1">Game Over</span>
+
+<table border=0 bgcolor="#d8d8c8" style="border:10px ridge #8e8462">
+<tr align="center" valign="top"><td width="220px" colspan=2>
+
+<form name=f1> <!-- placed outside for spacing -->
+<table border=0 bgcolor="#d8d8c8" cellspacing=3px cellpadding=3px style="font-size:10px">
+<tr align=center><td bgcolor="#c9bda9" id="num1" width=15px>1</td><td bgcolor="#c9bda9" id="num2">2</td><td bgcolor="#c9bda9" id="num3">3</td><td bgcolor="#c9bda9" id="num4">4</td><td bgcolor="#c9bda9" id="num5">5</td><td bgcolor="#c9bda9" id="num6">6</td><td bgcolor="#c9bda9" id="num7">7</td><td bgcolor="#c9bda9" id="num8">8</td><td bgcolor="#c9bda9" id="num9">9</td><td bgcolor="#c9bda9" id="num10">10</td></tr>
+<tr><td bgcolor="#c9bda9" id="num11">11</td><td bgcolor="#c9bda9" id="num12">12</td><td bgcolor="#c9bda9" id="num13">13</td><td bgcolor="#c9bda9" id="num14">14</td><td bgcolor="#c9bda9" id="num15">15</td><td bgcolor="#c9bda9" id="num16">16</td><td bgcolor="#c9bda9" id="num17">17</td><td bgcolor="#c9bda9" id="num18">18</td><td bgcolor="#c9bda9" id="num19">19</td><td bgcolor="#c9bda9" id="num20">20</td></tr>
+<tr><td bgcolor="#c9bda9" id="num21">21</td><td bgcolor="#c9bda9" id="num22">22</td><td bgcolor="#c9bda9" id="num23">23</td><td bgcolor="#c9bda9" id="num24">24</td><td bgcolor="#c9bda9" id="num25">25</td><td bgcolor="#c9bda9" id="num26">26</td><td bgcolor="#c9bda9" id="num27">27</td><td bgcolor="#c9bda9" id="num28">28</td><td bgcolor="#c9bda9" id="num29">29</td><td bgcolor="#c9bda9" id="num30">30</td></tr>
+<tr><td bgcolor="#c9bda9" id="num31">31</td><td bgcolor="#c9bda9" id="num32">32</td><td bgcolor="#c9bda9" id="num33">33</td><td bgcolor="#c9bda9" id="num34">34</td><td bgcolor="#c9bda9" id="num35">35</td><td bgcolor="#c9bda9" id="num36">36</td><td bgcolor="#c9bda9" id="num37">37</td><td bgcolor="#c9bda9" id="num38">38</td><td bgcolor="#c9bda9" id="num39">39</td><td bgcolor="#c9bda9" id="num40">40</td></tr>
+<tr><td bgcolor="#c9bda9" id="num41">41</td><td bgcolor="#c9bda9" id="num42">42</td><td bgcolor="#c9bda9" id="num43">43</td><td bgcolor="#c9bda9" id="num44">44</td><td bgcolor="#c9bda9" id="num45">45</td><td bgcolor="#c9bda9" id="num46">46</td><td bgcolor="#c9bda9" id="num47">47</td><td bgcolor="#c9bda9" id="num48">48</td><td bgcolor="#c9bda9" id="num49">49</td><td bgcolor="#c9bda9" id="num50">50</td></tr>
+<tr><td bgcolor="#c9bda9" id="num51">51</td><td bgcolor="#c9bda9" id="num52">52</td><td bgcolor="#c9bda9" id="num53">53</td><td bgcolor="#c9bda9" id="num54">54</td><td bgcolor="#c9bda9" id="num55">55</td><td bgcolor="#c9bda9" id="num56">56</td><td bgcolor="#c9bda9" id="num57">57</td><td bgcolor="#c9bda9" id="num58">58</td><td bgcolor="#c9bda9" id="num59">59</td><td bgcolor="#c9bda9" id="num60">60</td></tr>
+<tr><td bgcolor="#c9bda9" id="num61">61</td><td bgcolor="#c9bda9" id="num62">62</td><td bgcolor="#c9bda9" id="num63">63</td><td bgcolor="#c9bda9" id="num64">64</td><td bgcolor="#c9bda9" id="num65">65</td><td bgcolor="#c9bda9" id="num66">66</td><td bgcolor="#c9bda9" id="num67">67</td><td bgcolor="#c9bda9" id="num68">68</td><td bgcolor="#c9bda9" id="num69">69</td><td bgcolor="#c9bda9" id="num70">70</td></tr>
+<tr><td bgcolor="#c9bda9" id="num71">71</td><td bgcolor="#c9bda9" id="num72">72</td><td bgcolor="#c9bda9" id="num73">73</td><td bgcolor="#c9bda9" id="num74">74</td><td bgcolor="#c9bda9" id="num75">75</td><td bgcolor="#c9bda9" id="num76">76</td><td bgcolor="#c9bda9" id="num77">77</td><td bgcolor="#c9bda9" id="num78">78</td><td bgcolor="#c9bda9" id="num79">79</td><td bgcolor="#c9bda9" id="num80">80</td></tr>
+<tr><td bgcolor="#c9bda9" id="num81">81</td><td bgcolor="#c9bda9" id="num82">82</td><td bgcolor="#c9bda9" id="num83">83</td><td bgcolor="#c9bda9" id="num84">84</td><td bgcolor="#c9bda9" id="num85">85</td><td bgcolor="#c9bda9" id="num86">86</td><td bgcolor="#c9bda9" id="num87">87</td><td bgcolor="#c9bda9" id="num88">88</td><td bgcolor="#c9bda9" id="num89">89</td><td bgcolor="#c9bda9" id="num90">90</td></tr></table>
+
+</td><td width="220" colspan=2 align="center">
+
+<table border=0 bgcolor="#d8d8c8">
+<tr align=center><td width="210px" bgcolor="#c9bda9" valign="top" style="font-size:120px;border:1px ridge #8e8462">
+<span id="Selected_Display">0</span></td></tr>
+<tr align=center><td style="font-size:10px"><BR>
+ Speed <input type="text" name="t1" value="2" size="1" maxlength="1" onclick="this.select()" style="background-color:#d8d8c8;font-size:10px"> <input type=button name="b1" value="Reset" onclick="Reset();this.blur()" disabled=true style="font-size:10px">
+<input type=button name="b2" value=" Start " onclick="SetUp();this.blur()" style="font-size:10px"> <input type=button name="b3" value="Pause" disabled=true onclick="dualButt();this.blur()" style="font-size:10px">
+</td></tr></table>
+
+</td></tr>
+<tr align="center">
+<td><span id="ca">15</span></td>
+<td align="right" colspan="2" style="font-size:10px">Total Numbers Called = <span id="called">0</span><BR> </td>
+<td><span id="cb">15</span> </td></tr>
+<tr align="center"><td colspan=2>
+
+<table border=1 bgcolor="#d8d8c8" width="200" style="font-size:10px">
+<tr><td align="center" valign="center"></td></tr>
+<tr align=center><td id="carda0">0</td><td id="carda1">1</td><td id="carda2">2</td><td id="carda3">3</td><td id="carda4">4</td></tr>
+<tr align=center><td id="carda5">5</td><td id="carda6">6</td><td id="carda7">7</td><td id="carda8">8</td><td id="carda9">9</td></tr>
+<tr align=center><td id="carda10">10</td><td id="carda11">11</td><td id="carda12">12</td><td id="carda13">13</td><td id="carda14">14</td></tr></table>
+
+<input type=button name="ba" value="^ New Card A ^" onclick="CardSeta();this.blur()" style="font-size:10px">
+
+</td><td colspan=2>
+
+<table border=1 bgcolor="#d8d8c8" width="200" style="font-size:10px">
+<tr><td align="center" valign="center"></td></tr>
+<tr align=center><td id="cardb0">0</td><td id="cardb1">1</td><td id="cardb2">2</td><td id="cardb3">3</td><td id="cardb4">4</td></tr>
+<tr align=center><td id="cardb5">5</td><td id="cardb6">6</td><td id="cardb7">7</td><td id="cardb8">8</td><td id="cardb9">9</td></tr>
+<tr align=center><td id="cardb10">10</td><td id="cardb11">11</td><td id="cardb12">12</td><td id="cardb13">13</td><td id="cardb14">14</td></tr></table>
+
+<input type="button" name="bb" value="^ New Card B ^" onclick="CardSetb();this.blur()" style="font-size:10px">
+
+</td></tr></table>
+
+<span style="font-family:Script MT Bold;font-size:14px;color:#55FFFF;filter:alpha(opacity=30)">Created By JEFF <font color="white">www.huntingground.freeserve.co.uk</font></span></form></center>
+</BODY>
+</HTML>
+

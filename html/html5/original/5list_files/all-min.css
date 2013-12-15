@@ -1,0 +1,40 @@
+html,body,div,span,applet,object,section,header,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+:focus{outline:0;}
+body{line-height:1;color:black;background:white;}
+ol,ul{list-style:none;}
+table{border-collapse:separate;border-spacing:0;}
+caption,th,td{text-align:left;font-weight:normal;}
+blockquote:before,blockquote:after,q:before,q:after{content:"";}
+blockquote,q{quotes:"""";}
+article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block;}
+a{color:black;}
+legend{display:none;}
+body,.input_style{font-family:"museo-slab-1","museo-slab-2",serif;color:white;background:#c93620;}
+body{color:white;background:#c93620;}
+h1,.btn,h2{font-family:"lobster-1","lobster-2",serif;line-height:1.2em;font-size:35px;white-space:pre-wrap;letter-spacing:-2px;display:block;float:left;margin-left:24px;}
+canvas{position:absolute;top:0;left:0;height:100%;width:100%;z-index:-1;}
+header{background:#1c1717;width:100%;height:37px;display:block;z-index:99;padding:12px 0;}
+header p{display:block;color:#4e423f;float:left;margin:13px 0 0 13px;font-size:19px;}
+section{z-index:0;width:526px;margin:33px auto 0 auto;}
+section form{opacity:0;}
+.wf-active section form{opacity:1;-webkit-transition:opacity .5s linear;-moz-transition:opacity .5s linear;}
+section form .input_group{width:526px;background:white;margin:.5em auto;position:relative;color:#ccc;border:solid 16px #1c1717;border-radius:31px;-moz-border-radius:31px;-webkit-border-radius:31px;}
+section form input.input_style{outline:none;width:422px;margin:4px 0 0 13px;background:none;border:none;height:70px;font-size:32px;color:#c63;}
+section form .input_group label{position:absolute;top:23px;left:13px;font-size:32px;}
+section form .input_group label.focus{color:#eee;}
+section form .input_group input.btn{-webkit-transition:all .1s ease-in-out;min-width:65px;height:66px;padding:14px;border-radius:14px;-moz-border-radius:14px;-webkit-border-radius:14px;border:none;background:#1c1717;color:white;position:absolute;top:5px;left:431px;}
+section form .input_group input.btn:hover{background:#c93620;-webkit-transition:all .1s ease-in-out;}
+section ul{visibility:hidden;position:relative;margin-top:30px;}
+.wf-active section ul{position:relative;margin-top:30px;visibility:visible;-webkit-transition:all .1s ease-in-out;}
+section ul li{padding:50px 0;display:block;border-radius:19px;-moz-border-radius:19px;-webkit-border-radius:19px;background:rgba(28,23,23,0.3);width:544px;}
+section ul li{position:inherit;top:12px;left:15px;margin:37px 0;font-weight:lighter;}
+section ul li h2{position:absolute;top:-15px;left:-15px;margin:0;padding:11px 23px;border-radius:14px;-moz-border-radius:14px;-webkit-border-radius:14px;border:none;background:#1c1717;color:white;}
+section ul li a{-webkit-transition:all .1s ease-in-out;background:#1c1717;border-radius:31px;-moz-border-radius:31px;-webkit-border-radius:31px;font-size:11px;color:white;position:absolute;top:-5px;left:97%;text-decoration:none;padding:6px 8px;}
+section ul li a:hover{-webkit-transition:all .1s ease-in-out;-webkit-transform:scale(1.5);-webkit-box-shadow:2px 2px 0 #702518;-moz-box-shadow:2px 2px 0 #702518;box-shadow:2px 2px 0 #702518;}
+section ul li p{font-size:15px;margin-left:70px;width:419px;line-height:21px;}
+footer{visibility:hidden;position:fixed;bottom:0;height:20px;width:100%;text-align:center;background:white;}
+.wf-active footer{visibility:visible;}
+footer a{text-decoration:none;color:#1c1717;font-size:12px;font-weight:normal;margin-left:10px;}
+h2{-webkit-box-shadow:3px 3px 0 #702518;-moz-box-shadow:3px 3px 0 #702518;box-shadow:3px 3px 0 #702518;}
+h1,h2,.btn,section ul li a{text-shadow:2px 2px 2px #000;filter:dropshadow(color=#000000,offx=2,offy=2);}
+section ul li p{text-shadow:1px 1px 0 #702518;filter:dropshadow(color=#702518,offx=1,offy=1);}

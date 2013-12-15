@@ -1,0 +1,44 @@
+Flot 0.3
+--------
+
+This is mostly a quick-fix release because jquery.js wasn't included
+in the previous zip/tarball.
+
+Support clicking on the plot. Turn it on with grid: { clickable: true },
+then you get a "plotclick" event on the graph placeholder with the
+position in units of the plot.
+
+Fixed a bug in dealing with data where min = max, thanks to Michael
+Messinides.
+
+Include jquery.js in the zip/tarball.
+
+
+Flot 0.2
+--------
+
+Added support for putting a background behind the default legend. The
+default is the partly transparent background color. Added
+backgroundColor and backgroundOpacity to the legend options to control
+this.
+
+The ticks options can now be a callback function that takes one
+parameter, an object with the attributes min and max. The function
+should return a ticks array.
+
+Added labelFormatter option in legend, useful for turning the legend
+labels into links.
+
+Fixed a couple of bugs.
+
+The API should now be fully documented.
+
+Patch from Guy Fraser to make parts of the code smaller.
+
+API changes: Moved labelMargin option to grid from x/yaxis.
+
+
+Flot 0.1
+--------
+
+First public release.

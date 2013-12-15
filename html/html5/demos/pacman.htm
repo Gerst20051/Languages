@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://arandomurl.com/2010/07/25/html5-pacman.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>HTML5 Pacman</title>
+
+    <link rel="stylesheet" href="http://arandomurl.com/css/syntax.css">
+    <link rel="stylesheet" href="http://arandomurl.com/css/screen.css" media="screen, projection">
+
+    <link rel="shortcut icon" href="http://arandomurl.com/random/favicon.ico" type="image/x-icon">
+
+    <link rel="alternate" href="http://feeds.feedburner.com/arandomurl" title="arandomurl" type="application/atom+xml">
+
+    <link rel="openid.server" href="http://www.myopenid.com/server">
+    <link rel="openid.delegate" href="http://daleharvey.myopenid.com/">
+
+  </head>
+
+  <body>
+
+    <header><div>
+        <a href="http://arandomurl.com/" title="home">arandomurl.com</a>
+    </div></header>
+
+    <div class="site">
+      <div id="post">
+<h1 class="title">HTML5 Pacman</h1>
+<div class="meta">25th July 2010</div>
+<link rel="stylesheet" href="http://arandomurl.com/random/pacman.css">
+<div id="shim">shim for font face</div>
+<div id="pacman"><canvas width="361px" height="448px"></canvas></div>
+<script src="./pacman_files/pacman.js"></script><script>
+
+    var el = document.getElementById("pacman");
+
+function supportsOggAudio() {
+  var myAudio = document.createElement("audio");
+  return typeof myAudio.canPlayType === "function" && 
+     ("no" != myAudio.canPlayType("audio/ogg")) && 
+     ("" != myAudio.canPlayType("audio/ogg"));
+};
+
+    function supports_canvas() {
+      return !!document.createElement('canvas').getContext;
+    };
+
+    function supports_local_storage() {
+      return ('localStorage' in window) && window['localStorage'] !== null;
+    };
+
+    function supports_audio() { 
+      var myAudio = document.createElement('audio');
+      var canPlayOGG = typeof myAudio.canPlayType === "function" && 
+        !!(myAudio.canPlayType('audio/ogg').replace(/no/, ''));
+      var canPlayMP3 = typeof myAudio.canPlayType === "function" && 
+        !!(myAudio.canPlayType('audio/mpeg').replace(/no/, ''));
+      return canPlayOGG || canPlayMP3;
+    };
+
+    if (supports_canvas() && supports_local_storage() && supports_audio()) {
+      window.setTimeout(function () { PACMAN.init(el, "/random/pacman/"); }, 0);
+    } else { 
+      el.innerHTML = "Sorry, needs a decent browser<br /><small>" + 
+        "(firefox 3.6+, Chrome 4+, Opera 10+ and Safari 4+)</small>";
+    }
+</script><p>This is most of the Pacman game everyone knows and loves. It isnt a complete implementation yet and I do plan on working some more on it, however it should mostly be playable. (who knew the ghosts have a <a href="http://home.comcast.net/~jpittman2/pacman/pacmandossier.html">strategy!</a>)</p>
+<p>Why? I wanted to play with new web technologies so writing a simple browser game seemed like a good idea. It currently uses localStorage, HTML5 Audio, Canvas and @font-face. Here are some of the issues and bugs I have had while writing the game, hopefully it might prevent some poor web developer throwing their laptop out the window. The code is up on <a href="http://github.com/daleharvey/pacman">Github.</a></p>
+<h2>Things to consider</h2>
+<ul>
+	<li>Performance – A lot of focus in the Flash vs Web arguments are focused on performance and <span class="caps">CPU</span>, while Flash has an initial performance hit which is unacceptable for minor things such as displaying text, for writing games it is reasonably mature and optimised, although my canvas implementation will have lots of room for improvement it is probably quite close to a naive Flash implementation but uses a lot more <span class="caps">CPU</span>.</li>
+</ul>
+<ul>
+	<li>Integration – There are already benefits to <span class="caps">HTML</span> over Flash in this game, no more having to click into the game and losing focus when you click on the page, you can scroll up and down with your keyboard and start playing the game without touching your mouse. This does mean you need to worry about conflicting events between the game and the page though.</li>
+</ul>
+<ul>
+	<li>Canvas vs <span class="caps">HTML</span>/<span class="caps">SVG</span> – Canvas is a api to do 2d raster drawing and <span class="caps">SVG</span> is vector based. This means within canvas you cannot “move” things, you need to delete the old version and draw the new one. Canvas gives you more fine grained control over what work is done when drawing and theoretically can be more performant, it is however less convenient.</li>
+</ul>
+<ul>
+	<li>Drawing is hard, figuring out all the parameters to functions like quadraticCurveTo can be tricky and there isnt much tool support (such as Inkscape for <span class="caps">SVG</span>), I dont think it would be too hard to write a little webtool that lets you draw shapes and output the canvas code.</li>
+</ul>
+<h2>Issues</h2>
+<h5>Configure your server to serve media files</h5>
+<p>If your audio works locally, but not from a server, remember to configure your server to serve media files with the correct media types. I had to add <code>   video/ogg                             ogg;</code> to <code>/etc/nginx/mime.types</code></p>
+<h5>Checking the progress of a file loading</h5>
+<p>Firefox and Webkit implement different ways to determine if a media file is loaded, firefox supports the more well documented progress event attributes (<code>e.total</code> and <code>e.loaded</code>) however this has been removed from the w3c standard which is supported by Webkit where you access the duration and buffered attributes on the audio object. If you just want to find out if a whole audio file has loaded, look for the <code>canplaythrough</code> event.</p>
+<h5>Looping Audio</h5>
+<p>I could not find a way to reliably loop sound, the loop attribute is not currently supported in firefox <a href="http://forestmist.org/2010/04/html5-audio-loops/">this blog</a> provides a workaround however the ended event has a 2/3 second delay on ubuntu, I havent found a way round that yet.</p>
+<p><a href="http://news.ycombinator.com/item?id=1549056">Comment on Hacker News</a></p>
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+      <li><span>16 Mar 2011</span> » <a href="http://arandomurl.com/2011/03/16/coding-for-the-mobile-web.html">Coding for the Mobile Web</a></li>
+    
+      <li><span>13 Feb 2011</span> » <a href="http://arandomurl.com/2011/02/13/developing-with-couchdb-on-android.html">Developing with CouchDB on Android</a></li>
+    
+      <li><span>13 Nov 2010</span> » <a href="http://arandomurl.com/2010/11/13/on-joining-couchone-%28and-getting-open-source%29.html">On Joining CouchOne (and "getting" open source)</a></li>
+    
+  </ul>
+</div>
+
+      <div class="footer">
+        <div class="contact">
+          <p>
+            <a href="http://couchone.com/">Czar of HTML5 and Erlang @ couchbase.com</a><br>
+            dale@arandomurl.com -
+            <a href="http://daleharvey.org/">CV</a><br>
+            <a href="http://twitter.com/daleharvey/">
+              twitter.com/daleharvey</a>
+          </p>
+        </div>
+        <div class="contact"><p></p></div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost
+      + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script><script src="./pacman_files/ga.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      try {
+      var pageTracker = _gat._getTracker("UA-59760-7");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+  
+
+</body></html>

@@ -1,0 +1,308 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<style type="text/css">
+body {
+	background-color: #ffffff;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+code {
+	color: #209090;
+	font-weight: bold;
+}
+
+pre {
+	font-family: monospace;
+	font-size: 90%;
+	color: #209090;
+	margin-left: 1em;
+}
+
+p {
+	font-family: Ms Sans Serif, Helvetica, Arial;
+	text-align: justify;
+	margin-left: +30px;
+}	
+
+ul {
+	list-style: circle;
+	margin-left: 10px;
+}
+
+ol {
+	list-style: upper-roman;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: Arial, Helvetica;
+	color: maroon;
+}
+
+h1 {
+	font-size: +2em;
+}
+
+h2 {
+	margin-left: +10px;
+	text-decoration: underline;
+}
+
+h3 {
+	margin-left: +20px;
+	text-decoration: underline;
+}
+
+h4 {
+	margin-left: +30px;
+	font-weight: bold;
+}
+
+
+.aIdx {
+	color: blue;
+	font-weight: bold;
+	text-decoration: none;
+	vlink-color: darkblue;
+	
+}
+.aIdx:active { color: pink; }
+
+TABLE.params {
+	border-collapse: collapse;
+	border: 1px;
+	background-color: #dddddd;
+	padding: 1 5 1 5;
+}
+</style>
+</head>
+<body bgcolor="white">
+<a name="LIBMAIL"></a><h1>LIBMAIL</h1><p><a name="Description"></a><h2>Description</h2><p>Cette librairie offre une interface objet pour l'envoi de mail.
+<p><a href="#Sommaire">Aller au sommaire</a>
+<p><b>Important!</b> utilisateurs de la v1.2., téléchargez la derniere version.
+la version 1.2. contient un bug empechant l'attachement de fichiers de fonctionner.
+<p><p>Quelques possibilites de libMail sont :
+<p><ul><li> Envoyer un ou plusieurs fichiers attachés
+<li> Inclure un ou plusieurs destinataires en CC ( copie carbone )
+<li> Envoie a un ou plusieurs destinataires en BCC ( copie carbone invisible)
+<li> Formatter un message Mail "ready to send" sans l'envoyer effectivement.
+<li> Verifier automatiquement la syntaxe des adresses
+<li> Inclure un accusé de réception
+</ul><p><p><a name="ChangeLog"></a><h2>ChangeLog</h2><p><b>version 1.3</b>
+<ul><li> BUG FIX - file attachment didn't work
+<li> serious rewrite of the class
+<li> small optimization in _build_attachement()
+</ul><p><b>version 1.2</b>
+<ul><li> added ReplyTo( $address ) method
+<li> added Receipt() method to add a mail receipt
+<li> added optional charset parameter to Body() method . should fix charset problem on some mail clients
+</ul><p><b>version 1.1</b>
+<ul><li> added optional mimetype and disposition parameters to Attach() method
+<li> fixed parenthesis bug in sizeof()
+</ul><p><p><p><a name="Synopsis"></a><h2>Synopsis</h2><p>
+<pre>	include &quot;libmail.php&quot;;
+	$m= new Mail; // create the mail
+	$m-&gt;From( &quot;leo@isp.com&quot; );
+	$m-&gt;To( &quot;destination@somewhere.fr&quot; );
+	$m-&gt;Subject( &quot;the subject of the mail&quot; );
+	$m-&gt;Body( &quot;Hello\nThis is a test of the Mail component&quot; );	// set the body
+	$m-&gt;Cc( &quot;someone@somewhere.fr&quot;);
+	$m-&gt;Bcc( &quot;someoneelse@somewhere.fr&quot;);
+	$m-&gt;Priority(4) ;	// set the priority to Low
+	$m-&gt;Attach( &quot;/home/leo/toto.gif&quot;, &quot;image/gif&quot;, &quot;inline&quot; ) ;	// attach a file of type image/gif to be displayed in the message if possible
+	$m-&gt;Send();	// send the mail
+	echo &quot;Mail was sent:&lt;br&gt;&lt;pre&gt;&quot;, $m-&gt;Get(), &quot;&lt;/pre&gt;&quot;;
+</pre>
+<p><a name="Installation"></a><h2>Installation</h2><p><p>Telecharger <a href="libmail.zip">libmail.zip</a>
+<p>Contenu:
+<p><ul><li> <b>libmail.php</b>: le composant Mail
+<li> <b>libmail_fr.html</b>: Documentation en français
+<li> <b>libmail_en.html</b>: Documentation en anglais
+</ul><p><p>Aucune configuration n'est requise dans la librairie.
+Pour ce qui est de php, dans php3.ini [ou php.ini pour PHP4] :
+<ul><li> configurer l'adresse d'envoi <i>sendmail_from</i>
+<li> configurer le serveur de mail <i>SMTP</i>
+</ul><p>
+<pre>	SMTP           = smtp@isp.com			; for win32 only
+	sendmail_from  = valid_address@chezmoi.fr	;for win32 only
+</pre>
+<p><a name="Documentation"></a><h2>Documentation</h2><p><p>Descriptions des methodes publiques ( ie. accessibles ) du composant Mail.
+<p><p><a name="Constructeur"></a><h4>Constructeur</h4><p>Creation de l'instance de graphique
+<p>
+<pre>	$mail = new Mail();
+</pre>
+<p><a name="Subject%28+string+sujet+%29"></a><h4>Subject( string sujet )</h4><p>Defini la ligne de sujet du e-mail. Appel optionnel.
+<p>
+<pre>	$mail-&gt;Subject( &quot;Bonjour, monde&quot; );
+</pre>
+<p><p><a name="From%28+address+%29"></a><h4>From( address )</h4><p>Defini l'expediteur du mail. Appel <b>obligatoire</b>.
+<p>
+<pre>	$mail-&gt;From( &quot;me@isp.com&quot; );
+</pre>
+<p><a name="To%28+mixed+address+%29"></a><h4>To( mixed address )</h4><p>Defini le ou les destinataires du mail. Appel <b>obligatoire</b>.
+<p>
+<pre>	$mail-&gt;To( &quot;you@isp.com&quot; );
+</pre>
+
+<pre>	$tos = array( &quot;you@isp.com&quot;, &quot;u2@isp.com&quot; );
+	$mail-&gt;To( $tos );
+</pre>
+<p><p><p><a name="Cc%28+mixed+address+%29"></a><h4>Cc( mixed address )</h4><p>Permet de définir un ou plusieurs destinataires en carbon-copy.
+Le paramètre address peut etre au choix une adresse ou un tableau d'adresses.
+<p>
+<pre>	$mail-&gt;Cc( &quot;toto@somehost.fr&quot; ); // un seul destinataire en CC
+</pre>
+
+<pre>	$multiple_cc = array( &quot;a@isp.com&quot;, &quot;b@isp.com&quot;, &quot;c@isp.com&quot; );
+	$mail-&gt;Cc( $multiple_cc ); // plusieurs destinataires en CC
+</pre>
+<p><p><a name="Bcc%28+mixed+address+%29"></a><h4>Bcc( mixed address )</h4><p>Permet de définir un ou plusieurs destinataires en carbon-copy discrète.
+Pour info: A la difference du CC, les adresses mises en BCC n apparaissent pas dans le mail recu par le destinataire principal.
+le paramètre address peut etre au choix une adresse ou un tableau d'adresses.
+<p>
+<pre>	$mail-&gt;BCC( &quot;manager@somehost.fr&quot; );
+</pre>
+
+<pre>	$multiple_bcc = array( &quot;a@isp.com&quot;, &quot;b@isp.com&quot;, &quot;c@isp.com&quot; );
+	$mail-&gt;BCC( $multiple_bcc ); // plusieurs destinataires
+</pre>
+<p><p><a name="Body%28+string+body%2C+%5Bstring+charset%5D+%29"></a><h4>Body( string body, [string charset] )</h4><p>Permet de definir le corps du message. Le champ optionnel charset permet de définir le jeu de caractères du message.
+Par défaut le charset utilisé est "us-ascii". Utilisez le charset "iso-8859-1" si votre message comporte des caractères accentués "européens".
+<p>
+<pre>	$mail-&gt;Body( &quot;Message in english&quot; );
+	$mail-&gt;Body( &quot;Message av&eacute; d&eacute; accents&quot;, &quot;iso-8859-1&quot; );
+</pre>
+Note: n'inserer que du text, pas de HTML. Voir <a href="#Conseils">Conseils</a> pour envoyer un mail HTML.
+<p><p><p><a name="Attach%28+string+filename%2C+%5B+%5Bstring+mimetype%5D%2C+string+disposition%5D+%29"></a><h4>Attach( string filename, [ [string mimetype], string disposition] )</h4><p>Joint un fichier $filename au Mail
+<p><ul><li> <b>filename</b> : emplacement du fichier sur le disque.
+</li><li> <b>mimetype</b> : chaine definissant le type du fichier.
+</li>Si vide ou égal à "", le MIME 'application/x-unknown-content-type' est utilisé.
+le MIME-type est utilise par les clients de messagerie, et leur permet par exemple d'afficher directement une image
+dans le e-mail, voire de lancer automatiquement des virus pour les plus mauvais d'entre-eux...
+<p><li> <b>disposition</b> : code definissant la methode d'affichage du fichier par le client mail.
+Avec <b>inline</b> (valeur par defaut), le client mail affichera la piece jointe dans le message si possible.
+Avec <b>attachment</b>, la piece jointe sera affiche sous forme de lien.
+</li></ul><p><p>
+<pre>	// le fichier se trouve dans le repertoire courant
+	$mail-&gt;Attach( &quot;logo.gif&quot;, &quot;image/gif&quot; );
+</pre>
+
+<pre>	// fichier indique en absolu - affiche sous forme de lien par le client mail
+	$mail-&gt;Attach( &quot;C:\\Mes Documents\\resume.doc&quot;, &quot;application/x-msword&quot;, &quot;attachment&quot; );
+</pre>
+<p><p><p><a name="autoCheck%28+boolean+%29"></a><h4>autoCheck( boolean )</h4><p>Permet activer ou non la verification automatique avant envoi.
+La verification porte sur la validité <b>syntaxique</b> des diverses adresses To, From, CC et BCC du mail - l'existence réelle de ces adresses n'est pas verifiée.
+Elle est par defaut activée (voir code source du contructeur).
+<p>
+<pre>	$mail-&gt;autoCheck( false ); // deactive la verification des addresses
+	$mail-&gt;autoCheck( true ); // verification activee
+</pre>
+<b>Important</b> : Lorque la verification est activee, toute adresse incorrecte affiche un message d'erreur et arrete le script.
+Vous pouvez changer ce comportement "radical" en modifiant la methode CheckAdresses().
+<p><p><p><p><a name="Organization%28+string+%24org+%29"></a><h4>Organization( string $org )</h4><p>Defini le champ Organisation du mail. Optionnel.
+<p>
+<pre>	$mail-&gt;Organization( &quot;My company&quot; );
+</pre>
+<p><p><a name="ReplyTo%28+string+address+%29"></a><h4>ReplyTo( string address )</h4><p>Defini une adresse de réponse différente de l'adresse de l'expéditeur
+<p>
+<pre>	$mail-&gt;ReplyTo( &quot;helpdesk@mycompany.com&quot; );
+</pre>
+<p><p><a name="Priority%28+integer+%24priority+%29"></a><h4>Priority( integer $priority )</h4><p>Defini la priorite du mail. $priority doit etre un entier pris entre 1 (la plus haute) et 5 ( priorite basse )
+Cette information est generalement exploitee par le client de messagerie, par exemple mise en avant des messages urgents.
+<p>L'appel de Priority() est optionnel. Par defaut la priorite est 3 (normale).
+<p>
+<pre>	$mail-&gt;Priority( 1 ); // urgent
+	$mail-&gt;Priority( 3 ); // normal
+	$mail-&gt;Priority( 5 ); // pas urgent du tout
+</pre>
+<p><a name="Receipt%28%29"></a><h4>Receipt()</h4><p>Ajoute un accusé de reception au mail.
+Cet accusé de reception est renvoyé à l'expéditeur lorque le destinataire ouvre le message.
+Le destinataire de l'accusé est le champ From par défaut, sauf si ReplyTo est défini.
+<p>
+<pre>	$mail-&gt;Receipt();
+</pre>
+Warning: cette fonctionnalité n'étant pas standardisée elle n'est supportée que par certains clients Mail.
+<p><p><p><a name="Send%28%29"></a><h4>Send()</h4><p>Envoie le message.
+Ne pas oublier d'invoquer cette methode !
+<p><p>
+<pre>	$mail-&gt;Send();
+</pre>
+<p><a name="Get%28%29"></a><h4>Get()</h4><p>
+<pre>	Renvoie le mail entier au format Raw ( entetes + corps du message )
+	Permet par exemple de l&#039;afficher, de le sauvegarder dans un fichier ou un SGBD.
+</pre>
+
+<pre>	$msg = $mail-&gt;Get();
+</pre>
+
+<pre>	//affiche le message sur la page
+	echo &quot;Your message has been sent:&lt;br&gt;&lt;pre&gt;&quot;, nl2br( $msg ) , &quot;&lt;/pre&gt;&quot;;
+</pre>
+
+<pre>	// et le log dans une database
+	$msg = str_replace( &quot;&#039;&quot;, &quot;&#039;&#039;&quot;, $msg );
+	$bdd-&gt;exec(  &quot;insert into Mailbox( user, folder, message, senttime ) values ( &#039;toto&#039;, &#039;Sent&#039;, &#039;$msg&#039;, $FCT_CURRENT_TIME&quot; );
+</pre>
+<p><p><a name="Conseils"></a><h2>Conseils</h2><p><a name="Envoyer+un+mail+au+format+HTML"></a><h3>Envoyer un mail au format HTML</h3><p>Premier point, que les choses soient claires : je le deconseille...
+<p>Cela dit, pour envoyer un mail au format HTML, vous devez passez par une piece attachee comme
+ci-dessous:
+<p>
+<pre>	$fichier = &quot;mail.html&quot;; // contenu du mail
+	$mail-&gt;Body( &quot;Ce mail est formatte en HTML&quot; );
+	$mail-&gt;Attach( $fichier, &quot;text/html&quot; );
+</pre>
+Si votre page HTML contient des images ou liens externes, pensez :
+<p><ul><li> soit a les (ré)écrire en absolu : http://chez.moi.com/mahomepage.html au lieu de /mahomepage.html
+</li><li> soit a definir un <b>BASE HREF</b> dans l entete. Tous les liens relatifs dans la page le seront par rapport
+a cette URL.
+</li>
+<pre>	&lt;head&gt;
+		&lt;base href=&quot;http://chez.moi.com/&quot;&gt;
+		&lt;title&gt;Ma homepage&lt;/title&gt;
+	&lt;/head&gt;
+</pre>
+<li> Reste le cas ou vos destinataires n'ont pas acces au Web.
+Vous devez alors inserer vos images dans votre code HTML; par exemple en utilisant les urls <b>data:</b>
+decrites dans <a href="http://lwest.free.fr/doc/php/smp/?docid=data_url">l'url data:</a>.
+</li></ul><p><p><p><p><a name="Statut"></a><h2>Statut</h2><p><table >
+<tr><td>Name</td><td>libmail</td></tr>
+<tr><td>Lang</td><td>php3 / php4</td></tr>
+<tr><td>Version</td><td>1.3</td></tr>
+<tr><td>Lastmod</td><td>Thu Oct 12 12:12:36 UTC 2000</td></tr>
+<tr><td>Author</td><td><a href="mailto:lwest@free.fr?subject=libmail">Leo West</a></td></tr>
+</table><a name="Sommaire"></a><h2>Sommaire</h2><p><a name="summary"></a><ol class=idx>
+<li><a href="#LIBMAIL" class=aIdx>LIBMAIL</a></li>
+<ol class=idx>
+<li><a href="#Description" class=aIdx>Description</a></li>
+<li><a href="#ChangeLog" class=aIdx>ChangeLog</a></li>
+<li><a href="#Synopsis" class=aIdx>Synopsis</a></li>
+<li><a href="#Installation" class=aIdx>Installation</a></li>
+<li><a href="#Documentation" class=aIdx>Documentation</a></li>
+<ol class=idx>
+<li><a href="#Constructeur" class=aIdx>Constructeur</a></li>
+<li><a href="#Subject%28+string+sujet+%29" class=aIdx>Subject( string sujet )</a></li>
+<li><a href="#From%28+address+%29" class=aIdx>From( address )</a></li>
+<li><a href="#To%28+mixed+address+%29" class=aIdx>To( mixed address )</a></li>
+<li><a href="#Cc%28+mixed+address+%29" class=aIdx>Cc( mixed address )</a></li>
+<li><a href="#Bcc%28+mixed+address+%29" class=aIdx>Bcc( mixed address )</a></li>
+<li><a href="#Body%28+string+body%2C+%5Bstring+charset%5D+%29" class=aIdx>Body( string body, [string charset] )</a></li>
+<li><a href="#Attach%28+string+filename%2C+%5B+%5Bstring+mimetype%5D%2C+string+disposition%5D+%29" class=aIdx>Attach( string filename, [ [string mimetype], string disposition] )</a></li>
+<li><a href="#autoCheck%28+boolean+%29" class=aIdx>autoCheck( boolean )</a></li>
+<li><a href="#Organization%28+string+%24org+%29" class=aIdx>Organization( string $org )</a></li>
+<li><a href="#ReplyTo%28+string+address+%29" class=aIdx>ReplyTo( string address )</a></li>
+<li><a href="#Priority%28+integer+%24priority+%29" class=aIdx>Priority( integer $priority )</a></li>
+<li><a href="#Receipt%28%29" class=aIdx>Receipt()</a></li>
+<li><a href="#Send%28%29" class=aIdx>Send()</a></li>
+<li><a href="#Get%28%29" class=aIdx>Get()</a></li>
+</ol><li><a href="#Conseils" class=aIdx>Conseils</a></li>
+<ol class=idx>
+<li><a href="#Envoyer+un+mail+au+format+HTML" class=aIdx>Envoyer un mail au format HTML</a></li>
+</ol><li><a href="#Statut" class=aIdx>Statut</a></li>
+<li><a href="#Sommaire" class=aIdx>Sommaire</a></li>
+<p></body>
+</html>
+
+

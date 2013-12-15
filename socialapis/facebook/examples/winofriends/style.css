@@ -1,0 +1,177 @@
+/* BEGIN STYLESHEET RESET */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+  outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* END STYLESHEET RESET */
+
+/* main elements */
+body {
+  font-size: 1em;
+  color: #000;
+  font-family: Arial;
+}
+
+img {
+	margin:1px;
+}
+
+#header {
+  float: left;
+  width: 100%;
+  height: 41px;
+  background-color: #3b5999;
+  text-align: center;
+}
+#logo {
+  float: left;
+  font-size: 1.9em;
+  margin-top: 5px;
+  color: #fff;
+  font-weight: bold;
+}
+
+#content {
+  float: left;
+  width: 100%;
+}
+
+#container {
+  position: relative;
+  margin: 0px auto;
+  width: 900px;
+}
+
+#left-sidebar {
+  float: left;
+  width: 270px;
+  border-right: 1px solid #b3b3b3;
+  margin-right: 15px;
+  padding-top: 15px;
+}
+
+#left-sidebar #logo {
+  float: left;
+  width: 270px;
+  height: 200px;
+  margin-bottom: 15px;
+}
+
+#left-sidebar h2 {
+  font-size: .8em;
+  border-bottom: 1px solid #e9e9e9;
+  margin: 3px 0px 3px 0px;
+  padding: 3px 0px 3px 0px;
+  color: #343434;
+}  
+
+#right-sidebar {
+  float: left;
+  width: 610px;
+  padding-top: 25px;
+}
+
+#right-sidebar h1 {
+  font-size: 1.4em;
+  margin: 0px 0px 10px 0px;
+  color: #2f2f31;
+}
+
+#right-sidebar h2 {
+  font-size: .8em;
+  border-bottom: 1px solid #e9e9e9;
+  border-top: 1px solid #aaaaaa;
+  margin: 15px 0px 10px 0px;
+  padding: 5px 0px 5px 0px;
+  color: #343434;
+  clear: both;
+}
+
+#right-sidebar #address {
+  margin-bottom: 5px;
+}
+
+#right-sidebar #address a {
+  color: #3B5998;
+  font-size: .9em;
+  text-decoration: none;
+}
+
+#right-siebar #address a:hover {
+  text-decoration: underline;
+}
+
+#left-sidebar .facebook-plugin {
+  margin: 5px 0px 10px 0px;
+  float: left;
+}
+
+#right-sidebar .facebook-plugin {
+  margin: 5px 0px 20px 0px;
+  float: left;
+  clear: both;
+}
+
+#footer {
+  float: left;
+  width: 100%;
+  background-color: #eee;
+  height: 30px;
+  color: #aaa;
+  padding-top: 10px;
+}
+
+/* For comments box to hide like button */
+div.like, div.like div {display:none;}
+
+table { margin: .5em; border-collapse: collapse; }
+td, th { padding: .5em; border: 1px #ccc solid; }

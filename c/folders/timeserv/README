@@ -1,0 +1,34 @@
+TIMESERV
+========
+(c) Paul Griffiths, 1999
+Email: mail@paulgriffiths.net
+
+
+Function
+========
+
+Demonstrates a simple TCP/IP time server, using the
+Berkeley Sockets API. 
+
+
+Usage
+=====
+
+Example of usage:
+
+    [paul@localhost paul]$ ./timeserv 5555 &
+    [paul@localhost paul]$ telnet localhost 5555
+
+
+Installation
+============
+
+If your system supports make, simply type:
+
+    make
+
+at the command line. Otherwise, compile and link timeserv.c and
+help.c in the usual way to create the executable. You may or may
+not need to link in additional libraries for the sockets functions;
+check your compiler's documentation.
+

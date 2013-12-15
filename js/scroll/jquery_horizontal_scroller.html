@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Horizontal Scroll With jQuery</title>
+<script src="http://jquery.com/jquery-latest.js"></script>
+<style type="text/css">
+#move-left,#move-right{background-color:#666}
+img{float:left;height:375px;width:672px}
+#scroll-content{width:3360px}
+</style>
+</head>
+<body>
+<div id="scroller-container">
+<div id="move-left"></div>
+<div id="scroller">
+<div id="scroll-content">
+<img src="1.jpg" /><img src="2.jpg" /><img src="3.jpg" /><img src="4.jpg" /><img src="5.jpg" />
+</div>
+</div>
+<div id="move-right"></div>
+</div>
+<script>
+HorizontalScroller = function() {
+	var width = 0, contentWidth = 0, height = 0, target = '', buttonWidth = 0, animLeft = null, animRight = null;
+ 
+	function setContainers() {
+		YAHOO.util.Dom.setStyle('scroller-container', 'width', (width+(2*buttonWidth)) + 'px');
+		YAHOO.util.Dom.setStyle('scroll-content', 'position', 'absolute');
+		YAHOO.util.Dom.setStyle('scroll-content', 'left', '0px');
+	 
+		YAHOO.util.Dom.setStyle('scroller', 'position', 'relative');
+		YAHOO.util.Dom.setStyle('scroller', 'width', width + 'px');
+		YAHOO.util.Dom.setStyle('scroller', 'height', height + 'px');
+		YAHOO.util.Dom.setStyle('scroller', 'overflow', 'hidden');
+		YAHOO.util.Dom.setStyle('scroller', 'float', 'left');
+	 
+		YAHOO.util.Dom.setStyle('move-left', 'float', 'left');
+		YAHOO.util.Dom.setStyle('move-left', 'width', buttonWidth + 'px');
+		YAHOO.util.Dom.setStyle('move-left', 'height', height + 'px');
+	 
+		YAHOO.util.Dom.setStyle('move-right', 'float', 'left');
+		YAHOO.util.Dom.setStyle('move-right', 'width', buttonWidth + 'px');
+		YAHOO.util.Dom.setStyle('move-right', 'height', height + 'px');
+	}
+
+	function setupAnimations() {
+		animRight = new YAHOO.util.Anim('scroll-content', {left : {to : -(contentWidth-width)}});
+		animLeft = new YAHOO.util.Anim('scroll-content', {left : {to : 0}});
+	}
+
+	function scrollLeft() {
+		animLeft.animate();
+	}
+	 
+	function scrollRight() {
+		animRight.animate();
+	}
+	 
+	function scrollStop() {
+		animLeft.stop();
+		animRight.stop();
+	}
+
+	function addHandlers() {
+		YAHOO.util.Event.addListener('move-left', 'mouseover', scrollLeft, this);
+		YAHOO.util.Event.addListener('move-right', 'mouseover', scrollRight, this);
+		YAHOO.util.Event.addListener('move-left', 'mouseout', scrollStop, this);
+		YAHOO.util.Event.addListener('move-right', 'mouseout', scrollStop, this);
+	}
+
+	function getScrollContentWidth() {
+		str = YAHOO.util.Dom.getStyle('scroll-content', 'width');
+		contentWidth = str.substring(0, (str.length-2));
+	}
+
+	function setup() {
+		getScrollContentWidth();
+		setContainers();
+		addHandlers();
+		setupAnimations();
+	}
+
+	var pub = {
+		initScroll : function(args){
+			target = args.target;
+			contentWidth = args.contentWidth;
+			width = args.width;
+			height = args.height;
+			buttonWidth = args.buttonWidth;
+			YAHOO.util.Event.onContentReady('scroll-content', setup);
+		}
+	}
+ 
+	return pub;
+}();
+
+var args = {
+ 	width : '800',
+ 	contentWidth : '3360',
+ 	height : '375',
+ 	target : 'scroller',
+	step : '100',
+ 	buttonWidth : '50'
+}
+
+var myScroller = HorizontalScroller.initScroll(args);
+</script>
+</body>
+</html>

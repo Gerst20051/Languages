@@ -1,0 +1,19 @@
+
+Clock.exe
+
+This program demonstrates how to implement a timer.
+It is extremely minimal so it's potentially useful
+to beginning C programmers.
+
+I merged .data and .text sections and it saved about
+1.5 KB. However the linker generates 3 warnings even
+though it seems to work perfectly. You can change it
+back under Project Options > Macros. Just hit Change
+after highlighting LINKFLAGS and erase:
+
+/merge:.data=.text /merge:.rdata=.text /section:.text,rwe
+
+
+Free to use and mutate or whatever.
+
+Athlor

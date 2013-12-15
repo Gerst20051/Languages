@@ -1,0 +1,278 @@
+/*
+ * Copyright 2011 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ */
+
+/**
+ * Base
+ */
+body {
+  background: #fff;
+  color: #000;
+  font-family: Verdana, sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  overflow: hidden;
+}
+a {
+  color: #1b7bdd;
+  text-decoration: none;
+}
+a:hover {
+  color: #2fa600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+img {
+  border: none;
+}
+
+h1, h2, h3, h4, h5, h6, dt {
+  font-family: "Arial Black", Arial, serif;
+}
+h1 {
+  border-bottom: 1px solid #1d4088;
+  color: #ff744e;
+  font-size: 18px;
+  margin: 0 0 15px 0;
+  padding-bottom: 5px;
+}
+
+
+
+/**
+ * General Styles
+ */
+.text {
+  font-family: Verdana, sans-serif;
+  font-size: 13px;
+  border: 1px solid #9cccff;
+  padding: 1px 3px;
+}
+.awesome.green {
+  background-color: #1d4088 !important;
+  font-size: 20px !important;
+  padding: 10px 15px !important;
+}
+.rfloat {
+  float: right;
+}
+
+
+
+/**
+ * Document
+ */
+#doc {
+  width: 760px;
+  margin: 0 auto;
+}
+
+
+
+/**
+ * Header
+ */
+.hd {
+  background: #9cccff;
+  border-bottom: 6px solid #1d4088;
+  padding: 10px 10px;
+}
+.hd a,
+.hd a:hover {
+  color: #666;
+}
+.hd .logo,
+.hd .logo:hover {
+  font-family: "Arial Black", Arial, serif;
+  font-size: 30px;
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+/**
+ * User Info
+ */
+#user-info {
+  float: right;
+  text-align: right;
+}
+#user-info .info {
+  display: inline-block;
+  /* for IE7 */
+  zoom: 1;
+  margin-right: 0.75em;
+}
+#user-info .info a {
+  display: block;
+}
+#user-info a.name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+#user-info a.logout {
+  font-size: 0.8em;
+}
+#user-info img {
+  vertical-align: top;
+}
+
+
+
+/**
+ * Messages
+ */
+.message {
+  padding: 10px;
+  font-weight: bold;
+}
+.message.error {
+  background-color: #e8352d;
+  color: #fff;
+}
+.message.success {
+  background-color: #79ff69;
+  color: #333;
+}
+
+
+/**
+ * Main Body
+ */
+.bd {
+  background: #f1f8ff;
+  padding: 25px 10px;
+}
+
+
+
+/**
+ * Footer
+ */
+.ft {
+  background: #9cccff;
+  color: #333;
+  padding: 5px 10px;
+  font-size: 10px;
+}
+.ft a {
+  font-weight: bold;
+}
+
+
+
+/**
+ * Welcome Page
+ */
+.promo {
+  border: 2px solid #1d4088;
+}
+.welcome {
+  float: right;
+  width: 375px;
+}
+
+
+
+/**
+ * Runs Page
+ */
+#runs form {
+  margin-top: 30px;
+}
+#runs form > div {
+  margin-bottom: 10px;
+}
+#runs form label {
+  float: left;
+  width: 170px;
+}
+#runs .date-fill {
+  margin-left: 170px;
+  font-size: 13px;
+}
+#runs #date_month, #runs #date_day {
+  width: 20px;
+}
+#runs #date_year {
+  width: 35px;
+}
+#runs form .buttons {
+  text-align: center;
+  padding-right: 1em;
+}
+
+#runs .main {
+  margin-bottom: 40px;
+  width: 360px;
+}
+
+
+
+/**
+ * Recent Runs
+ */
+#recent-runs {
+  float: right;
+  background: #e882bf;
+  padding: 10px 20px;
+  position: relative;
+  top: -10px;
+  width: 325px;
+}
+#recent-runs h1 {
+  color: #000;
+}
+#recent-runs td {
+  padding: 3px 5px;
+}
+#recent-runs thead {
+  font-weight: bold;
+}
+
+
+.friends {
+  clear: both;
+}
+#friends-runs .run {
+  padding-bottom: 7px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #1d4088;
+}
+#friends-runs .run .pic {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+#friends-runs .run .name a {
+  font-weight: bold;
+}
+#friends-runs .run .details {
+  float: right;
+  font-size: 13px;
+  margin: 15px 20px 0 0;
+}
+#friends-runs .run .details .distance {
+  font-weight: bold;
+  display: inline-block;
+  width: 110px;
+}
+#friends-runs .run .details .date {
+  display: inline-block;
+  width: 125px;
+  text-align: right;
+}

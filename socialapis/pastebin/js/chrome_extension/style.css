@@ -1,0 +1,190 @@
+html, body {
+	width: 600px;
+	height: 422px;
+	max-height: 422px;
+	margin: 0px;
+	margin-right: 20px;
+	padding: 10px;
+	padding-top: 0px;
+}
+body {
+	font-family: trebuchet MS,Lucida Sans Unicode, Lucida Sans, Sans-Serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	color: #181818;
+	width: 600px;
+	height: 422px;	
+}
+select, input[type=text], input[type=password] {
+	background-color: #F9F9F9;
+	width: 150px;
+	height: 
+	border: 1px solid #CCC;
+	padding: 5px;
+	color: #181818;
+	font-size: 1.0em;
+	border: 1px solid #CCC;
+}
+#topmenu {
+	background-color: #2A4367;
+	border-radius: 0 0 6px 6px;
+	padding-top: 5px;
+	text-transform:uppercase;
+	font-size:0.75em;
+	font-weight: bold;
+	padding-bottom: 5px;
+	padding-right: 10px;
+	padding-left: 10px;
+	height: 25px;
+	color: white;
+}
+#newpaste {
+	background: url("icons/arrow.png") no-repeat 0 4px;
+	padding-left: 25px; 
+}
+#optional {
+	font-weight: 700;
+	color: #666;
+	font-size: 0.85em;
+	border-bottom: 1px dotted #CCC;
+	margin: 5px 0 5px 0;
+	padding: 0 0 0 22px;
+	background: url("icons/settings.png") no-repeat 0 4px;
+}
+#highlight {
+	font-size: 0.75em;
+}
+#submit, #cancel {
+	background: #DDD url("icons/bg-button.gif") repeat-x 0 0;
+	border: 1px solid #BBB;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 12px;
+	margin: 0;
+	padding: 5px 10px;
+	border: 1px solid #A5BADA;
+	font-weight: 700;
+}
+#loginform {
+	z-index: 999;
+	position: absolute;
+	width: 280px;
+	height: 100px;
+	top: 161px;
+	left: 160px;
+}
+#error {
+	background: #FFF2F2 url('icons/error.png') no-repeat 10px 13px;
+	margin: 10px 0;
+	padding: 10px 10px 10px 35px;
+	visibility: hidden;
+}
+#msg {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 3px;
+	width: 100%;
+	text-align: center;
+	display: none;
+	border: 1px dotted #A1C96A;
+}
+#errormsg {
+	margin-top: 3px;
+	margin-bottom: 3px;
+	padding: 3px;
+	width: 100%;
+	text-align: center;
+	display: none;
+	border: 1px dotted red;
+}
+#msg a, #msg a:hover, #msg a:visited, #msg a:active {
+	color: blue;
+	text-decoration: underline;
+}
+#pastesnotfound {
+	z-index: -1;
+	width: 100%;
+	line-height: 350px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	display: none;
+}
+#pastes {
+	z-index: 1;
+	display: none;
+}
+#donation {
+	font-size: 10px;
+}
+#donation a, #donation a:hover, #donation a:visited, #donation a:active {
+	color: black;
+	text-decoration: underline;
+}
+#ccc {
+	position:absolute;
+	top: 0;
+	z-index: -1;
+}
+#copy {
+	text-decoration: underline;
+	cursor: pointer;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.paste_code {
+	display: block;
+	background-color: #F8F8F8;
+	margin-bottom: 0;
+	margin-top: 10px;
+	border: 1px solid #DDD;
+	width: 100%;
+	height: 200px;
+}
+a, a:hover, a:visited, a:active {
+	color: white;
+	text-decoration: none;
+}
+table {
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+td a, td a:hover, td a:visited, td a:active, #more a, #more a:hover, #more a:visited, #more a:active {
+	color: #04A;
+}
+td.icon {
+	background: url("icons/arrow.png") no-repeat 3px 8px;
+	padding: 4px 6px 4px 25px;
+}
+td {
+	padding: 4px 6px;
+	padding-right: 40px !important;
+}
+td, th {
+	text-align: left;
+}
+td {
+	border-bottom: 1px solid #CCC;
+}
+.clear {
+	clear: both;
+}
+.formfloat {
+	width: 250px;
+	height: 80px;
+	font-size: 0.8em;
+	margin-right: 30px;
+}
+.formitem {
+	width: 120px;
+}
+.loginform {
+	width: 250px;
+}
+.odd {
+	background-color: #F8F8F8;
+}

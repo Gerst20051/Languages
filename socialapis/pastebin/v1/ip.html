@@ -1,0 +1,21 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<script>
+$(document).ready(function(){
+	$.get("http://hnsserverip.site90.com", function(response) {
+		var ind = response.indexOf("<!--");
+		response = response.substring(0,ind);
+		$(response).filter('paste').each(function() {
+			if ($(this).find('paste_title').text() == "Server IP Address") {
+				var rawlink = "http://pastebin.com/raw.php?i="+$(this).find('paste_key').text();
+				$.get("http://hnsserverip.site90.com", {raw:rawlink});
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

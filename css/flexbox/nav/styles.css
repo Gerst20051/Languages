@@ -1,0 +1,137 @@
+body {
+padding: 0 50px;
+background:#F1EFE2;
+font-size: 1.6em;
+}
+
+h1 {
+margin-top: 20px;
+margin-bottom: 60px;
+color: #567;
+}
+
+h2 {
+margin-top: 50px;
+margin-bottom: 10px;
+color: #789;
+}
+
+p {color: #789;}
+
+
+/* Flexible menu without images */
+
+.menu {
+width: 800px;
+margin: 0; 
+padding: 0; 
+list-style: none; 
+display: -moz-box;
+display: -webkit-box;
+display: box;
+-moz-box-orient: horizontal;
+-webkit-box-orient: horizontal;
+box-orient: horizontal;
+}
+
+.menu li {
+-moz-box-flex: 1;
+-webkit-box-flex: 1;
+box-flex: 1;
+min-width: 65px; /* @bugfix: avoid jerky transition ending */
+padding: 8px 0 8px 20px; 
+margin: 0; 
+border: 2px solid #fff;
+background: #98B924; 
+color: #fff; 
+text-decoration: none;
+text-shadow: 0px 0px 6px #777;
+-moz-border-radius: 10px 0 / 40px 0;
+-webkit-border-radius: 10px 0 / 40px 0;
+border-radius: 10px 0 / 40px 0; 
+-webkit-transition: .5s;
+-moz-transition: .5s;
+transition: .5s;
+}
+
+.menu a {
+display: inline-block;
+width: 100%;
+white-space: nowrap;
+color: #fff;
+text-decoration: none;
+}
+
+.menu li:hover, .menu li:focus {
+background: #b8da40; 
+width: 200px;
+-moz-box-flex: 2;
+-webkit-box-flex: 2;
+box-flex: 2;
+}
+
+.menu li + li {
+margin-left: -50px;
+}
+
+
+/* Graphical Flexible menu */
+
+.graphic {
+display: -moz-box;
+display: -webkit-box;
+display: box;
+width: 960px;
+margin: 0; padding: 0;
+list-style: none;
+-moz-box-orient: horizontal;
+-webkit-box-orient: horizontal;
+box-orient: horizontal;
+}
+
+.graphic li {
+-moz-box-flex: 1;
+-webkit-box-flex: 1;
+box-flex: 1;
+height: 200px;
+min-width: 60px; /* @bugfix: avoid jerky transition ending */
+border-left: 1px solid #fff;
+background: url(img1.jpg) left top no-repeat;
+-webkit-transition: 0.3s;
+-moz-transition: 0.3s;
+transition: 0.3s;
+}
+
+.graphic li a {
+display: block;
+height: 100%;
+opacity: 0;
+filter:alpha(opacity=0);
+}
+
+.graphic li:hover {
+width: 90px;
+-moz-box-flex: 2;
+-webkit-box-flex: 2;
+box-flex: 2;
+}
+
+.graphic #link1 {
+background-image: url(img1.jpg);
+}
+
+.graphic #link2 {
+background-image: url(img2.jpg);
+}
+
+.graphic #link3 {
+background-image: url(img3.jpg);
+}
+
+.graphic #link4 {
+background-image: url(img4.jpg);
+}
+
+.graphic #link5 {
+background-image: url(img5.jpg);
+}

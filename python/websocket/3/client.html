@@ -1,0 +1,12 @@
+<script type="text/javascript">
+	var ws = new WebSocket("ws://127.0.0.1:1234");
+	ws.onopen = function() {
+		ws.send("CONNECTED");
+	};
+	ws.onmessage = function (evt) { 
+		alert(evt.data);		 
+	};
+	ws.onclose = function() {  };
+</script>
+
+<button onclick='ws.send("POKE")'>POKE!</button>

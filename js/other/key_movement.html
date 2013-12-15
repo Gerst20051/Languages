@@ -1,0 +1,77 @@
+<script type="text/javascript">
+
+<!--
+moz=document.getElementById&&!document.all
+active = 0;
+function Init() {
+if(moz){parent.main.focus()}
+elm=document.getElementById("moveme")
+posX= parseInt(elm.style.left)
+posY= parseInt(elm.style.top)
+}
+
+function getKey(e) {
+pressed_key=(!moz?event.keyCode:e.which)
+
+if( pressed_key==97&& active==0){
+active = 1;
+slideLeft();
+}
+
+if(pressed_key==100&& active==0){
+active = 1;
+slideRight();
+}
+
+if(pressed_key==119&& active==0){
+active = 1;
+slideUp();
+}
+if(pressed_key==115&& active==0){
+active = 1;
+slideDown();
+}
+document.getElementById("keya").innerHTML=String.fromCharCode(pressed_key);
+document.getElementById("keyb").innerHTML=pressed_key;
+}
+
+function keyUp(){
+active = 0
+}
+
+function slideRight(){
+if (active) {
+posX+= 5;
+elm.style.left = posX
+setTimeout("slideRight()", 25);
+}
+}
+function slideLeft(){
+if (active) {
+posX-= 5;
+elm.style.left = posX
+setTimeout("slideLeft()", 25);
+}
+}
+
+function slideUp(){
+if (active) {
+posY -= 5;
+elm.style.top = posY;
+setTimeout("slideUp()", 25);
+}
+}
+function slideDown(){
+if (active) {
+posY += 5;
+elm.style.top = posY;
+setTimeout("slideDown()", 25);
+}
+}
+setTimeout("Init()",500)
+document.onkeypress = getKey;
+document.onkeyup = keyUp;
+//-->
+</script>
+
+<div id="moveme" STYLE="position:absolute; left:350; top:130;"><img src="image.gif"></div>

@@ -1,0 +1,17 @@
+application: runwithfriends
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /(.*\.(html|css|js|gif|jpg|png|ico))
+  static_files: static/\1
+  upload: static/.*
+  expiration: "1d"
+
+- url: .*
+  script: main.py
+
+- url: /task/.*
+  script: main.py
+  login: admin

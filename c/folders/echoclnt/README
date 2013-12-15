@@ -1,0 +1,40 @@
+ECHOCLNT
+========
+(c) Paul Griffiths, 1999
+Email: mail@paulgriffiths.net
+
+
+Function
+========
+
+Demonstrates a simple TCP/IP echo client, using the
+Berkeley Sockets API. This program is meant to work
+in conjunction with ECHOSERV, a simple TCP/IP echo server
+also available from this site.
+
+
+Usage
+=====
+
+Example of usage:
+
+    [paul@localhost paul]$ ./echoclnt -a 127.0.0.1 -p 3357
+
+Switches:
+
+	-p : specifies remote port of time server
+	-a : specifies remote address of time server
+
+
+Installation
+============
+
+If your system supports make, simply type:
+
+    make
+
+at the command line. Otherwise, compile and link echoclnt.c
+and helper.c in the usual way to create the executable. You may or may
+not need to link in additional libraries for the sockets
+functions; check your compiler's documentation.
+

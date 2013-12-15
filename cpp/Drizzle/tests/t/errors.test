@@ -1,0 +1,68 @@
+#
+# Test some error conditions
+#
+
+--disable_warnings
+drop table if exists t1;
+--enable_warnings
+--error ER_TABLE_UNKNOWN
+insert into t1 values(1);
+--error ER_TABLE_UNKNOWN
+delete from t1;
+--error ER_TABLE_UNKNOWN
+update t1 set a=1;
+create table t1 (a int);
+--error ER_BAD_FIELD_ERROR
+select count(test.t1.b) from t1;
+--error ER_BAD_FIELD_ERROR
+select count(not_existing_database.t1) from t1;
+--error ER_BAD_FIELD_ERROR
+select count(not_existing_database.t1.a) from t1;
+--error ER_DBACCESS_DENIED_ERROR, ER_TABLE_UNKNOWN,ER_SCHEMA_DOES_NOT_EXIST
+select count(not_existing_database.t1.a) from not_existing_database.t1;
+--error ER_BAD_FIELD_ERROR
+select 1 from t1 order by 2;
+--error ER_BAD_FIELD_ERROR
+select 1 from t1 group by 2;
+--error ER_BAD_FIELD_ERROR
+select 1 from t1 order by t1.b;
+--error ER_BAD_FIELD_ERROR
+select count(*),b from t1;
+drop table t1;
+
+# End of 4.1 tests
+
+#
+# Bug #6080: Error message for a field with a display width that is too long
+#
+--error ER_TOO_BIG_FIELDLENGTH
+create table t1 (a varchar(66000));
+
+#
+# Bug #27513: mysql 5.0.x + NULL pointer DoS
+#
+CREATE TABLE t1 (a INT);
+--error ER_DIVISION_BY_ZERO
+SELECT a FROM t1 WHERE a IN(1, (SELECT IF(1=0,1,2/0)));
+INSERT INTO t1 VALUES(1);
+--error ER_DIVISION_BY_ZERO
+SELECT a FROM t1 WHERE a IN(1, (SELECT IF(1=0,1,2/0)));
+INSERT INTO t1 VALUES(2),(3);
+--error ER_DIVISION_BY_ZERO
+SELECT a FROM t1 WHERE a IN(1, (SELECT IF(1=0,1,2/0)));
+DROP TABLE t1;
+
+#
+# Bug #28677: SELECT on missing column gives extra error
+#
+CREATE TABLE t1( a INT );
+--error ER_BAD_FIELD_ERROR
+SELECT b FROM t1;
+SHOW ERRORS;
+--error ER_BAD_FIELD_ERROR
+CREATE TABLE t2 SELECT b FROM t1;
+SHOW ERRORS;
+--error ER_BAD_FIELD_ERROR
+INSERT INTO t1 SELECT b FROM t1;
+DROP TABLE t1;
+# End of 5.0 tests

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <title>Range Input</title>
+	<style>
+	body {
+		font-family: 'Myriad-Pro', 'myriad', helvetica, arial, sans-serif;
+		text-align: center;
+	}
+	input { font-size: 14px; font-weight: bold;  }
+
+	
+	output { 
+		display: block;
+		font-size: 5.5em;
+		font-weight: bold;
+	}
+	</style>
+</head>
+<body>
+<form method="post">
+	<h1> Total Recall Awesomness Gauge </h1>
+	<input type="range" name="range" min="0" max="10" step="1" value="">
+	<output name="result">  </output>
+</form>
+
+
+<script>
+
+(function() {
+	var f = document.forms[0],
+		range = f['range'],
+		result = f['result'],
+		cachedRangeValue = localStorage.rangeValue ? localStorage.rangeValue : 5; 
+	
+	// Determine if browser is one of the cool kids that 
+	// recognizes the range input.
+	var o = document.createElement('input');
+	o.type = 'range';
+	if ( o.type === 'text' ) alert('Sorry. Your browser is not cool enough yet. Try the latest Opera.');
+
+	// Set initial values of the input and ouput elements to
+	// either what's stored locally, or the number 5.
+	range.value = cachedRangeValue;
+	result.value = cachedRangeValue;
+
+	// When the user makes a selection, update local storage.
+	range.addEventListener("mouseup", function() {
+		alert('The selected value was ' + range.value + '. I am using local storage to remember the value. Refresh and check on a modern browser.');
+		localStorage ? (localStorage.rangeValue = range.value) : alert('Save data to database or something instead.');
+	}, false);
+	
+	// Display chosen value when sliding. 
+	f.addEventListener('change', function() {
+		result.value = range.value;
+	}, false);
+	
+})();
+
+
+
+</script>
+</body>
+</html>

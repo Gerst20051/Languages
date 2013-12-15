@@ -1,0 +1,33 @@
+I would love if this was a simple "make install", 
+but it is not. 
+Most likely you will also need to recompile perl. Most 
+distributions do not come with a thread safe perl so you
+will probably need to recompile yours. To do this you
+need to walk through the perl Configure and say yes
+to wanting thread support. You can do a perl -V if you
+want to see if it was compiled by default on your system.
+Example perl configure :
+./Configure -Dusethreads -Duseithreads
+
+The result of not having this enabled is that you will
+find that MySQL will core on you. Once you have verified
+your perl type:
+perl Makefile.PL
+make
+make install
+
+The only step left is for you to load the functions into your version
+of MySQL.  The following commans will do this:
+
+CREATE FUNCTION myperl RETURNS STRING SONAME "my_perl.so";
+CREATE AGGREGATE FUNCTION myperlgroup RETURNS STRING SONAME "myperl.so";
+
+To uninstall do this:
+DROP FUNCTION myperl;
+DROP FUNCTION myperlgroup;
+
+Make sure you always drop a function before installing
+a new binary into your lib directory. MySQL will
+hang if you don't do this.
+
+	-Brian

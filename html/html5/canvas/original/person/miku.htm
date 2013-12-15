@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja">
+	<head>
+		<meta name="viewport" content="width=480, user-scalable=no" /> 
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+
+		<script src="http://www.d4.dion.ne.jp/~uym/tmp/miku_meshdata.js" type="text/javascript"></script>
+		<script src="./parpevision.js" type="text/javascript"></script>
+		<script src="./miku.js" type="text/javascript"></script>
+
+		<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #333;
+	color: #fff;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+#cv {
+	background: #fff;
+	margin: 0;
+	display: block;
+}
+
+p {
+	padding-left: 1em;
+	margin: 8px;
+	font-family: Arial, sans-serif;
+}
+
+div {
+	width: 480px;
+	background-color: #222;
+	margin: 0;
+	padding-bottom: 1em;
+}
+
+ul.navi {
+	margin-top: 0;
+}
+
+ul.navi li {
+	display: inline;
+	padding: 5px 1em;
+}
+
+ul.navi .selected {
+	background: #222;
+	color: #fff;
+}
+
+ul.navi a {
+	color: #f80;
+}
+
+address {width: 470px; text-align: right;}
+address img {border: none;}
+		</style>
+
+		<title>js miku</title>
+	</head>
+	<body onload="void( new MikuApp() );">
+		<div>
+			<canvas id="cv" width="480" height="300"></canvas>
+			<p>"3D on 2D Canvas" demo 2</p>
+			<p>move cursor to rotate / click to wave</p>
+		</div>
+		<ul class="navi">
+			<li><a href="./">demo 1</a></li>
+			<li class="selected">demo 2</li>
+			<li><a href="touch.html">demo 3</a></li>
+		</ul>
+		<address><a href="http://twitter.com/gyuque"><img alt="me" src="http://www.d4.dion.ne.jp/~uym/images/twt.png" /></a></address>
+
+	</body>
+</html>

@@ -1,0 +1,121 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Developer Studio generated include file.
+// Used by Script1.rc
+//
+#define IDI_MAIN                        1
+#define IDI_MSDOS                       2
+#define IDI_RAS                         34
+#define IDI_REGEDIT                     100
+#define IDD_DIALOG1                     101
+#define IDI_PROGMAN                     102
+#define IDI_BUTTON                      103
+#define IDD_HAND                        103
+#define IDI_WIN_HIDE                    104
+#define IDI_EDIT                        105
+#define IDI_COMBO                       106
+#define IDI_LIST                        107
+#define IDI_STATIC                      108
+#define IDI_LISTVIEW                    109
+#define IDI_TREEVIEW                    110
+#define IDD_PROPS_GENERAL               111
+#define IDD_ABOUT                       112
+#define IDI_TABCONTROL                  113
+#define IDI_DELPHI                      114
+#define IDI_DELPHI2                     115
+#define IDI_CHECK                       116
+#define IDI_OPTION                      117
+#define IDI_FRAME                       118
+#define IDI_PICTURE                     119
+#define IDI_SCROLLBAR                   120
+#define IDI_ICON1                       121
+#define IDD_PROPS_POSITION              122
+#define IDD_PROPS_FONT                  123
+#define IDD_PROPS_CLASS                 124
+#define IDI_MDICLIENT                   126
+#define IDD_PROPS_STYLE                 127
+#define IDD_PROPS_EXSTYLE               128
+#define IDD_OPTIONS                     129
+#define IDD_PROPS_MORE                  132
+#define IDI_WIN1                        133
+#define IDI_WINSTYLE                    173
+#define IDD_MAIN                        200
+#define IDC_TREE1                       1000
+#define IDC_CLOSE                       1001
+#define IDC_REFRESH                     1002
+#define IDC_MAIN_TEXT                   1002
+#define IDC_WIN_HANDLE                  1003
+#define IDC_OPTIONS                     1003
+#define IDC_WIN_CLASSNAME               1004
+#define IDC_FIND_WIN                    1004
+#define IDC_URL                         1004
+#define IDC_WIN_CAPTION                 1005
+#define IDC_ABOUT                       1005
+#define IDC_WIN_VISIBLE                 1006
+#define IDC_WIN_ENABLED                 1007
+#define IDC_PROPS_TAB                   1007
+#define IDC_MORE                        1008
+#define IDC_MODIFY                      1009
+#define IDC_DESTROY                     1010
+#define IDC_WINTOP                      1010
+#define IDC_WIN_ITEMID                  1011
+#define IDC_WINTOPMOST                  1011
+#define IDC_WINBOTTOM                   1012
+#define IDC_WIN_HINSTANCE               1012
+#define IDC_LEFT                        1013
+#define IDC_TOP                         1014
+#define IDC_WIN_USER_DATA               1014
+#define IDC_WIDTH                       1015
+#define IDC_WIN_EXTRA_BYTES             1015
+#define IDC_HEIGHT                      1016
+#define IDC_WIN_DLGPROC                 1016
+#define IDC_WINSTATE_NORMAL             1017
+#define IDC_WINSTATE_MIN                1018
+#define IDC_FONT_NAME                   1018
+#define IDC_WINSTATE_MAX                1019
+#define IDC_FONT_SIZE                   1019
+#define IDC_WINNOTOPMOST                1020
+#define IDC_FONT_CHARSET                1020
+#define IDC_FONT_ITALIC                 1021
+#define IDC_FONT_BOLD                   1022
+#define IDC_CLASS_NAME                  1022
+#define IDC_FONT_UNDERLINE              1023
+#define IDC_CLASS_EXTRA                 1023
+#define IDC_FONT_STRIKEOUT              1024
+#define IDC_WIN_EXTRA                   1024
+#define IDC_HIDE_TOP_HIDDEN_WINDOWS     1024
+#define IDC_INSTANCE                    1025
+#define IDC_FULL_TREE                   1025
+#define IDC_ICON1                       1026
+#define IDC_FIND_ANY_PART               1026
+#define IDC_CATCHWIN                    1026
+#define IDC_WNDPROC                     1027
+#define IDC_USE_APP_ICONS               1027
+#define IDC_MODULE                      1028
+#define IDC_CATCH_HOTKEY                1028
+#define IDC_ATOM                        1029
+#define IDC_CLASS_ICON                  1030
+#define IDC_AUTO_REFRESH                1031
+#define IDC_CLASS_STYLE                 1031
+#define IDC_REFRESH_SECONDS             1032
+#define IDC_PROCESSID                   1034
+#define IDC_THREADID                    1035
+#define IDC_PROCESS_PATH                1036
+#define IDC_MODULE_PATH                 1038
+#define IDI_VB5                         1200
+#define IDI_UNKNOWN                     1205
+#define IDI_WIN1_NOCAPTION              1206
+#define IDI_WIN_HIDE_NOCAPTION          1207
+#define IDI_EDIT_PASS                   1208
+#define IDD_FIND                        1540
+#define IDI_MYCOMPUTER                  32530
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        136
+#define _APS_NEXT_COMMAND_VALUE         40001
+#define _APS_NEXT_CONTROL_VALUE         1038
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif

@@ -1,0 +1,75 @@
+<html>
+<head>
+<title>Day 2 Input Page</title>
+<!-- Original Code written by mooncricket11 July 2006 -->
+<!-- Code modified by Fuzzie 360 for textarea use late July 2006 -->
+<!-- Code modified for this organizer usage by TimW (TombstoneTim) August 2006 -->
+<!-- This app designed and released by Ocean19 pspWxp forum August 2006 -->
+<style type="text/css">
+Body {background-color: #006699; padding: 0px; font-family: arial,  helvetica, tahoma, sans-serif; font-size:12px; color:#FFFFFF;}
+
+a {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: underline;}
+:link {color: #FFFFFF;}
+:visited {color: #FFFFFF;}
+:hover {color: #FFFFFF;}
+tr.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+td.td1 {font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+div.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+hr.Light {color: #006699;}
+
+input.i1 {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: none;}
+:link.i1 {color: #000000;}
+:visited.i1 {color: #000000;}
+:hover.i1 {color: #000000;}
+</style>
+<script type="text/javascript">
+function getValue2() {
+document.saveForm2.input2D.value = document.saveForm2.input2DTxt.value;
+document.saveForm2.input21.value = document.saveForm2.input21Txt.value;
+document.saveForm2.input22.value = document.saveForm2.input22Txt.value;
+document.saveForm2.input23.value = document.saveForm2.input23Txt.value;
+document.saveForm2.input24.value = document.saveForm2.input24Txt.value;
+}
+</script>
+</head>
+<body onload="getValue2();">
+<div class="DarkCenter" align="center" style="position:absolute; left:0; top:0;">
+<form name="saveForm2" action="day2_Input.html" method="post">
+<table align="center" width="440" border="0" cellspacing="2" cellpadding="0">
+<tr class="DarkCenter">
+<td colspan="2" align="center">
+<font size=3>Date:</font>&nbsp;<textarea class="t1" name="input2D" cols="22" rows="1"></textarea><br>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td colspan="2" align="center">
+<font size="4">&nbsp;&nbsp;<u>AM</u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time Plans&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>PM</u>&nbsp;&nbsp;</font><br>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td width="50%" align="center">
+<font size=2>12:00 am - 5:59 am<br></font><textarea class="t1" name="input21" cols="22" rows="4">
+</textarea><br>
+<font size=2>6:00 am - 11:59 am<br></font><textarea class="t1" name="input22" cols="22" rows="4">
+</textarea><br>
+</td>
+<td width="50%" align="center">
+<font size=2>12:00 pm - 5:59 pm<br></font><textarea class="t1" name="input23" cols="22" rows="4">
+</textarea><br>
+<font size=2>6:00 pm - 11:59 pm<br></font><textarea class="t1" name="input24" cols="22" rows="4">
+</textarea>
+</td>
+</tr>
+</table>
+
+<div style="position:absolute; left:0; top:0; width:50; height:50;">
+<input name="input2DTxt" readonly style="visibility: hidden;">
+<input name="input21Txt" readonly style="visibility: hidden;">
+<input name="input22Txt" readonly style="visibility: hidden;">
+<input name="input23Txt" readonly style="visibility: hidden;">
+<input name="input24Txt" readonly style="visibility: hidden;">
+</div>
+</form>
+</div>
+</body>
+</html>

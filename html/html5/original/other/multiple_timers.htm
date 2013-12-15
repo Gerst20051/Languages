@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8" />
+		<title>Time Pieces | Multi-timer Chronograph</title>
+
+		<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" charset="utf-8"></script>
+		
+		<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){document.createElement('header');document.createElement('footer');document.createElement('section');document.createElement('aside');document.createElement('nav');document.createElement('article');document.createElement('time');function Timer(){var Seconds=0;var Minutes=0;var Hours=0;var running=false;this.start=function(startHours,startMinutes,startSeconds){if(startSeconds)
+		Seconds=startSeconds;if(startMinutes)
+		Minutes=startMinutes;if(startHours)
+		Hours=startHours;running=true;}
+		this.restart=function(){running=true;}
+		this.stop=function(){running=false;}
+		this.duration=function(){if(running==false){var TimeStr=LeadingZero(Hours)+":"+LeadingZero(Minutes)+":"+LeadingZero(Seconds);return TimeStr;}
+		else{Seconds=Seconds+1;if(Seconds==60){Seconds=0;Minutes=Minutes+1;}
+		if(Minutes==60){Minutes=0;Hours=Hours+1;}
+		var TimeStr=LeadingZero(Hours)+":"+LeadingZero(Minutes)+":"+LeadingZero(Seconds);return TimeStr;}}
+		this.update=function(x){$('#timer'+x).text(this.duration());}
+		function LeadingZero(Time){return(Time<10)?"0"+Time:+Time;}}
+		var timer=new Array();var timerNum=1;setInterval(updateTimers,1000);function updateTimers(){for(x=1;x<=timerNum;x++){timer[x].update(x);}}
+		$('a#new').live('click',function(){timepiecename=prompt("Enter the name of the time piece","Time Piece "+timerNum);if(timepiecename!=null){timer[x]=new Timer();$('body').append('<section id="s'+timerNum+'"><h2 id="timepiecetitle">'+timepiecename+'</h2><time id="timer'+timerNum+'">00:00:00</time><a id="control" class="start" href="javascript: void(0);">Start</a><a class="reset" href="javascript: void(0);">Reset</a><a class="delete" href="javascript: void(0);">Delete</a></section>');timerNum+=1;}});$('#reset-all').live('click',function(){for(x=1;x<=timerNum;x++){timer[x]=new Timer();$("#s"+x+" #control").text('Start');$("#s"+x+" #control").removeClass();$("#s"+x+" #control").addClass("restart");}});$('.start').live('click',function(){$(this).text('Pause');$(this).removeClass("start");$(this).addClass("pause");var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);timer[num].start(0,0,0);});$('.pause').live('click',function(){$(this).text('Start');$(this).removeClass("pause");$(this).addClass("restart");var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);timer[num].stop();});$('.restart').live('click',function(){$(this).text('Pause');$(this).removeClass("restart");$(this).addClass("pause");var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);timer[num].restart();});$('.reset').live('click',function(){var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);timer[num]=new Timer();$('#s'+num+' #control').text('Start');$('#s'+num+' #control').removeClass();$('#s'+num+' #control').addClass('start');});$('.delete').live('click',function(){var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);timer[num].stop();$('#'+theParent).remove();});$('#timepiecetitle').live('click',function(){var theParent=$(this).closest('section').attr('id');var num=theParent.substr(1);var currentName=$('#timepiecetitle').html();var name=prompt('Enter a new name for this time piece',currentName);$('#s'+num+' h2').text(name);});});
+		</script>
+		
+		<style type="text/css" media="screen">
+			/*
+			Name: Time Pieces
+			Date: Aug 8, 2010
+			Description: Time tracking application.
+			Author: Mateusz Wijas
+			Author URI: http://www.mateuszwijas.com
+			*/
+
+			/* http://meyerweb.com/eric/tools/css/reset/ */
+			/* v1.0 | 20080212 */
+
+			html, body, div, span, applet, object, iframe,
+			h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+			a, abbr, acronym, address, big, cite, code,
+			del, dfn, em, font, img, ins, kbd, q, s, samp,
+			small, strike, strong, sub, sup, tt, var,
+			b, u, i, center,
+			dl, dt, dd, ol, ul, li,
+			fieldset, form, label, legend,
+			table, caption, tbody, tfoot, thead, tr, th, td {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				outline: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+			}
+			body {
+				line-height: 1;
+			}
+			ol, ul {
+				list-style: none;
+			}
+			blockquote, q {
+				quotes: none;
+			}
+			blockquote:before, blockquote:after,
+			q:before, q:after {
+				content: '';
+				content: none;
+			}
+
+			/* remember to define focus styles! */
+			:focus {
+				outline: 0;
+			}
+
+			/* remember to highlight inserts somehow! */
+			ins {
+				text-decoration: none;
+			}
+			del {
+				text-decoration: line-through;
+			}
+
+			/* tables still need 'cellspacing="0"' in the markup */
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+
+			/*** General ***/
+			header, nav, section, footer, aside, article, time { display: block; }
+
+			body { background: #f9f9f9; font-family: "Helvetica", "Arial", sans-serif; margin: 40px auto; width: 480px; }
+			a { color: #999; font-size: 14px; text-decoration: none; }
+
+			/*** Header ***/
+			header { margin: 0 0 20px 0; }
+			header h1 { color: #333; font-size: 56px; margin: 0; padding: 0; text-shadow: 0px 4px 10px #ccc; }
+			header p { color: #999; font-family: "Palatino", serif; font-size: 16px; font-style: italic; line-height: 1.25; margin: 0 0 0 5px; }
+			header p a { color: #222; font-size: 16px; font-weight: bold; }
+			header p a:hover { color: #f33; }
+
+			/*** section ***/
+			section { background-color: #222; border: 1px solid #222; margin: 0 0 40px 0; overflow: auto; position: relative; -moz-box-shadow: 0px 4px 10px #666; -webkit-box-shadow: 0px 4px 10px #666; }
+			section h2 { color: #f1f1f1; font-weight: normal; margin: 0; padding: 10px; }
+
+			section a { color: #f1f1f1; margin: 0; padding: 10px; }
+			section a:hover { color: #f33; }
+			section a.start, section a.pause, section a.restart { float: left; }
+			section a.reset { float: left; }
+			section a.delete { float: right; }
+
+			section time { background-color: #f1f1f1; color: #222; display: block; font-family: "monospace"; font-size: 108px; font-weight: bold; margin: 0 auto; padding: 17px 0 7px 0; text-align: center; }
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<h1>Time Pieces</h1>
+			<p>Track time for multiple projects at once. No more writing down on scraps of paper 15
+				minutes here, quarter hour there. Each timer runs independently of the others. Click
+				<a id="reset-all" href="javascript: void(0);">here</a> to reset all the timers.</p> 
+			<br />	
+			<p>Click <a id="new" href="javascript: void(0);">here</a> to add a new timer.</p>
+		</header>
+		
+		
+	</body>
+
+</html>

@@ -1,0 +1,41 @@
+									<form name="form" method="get" action="" onSubmit="return CheckForm();">
+									<input type="hidden" name="page" value="index">
+									<input type="hidden" name="action" value="search">
+										
+  <table align="center">
+    <tr>
+      <td><font color="#117192" size="2" face="Arial, Helvetica, sans-serif"><strong>Search 
+        this website</strong></font></td>
+    </tr>
+    <tr> 
+      <td>
+<input name="search" type="text" style="width: 140px" value="[FORM_SEARCH]" />
+      </td>
+    </tr>
+    <tr> 
+      <td valign="middle" class="grey"> 
+        <input type="radio" name="in" value="1"[TOKEN_IN_CHECK1] />
+        <font color="#999999" size="1" face="Arial, Helvetica, sans-serif">all</font> 
+        <br> <input type="radio" name="in" value="2"[TOKEN_IN_CHECK2] />
+        <font color="#999999" size="1" face="Arial, Helvetica, sans-serif">active</font><br> <input type="radio" name="in" value="3"[TOKEN_IN_CHECK3] />
+        <font color="#999999" size="1" face="Arial, Helvetica, sans-serif">archived </font></td>
+    </tr>
+    <tr> 
+      <td align="right"><div align="left"> 
+          <input type="submit" value="Search" />
+        </div></td>
+    </tr>
+  </table>
+										<input type="hidden" name="submit" value="1">
+									</form>
+<script>
+function CheckForm() {
+	var c = document.form;
+	if (c.search.value == '') {
+		alert ('Please insert at least one word to search');
+		c.search.focus();
+		return false;
+	}
+	return true;
+}
+</script>

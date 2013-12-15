@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Error{% endblock %}
+
+{% block body %}
+  <h1>Error</h1>
+
+  An unknown error occured. We've logged the error. Do you want to
+  <a href="http://apps.facebook.com/{{ canvas_name }}/" target="_top">
+    start over
+  </a>?
+
+  {% if debug_mode %}
+    <h2>Trace:</h2>
+    <pre>{{ trace }}</pre>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sudoku</title>
+ 
+<style type="text/css">
+	body {background-color:#ddc;}
+	div {position:absolute;top:50%;left:50%;margin-top:-187px;margin-left:-99px;}
+	p {font-family:'Comic Sans MS',cursive;font-size:14pt;color:#333;white-space:nowrap;margin-bottom:40px;position:relative;left:3px;}
+	a {color:#333;font-weight:bold;text-decoration:none;}
+	table {background-color:#fff;height:400px;width:400px;border-collapse:collapse;margin-top:30px;}
+	td {width:40px;height:40px;border:1px solid #ddc;}
+	input {font-family:'Comic Sans MS',cursive;font-size:17pt;font-weight:bold;color:#333;border:0px;padding:0px;text-align:center;width:40px;}
+	#f0 {color:#090;}
+	#f1 {color:#00f;}
+	#f2 {color:#c00;}
+	#tl {font-size:48pt;letter-spacing:36px;font-weight:bold;color:#eed;margin-bottom:-33px;position:relative;left:0px;}
+	#mu {background-color:#fff;padding-left:6px;padding-right:6px;vertical-align:middle;font-size:10pt;margin-right:3px;position:relative;left:-6px;}
+	#tp {border-top:3px solid #ddc;}
+	#lf {border-left:3px solid #ddc;}
+	#rt {border-right:3px solid #ddc;}
+	#bt {border-bottom:3px solid #ddc;}
+	#tf {border-top:3px solid #ddc;border-left:3px solid #ddc;}
+	#tg {border-top:3px solid #ddc;border-right:3px solid #ddc;}
+	#bl {border-left:3px solid #ddc;border-bottom:3px solid #ddc;}
+	#bg {border-right:3px solid #ddc;border-bottom:3px solid #ddc;}
+</style>
+ 
+</head>
+<body onload="ti()">
+<div id="sr"></div>
+<script language="javascript"> 
+ 
+lv=[40,52,46];
+mi=1;
+ma=7;
+co=[0,1,2];
+ml=['easy','hard','medium'];
+mc=['green','blue','red'];
+n=81;
+s=47;
+rn=0;
+var b;
+td=new Array(n);
+ 
+function ti() {
+	i=0; while (i<n) {
+		td[i]="";
+		i++;
+	}
+	ms="Computing...";
+	sh();
+	setTimeout("st()",200);
+}
+ 
+function st() {
+	nm=new Array(n);
+	ps=new Array(n);
+	sm=[];
+	i=0; while (i<n) {
+		sm[i]=i;
+		i++;
+	}
+	pa=[11,22,33,44,55,66,77,88,99];
+	rd=new Array(lv[0]);
+	ip="<input type=\"text\" autocomplete=\"off\" id=\"f"+co[0]+"\" maxlength=\"1\" value=\"\" onkeyup=\"javascript:er(";
+	en=");\">";
+	cc();
+	i=0; while (i<sm.length) {
+		rm=Math.floor(Math.random()*(i+1));
+		rd[i]=rd[rm];
+		rd[rm]=i;
+		i++;
+	}
+	i=0; while (i<n) {
+		td[i]="<input type=\"text\" maxLength=\"1\" value=\""+nm[i]+"\" readonly>";
+		i++;
+	}
+	i=0; while (i<lv[0]) {
+		nm[sm[rd[i]]]="";
+		td[sm[rd[i]]]=ip+sm[rd[i]]+en;
+		i++;
+	}
+	rj();
+}
+ 
+function er(b) {
+	a=document.forms[0].elements[b].value;
+	tb="<input type=\"text\" autocomplete=\"off\" id=\"f"+co[0]+"\" size=\"1\" maxLength=\"1\" value=\"";
+	te="\" onkeyup=\"javascript:er("+b+en;
+	if (a>0&&a<10) {
+		td[b]=tb+a+te;
+		nm[b]=a;
+		ms="";
+		vf(b);
+	}
+	else if (a=="") {
+		td[b]=tb+te;
+		nm[b]="";
+		ms="Clear";
+	}
+	else {
+		td[b]=tb+te;
+		nm[b]="";
+		ms="Invalid entry";
+		document.forms[0].elements[b].select();
+	}
+	document.getElementById("mg").firstChild.data=ms;
+}
+ 
+function cc() {
+	i=n; do {
+		i--;
+		if (!ps[i]>=1) {
+				rn=Math.floor((Math.random()*9)+1);
+				nm[i]=rn;
+				ps[i]=1;
+		}
+		else {
+			nm[i]++;
+			if (nm[i]>9) nm[i]=1;
+			ps[i]++;
+		}
+		sa();
+		if (rw.find_one(pa)||cl.find_one(pa)||bk.find_one(pa)) {
+			if (ps[i]<9) i++;
+			else {
+				nm[i]=0;
+				ps[i]=0;
+				if (ps[i-1]>8) ps[i-1]=1;
+				i=i+2;
+			}
+		}
+	}
+	while (i);
+}
+ 
+function sh() {
+	t="<\/td><td";
+	mn="&nbsp;<a id=\"mu\" href=\"javascript:ti();\">New<\/a><a id=\"mu\" href=\"javascript:sl();\">Level<\/a><a id=\"mu\" href=\"javascript:sc();\">Input color<\/a><a id=\"mu\" href=\"javascript:sk();\">Save<\/a><a id=\"mu\" href=\"javascript:ld();\">Open<\/a><a id=\"mu\" href=\"javascript:ab();\">About<\/a><a id=\"mu\" href=\"mailto:thomas.weibel@bluewin.ch\">Mail<\/a>";
+	display="<div><form><p id=\"tl\">Sudoku<\/p><table><tr><td id=\"tf\">"+td[0]+t+" id=\"tp\">"+td[1]+t+" id=\"tg\">"+td[2]+t+" id=\"tp\">"+td[3]+"<\/td id=\"tp\"><td id=\"tp\">"+td[4]+t+" id=\"tg\">"+td[5]+t+" id=\"tp\">"+td[6]+t+" id=\"tp\">"+td[7]+t+" id=\"tg\">"+td[8]+"<\/td><\/tr><tr><td id=\"lf\">"+td[9]+t+">"+td[10]+t+" id=\"rt\">"+td[11]+t+">"+td[12]+t+">"+td[13]+t+" id=\"rt\">"+td[14]+t+">"+td[15]+t+">"+td[16]+t+" id=\"rt\">"+td[17]+"<\/td><\/tr><tr><td id=\"bl\">"+td[18]+t+" id=\"bt\">"+td[19]+t+" id=\"bg\">"+td[20]+t+" id=\"bt\">"+td[21]+t+" id=\"bt\">"+td[22]+t+" id=\"bg\">"+td[23]+t+" id=\"bt\">"+td[24]+t+" id=\"bt\">"+td[25]+t+" id=\"bg\">"+td[26]+"<\/td><\/tr><tr><td id=\"lf\">"+td[27]+t+">"+td[28]+t+" id=\"rt\">"+td[29]+t+">"+td[30]+t+">"+td[31]+t+" id=\"rt\">"+td[32]+t+">"+td[33]+t+">"+td[34]+t+" id=\"rt\">"+td[35]+"<\/td><\/tr><tr><td id=\"lf\">"+td[36]+t+">"+td[37]+t+" id=\"rt\">"+td[38]+t+">"+td[39]+t+">"+td[40]+t+" id=\"rt\">"+td[41]+t+">"+td[42]+t+">"+td[43]+t+" id=\"rt\">"+td[44]+"<\/td><\/tr><tr><td id=\"bl\">"+td[45]+t+" id=\"bt\">"+td[46]+t+" id=\"bg\">"+td[47]+t+" id=\"bt\">"+td[48]+t+" id=\"bt\">"+td[49]+t+" id=\"bg\">"+td[50]+t+" id=\"bt\">"+td[51]+t+" id=\"bt\">"+td[52]+t+" id=\"bg\">"+td[53]+"<\/td><\/tr><tr><td id=\"lf\">"+td[54]+t+">"+td[55]+t+" id=\"rt\">"+td[56]+t+">"+td[57]+t+">"+td[58]+t+" id=\"rt\">"+td[59]+t+">"+td[60]+t+">"+td[61]+t+" id=\"rt\">"+td[62]+"<\/td><\/tr><tr><td id=\"lf\">"+td[63]+t+">"+td[64]+t+" id=\"rt\">"+td[65]+t+">"+td[66]+t+">"+td[67]+t+" id=\"rt\">"+td[68]+t+">"+td[69]+t+">"+td[70]+t+" id=\"rt\">"+td[71]+"<\/td><\/tr><tr><td id=\"bl\">"+td[72]+t+" id=\"bt\">"+td[73]+t+" id=\"bg\">"+td[74]+t+" id=\"bt\">"+td[75]+t+" id=\"bt\">"+td[76]+t+" id=\"bg\">"+td[77]+t+" id=\"bt\">"+td[78]+t+" id=\"bt\">"+td[79]+t+" id=\"bg\">"+td[80]+"<\/td><\/tr><\/table><\/form><p id=\"mg\">"+ms+"<\/p><p>"+mn+"<\/p><\/div>";
+	document.getElementById("sr").innerHTML=display;
+}
+ 
+function sl() {
+	lv.unshift(lv[lv.length-1]);
+	ml.unshift(ml[ml.length-1]);
+	lv.pop();
+	ml.pop();
+	ti();
+}
+ 
+function sc(b) {
+	co.unshift(co[co.length-1]);
+	mc.unshift(mc[mc.length-1]);
+	co.pop();
+	mc.pop();
+	i=0; while (i<n) {
+		if(nm[i]==0)
+		td[i]="<input type=\"text\" autocomplete=\"off\" id=\"f"+co[0]+"\" size=\"1\" maxLength=\"1\" value=\"\" onkeyup=\"javascript:er("+i+en;
+		i++;
+	}
+	ms="Input color: "+mc[0];
+	sh();
+}
+ 
+function sa() {
+	rw=[
+	[nm[0],nm[1],nm[2],nm[3],nm[4],nm[5],nm[6],nm[7],nm[8]],
+	[nm[9],nm[10],nm[11],nm[12],nm[13],nm[14],nm[15],nm[16],nm[17]],
+	[nm[18],nm[19],nm[20],nm[21],nm[22],nm[23],nm[24],nm[25],nm[26]],
+	[nm[27],nm[28],nm[29],nm[30],nm[31],nm[32],nm[33],nm[34],nm[35]],
+	[nm[36],nm[37],nm[38],nm[39],nm[40],nm[41],nm[42],nm[43],nm[44]],
+	[nm[45],nm[46],nm[47],nm[48],nm[49],nm[50],nm[51],nm[52],nm[53]],
+	[nm[54],nm[55],nm[56],nm[57],nm[58],nm[59],nm[60],nm[61],nm[62]],
+	[nm[63],nm[64],nm[65],nm[66],nm[67],nm[68],nm[69],nm[70],nm[71]],
+	[nm[72],nm[73],nm[74],nm[75],nm[76],nm[77],nm[78],nm[79],nm[80]]
+	];
+	cl=[
+	[nm[0],nm[9],nm[18],nm[27],nm[36],nm[45],nm[54],nm[63],nm[72]],
+	[nm[1],nm[10],nm[19],nm[28],nm[37],nm[46],nm[55],nm[64],nm[73]],
+	[nm[2],nm[11],nm[20],nm[29],nm[38],nm[47],nm[56],nm[65],nm[74]],
+	[nm[3],nm[12],nm[21],nm[30],nm[39],nm[48],nm[57],nm[66],nm[75]],
+	[nm[4],nm[13],nm[22],nm[31],nm[40],nm[49],nm[58],nm[67],nm[76]],
+	[nm[5],nm[14],nm[23],nm[32],nm[41],nm[50],nm[59],nm[68],nm[77]],
+	[nm[6],nm[15],nm[24],nm[33],nm[42],nm[51],nm[60],nm[69],nm[78]],
+	[nm[7],nm[16],nm[25],nm[34],nm[43],nm[52],nm[61],nm[70],nm[79]],
+	[nm[8],nm[17],nm[26],nm[35],nm[44],nm[53],nm[62],nm[71],nm[80]]
+	];
+	bk=[
+	[nm[0],nm[1],nm[2],nm[9],nm[10],nm[11],nm[18],nm[19],nm[20]],
+	[nm[3],nm[4],nm[5],nm[12],nm[13],nm[14],nm[21],nm[22],nm[23]],
+	[nm[6],nm[7],nm[8],nm[15],nm[16],nm[17],nm[24],nm[25],nm[26]],
+	[nm[27],nm[28],nm[29],nm[36],nm[37],nm[38],nm[45],nm[46],nm[47]],
+	[nm[30],nm[31],nm[32],nm[39],nm[40],nm[41],nm[48],nm[49],nm[50]],
+	[nm[33],nm[34],nm[35],nm[42],nm[43],nm[44],nm[51],nm[52],nm[53]],
+	[nm[54],nm[55],nm[56],nm[63],nm[64],nm[65],nm[72],nm[73],nm[74]],
+	[nm[57],nm[58],nm[59],nm[66],nm[67],nm[68],nm[75],nm[76],nm[77]],
+	[nm[60],nm[61],nm[62],nm[69],nm[70],nm[71],nm[78],nm[79],nm[80]]
+	];
+}
+ 
+Array.prototype.has_joins=function() {
+	if (!this.joins) {
+		this.joins=[];
+		var i=0;
+		while (i<this.length) {
+			this.joins[i]=this[i].sort().join('');
+			i++;
+		}
+	}
+
+}
+ 
+Array.prototype.find_one=function(el) {
+	this.has_joins();
+	var i=0;
+	while (i<el.length) {
+
+		var j=0;
+		while (j<this.length) {
+			if (this.joins[j].indexOf(el[i])>-1) return true;
+			j++;
+		}
+		i++;
+	}
+	return false;
+}
+ 
+Array.prototype.mm=function(min,max) {
+	this.has_joins();
+	var i=0;
+	while (i<this.length) {
+		if (this.joins[i].length>max||this.joins[i].length<min) return true;
+		i++;
+	}
+	return false;
+}
+ 
+function rj() {
+	sa();
+	if (rw.mm(mi,ma)||cl.mm(mi,ma)||bk.mm(mi,ma)) st();
+	else {
+		ms="Level: "+ml[0];
+		sh();
+	}
+}
+ 
+function vf(b) {
+	sa();
+	ts=nm.join();
+	if (rw.find_one(pa)||cl.find_one(pa)||bk.find_one(pa)) {
+		ms="Invalid";
+		document.forms[0].elements[b].select();
+	}
+	else if (ts.indexOf(",,")==-1) ms="Congratulations, Sudoku solved";
+	else ms="Ok";
+}
+ 
+function sv() {
+	try {
+		i=0;
+		while (i<n) {
+			localStorage.setItem("num"+i,nm[i]);
+			localStorage.setItem("tab"+i,td[i]);
+			i++
+		}
+		ms="Sudoku saved";
+	} 
+	catch(e) {
+		if (e==QUOTA_EXCEEDED_ERR) ms="Quota exceeded";
+	}
+	sh();
+}
+	 
+function sk() {
+	if (typeof(localStorage)=="undefined") {
+		ms="Your web browser does not support this";
+		sh();
+	}
+	else {
+		ms="Saving...";
+		sh();
+		setTimeout("sv()",200);
+	}
+}
+ 
+function ld() {
+	if (typeof(localStorage)=="undefined") {
+		ms="Your web browser does not support this";
+		sh();
+	}
+	else {
+		if (localStorage.getItem("num0")!=null) {
+			i=0;
+			while (i<n) {
+				nm[i]=localStorage.getItem("num"+i);
+				td[i]=localStorage.getItem("tab"+i);
+				ms="Sudoku opened";
+				i++;
+			}
+		}
+		else ms="No saved Sudoku yet";
+		sh();
+	}
+}
+ 
+function ab()
+	{
+		ms="Sudoku 2.2 copyright &copy; by Thomas Weibel";
+		sh();
+	}
+
+</script>
+</body>
+</html>

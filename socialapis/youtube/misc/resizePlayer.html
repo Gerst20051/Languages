@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>YouTube Player API Sample</title>
+    <style type="text/css">
+      #videoDiv { 
+        margin-right: 3px;
+      }
+      #videoInfo {
+        margin-left: 3px;
+      }
+    </style>
+    <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+    <script type="text/javascript">
+      google.load("swfobject", "2.1");
+    </script>    
+    <script type="text/javascript">
+      /**
+       * Resizing the player in JavaScript.
+       */
+      
+      // Make the player small.
+      function smallPlayer() {
+        resizePlayer(480, 295);
+      }
+      
+      // Set the player back to normal.
+      function normalPlayer() {
+        resizePlayer(560, 340);
+      }
+      
+      // Make the player big.
+      function largePlayer() {
+        resizePlayer(640, 385);
+      }
+      
+      // Set the loaded player to a specific height and width.
+      function resizePlayer(width, height) {
+        var playerObj = document.getElementById("ytPlayer");
+        playerObj.height = height;
+        playerObj.width = width;
+      }
+      
+      // The "main method" of this sample. Called when someone clicks "Run".
+      function loadPlayer() {
+        // The video to load
+        var videoID = "ylLzyHk54Z0"
+        // Lets Flash from another domain call JavaScript
+        var params = { allowScriptAccess: "always" };
+        // The element id of the Flash embed
+        var atts = { id: "ytPlayer" };
+        // All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
+        swfobject.embedSWF("http://www.youtube.com/v/" + videoID + 
+                           "&enablejsapi=1&playerapiid=player1", 
+                           "videoDiv", "560", "340", "8", null, null, params, atts);
+      }
+      function _run() {
+        loadPlayer();
+      }
+      google.setOnLoadCallback(_run);
+    </script>
+  </head>
+  <body style="font-family: Arial;border: 0 none;">
+    <table>
+    <tr>
+    <td><div id="videoDiv">Loading...</div></td>
+    <td valign="top">
+      <div id="videoInfo">
+  <a href="javascript:smallPlayer()">Small Player</a>
+  <a href="javascript:normalPlayer()">Normal Player</a>
+  <a href="javascript:largePlayer()">Large Player</a>
+      </div>
+    </td></tr>
+    </table>
+  </body>
+</html>

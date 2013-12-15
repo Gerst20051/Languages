@@ -1,0 +1,885 @@
+/* config.h.in.  Generated from configure.ac by autoheader.  */
+
+
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
+
+/* _SYS_FEATURE_TESTS_H is Solaris, _FEATURES_H is GCC */
+#if defined( _SYS_FEATURE_TESTS_H) || defined(_FEATURES_H)
+#error "You should include config.h as your first include file"
+#endif
+
+#include <config/top.h>
+
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Disable forward decl of stl in boost */
+#undef BOOST_DETAIL_NO_CONTAINER_FWD
+
+/* Use the v2 interface until we can stop using old versions */
+#undef BOOST_FILESYSTEM_DEPRECATED
+
+/* Define indicating we are building and not consuming drizzle. */
+#undef BUILDING_DRIZZLED
+
+/* the location of <cinttypes> */
+#undef CINTTYPES_H
+
+/* Comment about compilation environment */
+#undef COMPILATION_COMMENT
+
+/* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
+   systems. This function is required for `alloca.c' support on those systems.
+   */
+#undef CRAY_STACKSEG_END
+
+/* the location of <cstdint> */
+#undef CSTDINT_H
+
+/* Define to 1 if using `alloca.c'. */
+#undef C_ALLOCA
+
+/* Set to trunk if the branch is the main $PACKAGE branch */
+#undef DRIZZLE7_RELEASE_COMMENT
+
+/* Release date of version control checkout */
+#undef DRIZZLE7_RELEASE_DATE
+
+/* Numeric formatted release date and revision number of checkout */
+#undef DRIZZLE7_RELEASE_ID
+
+/* Numeric formatted release date of checkout */
+#undef DRIZZLE7_RELEASE_NODOTS_DATE
+
+/* Release date and revision number of checkout */
+#undef DRIZZLE7_RELEASE_VERSION
+
+/* Version control branch name */
+#undef DRIZZLE7_VC_BRANCH
+
+/* Version control revision ID */
+#undef DRIZZLE7_VC_REVID
+
+/* Version control revision number */
+#undef DRIZZLE7_VC_REVNO
+
+/* Append value to the version string */
+#undef DRIZZLE_SERVER_SUFFIX
+
+/* Another magical number */
+#undef EAI_SYSTEM
+
+/* Turn on language support */
+#undef ENABLE_NLS
+
+/* READLINE: your system defines TIOCGWINSZ in sys/ioctl.h. */
+#undef GWINSZ_IN_SYS_IOCTL
+
+/* Define to 1 if you have the `abi::__cxa_demangle' function. */
+#undef HAVE_ABI_CXA_DEMANGLE
+
+/* Define to 1 if you have the <aio.h> header file. */
+#undef HAVE_AIO_H
+
+/* Define to 1 if you have `alloca', as a function or macro. */
+#undef HAVE_ALLOCA
+
+/* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
+   */
+#undef HAVE_ALLOCA_H
+
+/* Define to 1 if you have the <asm/termbits.h> header file. */
+#undef HAVE_ASM_TERMBITS_H
+
+/* Define to 1 if you have the <assert.h> header file. */
+#undef HAVE_ASSERT_H
+
+/* Define to 1 if you have the `atomic_add_long' function. */
+#undef HAVE_ATOMIC_ADD_LONG
+
+/* Define to 1 if you have the `atomic_cas_32' function. */
+#undef HAVE_ATOMIC_CAS_32
+
+/* Define to 1 if you have the `atomic_cas_64' function. */
+#undef HAVE_ATOMIC_CAS_64
+
+/* Define to 1 if you have the `atomic_cas_ulong' function. */
+#undef HAVE_ATOMIC_CAS_ULONG
+
+/* pthread_t can be used by solaris atomics */
+#undef HAVE_ATOMIC_PTHREAD_T
+
+/* Define to 1 if you have support for __attribute__((visibility("hidden")))
+   */
+#undef HAVE_ATTR_HIDDEN
+
+/* Define to 1 if you have the `backtrace' function. */
+#undef HAVE_BACKTRACE
+
+/* Define to 1 if you have the `backtrace_symbols' function. */
+#undef HAVE_BACKTRACE_SYMBOLS
+
+/* Define to 1 if you have the `backtrace_symbols_fd' function. */
+#undef HAVE_BACKTRACE_SYMBOLS_FD
+
+/* Define to 1 if you have the `bzero' function. */
+#undef HAVE_BZERO
+
+/* Have a working clock_gettime function */
+#undef HAVE_CLOCK_GETTIME
+
+/* Does libcurl provide the CURLOPT_USERNAME constant */
+#undef HAVE_CURLOPT_USERNAME
+
+/* Define to 1 if you have the <curses.h> header file. */
+#undef HAVE_CURSES_H
+
+/* Define to 1 if you have the <cxxabi.h> header file. */
+#undef HAVE_CXXABI_H
+
+/* Define to 1 if you have the declaration of `madvise', and to 0 if you
+   don't. */
+#undef HAVE_DECL_MADVISE
+
+/* Define to 1 if you have the declaration of `strerror_r', and to 0 if you
+   don't. */
+#undef HAVE_DECL_STRERROR_R
+
+/* Define to 1 if you have the <dirent.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if you have the `dlopen' function. */
+#undef HAVE_DLOPEN
+
+/* Define to 1 if you don't have `vprintf' but do have `_doprnt.' */
+#undef HAVE_DOPRNT
+
+/* Enables DTRACE Support */
+#undef HAVE_DTRACE
+
+/* Define to 1 if you have the <execinfo.h> header file. */
+#undef HAVE_EXECINFO_H
+
+/* Define to 1 if you have the `fdatasync' function. */
+#undef HAVE_FDATASYNC
+
+/* Define to 1 if you have the <fpu_control.h> header file. */
+#undef HAVE_FPU_CONTROL_H
+
+/* Define to 1 if compiler provides atomic builtins. */
+#undef HAVE_GCC_ATOMIC_BUILTINS
+
+/* Define to 1 if you have the `gethrtime' function. */
+#undef HAVE_GETHRTIME
+
+/* Define to 1 if you have the `getpagesize' function. */
+#undef HAVE_GETPAGESIZE
+
+/* Do we have haildb.h */
+#undef HAVE_HAILDB_H
+
+/* Define to 1 if you have the <history.h> header file. */
+#undef HAVE_HISTORY_H
+
+/* Define to 1 if you have the <ieeefp.h> header file. */
+#undef HAVE_IEEEFP_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define if you have the aio library. */
+#undef HAVE_LIBAIO
+
+/* Define to 1 if you have the <libaio.h> header file. */
+#undef HAVE_LIBAIO_H
+
+/* Define to 1 if you have the `bind' library (-lbind). */
+#undef HAVE_LIBBIND
+
+/* Define if you have the boost_date_time library. */
+#undef HAVE_LIBBOOST_DATE_TIME
+
+/* Define if you have the boost_date_time-mt library. */
+#undef HAVE_LIBBOOST_DATE_TIME_MT
+
+/* Define if you have the boost_filesystem library. */
+#undef HAVE_LIBBOOST_FILESYSTEM
+
+/* Define if you have the boost_filesystem-mt library. */
+#undef HAVE_LIBBOOST_FILESYSTEM_MT
+
+/* Define if you have the boost_iostreams library. */
+#undef HAVE_LIBBOOST_IOSTREAMS
+
+/* Define if you have the boost_iostreams-mt library. */
+#undef HAVE_LIBBOOST_IOSTREAMS_MT
+
+/* Define if you have the boost_program_options library. */
+#undef HAVE_LIBBOOST_PROGRAM_OPTIONS
+
+/* Define if you have the boost_program_options-mt library. */
+#undef HAVE_LIBBOOST_PROGRAM_OPTIONS_MT
+
+/* Define if you have the boost_regex library. */
+#undef HAVE_LIBBOOST_REGEX
+
+/* Define if you have the boost_regex-mt library. */
+#undef HAVE_LIBBOOST_REGEX_MT
+
+/* Define if you have the boost_thread library. */
+#undef HAVE_LIBBOOST_THREAD
+
+/* Define if you have the boost_thread-mt library. */
+#undef HAVE_LIBBOOST_THREAD_MT
+
+/* Define if you have the boost_unit_test_framework library. */
+#undef HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK
+
+/* Define if you have the boost_unit_test_framework-mt library. */
+#undef HAVE_LIBBOOST_UNIT_TEST_FRAMEWORK_MT
+
+/* Define if you have the c library. */
+#undef HAVE_LIBC
+
+/* Define to 1 if you have the `compat' library (-lcompat). */
+#undef HAVE_LIBCOMPAT
+
+/* Define if you have the curl library. */
+#undef HAVE_LIBCURL
+
+/* Define to 1 if you have the `c_p' library (-lc_p). */
+#undef HAVE_LIBC_P
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Define if you have the gcrypt library. */
+#undef HAVE_LIBGCRYPT
+
+/* Define if you have the gearman library. */
+#undef HAVE_LIBGEARMAN
+
+/* Define if you have the haildb library. */
+#undef HAVE_LIBHAILDB
+
+/* Define to 1 if you have the `intl' library (-lintl). */
+#undef HAVE_LIBINTL
+
+/* Define to 1 if you have the <libintl.h> header file. */
+#undef HAVE_LIBINTL_H
+
+/* Define if you have the ldap library. */
+#undef HAVE_LIBLDAP
+
+/* Define if you have the memcached library. */
+#undef HAVE_LIBMEMCACHED
+
+/* Define if you have the memcachedprotocol library. */
+#undef HAVE_LIBMEMCACHEDPROTOCOL
+
+/* Define to 1 if you have the `mtmalloc' library (-lmtmalloc). */
+#undef HAVE_LIBMTMALLOC
+
+/* Define to 1 if you have the `nsl' library (-lnsl). */
+#undef HAVE_LIBNSL
+
+/* Define if you have the pam library. */
+#undef HAVE_LIBPAM
+
+/* Define if you have the pcre library. */
+#undef HAVE_LIBPCRE
+
+/* Define if you have the protobuf library. */
+#undef HAVE_LIBPROTOBUF
+
+/* Define if you have the rabbitmq library. */
+#undef HAVE_LIBRABBITMQ
+
+/* Define if you have a readline compatible library */
+#undef HAVE_LIBREADLINE
+
+/* Define to 1 if you have the `socket' library (-lsocket). */
+#undef HAVE_LIBSOCKET
+
+/* Define if you have the sqlite3 library. */
+#undef HAVE_LIBSQLITE3
+
+/* Define to 1 if you have the `tcmalloc' library (-ltcmalloc). */
+#undef HAVE_LIBTCMALLOC
+
+/* Define to 1 if you have the `tcmalloc-minimal' library
+   (-ltcmalloc-minimal). */
+#undef HAVE_LIBTCMALLOC_MINIMAL
+
+/* Define to 1 if you have the `umem' library (-lumem). */
+#undef HAVE_LIBUMEM
+
+/* Define if you have the uuid library. */
+#undef HAVE_LIBUUID
+
+/* Define if you have the z library. */
+#undef HAVE_LIBZ
+
+/* Define to 1 if you have the <locale.h> header file. */
+#undef HAVE_LOCALE_H
+
+/* Define to 1 if you have the `localtime_r' function. */
+#undef HAVE_LOCALTIME_R
+
+/* If we have the new memcached_server_fn typedef */
+#undef HAVE_MEMCACHED_SERVER_FN
+
+/* Define to 1 if you have the `memchr' function. */
+#undef HAVE_MEMCHR
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define to 1 if you have a working `mmap' system call. */
+#undef HAVE_MMAP
+
+/* Define to 1 if you have the `munmap' function. */
+#undef HAVE_MUNMAP
+
+/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
+#undef HAVE_NDIR_H
+
+/* For some non posix threads */
+#undef HAVE_NONPOSIX_PTHREAD_GETSPECIFIC
+
+/* For some non posix threads */
+#undef HAVE_NONPOSIX_PTHREAD_MUTEX_INIT
+
+/* sigwait with one argument */
+#undef HAVE_NONPOSIX_SIGWAIT
+
+/* Define to 1 if you have the <paths.h> header file. */
+#undef HAVE_PATHS_H
+
+/* Define to 1 if you have the `pread' function. */
+#undef HAVE_PREAD
+
+/* Define if you have POSIX threads libraries and header files. */
+#undef HAVE_PTHREAD
+
+/* Define to 1 if you have the `pthread_attr_create' function. */
+#undef HAVE_PTHREAD_ATTR_CREATE
+
+/* Define to 1 if you have the `pthread_attr_getstacksize' function. */
+#undef HAVE_PTHREAD_ATTR_GETSTACKSIZE
+
+/* Define to 1 if you have the `pthread_attr_setprio' function. */
+#undef HAVE_PTHREAD_ATTR_SETPRIO
+
+/* Define to 1 if you have the `pthread_attr_setschedparam' function. */
+#undef HAVE_PTHREAD_ATTR_SETSCHEDPARAM
+
+/* pthread_attr_setscope */
+#undef HAVE_PTHREAD_ATTR_SETSCOPE
+
+/* Define to 1 if you have the `pthread_attr_setstacksize' function. */
+#undef HAVE_PTHREAD_ATTR_SETSTACKSIZE
+
+/* Define to 1 if you have the `pthread_condattr_create' function. */
+#undef HAVE_PTHREAD_CONDATTR_CREATE
+
+/* Define to 1 if you have the `pthread_getsequence_np' function. */
+#undef HAVE_PTHREAD_GETSEQUENCE_NP
+
+/* Define to 1 if you have the `pthread_key_delete' function. */
+#undef HAVE_PTHREAD_KEY_DELETE
+
+/* Define to 1 if you have the `pthread_rwlock_rdlock' function. */
+#undef HAVE_PTHREAD_RWLOCK_RDLOCK
+
+/* Define to 1 if you have the `pthread_setprio' function. */
+#undef HAVE_PTHREAD_SETPRIO
+
+/* Define to 1 if you have the `pthread_setprio_np' function. */
+#undef HAVE_PTHREAD_SETPRIO_NP
+
+/* Define to 1 if you have the `pthread_setschedparam' function. */
+#undef HAVE_PTHREAD_SETSCHEDPARAM
+
+/* Define to 1 if you have the `pthread_sigmask' function. */
+#undef HAVE_PTHREAD_SIGMASK
+
+/* Define to 1 if you have the `pthread_yield_np' function. */
+#undef HAVE_PTHREAD_YIELD_NP
+
+/* pthread_yield function with one argument */
+#undef HAVE_PTHREAD_YIELD_ONE_ARG
+
+/* pthread_yield that doesn't take any arguments */
+#undef HAVE_PTHREAD_YIELD_ZERO_ARG
+
+/* POSIX readdir_r */
+#undef HAVE_READDIR_R
+
+/* Define to 1 if you have the <readline.h> header file. */
+#undef HAVE_READLINE_H
+
+/* Define if your readline library has \`add_history' */
+#undef HAVE_READLINE_HISTORY
+
+/* Define to 1 if you have the <readline/history.h> header file. */
+#undef HAVE_READLINE_HISTORY_H
+
+/* Define to 1 if you have the <readline/readline.h> header file. */
+#undef HAVE_READLINE_READLINE_H
+
+/* Does system provide rl_compentry_func_t */
+#undef HAVE_RL_COMPENTRY
+
+/* Does system provide rl_completion_func_t */
+#undef HAVE_RL_COMPLETION
+
+/* Define to 1 if you have the `rwlock_init' function. */
+#undef HAVE_RWLOCK_INIT
+
+/* Define to 1 if you have the <sched.h> header file. */
+#undef HAVE_SCHED_H
+
+/* Define to 1 if you have the `sched_yield' function. */
+#undef HAVE_SCHED_YIELD
+
+/* Define to 1 if you have the <select.h> header file. */
+#undef HAVE_SELECT_H
+
+/* Define to 1 if you have the `setupterm' function. */
+#undef HAVE_SETUPTERM
+
+/* POSIX sigwait */
+#undef HAVE_SIGWAIT
+
+/* Define to 1 if Solaris supports atomic functions. */
+#undef HAVE_SOLARIS_ATOMICS
+
+/* Define to 1 if stdbool.h conforms to C99. */
+#undef HAVE_STDBOOL_H
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the `strerror_r' function. */
+#undef HAVE_STRERROR_R
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <synch.h> header file. */
+#undef HAVE_SYNCH_H
+
+/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_DIR_H
+
+/* Define to 1 if you have the <sys/fpu.h> header file. */
+#undef HAVE_SYS_FPU_H
+
+/* Define to 1 if you have the <sys/mman.h> header file. */
+#undef HAVE_SYS_MMAN_H
+
+/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
+   */
+#undef HAVE_SYS_NDIR_H
+
+/* Define to 1 if you have the <sys/param.h> header file. */
+#undef HAVE_SYS_PARAM_H
+
+/* Define to 1 if you have the <sys/prctl.h> header file. */
+#undef HAVE_SYS_PRCTL_H
+
+/* Define to 1 if you have the <sys/sdt.h> header file. */
+#undef HAVE_SYS_SDT_H
+
+/* Define to 1 if you have the <sys/select.h> header file. */
+#undef HAVE_SYS_SELECT_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <sys/utime.h> header file. */
+#undef HAVE_SYS_UTIME_H
+
+/* Define to 1 if you have <sys/wait.h> that is POSIX.1 compatible. */
+#undef HAVE_SYS_WAIT_H
+
+/* Define to 1 if you have the <termcap.h> header file. */
+#undef HAVE_TERMCAP_H
+
+/* Define to 1 if you have the <termios.h> header file. */
+#undef HAVE_TERMIOS_H
+
+/* Define to 1 if you have the <termio.h> header file. */
+#undef HAVE_TERMIO_H
+
+/* Define to 1 if you have the <term.h> header file. */
+#undef HAVE_TERM_H
+
+/* Define to 1 if the system has the type `uint'. */
+#undef HAVE_UINT
+
+/* Define to 1 if the system has the type `ulong'. */
+#undef HAVE_ULONG
+
+/* Define to 1 if you have the `uname' function. */
+#undef HAVE_UNAME
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to 1 if you have the <utime.h> header file. */
+#undef HAVE_UTIME_H
+
+/* Define to 1 if `utime(file, NULL)' sets file's timestamp to the present. */
+#undef HAVE_UTIME_NULL
+
+/* Define to 1 if you have the <uuid/uuid.h> header file. */
+#undef HAVE_UUID_UUID_H
+
+/* Add additional valgrind code for testing with valgrind. */
+#undef HAVE_VALGRIND
+
+/* Define to 1 or 0, depending whether the compiler supports simple visibility
+   declarations. */
+#undef HAVE_VISIBILITY
+
+/* Define to 1 if you have the `vprintf' function. */
+#undef HAVE_VPRINTF
+
+/* Does system provide an rl_compentry_func_t that is usable */
+#undef HAVE_WORKING_RL_COMPENTRY
+
+/* Define to 1 if the system has the type `_Bool'. */
+#undef HAVE__BOOL
+
+/* CPU of Build System */
+#undef HOST_CPU
+
+/* OS of Build System */
+#undef HOST_OS
+
+/* Vendor of Build System */
+#undef HOST_VENDOR
+
+/* Does x86 PAUSE instruction exist */
+#undef IB_HAVE_PAUSE_INSTRUCTION
+
+/* Enabel libaio support in InnoDB */
+#undef LINUX_NATIVE_AIO
+
+/* Define to the sub-directory in which libtool stores uninstalled libraries.
+   */
+#undef LT_OBJDIR
+
+/* Name of the memcached binary used in make test */
+#undef MEMCACHED_BINARY
+
+/* Define to 1 if assertions should be disabled. */
+#undef NDEBUG
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* The real version of the software */
+#undef PANDORA_RELEASE_VERSION
+
+/* Location of pcre header */
+#undef PCRE_HEADER
+
+/* Define to necessary symbol if this constant uses a non-standard name on
+   your system. */
+#undef PTHREAD_CREATE_JOINABLE
+
+/* Define if system doesn't define */
+#undef RUSAGE_THREAD
+
+/* The size of `int', as computed by sizeof. */
+#undef SIZEOF_INT
+
+/* The size of `long', as computed by sizeof. */
+#undef SIZEOF_LONG
+
+/* Size of long long as computed by sizeof() */
+#undef SIZEOF_LONG_LONG
+
+/* The size of `off_t', as computed by sizeof. */
+#undef SIZEOF_OFF_T
+
+/* The size of `pthread_t', as computed by sizeof. */
+#undef SIZEOF_PTHREAD_T
+
+/* Size of size_t as computed by sizeof() */
+#undef SIZEOF_SIZE_T
+
+/* The size of `void*', as computed by sizeof. */
+#undef SIZEOF_VOIDP
+
+/* If using the C implementation of alloca, define if you know the
+   direction of stack growth for your system; otherwise it will be
+   automatically deduced at runtime.
+	STACK_DIRECTION > 0 => grows toward higher addresses
+	STACK_DIRECTION < 0 => grows toward lower addresses
+	STACK_DIRECTION = 0 => direction of growth unknown */
+#undef STACK_DIRECTION
+
+/* Define to 1 if the `S_IS*' macros in <sys/stat.h> do not work properly. */
+#undef STAT_MACROS_BROKEN
+
+/* Define if ISO C++ 1998 header files are present. */
+#undef STDCXX_98_HEADERS
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Define to 1 if strerror_r returns char *. */
+#undef STRERROR_R_CHAR_P
+
+/* CPU of Target System */
+#undef TARGET_CPU
+
+/* OS of Target System */
+#undef TARGET_OS
+
+/* Whether we are building for FreeBSD */
+#undef TARGET_OS_FREEBSD
+
+/* Whether we build for Linux */
+#undef TARGET_OS_LINUX
+
+/* Whether we build for OSX */
+#undef TARGET_OS_OSX
+
+/* Whether we are building for Solaris */
+#undef TARGET_OS_SOLARIS
+
+/* Whether we are building for Windows */
+#undef TARGET_OS_WINDOWS
+
+/* Vendor of Target System */
+#undef TARGET_VENDOR
+
+/* Define to 1 if time_t is unsigned */
+#undef TIME_T_UNSIGNED
+
+/* Define to 1 if you can safely include both <sys/time.h> and <time.h>. */
+#undef TIME_WITH_SYS_TIME
+
+/* Define to 1 if your <sys/time.h> declares `struct tm'. */
+#undef TM_IN_SYS_TIME
+
+/* Enable extensions on AIX 3, Interix.  */
+#ifndef _ALL_SOURCE
+# undef _ALL_SOURCE
+#endif
+/* Enable GNU extensions on systems that have them.  */
+#ifndef _GNU_SOURCE
+# undef _GNU_SOURCE
+#endif
+/* Enable threading extensions on Solaris.  */
+#ifndef _POSIX_PTHREAD_SEMANTICS
+# undef _POSIX_PTHREAD_SEMANTICS
+#endif
+/* Enable extensions on HP NonStop.  */
+#ifndef _TANDEM_SOURCE
+# undef _TANDEM_SOURCE
+#endif
+/* Enable general extensions on Solaris.  */
+#ifndef __EXTENSIONS__
+# undef __EXTENSIONS__
+#endif
+
+
+/* Version number of package */
+#undef VERSION
+
+/* Version of Windows */
+#undef WINVER
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Number of bits in a file offset, on hosts where this is settable. */
+#undef _FILE_OFFSET_BITS
+
+/* Enable GCC Profile Mode */
+#undef _GLIBCXX_PROFILE
+
+/* Define for large files, on AIX-style hosts. */
+#undef _LARGE_FILES
+
+/* Define to 1 if on MINIX. */
+#undef _MINIX
+
+/* Define to 2 if the system does not provide POSIX.1 features except with
+   this defined. */
+#undef _POSIX_1_SOURCE
+
+/* Define to 1 if you need to in order for `stat' and other things to work. */
+#undef _POSIX_SOURCE
+
+/* Cause Sun Studio to not be quite so strict with standards conflicts */
+#undef _STLP_NO_NEW_C_HEADERS
+
+/* Magical number to make things work */
+#undef _WIN32_WINNT
+
+/* Workaround for bug in FreeBSD headers */
+#undef __APPLE_CC__
+
+/* Use STDC Constant Macros in C++ */
+#undef __STDC_CONSTANT_MACROS
+
+/* Use STDC Format Macros in C++ */
+#undef __STDC_FORMAT_MACROS
+
+/* Use STDC Limit Macros in C++ */
+#undef __STDC_LIMIT_MACROS
+
+/* Define to empty if `const' does not conform to ANSI C. */
+#undef const
+
+/* Define to `__inline__' or `__inline' if that's what the C compiler
+   calls it, or to nothing if 'inline' is not supported under any name.  */
+#ifndef __cplusplus
+#undef inline
+#endif
+
+/* Define to the equivalent of the C99 'restrict' keyword, or to
+   nothing if this is not supported.  Do not define if restrict is
+   supported directly.  */
+#undef restrict
+/* Work around a bug in Sun C++: it does not support _Restrict or
+   __restrict__, even though the corresponding Sun C compiler ends up with
+   "#define restrict _Restrict" or "#define restrict __restrict__" in the
+   previous line.  Perhaps some future version of Sun C++ will work with
+   restrict; if so, hopefully it defines __RESTRICT like Sun C does.  */
+#if defined __SUNPRO_CC && !defined __RESTRICT
+# define _Restrict
+# define __restrict__
+#endif
+
+/* Define to `unsigned int' if <sys/types.h> does not define. */
+#undef size_t
+
+/* Define to empty if the keyword `volatile' does not work. Warning: valid
+   code using `volatile' can become incorrect without. Disable with care. */
+#undef volatile
+
+
+#ifndef HAVE_SYS_SOCKET_H
+# define SHUT_RD SD_RECEIVE
+# define SHUT_WR SD_SEND
+# define SHUT_RDWR SD_BOTH
+#endif
+      
+
+
+#if defined(__cplusplus)
+# include CSTDINT_H
+# include CINTTYPES_H
+#else
+# include <stdint.h>
+# include <inttypes.h>
+#endif
+
+#if !defined(HAVE_ULONG) && !defined(__USE_MISC)
+# define HAVE_ULONG 1
+typedef unsigned long int ulong;
+#endif
+
+/* To hide the platform differences between MS Windows and Unix, I am
+ * going to use the Microsoft way and #define the Microsoft-specific
+ * functions to the unix way. Microsoft use a separate subsystem for sockets,
+ * but Unix normally just use a filedescriptor on the same functions. It is
+ * a lot easier to map back to the unix way with macros than going the other
+ * way without side effect ;-)
+ */
+#ifdef TARGET_OS_WINDOWS
+#define random() rand()
+#define srandom(a) srand(a)
+#define get_socket_errno() WSAGetLastError()
+#else
+#define INVALID_SOCKET -1
+#define SOCKET_ERROR -1
+#define closesocket(a) close(a)
+#define get_socket_errno() errno
+#endif
+
+#if defined(__cplusplus)
+# if defined(DEBUG)
+#  include <cassert>
+#  include <cstddef>
+# endif
+template<typename To, typename From>
+inline To implicit_cast(From const &f) {
+  return f;
+}
+template<typename To, typename From>     // use like this: down_cast<T*>(foo);
+inline To down_cast(From* f) {                   // so we only accept pointers
+  // Ensures that To is a sub-type of From *.  This test is here only
+  // for compile-time type checking, and has no overhead in an
+  // optimized build at run-time, as it will be optimized away
+  // completely.
+  if (false) {
+    implicit_cast<From*, To>(0);
+  }
+
+#if defined(DEBUG)
+  assert(f == NULL || dynamic_cast<To>(f) != NULL);  // RTTI: debug mode only!
+#endif
+  return static_cast<To>(f);
+}
+#endif /* defined(__cplusplus) */
+
+#endif /* __CONFIG_H__ */
+  

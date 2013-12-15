@@ -1,0 +1,10 @@
+PHP Dictionary
+
+1) Use of include header and include footer
+2) Search Box allowing the user to search the dictionary (word and definition, with word ranking higher)
+3) Alphabet navigation
+4) Word is also a link to a page with that word. <title> = word. 3 fields are displayed: title, definition, additional comments.
+5) Very simple admin area consisting of one page. Admin adds word, definition, and additional comments. 
+6) Mod Rewrite used for letters and word pages
+
+

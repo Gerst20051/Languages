@@ -1,0 +1,3 @@
+echo Installing Java...
+start /wait d:\applications\java.exe
+

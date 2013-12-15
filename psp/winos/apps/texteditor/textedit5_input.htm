@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>Input Page for Text Editor</title>
+<!-- Original Code by mooncricket12 July 2006 -->
+<!-- Modified for Sony PSP portal usage by TimW July 2006 -->
+<!-- Modified for additional features by Fuzzie Late July 2006 -->
+<!-- Modified again by TombstoneTim August 2006 - used Fuzzy's work to make this pspWxp Text Editor functional -->
+<!-- Put together by TombstoneTim August 2006 to use in pspWxp Portal by BigBondFan -->
+<style type="text/css">
+Body {background-color: #006699; padding: 0px; font-family: arial,  helvetica, tahoma, sans-serif; font-size:12px; color:#FFFFFF;}
+
+a {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: underline;}
+:link {color: #FFFFFF;}
+:visited {color: #FFFFFF;}
+:hover {color: #FFFFFF;}
+tr.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+td.td1 {font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+div.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+hr.Light {color: #006699;}
+
+input.i1 {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: none;}
+:link.i1 {color: #000000;}
+:visited.i1 {color: #000000;}
+:hover.i1 {color: #000000;}
+</style>
+<script type="text/javascript">
+function gettext5Value() {
+document.textForm5.textInput5.value = document.textForm5.textInput5Txt.value;
+}
+</script>
+</head>
+<body onload="gettext5Value();">
+<div class="DarkCenter" align="center" style="position:absolute; left:0; top:0;">
+<table align="center" width="442" border="0" cellspacing="2" cellpadding="0">
+<tr class="DarkCenter">
+<td align="center">
+<form name="textForm5" action="textedit5_input.htm" method="post">
+<textarea class="t1" name="textInput5" rows="8" cols="57" wrap="virtual"></textarea>
+</td>
+</tr>
+</table>
+</div>
+<div style="position:absolute; left:0; top:0; width:50; height:50;">
+<input name="textInput5Txt" readonly style="visibility: hidden;">
+</div>
+</body>
+</html>

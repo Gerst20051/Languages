@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/1998/REC-html40-19980424/loose.dtd">
+<html>
+<head>
+<title>cgi.sh</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii">
+<meta name="generator" content="HeaderDoc">
+<meta name="xcode-display" content="render">
+<style><!--
+#tocMenu {
+		display: block;
+		position:fixed;
+		top:0px;
+		left:0px;
+		width:210px;
+		height:100%;
+		background:transparent;
+}
+#bodyText {
+		margin-left: 210px;
+}
+--></style>
+<meta id="toc-file" name="toc-file" content="toc.html">
+<script language="JavaScript" src="../Resources/JavaScript/page.js" type="text/javascript"></script><link rel="stylesheet" type="text/css" href="../Resources/CSS/frameset_styles.css">
+<link rel="stylesheet" type="text/css" href="../Resources/CSS/customReference.css">
+<style type="text/css"><!--.keyword {background:#ffffff; color:#761550;}.template {background:#ffffff; color:#761550;}.number {background: #ffffff; color:#0000ff;}.function {background:#ffffff; color:#000000;}.string {background: #ffffff; color:#891315;}.preprocessor {background:#ffffff; color:#236e25}.comment {background:#ffffff; color:#236e25}.char {background: #ffffff; color:#0000ff;}.var {background:#ffffff; color:#000000;}.type {background:#ffffff; color:#761550;}.param {background:#ffffff; color:#000000;}.graybox {         border-top: 1px solid #919699;         border-left: 1px solid #919699;         margin-bottom: 10px;         }  .graybox th {         padding: 4px 8px 4px 8px;         background: #E2E2E2;         font-size: 12px;         font-weight: bold;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  .graybox td {         padding: 8px;         font-size: 12px;         text-align: left;         vertical-align: top;         border-bottom: 1px solid #919699;         border-right: 1px solid #919699;         }  --></style>
+</head>
+<body bgcolor="#ffffff" onload="initialize_page();">
+<!-- headerDoc=Header;  uid=//apple_ref/doc/header/cgi.sh;   name=cgi.sh --><a name="//apple_ref/doc/header/cgi.sh"></a><noscript>
+<div id="tocMenu">
+<iframe id="toc_content" name="toc_content" src="toc.html" width="210" height="100%" align="left" frameborder="0">This document set is best viewed in a browser that supports iFrames.</iframe>
+</div>
+</noscript>
+<div id="bodyText">
+<div id="bodyContents">
+<a name="top"></a>
+<hr>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h1><a name="cgi.sh">cgi.sh</a></h1>
+</td></tr></table>
+<h2>Overview</h2>
+<div class="declaration_indent">
+</div>
+<!-- begin discussion --><p>Routines specific to CGI handling (environment variable exports,
+spawning scripts, filename comparison, etc.).
+<!-- end discussion -->
+</p>
+<hr>
+<br><a name="HeaderDoc_groups"><h2>Groups</h2></a>
+
+<h3>Environment Variable Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>These functions export and unset environment variables for the
+CGI environment.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/exportCGIVars" logicalPath="//apple_ref/shell/func/exportCGIVars" target="_top">exportCGIVars</a></tt></dt>
+<dd><p>Exports the environment variables necessary for CGI compliance.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></tt></dt>
+<dd><p>Internal function.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/unexportCGIVars" logicalPath="//apple_ref/shell/func/unexportCGIVars" target="_top">unexportCGIVars</a></tt></dt>
+<dd><p>Removes all of the custom environment variables exported
+by <code><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></code>.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/unexportHTTPVar" logicalPath="//apple_ref/shell/func/unexportHTTPVar" target="_top">unexportHTTPVar</a></tt></dt>
+<dd><p>Internal function.
+</p></dd>
+</dl>
+</div>
+<p>&#160;</p>
+<h3>CGI handling Functions</h3>
+<div class="group_desc_indent">
+<p></p>
+<p>These functions check to see if URLs are CGI scripts and launch
+CGI scripts.</p>
+</div>
+<h4>Group members:</h4>
+<div class="group_indent">
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/cgiMatch" logicalPath="//apple_ref/shell/func/cgiMatch" target="_top">cgiMatch</a></tt></dt>
+<dd><p>Returns the type of CGI script associated with a URL.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/spawn_cgi" logicalPath="//apple_ref/shell/func/spawn_cgi" target="_top">spawn_cgi</a></tt></dt>
+<dd><p>Starts a CGI script.
+</p></dd>
+</dl>
+</div>
+<hr>
+<a name="HeaderDoc_functions"></a>
+<h2>Functions</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/func/cgiMatch" target="_top">cgiMatch</a></tt></dt>
+<dd><p>Returns the type of CGI script associated with a URL.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/exportCGIVars" target="_top">exportCGIVars</a></tt></dt>
+<dd><p>Exports the environment variables necessary for CGI compliance.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></tt></dt>
+<dd><p>Internal function.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/spawn_cgi" target="_top">spawn_cgi</a></tt></dt>
+<dd><p>Starts a CGI script.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/unexportCGIVars" target="_top">unexportCGIVars</a></tt></dt>
+<dd><p>Removes all of the custom environment variables exported
+by <code><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></code>.
+</p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/func/unexportHTTPVar" target="_top">unexportHTTPVar</a></tt></dt>
+<dd><p>Internal function.
+</p></dd>
+</dl>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/cgiMatch;   name=cgiMatch --><a name="//apple_ref/shell/func/cgiMatch"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="cgiMatch">cgiMatch</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Returns the type of CGI script associated with a URL.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/cgiMatch" logicalPath="//apple_ref/shell/instm/cgiMatch //apple_ref/shell/clm/cgiMatch //apple_ref/shell/intfcm/cgiMatch //apple_ref/shell/intfm/cgiMatch //apple_ref/shell/func/cgiMatch" target="_top"><span class="function">cgiMatch</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FULLPATH</code></dt>
+<dd><p>The path to check.</p></dd>
+</dl>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
+<p><!-- begin return value -->Returns <code><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_CGI" logicalPath="//apple_ref/shell/data/SPAWNTYPE_CGI" target="_top">SPAWNTYPE_CGI</a></code> if the URL is a shell script or CGI binary,
+<code><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_PERL" logicalPath="//apple_ref/shell/data/SPAWNTYPE_PERL" target="_top">SPAWNTYPE_PERL</a></code> if the URL is a Perl script, <code><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_PHP" logicalPath="//apple_ref/shell/data/SPAWNTYPE_PHP" target="_top">SPAWNTYPE_PHP</a></code>
+if the URL is a PHP script, or <code><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_NONE" logicalPath="//apple_ref/shell/data/SPAWNTYPE_NONE" target="_top">SPAWNTYPE_NONE</a></code> if it is not a CGI
+script.
+
+<!-- end return value --></p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/exportCGIVars;   name=exportCGIVars --><a name="//apple_ref/shell/func/exportCGIVars"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="exportCGIVars">exportCGIVars</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Exports the environment variables necessary for CGI compliance.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/exportCGIVars" logicalPath="//apple_ref/shell/instm/exportCGIVars //apple_ref/shell/clm/exportCGIVars //apple_ref/shell/intfcm/exportCGIVars //apple_ref/shell/intfm/exportCGIVars //apple_ref/shell/func/exportCGIVars" target="_top"><span class="function">exportCGIVars</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Uses <code><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></code> to export HTTP headers as environment variables.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/exportHTTPVar;   name=exportHTTPVar --><a name="//apple_ref/shell/func/exportHTTPVar"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="exportHTTPVar">exportHTTPVar</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Internal function.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/instm/exportHTTPVar //apple_ref/shell/clm/exportHTTPVar //apple_ref/shell/intfcm/exportHTTPVar //apple_ref/shell/intfm/exportHTTPVar //apple_ref/shell/func/exportHTTPVar" target="_top"><span class="function">exportHTTPVar</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Used by <code><a href="index.html#//apple_ref/shell/func/unexportCGIVars" logicalPath="//apple_ref/shell/func/unexportCGIVars" target="_top">unexportCGIVars</a></code> to unexport a single environment
+variable associated with an HTTP header.
+<!-- end discussion -->
+</p>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/spawn_cgi;   name=spawn_cgi --><a name="//apple_ref/shell/func/spawn_cgi"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="spawn_cgi">spawn_cgi</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Starts a CGI script.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/spawn_cgi" logicalPath="//apple_ref/shell/instm/spawn_cgi //apple_ref/shell/clm/spawn_cgi //apple_ref/shell/intfcm/spawn_cgi //apple_ref/shell/intfm/spawn_cgi //apple_ref/shell/func/spawn_cgi" target="_top"><span class="function">spawn_cgi</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
+<div class="param_indent">
+<dl>
+<dt><code>FD</code></dt>
+<dd><p>The file descriptor for sending data to <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>READFD</code></dt>
+<dd><p>The file descriptor for reading data from <code><!-- a logicalPath="//apple_ref/doc/man/1/nc" -->nc<!-- /a --></code>.</p></dd>
+<dt><code>SERVER_ROOT</code></dt>
+<dd><p>The base path for the server root for this domain.</p></dd>
+<dt><code>SCRIPT_PATH</code></dt>
+<dd><p>The path of the script relative to <code>SERVER_ROOT<code>.</code></code></p></dd>
+<dt><code>SCRIPT_REMAINDER</code></dt>
+<dd><p>If the script name is followed by additional path parts,
+this variable contains the additional path parts as a string, otherwise empty.
+For example, if the URL is "http://example.org/script.cgi/foo/bar", the value
+of SCRIPT_REMAINDER would be "/foo/bar".</p></dd>
+<dt><code>PARMPART</code></dt>
+<dd><p>The query string after the question mark, or an empty string.</p></dd>
+<dt><code>HOST</code></dt>
+<dd><p>The hostname:port combination against which the request was made.</p></dd>
+<dt><code>METHOD</code></dt>
+<dd><p>The request method used (GET, POST, and so on).</p></dd>
+<dt><code>HEADERTREE</code></dt>
+<dd><p>A binary tree of headers sent by the client.  See
+<code><a href="../parsers_sh/index.html#//apple_ref/shell/func/parseHeaders" logicalPath="//apple_ref/shell/func/parseHeaders" target="_top">parseHeaders</a></code> for more information.</p></dd>
+</dl>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/unexportCGIVars;   name=unexportCGIVars --><a name="//apple_ref/shell/func/unexportCGIVars"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="unexportCGIVars">unexportCGIVars</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Removes all of the custom environment variables exported
+by <code><a href="index.html#//apple_ref/shell/func/exportHTTPVar" logicalPath="//apple_ref/shell/func/exportHTTPVar" target="_top">exportHTTPVar</a></code>.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/unexportCGIVars" logicalPath="//apple_ref/shell/instm/unexportCGIVars //apple_ref/shell/clm/unexportCGIVars //apple_ref/shell/intfcm/unexportCGIVars //apple_ref/shell/intfm/unexportCGIVars //apple_ref/shell/func/unexportCGIVars" target="_top"><span class="function">unexportCGIVars</span></a>() </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=func;  uid=//apple_ref/shell/func/unexportHTTPVar;   name=unexportHTTPVar --><a name="//apple_ref/shell/func/unexportHTTPVar"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="unexportHTTPVar">unexportHTTPVar</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Internal function.
+<!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><a href="index.html#//apple_ref/shell/func/unexportHTTPVar" logicalPath="//apple_ref/shell/instm/unexportHTTPVar //apple_ref/shell/clm/unexportHTTPVar //apple_ref/shell/intfcm/unexportHTTPVar //apple_ref/shell/intfm/unexportHTTPVar //apple_ref/shell/func/unexportHTTPVar" target="_top"><span class="function">unexportHTTPVar</span></a>() </pre>
+</div>
+<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
+<!-- begin discussion --><p>Used by <code><a href="index.html#//apple_ref/shell/func/unexportCGIVars" logicalPath="//apple_ref/shell/func/unexportCGIVars" target="_top">unexportCGIVars</a></code> to unexport a single environment
+variable associated with an HTTP header.
+<!-- end discussion -->
+</p>
+<p></p>
+<a name="HeaderDoc_vars"></a>
+<h2>Globals</h2>
+<dl>
+<dt><tt><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_CGI" target="_top">SPAWNTYPE_CGI</a></tt></dt>
+<dd><p>A CGI script/binary or shell script. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_NONE" target="_top">SPAWNTYPE_NONE</a></tt></dt>
+<dd><p>Not a CGI script/binary. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_PERL" target="_top">SPAWNTYPE_PERL</a></tt></dt>
+<dd><p>A Perl script. </p></dd>
+<dt><tt><a href="index.html#//apple_ref/shell/data/SPAWNTYPE_PHP" target="_top">SPAWNTYPE_PHP</a></tt></dt>
+<dd><p>A PHP script. </p></dd>
+</dl>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/SPAWNTYPE_CGI;   name=SPAWNTYPE_CGI --><a name="//apple_ref/shell/data/SPAWNTYPE_CGI"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="SPAWNTYPE_CGI">SPAWNTYPE_CGI</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>A CGI script/binary or shell script. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/SPAWNTYPE_CGI //apple_ref/shell/tdef/SPAWNTYPE_CGI //apple_ref/shell/tag/SPAWNTYPE_CGI //apple_ref/shell/econst/SPAWNTYPE_CGI //apple_ref/shell/struct/SPAWNTYPE_CGI //apple_ref/shell/clconst/SPAWNTYPE_CGI //apple_ref/shell/intf/SPAWNTYPE_CGI" --><span class="type">SPAWNTYPE_CGI</span><!-- /a -->=<span class="number">1</span> </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/SPAWNTYPE_NONE;   name=SPAWNTYPE_NONE --><a name="//apple_ref/shell/data/SPAWNTYPE_NONE"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="SPAWNTYPE_NONE">SPAWNTYPE_NONE</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>Not a CGI script/binary. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/SPAWNTYPE_NONE //apple_ref/shell/tdef/SPAWNTYPE_NONE //apple_ref/shell/tag/SPAWNTYPE_NONE //apple_ref/shell/econst/SPAWNTYPE_NONE //apple_ref/shell/struct/SPAWNTYPE_NONE //apple_ref/shell/clconst/SPAWNTYPE_NONE //apple_ref/shell/intf/SPAWNTYPE_NONE" --><span class="type">SPAWNTYPE_NONE</span><!-- /a -->=<span class="number">0</span> </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/SPAWNTYPE_PERL;   name=SPAWNTYPE_PERL --><a name="//apple_ref/shell/data/SPAWNTYPE_PERL"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="SPAWNTYPE_PERL">SPAWNTYPE_PERL</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>A Perl script. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/SPAWNTYPE_PERL //apple_ref/shell/tdef/SPAWNTYPE_PERL //apple_ref/shell/tag/SPAWNTYPE_PERL //apple_ref/shell/econst/SPAWNTYPE_PERL //apple_ref/shell/struct/SPAWNTYPE_PERL //apple_ref/shell/clconst/SPAWNTYPE_PERL //apple_ref/shell/intf/SPAWNTYPE_PERL" --><span class="type">SPAWNTYPE_PERL</span><!-- /a -->=<span class="number">2</span> </pre>
+</div>
+<p></p>
+<hr>
+<!-- headerDoc=data;  uid=//apple_ref/shell/data/SPAWNTYPE_PHP;   name=SPAWNTYPE_PHP --><a name="//apple_ref/shell/data/SPAWNTYPE_PHP"></a>
+<table border="0" cellpadding="2" cellspacing="2" width="300"><tr><td valign="top" height="12" colspan="5">
+<h3><a name="SPAWNTYPE_PHP">SPAWNTYPE_PHP</a></h3>
+</td></tr></table>
+<hr>
+<p><!-- begin abstract --></p>
+<p>A PHP script. <!-- end abstract --></p>
+<p></p>
+<div class="declaration_indent">
+<pre><!-- a logicalPath="//apple_ref/shell/cl/SPAWNTYPE_PHP //apple_ref/shell/tdef/SPAWNTYPE_PHP //apple_ref/shell/tag/SPAWNTYPE_PHP //apple_ref/shell/econst/SPAWNTYPE_PHP //apple_ref/shell/struct/SPAWNTYPE_PHP //apple_ref/shell/clconst/SPAWNTYPE_PHP //apple_ref/shell/intf/SPAWNTYPE_PHP" --><span class="type">SPAWNTYPE_PHP</span><!-- /a -->=<span class="number">3</span> </pre>
+</div>
+<p></p>
+<p>&#160;</p>
+<p>Last Updated: 2009-09-09
+</p>
+</div>
+</div>
+</body>
+</html>

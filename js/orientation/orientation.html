@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	
+	<script type="text/javascript" src="mootools-core.js"></script>
+	
+	<script type="text/javascript">
+		window.addEvent('domready', function(){
+			var box1 = document.id('box1');
+			window.addEventListener('deviceorientation', function(event){
+				var	text = [],
+					angles = [];
+				['alpha', 'beta', 'gamma'].each(function(angle){
+					text.push(angle + ': ' + Math.round(event[angle]));
+					angles.push(Math.round(event[angle]));
+				});
+				box1.set('text', text.join(', '));
+				box1.style.webkitTransform = 'rotateX(' + angles[1] + 'deg) rotateY(' + angles[2] + 'deg)  rotateZ(' + angles[0] + 'deg)';
+			}, true);
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<a href="index.html">« Back</a>
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div class="container">
+	<div id="box1" class="box">
+		Orientation!
+	</div>
+</div>
+</body>
+</html>

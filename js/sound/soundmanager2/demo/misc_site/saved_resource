@@ -1,0 +1,80 @@
+// schillmania.com: Get Satisfaction integration, version updates
+
+var publishedVersion = 'V2.97a.20110306';
+var getSatisfactionLoaded = false;
+var didGetTopics = null;
+
+function gsfnTopicsCallback() {
+  // safety net - should be overwritten via remote JS.
+  if (getSatisfactionLoaded) return false;
+  getSatisfactionLoaded = true;
+  document.getElementById('gsfn_content').innerHTML = '<div style="line-height:125%">Something broke while trying to get recent posts - ah well. <a href="http://getsatisfaction.com/schillmania/products/schillmania_soundmanager_2" rel="nofollow">Try hitting the site</a> directly, perhaps.</div>';
+}
+
+function getSatisfactionTimeout() {
+  if (getSatisfactionLoaded) return false;
+  getSatisfactionLoaded = true;
+  document.getElementById('gsfn_content').innerHTML = '<div style="line-height:125%">Couldn\'t load topics from Get Satisfaction. <a href="http://getsatisfaction.com/schillmania/products/schillmania_soundmanager_2" rel="nofollow">Try hitting the site</a> directly, perhaps.</div>';
+}
+
+function getSatisfaction() {
+  // fetch recent questions from getsatisfaction.com
+  if (document.getElementById('get-satisfaction')) document.getElementById('get-satisfaction').style.display = 'block';
+  loadScript('http://getsatisfaction.com/schillmania/widgets/javascripts/b294984/widgets.js',getTopics);
+  setTimeout(getTopics,1000);
+}
+
+function getTopics() {
+  if (didGetTopics) {
+    return false;
+  }
+  didGetTopics = true;
+  // Satisfaction code
+  window.gsfn_topic_list = { 
+  open_tag:     '<ul class="gsfn_topic_list">', 
+  item:         '<li class="gsfn_#{style}"><span class="time">#{date}</span><a href="#{url}" class="gsfn_link">#{subject}</a><div class="gsfn_summary">#{summary}</div></li>',
+  result:       '<li class="gsfn_#{style}"><a href="#{url}" class="gsfn_link">#{subject}</a></li>',
+  no_results:   '<li class="gsfn_no_results">Get Satisfaction has no topics matching your exact criteria.</li>',
+  suggested:    '<li class="gsfn_suggestion">Suggested Topics: Are any of these helpful?</li>',
+  topic_submit: '<li class="gsfn_submit">Not quite right? <input type="submit" onclick="gsfn_submit();" value="Add Details &amp; Submit" /> <span class="gsfn_or">or</span> <a href="#" onclick="gsfn_cancel(); return false;">Cancel</a></li>',
+  no_results_submit: '<li class="gsfn_no_results"><input type="submit" onclick="gsfn_submit();" value="Add Details &amp; Submit" /> <span class="gsfn_or">or</span> <a href="#" onclick="gsfn_cancel(); return false;">Cancel</a></li>',
+  close_tag:    '</ul>'
+  };
+  window.gsfn_populate = function(id, template) {
+    getSatisfactionLoaded = true;
+    // template = template.replace(/about/ig,'~');
+    template = template.replace(/\"time\"\>about/ig,'\"time\"\>~');
+    template = template.replace(/\sago/ig,'');
+    template = template.replace(/\shours/ig,'hrs');
+    template = template.replace(/\sminutes/ig,'min');
+    document.getElementById(id).innerHTML = template;
+  }
+  if (!document.getElementById('get-satisfaction')) {
+    return false;
+  }
+  loadScript('http://getsatisfaction.com/schillmania/topics.widget?callback=gsfnTopicsCallback&limit=5&sort=last_active_at&style=topics');
+  // loadScript('http://getsatisfaction.com/schillmania/topics.widget?callback=gsfnTopicsCallback&amp;limit=5&amp;sort=last_active_at&amp;style=topics');  
+  setTimeout(getSatisfactionTimeout,3000);
+  // getTopics = getTopicsNull;
+  if (!(window.location.protocol.match(/file/i)) && document.domain && document.domain.match(/schillmania.com/i)) {
+    loadScript('http://www.schillmania.com/common/stats.js');
+  }
+}
+
+getSatisfaction();
+
+function checkVersion() {
+  if ((typeof soundManager != 'undefined' && soundManager && soundManager.versionNumber && soundManager.versionNumber != publishedVersion) && soundManager.version && !soundManager.version.match(/dev/i) && !document.domain.match(/schillmania.com/) || window.location.toString().match(/versiontest=1/i)) {
+    var oNode = document.createElement('div');
+    oNode.className = 'newer';
+    oNode.style.margin = '0px 0px 1em 0px';
+    oNode.innerHTML = '<p style="text-align:center"><a href="http://www.schillmania.com/projects/soundmanager2/doc/download/" title="'+publishedVersion+' is available" class="button">Newer version available!</a><br/>Version '+publishedVersion.substr(1)+' is available.</p>';
+    if (document.getElementById('col2')) {
+      document.getElementById('col2').insertBefore(oNode,document.getElementById('get-satisfaction'));
+    } else {
+      document.getElementById('col3').insertBefore(oNode,document.getElementById('col3').childNodes[0]);
+    }
+  }
+}
+
+setTimeout(checkVersion,1000);

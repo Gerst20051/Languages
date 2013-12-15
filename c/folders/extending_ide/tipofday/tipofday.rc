@@ -1,0 +1,51 @@
+// RESURSFIL genererad av "Pelles C for Windows, version 1.00".
+
+#include <windows.h>
+#include <commctrl.h>
+#include "tipofday.h"
+
+LANGUAGE LANG_ENGLISH,SUBLANG_ENGLISH_US
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEFLAGSMASK 0x3F
+FILEFLAGS 0x0
+FILEOS VOS_DOS_WINDOWS32
+FILETYPE VFT_DLL
+FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "FileDescription", "Tip of the day\0"
+      VALUE "FileVersion", "1.00.0\0"
+      VALUE "InternalName", "TIPOFDAY\0"
+      VALUE "OriginalFilename", "TIPOFDAY.DLL\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+TIPOFDAYSTYLE DIALOG DISCARDABLE 44, 42, 192, 86
+STYLE WS_POPUP|DS_MODALFRAME|WS_CAPTION|WS_SYSMENU|WS_VISIBLE
+CAPTION "Tip of the day Styles"
+FONT 8, "MS Sans Serif"
+BEGIN
+  CONTROL "Basic Styles", 100, "Button", BS_GROUPBOX, 8, 8, 176, 50
+  CONTROL "Sample flag #1", DID_RESERVED1, "Button", BS_AUTOCHECKBOX|WS_TABSTOP, 16, 24, 92, 10
+  CONTROL "Sample flag #2", DID_RESERVED2, "Button", BS_AUTOCHECKBOX|WS_TABSTOP, 16, 40, 92, 10
+  CONTROL "OK", DID_OK, "Button", BS_DEFPUSHBUTTON|WS_TABSTOP, 8, 66, 40, 14
+END
+
+IDOK ICON "TIP.ICO"
+
+STRINGTABLE
+BEGIN
+  IDOK, "Did you know..."
+END
+

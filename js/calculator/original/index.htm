@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="A nice calculator">
+    <title>Zen calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js"></script>
+    <script src="script.js"></script>
+
+    <script src="http://use.typekit.com/olq1epd.js"></script>
+    <script>Typekit.load();</script>
+</head>
+<body>
+    <!-- Yes, all these three layers are necessary in order to achieve all of
+         1) overflow: auto, 2) max-height and 3) internal divs on the left
+         margin. -->
+    <div id="out">
+        <div id="out-scroll">
+            <div id="out-inner">
+            </div>
+        </div>
+    </div>
+    <div id="in">
+        <div class="left">&gt;</div><input type="text" spellcheck="false" value="">
+    </div>
+</body>
+</html>

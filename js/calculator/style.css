@@ -1,0 +1,90 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before {
+  content: '';
+  content: none;
+}
+blockquote:after {
+  content: '';
+  content: none;
+}
+q:before {
+  content: '';
+  content: none;
+}
+q:after {
+  content: '';
+  content: none;
+}
+:focus { outline: 0; }
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+* {
+  font-family: myriad-pro-1, myriad-pro-2, "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+}
+body {
+  background: white;
+  width: 640px;
+  margin: 20px auto;
+  border: 1px solid #cccccc;
+  line-height: 20px;
+}
+#out { padding: 20px 0 0 0; }
+#out-scroll {
+  max-height: 240px;
+  overflow: auto;
+}
+#out-inner {
+  margin-left: 60px;
+  margin-right: 20px;
+}
+.left {
+  float: left;
+  width: 56px;
+  margin-left: -60px;
+  text-align: right;
+  color: #888888;
+}
+.echo { color: #888888; }
+#in {
+  background: #ffffd4;
+  margin-bottom: 20px;
+}
+#in .left {
+  margin-left: 0;
+  width: 58px;
+  margin-right: 1px;
+}
+input {
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  width: 540px;
+}
+span.result { color: black; }
+span.result.final { color: green; }
+span.op, span.var { cursor: pointer; }
+span.var { color: black; }
+span.var.new, b { font-weight: 600; }
+::-moz-selection { background: #cfcfcf; }
+::selection { background: #cfcfce; }
+::-webkit-selection { background: #cfcecf; }
+.f, .m { display: none; }

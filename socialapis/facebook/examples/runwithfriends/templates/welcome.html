@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+{% block body %}
+<div class="welcome">
+  <h1>Welcome to Run with Friends</h1>
+
+  <div class="info">
+    <p>
+      This is a simple site where you can log your runs and share your
+      progress with your friends.
+    </p>
+    <p>
+      In order to use Run with Friends you must sign in with your
+      Facebook account.
+    </p>
+  </div>
+
+  <div id="login-flow">
+    <fb:login-button perms="email,offline_access" show-faces="true"></fb:login-button>
+  </div>
+</div>
+<img class="promo" alt="Welcome to Run with Friends" src="/splash.jpg">
+{% endblock %}

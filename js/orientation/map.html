@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	<style type="text/css">
+	div.box {
+		position: absolute;
+		top: -63px;
+		left: -80px;
+		right: -80px;
+		bottom: -62px;
+	}
+	
+	div.wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+	
+	div.arrow {
+		position: absolute;
+		z-index: 4;
+		top: 50%;
+		left: 50%;
+		height: 30px;
+		width: 30px;
+		margin-top: -15px;
+		margin-left: -15px;
+		background: url(arrow.png);
+		background-size: 100% 100%;
+	}
+	
+	@-webkit-keyframes resize {
+		from {
+			-webkit-transform: scale(1);
+		}
+		to {
+			-webkit-transform: scale(1.2);
+		}
+	}
+	
+	div.radius {
+		position: absolute;
+		z-index: 3;
+		top: 50%;
+		left: 50%;
+		border: 1px solid #4791d9;
+		background: rgba(255, 255, 255, 0.5);
+		
+		width: 60px;
+		height: 60px;
+		margin-top: -30px;
+		margin-left: -30px;
+		-webkit-border-radius: 30px;
+	}
+	
+	div.radius, div.arrow {
+		-webkit-animation-name: resize;
+		-webkit-animation-duration: 2s;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: ease-in-out;
+		-webkit-animation-direction: alternate;
+	}
+	
+	div.update {
+		position: absolute;
+		z-index: 4;
+		bottom: 5px;
+		right: 5px;
+		padding: 5px;
+		
+		opacity: 0;
+		-webkit-transition-property: opacity;
+		-webkit-transition-duration: 200ms;
+		
+		color: #fff;
+		background: rgba(0, 0, 0, 0.7);
+		-webkit-border-radius: 10px;
+	}
+	
+	div.update.show {
+		opacity: 1;
+	}
+	</style>
+	<script type="text/javascript" src="mootools-core.js"></script>
+	
+	<script type="text/javascript">
+		document.addEvent('touchmove', function(event){
+			event.preventDefault();
+		});
+		
+		window.addEvent('domready', function(){
+			var box1 = document.id('box1'),
+				updateElement = document.getElement('.update');
+			// This does not work because the alpha value is relative to the device orientation on page load
+			// According to the HTML5 Spec it should report like a compass, the correct calculation would then be 360 - alpha degrees.
+			window.addEventListener('deviceorientation', function(event){
+				box1.style.webkitTransform = ' rotateZ(' + Math.round(event.alpha) + 'deg)';
+			}, true);
+			
+			var update = function(event){
+				updateElement.addClass('show');
+				(function(){
+					updateElement.removeClass('show');
+				}).delay(1500);
+				
+				var position = event.coords;
+				box1.empty().adopt(new Element('img', {
+					src: 'http://maps.google.com/maps/api/staticmap?center=' + position.latitude + ',' + position.longitude + '&maptype=hybrid&size=480x480&zoom=17&sensor=true'
+				}));
+			};
+			
+			// This is totally not based on any proper calculation
+			var distance = 0;
+			window.addEventListener('devicemotion', function(event){
+				distance += (event.acceleration.x + event.acceleration.y) * 0.5 * event.interval;
+				if (distance > 1){
+					distance = 0;
+					if (navigator.geolocation) navigator.geolocation.getCurrentPosition(update);
+				}
+			});
+			
+			if (navigator.geolocation) navigator.geolocation.getCurrentPosition(update);
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<a href="index.html">« Back</a>
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div class="wrapper">
+	<div class="arrow"></div>
+	<div class="radius"></div>
+</div>
+<div class="update">Updating Map...</div>
+<div id="box1" class="box"></div>
+</body>
+</html>

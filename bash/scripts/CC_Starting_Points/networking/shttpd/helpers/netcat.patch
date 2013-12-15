@@ -1,0 +1,165 @@
+--- netcat.c.orig	2006-08-08 16:20:43.000000000 -0700
++++ netcat.c	2009-09-02 09:51:00.000000000 -0700
+@@ -93,7 +93,7 @@
+ void	build_ports(char *);
+ void	help(void);
+ int	local_listen(char *, char *, struct addrinfo);
+-void	readwrite(int);
++void	readwrite(int, int);
+ int	remote_connect(const char *, const char *, struct addrinfo);
+ int	socks_connect(const char *, const char *, struct addrinfo, const char *, const char *,
+ 	struct addrinfo, int);
+@@ -287,18 +287,19 @@
+ 	}
+ 
+ 	if (lflag) {
++		int require_close = 1;
+ 		int connfd;
+ 		ret = 0;
+ 
+ 		if (family == AF_UNIX)
+ 			s = unix_listen(host);
+ 
++		if (family != AF_UNIX)
++			s = local_listen(host, uport, hints);
++		if (s < 0)
++			err(1, NULL);
+ 		/* Allow only one connection at a time, but stay alive. */
+ 		for (;;) {
+-			if (family != AF_UNIX)
+-				s = local_listen(host, uport, hints);
+-			if (s < 0)
+-				err(1, NULL);
+ 			/*
+ 			 * For UDP, we will use recvfrom() initially
+ 			 * to wait for a caller, then use the regular
+@@ -331,19 +332,19 @@
+ 				    &len);
+ 			}
+ 
+-			readwrite(connfd);
++			readwrite(connfd, require_close);
+ 			close(connfd);
+-			if (family != AF_UNIX)
+-				close(s);
+ 
+ 			if (!kflag)
+ 				break;
+ 		}
++		if (family != AF_UNIX)
++			close(s);
+ 	} else if (family == AF_UNIX) {
+ 		ret = 0;
+ 
+ 		if ((s = unix_connect(host)) > 0 && !zflag) {
+-			readwrite(s);
++			readwrite(s, 0);
+ 			close(s);
+ 		} else
+ 			ret = 1;
+@@ -394,7 +395,7 @@
+ 				    sv ? sv->s_name : "*");
+ 			}
+ 			if (!zflag)
+-				readwrite(s);
++				readwrite(s, 0);
+ 		}
+ 	}
+ 
+@@ -593,7 +594,7 @@
+  * Loop that polls on the network file descriptor and stdin.
+  */
+ void
+-readwrite(int nfd)
++readwrite(int nfd, int require_close)
+ {
+ #ifdef USE_SELECT
+ 	fd_set readfds;
+@@ -624,10 +625,11 @@
+ #endif
+ 
+ #ifdef USE_SELECT
+-	while (nfd_open) {
++	while (nfd_open)
+ #else
+-	while (pfd[0].fd != -1) {
++	while (pfd[0].fd != -1 || ()
+ #endif
++	{
+ 		if (iflag)
+ 			sleep(iflag);
+ 
+@@ -641,10 +643,11 @@
+ 		tv.tv_sec = timeout;
+ 		tv.tv_usec = 0;
+ 
+-		if ((n = select(nfd + 1, &readfds, NULL, NULL, (timeout == -1) ? NULL : &tv)) < 0) {
++		if ((n = select(nfd + 1, &readfds, NULL, NULL, (timeout == -1) ? NULL : &tv)) < 0)
+ #else
+-		if ((n = poll(pfd, 2 - dflag, timeout)) < 0) {
++		if ((n = poll(pfd, 2 - dflag, timeout)) < 0)
+ #endif
++		{
+ 			close(nfd);
+ 			err(1, "Polling Error");
+ 		}
+@@ -653,10 +656,11 @@
+ 			return;
+ 
+ #ifdef USE_SELECT
+-		if (FD_ISSET(nfd, &readfds)) {
++		if (FD_ISSET(nfd, &readfds))
+ #else
+-		if (pfd[0].revents & POLLIN) {
++		if (pfd[0].revents & POLLIN)
+ #endif
++		{
+ 			if ((n = read(nfd, buf, plen)) < 0)
+ 				return;
+ 			else if (n == 0) {
+@@ -676,10 +680,11 @@
+ 		}
+ 
+ #ifdef USE_SELECT
+-		if (!dflag && FD_ISSET(wfd, &readfds)) {
++		if (!dflag && FD_ISSET(wfd, &readfds))
+ #else
+-		if (!dflag && pfd[1].revents & POLLIN) {
++		if (!dflag && pfd[1].revents & POLLIN)
+ #endif
++		{
+ 			if ((n = read(wfd, buf, plen)) < 0)
+ 				return;
+ 			else if (n == 0) {
+@@ -696,6 +701,9 @@
+ 			}
+ 		}
+ 	}
++	if (require_close && wfd_open) {
++		while (read(wfd, buf, plen) > 0);
++	}
+ }
+ 
+ /* Deal with RFC 854 WILL/WONT DO/DONT negotiation. */
+--- nc.1.orig	2005-10-11 17:20:57.000000000 -0700
++++ nc.1	2009-08-28 13:03:54.000000000 -0700
+@@ -257,9 +257,16 @@
+ .Sq server
+ and which side is being used as a
+ .Sq client .
+-The connection may be terminated using an
+-.Dv EOF
+-.Pq Sq ^D .
++.Pp
++The connection is terminated when
++.Nm
++gets an end of file (not an EOF character)
++while reading from its standard input.  For example, if
++.Nm
++is reading from a named pipe, closing and reopening
++that named pipe causes
++.Nm
++to disconnect.
+ .Sh DATA TRANSFER
+ The example in the previous section can be expanded to build a
+ basic data transfer model.

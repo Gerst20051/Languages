@@ -1,0 +1,95 @@
+<style>
+#tests{ position: relative; }
+#tests div { position: absolute; height: 5px; width: 5px; background: red; }
+</style>
+<div id="tests"></div>
+<div id="results" style="width:600px;height:300px;"></div>
+<script src="flot/jquery.js"></script>
+<script src="flot/jquery.flot.js"></script>
+<script>
+var numTimers = 1;
+var maxTimers = 128;
+var numRecurses = 100;
+var delay = 0;
+var timer = setInterval; // values: "nsITimer" or setTimeout or setInterval
+var allResults = [];
+
+function startTest(){
+    var done = [];
+    
+    var tests = document.getElementById("tests");
+    tests.innerHTML = "";
+    
+    for ( var i = 0; i < numTimers; i++ ) (function(){
+        var depth = 0;
+        var results = [];
+        var elem = document.createElement("div");
+        tests.appendChild( elem );
+        
+        function timerCall(){
+            if ( timer == "nsITimer" )
+                netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+            
+            if ( depth++ < numRecurses ) {
+                elem.style.left = depth + "px";
+                results.push( (new Date).getTime() );
+                if ( timer === setTimeout )
+                    timer( arguments.callee, delay );
+            } else {
+                done.push( results );
+                
+                if ( interval )
+                    clearInterval( interval );
+                    
+                if ( tmpTimer )
+                    tmpTimer.cancel();
+                
+                if ( done.length == numTimers )
+                    endTest( done );
+            }
+        }
+        
+        if ( timer == "nsITimer" ) {
+            netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+            var tmpTimer = Components.classes['@mozilla.org/timer;1'].
+                createInstance(Components.interfaces.nsITimer);            tmpTimer.initWithCallback({notify: timerCall}, delay,
+                Components.interfaces.nsITimer.TYPE_REPEATING_SLACK);
+        } else
+            var interval = timer(timerCall, delay);
+    })();
+}
+
+function endTest( results ) {
+    var num, total, done = [];
+    
+    for ( var i = 0; i < results.length; i++ )
+        num = diff( results[i] ).length;
+    
+    for ( var i = 0; i < num; i++ ) {
+        total = 0;
+        
+        for ( var r = 0; r < results.length; r++ )
+            total += results[r][i];
+
+        done[i] = [i, total / results.length];
+    }
+    
+    allResults.push({ data: done, label: numTimers + " timers" });
+    
+    numTimers *= 2;
+    
+    if ( numTimers <= maxTimers )
+        startTest();
+    else
+        $.plot($("#results"), allResults, {yaxis: {max: 50}});
+}
+
+function diff( data ) {
+    for ( var i = 1; i < data.length; i++ )
+        data[i - 1] = data[i] - data[i - 1];
+    data.length -= 1;
+    return data;
+}
+
+window.onload = startTest;
+</script>

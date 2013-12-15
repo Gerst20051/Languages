@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Sound Page</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #EBE9ED;
+}
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+	function ChangeSettings(){
+		top.icookies.document.settings.chkPlaySounds.value=document.getElementById('sounds').checked;
+		top.icookies.document.settings.submit();
+	}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<center>
+<p>
+<label><input name="sounds" type="checkbox" id="sounds" value="1" checked>Use system sounds</label>
+</p>
+<p>
+<input name="OK" type="button" id="OK" onClick="ChangeSettings();location='index.htm';" value="OK" style="width:60">
+<input name="Cancel" type="button" id="Cancel3" onClick="location='index.htm';" value="Cancel" style="width:60">
+</p>
+</center>
+				<script language="javascript" type="text/javascript">
+	if(top.document.icookies.document.getElementById('chkPlaySounds').value=='false'){
+		sounds.checked=false;
+	}else{
+		sounds.checked=true;
+	}
+				</script>
+</body>
+</html>

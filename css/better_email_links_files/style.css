@@ -1,0 +1,33 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-size: 62.5%;
+	font-family: Helvetica, sans-serif;
+	background: url(stripe.png) repeat;
+}
+
+#page-wrap {
+	width: 760px;
+	background: white;
+	margin: 0 auto;
+	padding: 30px 30px 100px 30px;
+	background: white url(gradient2-bg.gif) bottom repeat-x;
+}
+
+h1 { font-size: 2.4em; margin-bottom: 0.2em; }
+h2 { font-size: 1.6em; margin-bottom: 0.2em; }
+
+p, code {
+	font-size: 1.5em;
+	margin-bottom: 2.0em;
+}
+
+a {
+	color: #900;
+	text-decoration: none;
+}
+
+a[href^="mailto"]:hover:after { content: " > " attr(title); }

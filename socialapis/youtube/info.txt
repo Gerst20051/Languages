@@ -1,0 +1,24 @@
+/* Different Embed Codes
+&enablejsapi=1&playerapiid=ytplayer&rel=0&autoplay=0&egm=0&loop=1&fs=1&hd=0&showsearch=0&showinfo=0&iv_load_policy=3&cc_load_policy=1
+
+&autoplay=0&loop=1&fs=1&hd=0&showsearch=0&showinfo=1
+
+&version=2&enablejsapi=1&playerapiid=ytplayer&loop=1&autoplay=1&fs=1
+
+&enablejsapi=1&playerapiid=ytplayer&autoplay=0&loop=1&fs=1&hd=0&showsearch=0&showinfo=1
+
+http://www.youtube.com/v/WZ8JjS8DqrQ?fs=1&hl=pt&rel=0&showinfo=0&iv_load_policy=1&cc_load_policy=1&hd=1
+
+&hl=en&fs=0&rel=0&border=1&iv_load_policy=0&showinfo=0&color1=0x5d8217&color2=0x312b2b&autoplay=1
+
+/* Colors */
+Color1 = Border Color2 = Inside
+&color1=0x5d8217&color2=0x312b2b // Gray
+&color1=0x40f2eb&color2=0xf3fb32 // Green&Yellow
+&color1=0xcd0092&color2=0x131410 // Gray&Pink
+&color1=0x87CD00&color2=0xDEFF93 // Green&Yellow
+&color1=0xffffff&color2=0x000000 // White&Black
+&color1=0x181c12&color2=0x181915 // Gray&Black
+&color1=0x87CD00&color2=0xff93bc // Green&Pink
+&color1=0x28a7f0&color2=0x52ccfe // Aqua&Aqua
+*/

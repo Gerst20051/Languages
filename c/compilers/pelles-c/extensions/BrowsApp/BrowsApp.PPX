@@ -1,0 +1,15 @@
+[WEBBROWSER.C]
+[Dispatch.c]
+[ClientSite.c]
+[main.c]
+[Storage.c]
+[Debugger]
+Watch symbols=buffer
+[Windows]
+File1=Storage.c,0,0,759,335,0,0
+File2=main.c,-4,-25,846,451,1,1
+File3=InPlaceSite.c,44,48,803,383,0,0
+File4=InPlaceFrame.c,66,72,825,407,0,0
+File5=Dispatch.c,88,96,847,431,0,0
+File6=ClientSite.c,110,120,869,455,0,0
+File7=WEBBROWSER.C,-4,-25,846,451,1,0

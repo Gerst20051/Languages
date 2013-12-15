@@ -1,0 +1,352 @@
+Flot Reference
+--------------
+
+Consider a call to the plot function:
+
+   var plot = $.plot(placeholder, data, options)
+
+The placeholder is a jQuery object that the plot will be put into.
+This placeholder needs to have its width and height set as explained
+in the README. The plot will modify some properties of the placeholder
+so it's recommended you simply pass in a div that you don't use for
+anything else.
+
+The format of the data is documented below, as is the available
+options. The "plot" object returned has some members you can call.
+These are documented separately below.
+
+Note that in general Flot gives no guarantees if you change any of the
+objects you pass in to the plot function or get out of it. The objects
+may not be deep-copied.
+
+
+Data Format
+-----------
+
+The data is an array of data series:
+
+  [ series1, series2, ... ]
+
+A series can either be raw data or an object with properties. The raw
+data format is an array of points:
+
+  [ [x1, y1], [x2, y2], ... ]
+
+E.g.
+
+  [ [1, 3], [2, 14.01], [3.5, 3.14] ]
+
+The format of a single series object is as follows:
+
+  {
+    color: color or number,
+    data: rawdata,
+    label: string,
+    lines: specific lines options,
+    bars: specific bars options,
+    points: specific points options,
+    shadowSize: number
+  }
+
+You don't have to specify any of them except the data, the rest are
+options that will get default values. Typically you'd only specify
+label and data, like this:
+
+  {
+    label: "y = 3",
+    data: [[0, 3], [10, 3]]
+  }
+
+The label is used for the legend, if you don't specify one, the series
+will not show up in the legend.
+
+If you don't specify color, the series will get a color from the
+auto-generated colors. The color is either a CSS color specification
+(like "rgb(255, 100, 123)") or an integer that specifies which of
+auto-generated colors to select, e.g. 0 will get color no. 0, etc.
+
+The latter is mostly useful if you let the user add and remove series,
+in which case you can hard-code the color index to prevent the colors
+from jumping around between the series.
+
+The rest of the options are all documented below as they are the same
+as the default options passed in via the options parameter in the plot
+commmand. When you specify them for a specific data series, they will
+override the default options for the plot for that data series.
+
+
+Plot Options
+------------
+
+All options are completely optional. They are documented individually
+below, to change them you just specify them in an object, e.g.
+
+  var options = {
+    lines: { show: true },
+    points: { show: true }
+  };
+
+  $.plot(placeholder, data, options);
+
+
+Customizing the legend
+======================
+
+  legend: {
+    show: boolean,
+    labelFormatter: null or (fn: string -> string),
+    labelBoxBorderColor: color,
+    noColumns: number,
+    position: "ne" or "nw" or "se" or "sw",
+    margin: number of pixels,
+    backgroundColor: null or color,
+    backgroundOpacity: number in 0.0 - 1.0,
+    container: null or jQuery object
+  }
+
+The legend is generated as a table with the data series labels and
+small label boxes with the color of the series. If you want to format
+the labels in some way, e.g. make them to links, you can pass in a
+function for "labelFormatter". Here's an example that makes them
+clickable:
+
+  labelFormatter: function(label) {
+    return '<a href="' + label + '">' + label + '</a>';
+  }
+
+"noColumns" is the number of columns to divide the legend table into.
+"position" specifies the overall placement of the legend within the
+plot (top-right, top-left, etc.) and margin the distance to the plot
+edge. "backgroundColor" and "backgroundOpacity" specifies the
+background. The default is a partly transparent auto-detected
+background.
+
+If you want the legend to appear somewhere else in the DOM, you can
+specify "container" as a jQuery object to put the legend table into.
+The "position" and "margin" etc. options will then be ignored.
+
+
+
+Customizing the axes
+====================
+
+  xaxis, yaxis: {
+    ticks: null or ticks array or (fn: range -> ticks array),
+    noTicks: number,
+    tickFormatter: fn: number -> string,
+    tickDecimals: null or number,
+    min: null or number,
+    max: null or number,
+    autoscaleMargin: number
+  }
+
+The two axes have the same kind of options. The most import are
+min/max that specifies the precise minimum/maximum value on the scale.
+If you don't specify a value, it will automatically be chosen by a
+scaling algorithm that is based on perceived reasonable tick values.
+The "autoscaleMargin" is the fraction of margin that the scaling
+algorithm will add to avoid that the outermost points ends up on the
+grid outline. The default value is 0 for the x axis and 0.02 for the y
+axis.
+
+The rest of the options deal with the ticks. If you don't specify any
+ticks, a tick generator algorithm will make some for you based on the
+"noTicks" setting. The algorithm always tries to generate reasonably
+round tick values so even if you ask for 3 ticks, you might get 5 if
+that fits better with the rounding.
+
+You can control how the ticks look like with "tickDecimals", the
+number of decimals to display (default is auto-detected), or by
+providing a function to "tickFormatter". The function gets one
+argument, the tick value, and should return a string. The default
+formatter looks like this:
+
+  function defaultTickFormatter(val) {
+    return "" + val;
+  }
+
+If you want to override the tick algorithm, you can manually specify
+"ticks" which should be an array of tick values, either like this:
+
+  ticks: [0, 1.2, 2.4]
+
+Or like this (you can mix the two if you like):
+
+  ticks: [[0, "zero"], [1.2, "one mark"], [2.4, "two marks"]]
+
+You can disable the ticks by providing an empty array:
+
+  ticks: []
+  
+For extra flexibility you can specify a function as the "ticks"
+parameter. The function will be called with an object with the axis
+min and max and should return a ticks array. Here's a simplistic tick
+generator that spits out intervals of pi, suitable for use on the x
+axis for trigonometric functions:
+
+  function piTickGenerator(axis) {
+    var res = [], i = Math.ceil(axis.min / Math.PI);
+    while (true) {
+      var v = i * Math.PI;
+      if (v > axis.max)
+        break;
+      res.push([v, i + "\u03c0"]);
+      ++i;
+    }
+    
+    return res;
+  }
+
+Note that the scaling and tick algorithms don't work with time series
+yet.
+
+
+Customizing the data series
+===========================
+
+  lines, points, bars: {
+    show: boolean,
+    lineWidth: number,
+    fill: boolean,
+    fillColor: color or null
+  }
+
+  points: {
+    radius: number
+  }
+
+  bars: {
+    barWidth: number
+  }
+
+  colors: [ color1, color2, ... ]
+
+  shadowSize: number
+
+The most important options are "lines", "points" and "bars" that
+specifies whether and how lines, points and bars should be shown for
+each data series. You can specify them independently of each other,
+and Flot will happily draw each of them in turn, e.g.
+
+  var options = {
+    lines: { show: true, fill: true, fillColor: "rgba(255, 255, 255, 0.8)" },
+    points: { show: true, fill: false }
+  };
+
+"lineWidth" is the thickness of the line or outline and "fill" is
+whether the shape should be filled. For lines, this produces area
+graphs. If "fillColor" is null (default), the color for the data
+series is used.
+
+Note that the options that take numbers works in units of pixels, but
+"barWidth" is the width of the bars in units of the x axis to allow
+for scaling.
+
+The "colors" array specifies a default color theme to get colors for
+the data series from. You can specify as many colors as you like, like
+this:
+
+  colors: ["#d18b2c", "#dba255", "#919733"]
+
+If there are more data series than colors, Flot will try to generate
+extra colors by lightening and darkening colors in the theme.
+
+"shadowSize" is the default size of shadows in pixels. Set it to 0 to
+remove shadows.
+
+
+Customizing the grid
+====================
+
+  grid: {
+    color: color,
+    backgroundColor: color or null,
+    tickColor: color,
+    labelMargin: number,
+    clickable: boolean
+  }
+
+The grid is the thing with the two axes and a number of ticks. "color"
+is the color of the grid itself whereas "backgroundColor" specifies
+the background color inside the grid area. The default value of null
+means that the background is transparent. You should only need to set
+backgroundColor if want the grid area to be a different color from the
+page color. Otherwise you might as well just set the background color
+of the page with CSS.
+
+"tickColor" is the color of the ticks and "labelMargin" is the spacing
+between tick labels and the grid.
+
+
+If you set "clickable" to true, the plot will listen for click events
+on the plot are and fire a "plotclick" event on the placeholder with
+an object { x: number, y: number } as parameter when one occurs. The
+returned coordinates will be in the unit of the plot (not in pixels).
+You can use it like this:
+
+    $.plot($("#placeholder"), [ d ], { grid: { clickable: true } });
+
+    $("#placeholder").bind("plotclick", function (e, pos) {
+        // the values are in pos.x and pos.y
+    });
+
+Support for hover indications or for associating the clicks with any
+specific data is still forthcoming.
+
+
+Customizing the selection
+=========================
+
+  selection: {
+    mode: null or "x" or "y" or "xy",
+    color: color
+  }
+
+You enable selection support by setting the mode to one of "x", "y" or
+"xy". In "x" mode, the user will only be able to specify the x range,
+similarly for "y" mode. For "xy", the selection becomes a rectangle
+where both ranges can be specified. "color" is color of the selection.
+
+When selection support is enabled, a "selected" event will be emitted
+on the DOM element you passed into the plot function. The event
+handler gets one extra parameter with the area selected, like this:
+
+  placeholder.bind("selected", function(event, area) {
+    // area selected is area.x1 to area.x2 and area.y1 to area.y2
+  });
+
+
+Plot Members
+------------
+
+The Plot object returned from the plot function has the following
+members:
+
+  - clearSelection()
+
+    Clear the selection rectangle.
+
+  - setSelection(area)
+
+    Set the selection rectangle. The passed in area should have the
+    members x1 and x2 if the selection mode is "x" and y1 and y2 if
+    the selection mode is "y" and both x1, x2 and y1, y2 if the
+    selection mode is "xy", like this:
+
+      setSelection({ x1: 0, x2: 10, y1: 40, y2: 60});
+
+    setSelection will trigger the "selected" event when called so you
+    may have to do a bit of shortcircuiting to prevent an eternal loop
+    if you invoke the method inside the "selected" handler.
+
+  - getCanvas()
+
+    Returns the canvas used for drawing in case you need to hack on it
+    yourself. You'll probably need to get the plot offset too.
+  
+  - getPlotOffset()
+
+    Gets the offset that the grid has within the canvas as an object
+    with the members left, right, top, bottom. I.e., if you draw a
+    circle on the canvas with the center placed at (left, top), its
+    center will be at the top-most, left corner of the grid.

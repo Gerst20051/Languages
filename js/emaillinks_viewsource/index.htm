@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Better Email Links / View Source</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="prettify.js"></script>
+</head>
+<body>
+<div id="page-wrap">
+<h1>Better Email Links / View Source</h1>
+<h2>George Washington</h2>
+<p><a href="mailto:georgewashington@whitehouse.gov" title="georgewashington@whitehouse.gov">Send Email</a></p>
+<h2>John Adams</h2>
+<p><a href="mailto:johnadams@whitehouse.gov" title="johnadams@whitehouse.gov">Send Email</a></p>
+<h2>Thomas Jefferson</h2>
+<p><a href="mailto:thomasjefferson@whitehouse.gov" title="thomasjefferson@whitehouse.gov">Send Email</a></p>
+<br><br>
+<p>This is a pure CSS technique making use of CSS attribute selectors. Here is the code:</p>
+<code>a[href^="mailto"]:hover:after { content: " &gt; " attr(title); }</code>
+<br><br><br>
+<p>In plain english, that reads "When the mouse is over an anchor element with an href attribute that starts with 'mailto', insert a ' &gt; ' and then the text of the title attribute at the end of the link text".</p>
+</div>
+<div id="source-code">
+<a href="index.htm" id="x"><img src="x.png" alt="close"></a>
+</div>
+<a class="view-source-button header-button" href="#source-code" id="view-source">Fancy View Source</a>
+<script>
+if (typeof jQuery == 'undefined') {
+	function getScript(url, success) {
+		var script = document.createElement('script');
+		script.src = url;
+		var head = document.getElementsByTagName('head')[0], done = false;
+		script.onload = script.onreadystatechange = function () {
+			if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) {
+				done = true;
+				success();
+				script.onload = script.onreadystatechange = null;
+				head.removeChild(script)
+			}
+		};
+		head.appendChild(script)
+	}
+	getScript('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', function () {
+		if (typeof jQuery == 'undefined') {} else { fancyCode() }
+	})
+} else fancyCode();
+
+function fancyCode() {
+	$("<pre />", {
+		"html": '&lt;!DOCTYPE html>\n&lt;html>\n' + $("html").html().replace(/[<>]/g, function (m) {
+			return {
+				'<': '&lt;',
+				'>': '&gt;'
+			}[m]
+		}).replace(/((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi, '<a href="$1">$1</a>') + '\n&lt;/html>',
+		"class": "prettyprint"
+	}).appendTo("#source-code");
+	prettyPrint()
+}
+</script>
+</body>
+</html>

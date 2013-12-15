@@ -1,0 +1,11 @@
+drop table if exists t1;
+create table t1 (Tag int not null, Monat int not null,
+Jahr int not null, index(Tag), index(Monat), index(Jahr) );
+insert into t1 values (16,9,1998),(16,9,1998);
+SELECT CONCAT(Jahr,'-',Monat,'-',Tag) AS Date,
+UNIX_TIMESTAMP(CONCAT(Jahr,'-',Monat,'-',Tag)) AS Unix
+FROM t1;
+Date	Unix
+1998-9-16	905904000
+1998-9-16	905904000
+drop table t1;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://pupunzi.com/preloader.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>mb.ideas.repository - web-design, jQuery, design and more</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+	<meta http-equiv="PRAGMA" content="NO-CACHE">
+
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.min.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.mb.sounds.js"></script>
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+	$(function(){
+
+		/*
+		 *
+		 * This to prevent locking of the main page during the preload of heavy elements
+		 *
+		 * */
+
+		/*preload sounds*/
+
+		$.extend($.mbAudio.sounds,parent.mySound);
+		$.mbAudio.preload();
+
+		/*preload images*/
+
+		parent.preloadBgnds(parent.bgnds,
+
+				function(o){
+
+					$("#navigation",window.parent.document).append("<div class='bgndPlaceHolders'/>");
+					for(var i=0;i<o.length;i++){
+						$(".bgndPlaceHolders",window.parent.document).append("<div class='bgndIcon'/>");
+					}
+
+				},
+				function(o){
+				},
+				function(){
+					for(var o in parent.bgnds){
+						var URL=parent.bgnds[o];
+						
+						function loadBgnd(idx,URL){
+							$(".bgndIcon",window.parent.document).eq(idx).addClass("loaded").click(function(){parent.$.changeBackground(URL,false)});
+						}
+
+						loadBgnd(o,URL)
+					}
+				}
+				);
+	})
+
+</script>
+
+
+<audio id="Mureau" preload="auto"><source src="sounds/Cage-John_Mureau_1_1972.mp3" type="audio/mpeg"><source src="sounds/Cage-John_Mureau_1_1972.ogg" type="audio/ogg"></audio><audio id="birds" preload="auto"><source src="sounds/birds.mp3" type="audio/mpeg"><source src="sounds/birds.ogg" type="audio/ogg"></audio><audio id="subway_station_nyc" preload="auto"><source src="sounds/subway_station_nyc.mp3" type="audio/mpeg"><source src="sounds/subway_station_nyc.ogg" type="audio/ogg"></audio><audio id="jaspertine" preload="auto"><source src="sounds/jaspertine_-_pling.mp3" type="audio/mpeg"><source src="sounds/jaspertine_-_pling.ogg" type="audio/ogg"></audio><audio id="naturesoundsfor" preload="auto"><source src="sounds/naturesoundsfor.mp3" type="audio/mpeg"><source src="sounds/naturesoundsfor.ogg" type="audio/ogg"></audio><audio id="light" preload="auto"><source src="sounds/light.mp3" type="audio/mpeg"><source src="sounds/light.ogg" type="audio/ogg"></audio><audio id="untitled" preload="auto"><source src="sounds/Kato_Hideki_and_Urular_Scherrer_-_05_-_Untitled.mp3" type="audio/mpeg"><source src="sounds/Kato_Hideki_and_Urular_Scherrer_-_05_-_Untitled.ogg" type="audio/ogg"></audio></body></html>

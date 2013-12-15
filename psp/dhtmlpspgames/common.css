@@ -1,0 +1,151 @@
+
+
+
+
+
+/* master game frame */
+#gameframe
+{
+	height:252px;
+	width:480px;
+	overflow:hidden;
+	border:none;
+}
+
+/* master game form */
+#gameform
+{
+	background:#000;
+	height:18px;
+	width:478px;
+	border-top:1px solid #666;
+	padding:1px 1px 0 1px;
+}
+
+#gameform input[type="text"]
+{
+	float:right;
+}
+
+
+
+
+
+
+/* core canvas styles */
+*
+{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+}
+
+html, body
+{
+	background:#000;
+	color:#eee;
+	font:normal normal normal 100% sans-serif;
+}
+
+/* downsize CSS for non-PSP browsers */
+body { font-size:80%; }
+html:not(:nth-child(n)) { font-size:100%; }
+
+
+
+
+/* forms */
+fieldset
+{
+	border:none;
+}
+
+
+
+/* links */
+a, a:visited
+{
+	color:#eee;
+	text-decoration:none;
+}
+
+
+
+/* dialogs */
+.dialog
+{
+	visibility:visible;
+	position:absolute;
+	z-index:30000;
+	left:0;
+	top:0;
+	width:480px;
+	height:252px;
+}
+
+.dialog[class~="small"] 
+{
+	background:url(../images/dialog-small.png) no-repeat;
+}
+
+.dialog > span
+{
+	display:block;
+	position:absolute;
+}
+
+.dialog[class~="small"] > span
+{
+	width:165px;
+	height:84px;
+	left:156px;
+	top:77px;
+}	
+
+.dialog > span > em
+{
+	font:normal normal normal 1.9em sans-serif;
+	color:#636;
+	display:block;
+	text-align:center;
+	padding:30px 0 0 0;/** can't use margin here - it moves the parent down as well **/
+}
+
+
+
+
+/* list page */
+#list
+{
+	padding:1em;
+}
+
+#list h2
+{
+	font-size:1.3em;
+	margin:0 0 0 0.2em;
+	font-weight:normal;
+}
+
+#list ul
+{
+	font-size:1.5em;
+	margin:1em 1em 1em 1.5em;
+}
+
+#list li
+{
+	line-height:130%;
+}
+
+
+
+/*** DEBUG output ***/
+#debug
+{
+	position:absolute;
+	left:0;
+	top:236px;
+	z-index:30010;
+	width:480px;
+}

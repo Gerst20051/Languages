@@ -1,0 +1,113 @@
+body, table {
+	font: 11px "Lucida Grande", verdana, arial, helvetica, sans-serif;
+	color:#333333;	
+}
+h1,h2,h3,h4,h5,h6 {
+	color:#0066CC;
+	margin:0;
+	margin-bottom:10px;
+}
+#results, .notice,.hint {
+	width:750px;
+	font-size:1.1em;
+	background-color:#EFEFEF;
+	border:1px solid #CCCCCC;
+	padding:5px;
+}
+.notice,.hint {
+	background-color:#FFF5BF;
+	border:1px solid #FF9900;
+}
+.hint {
+	width:130px;
+	height:15px;
+	font-size:10px;
+	float:right;
+	padding:3px;
+}
+a {
+	color:#0066CC;
+	padding:3px;
+}
+a:hover {
+	color:#000000;
+	text-decoration:none;	
+}
+p {
+	line-height:1.5em;
+	margin-bottom:10px;
+}
+.probe {
+	display:none;
+}
+ul {
+	overflow:hidden;
+	height:20px;
+}
+ul,li {
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+li {
+	float:left;
+	border-right:2px solid #ccc;
+	padding-right:5px;
+	padding-left:5px;
+}
+li.last {
+	border:none;
+}
+table {
+	border-collapse:collapse;
+	width:550px;
+}
+td,th {
+	border:1px solid #CCC;
+	padding:5px;
+	width:100px;
+}
+th {
+	text-align:left;
+	background-color:#FFF;
+}
+tr.open {
+	background-color:#D9F5C8;
+	padding:5px;
+}
+tr.closed, h3.error {
+	background-color:#FF0027;
+	color:#FFFFFF;	
+	padding:5px;
+}
+fieldset {
+	border:1px dotted #CCC;
+}
+fieldset label {
+	float:left;
+}
+fieldset {
+	width:350px;
+}
+fieldset p {
+	clear:both;
+}
+fieldset input,fieldset label {
+	width:100px;
+}
+.submit {
+	color:#D9EEF6;
+	background-color:#0066CC;
+}
+#submissionForm {
+	display:none;
+}
+#startAgain {
+	display:none;
+}
+.digg img {
+	border:none;
+}
+a.digg:hover  {
+	background-color:none;
+}

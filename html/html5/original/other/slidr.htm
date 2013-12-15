@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Slidr - Make your online presentation</title>
+		
+		<!-- Intentionally avoided external CSS and JS :-) -->
+		
+		<style type="text/css">		html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{background:transparent;border:0;font-size:100%;margin:0;outline:0;padding:0;vertical-align:baseline}
+body{line-height:1;overflow:hidden}
+ol,ul{list-style:none}
+blockquote,q{quotes:none}
+blockquote:before,blockquote:after,q:before,q:after{content:none}
+:focus{outline:0}
+ins{text-decoration:none}
+del{text-decoration:line-through}
+table{border-collapse:collapse;border-spacing:0}
+header{background-color:#333;display:block;font-family:Arial;padding:10px}
+header h1{color:#EEE;float:left;font:1em Georgia;font-weight:700;margin-right:30px}
+header h1 span{color:#CCC;font-size:.8em;font-style:italic;margin-left:10px}
+header h1 a{color:#CCC;}
+header a{-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;color:#000;font-weight:700;margin-right:10px;padding:3px 5px;text-decoration:none}
+header a span{-moz-border-radius:10px;-webkit-border-radius:10px;background-color:#000;border-radius:10px;color:#FF0;margin:0 5px;padding:0 5px}
+#panelSwitch{-moz-border-radius:0 0 10px 10px;-webkit-border-radius:0 0 10px 10px;background-color:#444;border-radius:0 0 10px 10px;color:#EEE;display:block;float:right;font:.8em Arial;font-weight:700;margin-right:10px;padding:3px 10px}
+#panelSwitch:hover{color:#FF0;cursor:pointer}
+section.slidr{display:block;margin-top:20px}
+section.slidr article{border:1px solid #888;color:#333;display:block;font:1em Georgia, Serif;font-size:1.5em;height:80%;padding:20px;position:absolute;width:80%}
+section.slidr article ul{line-height:1.5em;list-style:disc;margin:20px 10px 10px 30px}
+section.slidr article h1{color:#000;font:1.5em Georgia, Serif;text-shadow:1px 1px 2px #333}
+section.slidr article.activeSlide{-moz-box-shadow:0 0 5px #555;-webkit-box-shadow:0 0 5px #555;background-color:#EDEDED;background-image: -moz-linear-gradient(top, #FFFFFF, #CCCCCC);background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #FFFFFF),color-stop(1, #CCCCCC));;box-shadow:0 0 5px #555;opacity:1}
+section.slidr article.hiddenSlide{-moz-box-shadow:0 0 0 #555;-webkit-box-shadow:0 0 0 #555;background-color:#EDEDED;box-shadow:0 0 0 #555;opacity:.3}
+header a#add{background-image: -moz-linear-gradient(top, #8EBD62, #B7FF73);background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #8EBD62),color-stop(1, #B7FF73));}
+header a#delete{background-image: -moz-linear-gradient(top, #FF0000, #FF1100);background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #FF0000),color-stop(1, #FF1100));}
+header a#next, header a#prev{background-image: -moz-linear-gradient(top, #CFB82E, #FDEF6B);background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #CFB82E),color-stop(1, #FDEF6B));}
+		</style>
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+var slidr={currentSlideId:1,init:function(){$("#add").bind("click",slidr.addSlide);$("#delete").bind("click",slidr.deleteSlide);$("#next").bind("click",slidr.nextSlide);$("#prev").bind("click",slidr.prevSlide);$("#panelSwitch").bind("click",slidr.togglePanel);$("article").removeClass("activeSlide").addClass("hiddenSlide");$("article:first").removeClass("hiddenSlide").addClass("activeSlide");slidr.currentSlideId=$(".activeSlide").attr("id");slidr.align();$("header").css("margin-top",-32);slidr.togglePanel();},align:function(){var numOfSlides=$("article").size();var currentSlide=$("article:first");var slideLeft=100;for(var i=1;i<=numOfSlides;i++){$(currentSlide).css("left",slideLeft+"px");slideLeft=parseInt($(currentSlide).css("left"))+parseInt($(currentSlide).css("width"))+100;currentSlide=$(currentSlide).next("article");}},addSlide:function(){var lastSlideId=parseInt($("article:last").attr("id"));var crntid=parseInt(slidr.currentSlideId);for(i=lastSlideId;i>crntid;i--){$("#"+i).attr("id",i+1);}var newSlideLeft=parseInt($("#"+crntid).css("left"));var newSlideId=crntid+1;var newSlide="<article contenteditable='true' id='"+newSlideId+"'><h1>Click to edit title</h1><ul><li>Click to edit</li></ul></article>";var firstSlideId=parseInt($("article:first").attr("id"));for(i=firstSlideId;i<=crntid;i++){slidr.moveSlide(i,"backward");$("#"+i).removeClass("activeSlide").addClass("hiddenSlide");}$("#"+crntid).after(newSlide);$("#"+newSlideId).css("left",newSlideLeft);$("#"+newSlideId).addClass("activeSlide");slidr.currentSlideId=newSlideId;},deleteSlide:function(){if($("article").size()==1){alert("Sorry! You can not delete when there's only one slide. Try adding more slides, before deleting this one.");return;}var crntid=parseInt(slidr.currentSlideId);$("#"+crntid).remove();var lastSlideId=parseInt($("article:last").attr("id"));for(i=lastSlideId;i>crntid;i--){$("#"+i).attr("id",i-1);}var firstSlideId=parseInt($("article:first").attr("id"));if(firstSlideId==crntid){for(i=crntid;i<=parseInt($("article:last").attr("id"));i++){slidr.moveSlide(i,"backward");}$("#"+(crntid)).removeClass("hiddenSlide").addClass("activeSlide");slidr.currentSlideId=crntid;}else{for(i=firstSlideId;i<crntid;i++){slidr.moveSlide(i,"forward");}$("#"+(crntid-1)).removeClass("hiddenSlide").addClass("activeSlide");slidr.currentSlideId=crntid-1;}},moveSlide:function(id,direction){var slide=$("#"+id);var currentLeft=parseInt($(slide).css("left"));var newLeft;if(direction=="forward"){newLeft=currentLeft+parseInt($(slide).css("width"))+100;}else{newLeft=currentLeft-parseInt($(slide).css("width"))-100;}$(slide).animate({left:newLeft+"px"});},nextSlide:function(){if($(".activeSlide").next("article").size()==0){alert("No (more) slides to go!");return;}var currentSlide,tempLeft;var numOfSlides=$("article").size();for(var i=1;i<=numOfSlides;i++){slidr.moveSlide(i,"backward");}currentSlide=$(".activeSlide");$(currentSlide).removeClass("activeSlide").addClass("hiddenSlide");$(currentSlide).next("article").removeClass("hiddenSlide").addClass("activeSlide");slidr.currentSlideId=$(".activeSlide").attr("id");},prevSlide:function(){if($(".activeSlide").prev("article").size()==0){alert("No (more) slides to go!");return;}var currentSlide,tempLeft;var numOfSlides=$("article").size();for(var i=1;i<=numOfSlides;i++){slidr.moveSlide(i,"forward");}currentSlide=$(".activeSlide");$(currentSlide).removeClass("activeSlide").addClass("hiddenSlide");$(currentSlide).prev("article").removeClass("hiddenSlide").addClass("activeSlide");slidr.currentSlideId=$(".activeSlide").attr("id");},keyHandler:function(e){var code=e.keyCode?e.keyCode:e.which;if(code==39||code==34){e.preventDefault();slidr.nextSlide();}else{if(code==37||code==33){e.preventDefault();slidr.prevSlide();}}},togglePanel:function(){var newMargin=0;var panelMargin=parseInt($("header").css("margin-top"));if(panelMargin==0){newMargin=-32;$("article").attr("contenteditable","false");$("#panelSwitch").html("Edit Slides");$(document).bind("keyup",slidr.keyHandler);$(document).focus();}else{newMargin=0;$("article").attr("contenteditable","true");$("#panelSwitch").html("Done editing");$(document).unbind("keyup",slidr.keyHandler);$(document).focus();}$("header").animate({marginTop:newMargin+"px"},200);},};$(document).ready(function(){slidr.init();});		
+		</script>
+	</head>
+	<body>
+	
+		<header>
+			<h1> Slidr <span>by <a href="http://veerasundar.com">Veera</a></span> </h1>
+			<a href="javascript:void(0);" id="add" title="Add a new slide *at the end*"><span>+</span>Add new slide</a>
+			<a href="javascript:void(0);" id="delete" title="Delete current slide"><span>x</span>Delete this slide</a>
+			<a href="javascript:void(0);" id="prev" title="Move to previous slide"><span>&lt;</span>Previous</a>
+			<a href="javascript:void(0);" id="next" title="Move to next slide">Next<span>&gt;</span></a>
+		</header>
+		<section id="panelSwitch">Done editing</section>
+		
+		<section class="slidr">
+			
+			<article id="1" contenteditable="true">
+				<h1>Slidr - How to use?</h1>
+				<ul>
+					<li>Click on "Edit Slides" (top-right section), to go into edit mode (if you are not in edit mode already).</li>
+					<li>Click on Slide title/or slide points end edit as you wish.</li>
+					<li>After you are done, click "Done editing" (top-right section).</li>
+					<li>To navigate between slide: Use arrow keys (while not in edit mode) and Use buttons in top panel (while in edit mode).</li>
+					<li>To save, go to File -> Save page as and give a file name.</li>
+					<li>You can use the saved file there after, to give a presentation anywhere. :)</li>
+					<li>*IMPORTANT*: Slidr uses JQuery library. So, either you should be connected to internet or use a local copy of JQuery before using this application. </li>
+				</ul>
+			</article>
+		
+		</section>
+	
+	</body>
+</html>

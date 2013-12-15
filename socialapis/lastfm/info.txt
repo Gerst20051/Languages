@@ -1,0 +1,13 @@
+http://www.last.fm/api
+
+
+http://www.last.fm/api/show?service=298
+
+ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=spain&api_key=b25b959554ed76058ac220b7b2e0a026
+
+http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=united%20states&api_key=b25b959554ed76058ac220b7b2e0a026
+
+
+http://www.last.fm/api/show?service=498
+
+http://ws.audioscrobbler.com/2.0/?method=chart.gettoptracks&api_key=b25b959554ed76058ac220b7b2e0a026

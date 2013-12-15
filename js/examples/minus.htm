@@ -1,0 +1,1061 @@
+
+<!-- saved from url=(0014)http://min.us/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Minus - Share simply.</title>
+
+<meta http-equiv="X-UA-Compatible" content="IE=8;FF=3;OtherUA=4;chrome=1">
+
+<script type="text/javascript" async="" src="./minus_files/ga.js"></script><script type="text/javascript">
+//<![CDATA[
+var IS_DEBUG = false;
+//]]>
+</script>
+<meta name="keywords" content="minus, min.us, min, sharing"> 
+<meta http-equiv="Content-Language" content="en-us"> 
+<meta name="author" content="minus inc"> 
+<meta name="copyright" content="Copyright by MINUS INC. All Rights Reserved."> 
+
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<link rel="image_src" href="">
+<meta name="medium" content="image"> 
+
+<meta name="description" content="Minus helps you create and share galleries online. Drag your pictures and files onto this page, and we&#39;ll do the rest.">
+
+
+
+<link rel="icon" href="http://min.us/smedia/root/favicon2.png"> 
+<link rel="shortcut icon" href="http://min.us/smedia/root/favicon2.png"> 
+
+<link rel="stylesheet" type="text/css" href="./minus_files/editor.css">
+<link rel="stylesheet" type="text/css" href="./minus_files/presenter.css">
+<link rel="stylesheet" type="text/css" href="./minus_files/viewer.css">
+<link rel="stylesheet" type="text/css" href="./minus_files/introduction.css">
+<link rel="stylesheet" type="text/css" href="./minus_files/toolbar.css">
+
+<link rel="stylesheet" href="http://min.us/smedia/jquery/css/ui-cupertino-scoped/jquery-ui-1.7.2.custom.css">
+<link rel="stylesheet" href="http://min.us/smedia/jquery/css/ui-blitzer-scoped/jquery-ui-1.8.5.custom.css">
+<link rel="stylesheet" href="http://min.us/smedia/jquery/css/custom-scrollbar/jquery.mCustomScrollbar.css">
+
+<!--[if lt IE 8]>
+<script src="/smedia/json/json2.js"></script>
+<![endif]-->
+
+<script src="./minus_files/jquery.min.js"></script>
+<script src="./minus_files/jquery-ui-min.js" type="text/javascript"></script>
+<script src="./minus_files/jquery.corner.js" type="text/javascript"></script>
+<script src="./minus_files/jquery.tools.min.js" type="text/javascript"></script>
+<script src="./minus_files/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="./minus_files/jquery.mousewheel.min.js" type="text/javascript"></script>
+<script src="./minus_files/jquery.mCustomScrollbar.js" type="text/javascript"></script>
+<!--<script src="/smedia/flowplayer/flowplayer-3.2.4.min.js" type="text/javascript"></script>-->
+<script src="./minus_files/flowplayer-3.2.6.min.js" type="text/javascript"></script>
+
+
+<script src="./minus_files/functions.js"></script>
+<script src="./minus_files/gallery.js"></script>
+<script src="./minus_files/item.js"></script>
+<script src="./minus_files/menu.js"></script>
+<script src="./minus_files/presenter.js"></script>
+<script src="./minus_files/editor.js"></script>
+<script src="./minus_files/introduction.js"></script>
+<script src="./minus_files/gallerylist.js"></script>
+<script src="./minus_files/ui_tweaks.js"></script>
+<script src="./minus_files/dragndrop.js"></script>
+
+<script src="./minus_files/mdetect.js"></script>
+
+
+<script type="text/javascript" src="./minus_files/recaptcha_ajax.js"></script>
+
+<!--Plupload!-->
+<link rel="stylesheet" href="http://min.us/smedia/plupload/css/plupload.queue.css">
+<script type="text/javascript" src="./minus_files/plupload.full.min.js"></script>
+<script type="text/javascript" src="./minus_files/jquery.plupload.queue.min.js"></script>
+
+<style type="text/css">
+    .title .show_filelist_container{
+        position: absolute;
+        right: 20px;
+        top: 25%;
+    }
+    .title .hide_filelist_container{
+        position: absolute;
+        right: 20px;
+        top: 25%;
+    }
+    .body .show_filelist_container{
+        width: 230px;
+        padding: 5px;
+        text-align: right;
+    }
+    .show_filelist_container .show_filelist{
+        text-decoration: none;
+    }
+    .show_filelist_container .show_filelist img{
+        border: none;
+    }
+    .body .hide_filelist_container{
+        width: 230px;
+        padding: 5px;
+        text-align: right;
+    }
+    .hide_filelist_container .hide_filelist{
+        text-decoration: none;
+    }
+    .hide_filelist_container .hide_filelist img{
+        border: none;
+    }
+    .access-url{
+        /*width: 223px;*/
+    }   
+</style>
+
+<!--Plupload-->
+<style type="text/css">
+.plupload_droptext{
+    display: none;
+  }
+</style>
+
+<script src="./minus_files/jquery.address-1.3.2.min.js" type="text/javascript"></script>
+<script src="./minus_files/waypoints.min.js"></script>
+
+<style type="text/css">
+  #pluploader .plupload_filelist{
+    height: 80px !important;
+  }
+body {
+  height: auto;
+  overflow:auto;
+}
+</style>
+
+<script type="text/javascript">
+$(function() {
+$('#no_javascript').hide();
+});
+
+var FILES_IN_QUEUE = 0;
+function load() {
+  var isMobile = DetectMobileQuick();
+  if (isMobile){
+	var mob_html = "<div style='text-align:center;'>";
+	mob_html += "<img id='main_logo_hover' style='cursor: pointer; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-top-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-color: rgb(255, 255, 255); border-style: initial; ' src='/smedia/minus/minlogo.png'><br /><div style='border:1px solid #999;margin:12px 7px 7px 7px; padding:15px;border-radius:10px;text-align:left;'>";
+	mob_html += "<div style='font-size:26px;font-family:Arial, Helvetica, sans-serif;'>";
+	mob_html += "<p>Install Minus on your mobile phone to start sharing.</p>";
+	mob_html += '<p><a href="https://market.android.com/details?id=com.minus.android">Android</a><br/>iPhone/iPad/Touch (coming soon)<br/>Windows Mobile 7 (coming soon)<br/>Blackberry (coming soon)</p>';
+	mob_html += "<p>Be sure to visit our <a href='http://blog.min.us' target='_blank'>Blog</a> | Follow <a href='http://twitter.com/mindotus' target='_blank'>@mindotus</a> | Like us on <a href='http://www.facebook.com/mindotus' target='_blank'>Facebook</a></p>";
+	mob_html += "</div>";
+	mob_html += "</div>";
+	$('body').html(mob_html);
+    return;
+  }
+
+  var gallery = new Gallery();
+  gallery.INITIAL_SCREEN  = true;
+  gallery.IS_EDITOR  = true;
+  gallery.LIGHT_MODE = true;
+  gallery.USER = '';
+  var introduction = new Introduction(gallery);
+  var editor = new Editor(gallery, '', 'False');  
+  var presenter = new Presenter(gallery, document.body);
+  var menu = new Menu(gallery, {"mocklists": [], "sign_out_url": "/signouturl", "signed_in": true, "name": "", "sign_in_url": "/signinurl"}, 0, '', '', false, '');
+  
+  $('div.dm-editor-status').html('').hide();
+  $('div.presentation').append($('.main_logo_wrapper').hide().clone().show());
+  
+  misc_main_logo_hover();
+  misc_html_fixups();
+  
+  // var ad = new SlideAds('Something is new in here!', '#');  
+}
+
+$(document).ready( function() { 
+  load();
+});
+
+</script>
+
+</head>
+<body style="width:100%; height:100%; margin:0;">
+
+<script type="text/javascript">
+$(function() {
+  $('#no_javascript').hide();
+});
+</script>
+
+<noscript>
+&lt;div id="no_javascript"&gt;
+&lt;h2&gt;Javascript is disabled on your browser&lt;/h2&gt;
+&lt;p&gt;Please enable Javascript to use Minus.&lt;/p&gt;
+&lt;/div&gt;
+</noscript>
+
+<div id="intro-bg" class="compat">
+  <div id="introduction" class="intro-messagebubble" style="display: block; top: 20%; margin-top: -80px; opacity: 1; ">
+    <div class="p2 compat" style="font-size:16px;">
+	  
+	  <div id="intro_video" href="/smedia/minus/video/intro.flv"><object width="100%" height="100%" id="intro_video_api" data="http://min.us/smedia/flowplayer/swf/flowplayer.commercial-3.2.6.swf" type="application/x-shockwave-flash"><param name="allowfullscreen" value="true"><param name="allowscriptaccess" value="always"><param name="quality" value="high"><param name="cachebusting" value="false"><param name="bgcolor" value="#000000"><param name="wmode" value="opaque"><param name="flashvars" value="config={&quot;key&quot;:&quot;#$ab43ecaa1713df1d5c7&quot;,&quot;clip&quot;:{&quot;autoPlay&quot;:true,&quot;url&quot;:&quot;/smedia/minus/video/intro.flv&quot;},&quot;plugins&quot;:{&quot;controls&quot;:{&quot;buttonOverColor&quot;:&quot;#000000&quot;,&quot;backgroundColor&quot;:&quot;#CCCCCC&quot;,&quot;backgroundGradient&quot;:&quot;none&quot;,&quot;sliderColor&quot;:&quot;#FFFFFF&quot;,&quot;sliderBorder&quot;:&quot;1px solid #808080&quot;,&quot;volumeSliderColor&quot;:&quot;#FFFFFF&quot;,&quot;volumeBorder&quot;:&quot;1px solid #808080&quot;,&quot;timeColor&quot;:&quot;#000000&quot;,&quot;durationColor&quot;:&quot;#737373&quot;}},&quot;playerId&quot;:&quot;intro_video&quot;,&quot;playlist&quot;:[{&quot;autoPlay&quot;:true,&quot;url&quot;:&quot;/smedia/minus/video/intro.flv&quot;}]}"></object></div>
+	  <div id="signup_msg" style="">
+		<input id="signup_btn" type="button" value="Sign Up for Minus"><br>
+		Simple, free and instant sharing.
+		</div>
+      <center id="howtotext" class="guest_mode">To share as a guest, drag your files onto this page <span class="browse_opened" style="display:none;"> or select</span><span class="browse_section">or <a id="more_options" href="http://min.us/#">select</a></span>.</center>
+	  
+	  
+	  <div id="intro_video_below" style="height:84px;"></div>
+	  
+	  <div id="lowbrowser" class="p2 uncompat"><p>Sorry, our uploader doesn't yet work on your browser (which doesn't support drag and drop file uploads). <a href="http://www.google.com/landing/chrome/beta/">Chrome 6</a> or <a href="http://www.mozilla.com/firefox/beta/">Firefox 4</a> will work best.</p>e</div>  
+	</div>
+  </div>
+  <div style="clear:both; height:0;"></div>
+</div>
+<div id="intro-bg2" style="display: none; ">
+  <div id="introduction2" class="intro-messagebubble" style="display: none; ">
+  </div>
+</div>
+
+<div id="feed_user_container">
+
+</div>
+
+<div id="upload_more_dialog" style="display:none;">
+	<div class="transBg"></div>
+	<div id="upload_more_wrapper">
+	<form id="plupload_form2" enctype="multipart/form-data">
+		<div id="pluploader_more" style="width:100%;margin-top:5px;border:solid 1px #aaa;padding:0;">
+			<p>You browser doesn't have Flash, Silverlight, Gears, BrowserPlus or HTML5 support.</p>
+		</div>
+		<div id="upload_close" style="color:#0044CC;padding:10px 0 0 0;margin-left:-15px;text-align:center;cursor:pointer;display:block;height:29px;font-size:11px;">
+			<span style="">Close</span>
+		</div>
+	</form>
+	</div>
+</div>
+
+<script type="text/javascript">
+$(function() {
+/*
+	//$('#upload_more_link').click(function() {
+	$('#upload_more_link').live('click', function() {
+		//$('#upload_more_dialog').dialog('open');
+		$('#upload_more_dialog').show();
+		window.console.log('uploader show');
+		$("#pluploader_more").pluploadQueue({
+			// General settings
+			runtimes : 'html5, flash, html4', 
+			url : '/api/plupload/',
+			unique_names : false,
+			multipart: true,
+			max_file_size : '1200mb',
+			flash_swf_url : '/smedia/plupload/js/plupload.flash.swf',
+			preinit: function(uploader) {
+				uploader.bind('QueueChanged', function(up) {
+					FILES_IN_QUEUE = uploader.files.length;
+				});
+				uploader.bind('FileUploaded', function(up, f, resp) {
+					FILES_IN_QUEUE = FILES_IN_QUEUE - 1;
+					if(FILES_IN_QUEUE===0) {
+						window.location.href='/api/upload_done'
+					}
+					else {
+					}
+				});
+				uploader.bind('UploadFile', function(up, f) {				
+				});
+				uploader.bind('Init', function(up, params) {
+				});	
+				uploader.bind('PostInit', function(up) {
+					$("#pluploader_more").find('.plupload_container').removeAttr('title');
+				});
+			}
+		});
+	});
+	*/
+	$('#upload_more_dialog .transBg, #upload_close').click(function() {
+        $('#upload_more_dialog').hide();
+	});
+	$('#upload_close span').hover( 
+		function() {
+			$(this).css('text-decoration','underline');
+		},
+		function() {
+			$(this).css('text-decoration','none');
+		}
+	);
+});
+</script>
+
+<script type="text/javascript">
+//<![CDATA[
+$(function() {
+  var whats_new = '';
+  show_announcement(whats_new);
+});
+//]]>
+</script>
+
+<div id="announcement" style="display:none;">
+<div class="announcement_container"></div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-18817430-1']);
+  _gaq.push(['_trackPageview']);
+  
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  var page_load_start = new Date();
+
+  window.onload =  function() {
+    var page_load_end = new Date();
+    var load_time = page_load_end.getTime() - page_load_start.getTime();
+    load_time = parseInt( load_time / 100 )*100;
+    _gaq.push(["_setCustomVar",1,'pageRenderingTime',load_time,2]);
+    _gaq.push(["_setAccount","UA-18817430-1"]);
+    _gaq.push(["_trackPageview"]);
+  };
+//]]>
+</script>
+
+<div id="toolbar_container" style="z-index:10000;">
+	
+	<div id="minus_toolbar" style="z-index: 10000; ">
+		<div id="toolbar_left" style="float: left;">
+			<div id="toolbar_copyright" style="float: left;">
+				<div class="content">
+				Minus © 2011
+				·  
+				<a href="http://blog.min.us/category/updates/">v2.00</a>
+				</div>
+				<div class="divider"></div>
+			</div>
+			<div id="toolbar_links" style="float: left;">
+			<div class="content">
+			  <a href="http://min.us/pages/about">About</a>
+			· <a href="http://blog.min.us/" style="font-weight:bold">Blog</a>
+			· <a href="http://min.us/pages/faq">FAQ</a>
+			· <a href="http://feedback.min.us/">Forum</a>
+			· <a href="http://min.us/pages/tools">Tools</a>
+			· <a href="http://min.us/pages/api">API</a>
+			· <a href="http://min.us/pages/tos">Terms</a>
+			· <a href="http://min.us/pages/contact">Contact</a>
+			</div>
+			</div>
+			<div class="divider"></div>
+		</div>
+
+		<div style="float: left; margin-left: 178px; " id="toolbar_middle"><div class="divider"></div><div class="option_button button darker_button" id="option_background" option_description="Lights Off"><img src="./minus_files/dark-mode.png"><img src="./minus_files/light-mode.png" style="display: none; "></div><div class="divider"></div></div>
+		<div style="float:right;" id="toolbar_menu"><div class="divider"></div><div class="menu_button button" id="menu_home_button"><a id="menu_home_link" class="menu_button_text active" href="./minus_files/minus.htm">Home</a><span id="menu_home_link_active" class="menu_button_text active no_link" style="display: inline; ">Home</span></div><div class="divider"></div><div class="menu_button button"><span id="me_guest_btn" class="menu_button_text">Me</span></div><div class="divider"></div><div class="menu_button button"><a id="menu_mine_link" class="menu_button_text" href="http://min.us/mine">Mine</a><span id="menu_mine_link_active" class="menu_button_text active no_link" style="display: none; ">Mine</span></div><div class="divider"></div><div class="menu_button button"><span class="menu_button_text sign_in_button">Sign In</span><span class="menu_button_text register_button fancy_button"><span>Sign Up</span></span><span class="menu_button_text sign_out_button" style="display: none; ">Sign Out</span></div></div>
+		<div style="clear:both;height:0;"></div>
+	</div>
+</div>
+<div class="login_dialog_package" style="display:none;">
+
+<div class="transBg" style="z-index:12000;"><!----></div>
+<div id="login_dialog" style="">
+ 
+ <div id="login_dialog_inside" style="width:720px; overflow-y:auto;">
+ <fieldset>
+ 
+ <div class="create">
+	<form id="create_account_form">
+			<h3>Sign Up</h3>
+	<label>Sign up to enjoy all the features. <br>All it takes is a username and password.<br> <br></label>
+	
+	<div>
+		<label>Username: <span class="error_msg username_error" style="display:none;">This username is already taken.</span><span class="error_msg ajax_error" style="display:none;">Error. Please try again.</span></label>
+		<input tabindex="1" class="single input_username" type="text" size="24" name="username">
+		<div class="register_user_link">http://min.us/u/<span class="curr_username available">USERNAME</span></div>
+		<div class="register_user_status">
+			<span class="user_desc no_error">Letters, numbers, periods and dashes only.</span>
+			<span class="curr_status"></span>
+		</div>
+	</div>
+	
+	<div>
+		<label>Email <em>(optional)</em>: <span class="error_msg email_error" style="display:none;">This email not valid.</span></label>
+		<input tabindex="2" class="single input_email" type="text" size="24" name="email">
+	</div>
+	
+	<div>
+		<label>Password: <span class="error_msg password_error" style="display:none;">The passwords do not match.</span></label>
+		<input tabindex="3" class="single input_password1" type="password" size="24" name="password1">
+	</div>
+	
+	<div>
+		<label>Verify password: <span class="error_msg password_error2" style="display:none;">The passwords do not match.</span></label>
+		<input tabindex="4" class="single input_password2" type="password" size="24" name="password2">
+	</div>
+	
+	<div>
+		<label>Are you human? <span class="error_msg captcha_error" style="display:none;">Care to try again?</span></label>
+		
+<div id="recaptcha_block"></div>
+
+	</div>
+	
+	<div style="display:none;">
+		<input type="checkbox" name="remember" value="yes">
+		<label class="check">remember me</label>
+	</div>
+
+	<div>
+		<input tabindex="5" class="create_account_button" type="submit" value="Create Account">
+		<span class="submitting_img" style="display:none;"><img src="./minus_files/ajax-loader.gif"></span>
+	</div>
+	</form>
+ </div><!--create-->
+ 
+ <div class="logged">
+	<form class="login_form">
+		<h3>Sign In</h3>
+<label>Already have an account and just want to sign in?<br><br></label>
+<div>
+	<label>Username: <span class="error_msg username_error" style="display:none;">This username is already taken.</span></label>
+	<input class="single input_username" type="text" size="24" name="username">
+</div>
+
+<div>
+	<label>Password:  <span class="error_msg password_error" style="display:none;">The passwords do not match.</span></label>
+	<input class="single input_password1" type="password" size="24" name="password1">
+</div>
+
+<div style="display:none;">
+	<input type="checkbox" name="remember" value="yes">
+	<label class="check">remember me</label>
+</div>
+<div>
+	<input class="login_button" type="submit" value="Sign In">
+	<span class="recover_password" style="cursor: pointer;">Forgot Password?</span>
+</div>
+	</form>
+	
+	<!-- recover password form -->
+	<div style="display:none;" id="recover_password_div">
+	<form id="recover_password_form" method="post">
+			
+	<div>
+		<label>Username: <span class="error_msg" style="display:none;"></span></label>
+		<input class="single input_username" type="text" size="24" name="username">
+	</div>
+
+	<div>
+		<input class="recover_password_button" type="submit" value="Email Me">
+		<span class="submitting_msg" style="display:none;">Submitting...</span>
+	</div>
+	</form>
+	</div>
+
+ </div><!--logged-->
+</fieldset>
+	<div class="close_button" style="color:#0044CC;padding-left:0px;margin-left:-15px;text-align:center;cursor:pointer;display:block;height:21px;font-size:11px;">
+	<span>Close
+	</span>
+	</div>
+	</div><!-- wrapper-->
+</div><!--login-->
+
+</div> <!-- class='login_dialog_package'-->
+
+
+
+<script type="text/javascript">
+var default_login_dialog_height = 0;
+
+function show_confirm(text) {
+	$('.confirmcontainer .confirm_text').html(text);
+	$('div.confirm').fadeIn(1000, function() {
+		$(this).animate({ dummy: 1 }, 2000, function() {
+			hide_confirm();
+		});				
+	});
+}
+
+function hide_confirm() {
+	$('div.confirm').fadeOut(2000);
+	//effect('slide',{ direction: "up" , mode: 'hide'});
+}
+
+function dialog_resize() {
+	var login_dialog = $('#login_dialog');
+	var login_dialog_inside = $('#login_dialog_inside');
+	var window_height = $(window).height();
+	var dialog_height = login_dialog.height();
+	
+	if (login_dialog.is(':visible')) {
+	  if (default_login_dialog_height === 0) {
+		  default_login_dialog_height = dialog_height + 5;
+	  }
+	
+	  if (default_login_dialog_height !==0 && default_login_dialog_height < (window_height-20)) {
+		  login_dialog.height(default_login_dialog_height);
+		  login_dialog_inside.height(login_dialog.height());
+	  } else {
+		  login_dialog.height(window_height - 50);
+		  login_dialog_inside.height(window_height - 50);
+	  }
+	
+	  login_dialog.css('margin-top', -login_dialog.height()/2);
+	  login_dialog.css('position', 'absolute').css('z-index', '12500');
+	}
+}
+
+function bind_sign_in_button_helper() {
+		zindex_orig = $('#toolbar').css('z-index');
+		if (zindex_orig == 0) {
+		  zindex_orig = 10000;
+		}
+		$('#toolbar').css('z-index', '');
+		make_new_captcha("recaptcha_block");
+
+		//#138
+		var login_dialog = $('#login_dialog');
+        $('div.login_dialog_package').show();
+		$('form.login_form').find('input[name=username]').focus();
+		login_dialog.css('margin-top', -login_dialog.height()/2);
+	    login_dialog.css('position', 'absolute');
+        //dialog_resize();
+   		
+		save_event('open_login');
+}
+
+function show_username_requirements(form_id) {
+	$('#' + form_id + ' .user_desc').removeClass('no_error').addClass('error').show();
+	$('#' + form_id + ' .curr_username').removeClass('available').addClass('taken');
+	$('#' + form_id + ' .curr_status').attr('class', 'taken');
+	$('#' + form_id + ' .curr_status').hide();
+}
+
+function signin_user($form, parent_selector) {
+	var form_info = $form.serialize();	
+	$.ajax({
+		type: "POST",
+		data: form_info,
+		url: "/api/login/login",
+		cache: false,
+		dataType: "json",
+		async: true,
+		success: function(json, textStatus) {	
+			$(parent_selector + ' .error_msg').hide();
+			if(json.username) {					
+				$(parent_selector + ' .username_error').html(json.username).show();
+			}
+			if(json.password) {
+				$(parent_selector + ' .password_error').html(json.password).show();
+			}
+			if(json.success) {
+				window.location.href = '/';  // redirect_after_signin
+			}
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			// window.console.log(XMLHttpRequest.responseText);
+		}
+	});
+}
+
+function signup_user($form, parent_selector, recaptcha_id) {
+	var form_info = $form.serialize();
+	var form_id = $form.attr('id');
+	var after_submit_func = function() {
+	  $form.find('input').attr('disabled', false);
+	  $form.find('.submitting_img').hide();
+	}.bind($form);
+	var curr_username = $form.find('input[name="username"]').val();
+	var valid_username = validate_username(curr_username);
+	if (valid_username) {
+	  $.ajax({
+		type: "POST",
+		data: form_info,
+		url: "/api/login/register",
+		cache: false,
+		dataType: "json",
+		async: true,
+		beforeSend: function() {
+			$(parent_selector + ' .ajax_error').hide();
+			$(parent_selector + ' .error_msg').hide();
+			$form.find('input').attr('disabled', true);
+			$form.find('.submitting_img').show();
+		}.bind($form),
+		success: function(json, textStatus) {
+			after_submit_func();
+			$(parent_selector + ' .error_msg').hide();
+			if(json.username) {					
+				$(parent_selector + ' .username_error').html(json.username).removeClass('available').show();
+				$('#' + form_id + ' .curr_username').removeClass('available').addClass('taken');
+			} else {
+				$(parent_selector + ' .username_error').text('This username is available.').addClass('available').show();
+				$('#' + form_id + ' .curr_username').removeClass('taken').addClass('available');
+			}
+			if(json.password) {
+				$(parent_selector + ' .password_error').html(json.password).show();
+			}
+			if(json.email) {
+				$(parent_selector + ' .email_error').html(json.email).show();
+			}
+			if(json.recaptcha) {
+				$(parent_selector + ' .captcha_error').html(json.recaptcha).show();
+			}
+			make_new_captcha(recaptcha_id) ;
+			if(json.success) {
+				window.location.href = '/';
+			}
+		},
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
+			after_submit_func();
+			$(parent_selector +' .ajax_error').show();
+			// window.console.log(XMLHttpRequest.responseText);
+		}
+	  });
+	} else {
+	  if (curr_username.length > 0) {
+		show_username_requirements(form_id);
+	  }
+	}		
+}
+
+function bind_sign_in_button() {
+    var zindex_orig;
+	$('span.sign_in_button').unbind('click').click(function() {
+	  bind_sign_in_button_helper();
+	  $('form.login_form .input_username').focus();
+	});
+	$('span.register_button, #signup_btn, #me_guest_btn').unbind('click').click(function() {
+	  bind_sign_in_button_helper();
+	  $('form#create_account_form .input_username').focus();
+	});
+	$('span.sign_out_button').unbind('click').click(function() {
+		window.location.href='/api/login/signout';
+	});
+	$('div.close_button').unbind('click').click(function() {
+	    $('#toolbar').css('z-index', zindex_orig);
+		$('div.login_dialog_package').hide();
+		$('#recover_password_div').hide();
+		$('#recover_password_div .error_msg').text('').hide();
+		document.getElementById('recover_password_form').reset();
+		save_event('closed_login');
+	});
+	$('div.login_dialog_package .transBg').unbind('click').click(function() {
+	    $('#toolbar').css('z-index', zindex_orig);
+		$('div.login_dialog_package').hide();
+		$('#recover_password_div').hide();
+		$('#recover_password_div .error_msg').text('').hide();
+		document.getElementById('recover_password_form').reset();
+		save_event('closed_login');
+	});
+	$('input.input_password2').unbind('click').keydown(function(event){
+		if(event.keyCode=='9') { // tab
+			$('input#recaptcha_response_field').focus();
+			event.preventDefault();
+		}
+	});
+	$('div#login_dialog form#create_account_form').unbind('submit').submit(function(event) {
+		signup_user($(this), 'div.create', 'recaptcha_block');
+		event.preventDefault();
+        return false;
+    });
+	
+	$('div#login_dialog div.logged form.login_form').unbind('submit').submit(function(event) {
+	  signin_user($(this), 'div.logged');
+	  event.preventDefault();
+	  return false;
+	});
+	
+	$('div.logged .recover_password').click(function(event) {
+	  $('div.logged #recover_password_div').show();
+	  $('form#recover_password_form input[name=username]').focus();
+	  event.preventDefault();
+	});
+
+	if (window.onresize) {
+		var oldresize = window.onresize;
+		window.onresize = function() {
+			oldresize();
+			dialog_resize();
+		};
+	} else {
+		window.onresize = dialog_resize;
+	}
+	
+	//});
+}
+
+function make_new_captcha(elem_id) {
+	Recaptcha.create("6LehVb4SAAAAAFK5hD24TMNt0Efv_FOXkF0nBzNQ",
+		elem_id,
+		{
+			theme: "clean",
+			tabindex: 5,
+			callback: function() {
+			  // #138
+			  //$('div.login_dialog_package').show();
+			  //$('form.login_form').find('input[name=username]').focus();
+			  dialog_resize();
+			}		
+		}
+	);		
+}
+
+var register_funcs = {};
+
+register_funcs.bind_username_input = function(form_id, parent_selector) {
+  $('#' + form_id + ' input[name=username]').keyup(function(e) {
+    var curr_val = $(this).val();
+	var curr_username = $('#' + form_id + ' .curr_username');
+	curr_username.text(curr_val);
+	
+	$(parent_selector + ' .username_error').hide();
+	  
+	if (!validate_username(curr_val)) {
+	  show_username_requirements(form_id);
+	} else {
+	  curr_username.removeClass('taken').addClass('available');
+	  $('#' + form_id + ' .user_desc').removeClass('error').addClass('no_error');
+	}
+  });
+};
+
+function recoverpass_user($form, is_popup) {
+	var form_info = $form.serialize();
+	var error_msg_span = $form.find('.error_msg');
+	if ($form.find('input[name=username]').val().length == 0) {
+	  error_msg_span.text('A username is required.').show();
+	  return false; 
+    }
+	var after_submit_func = function() {
+	  $form.find('input').attr('disabled', false);
+	  $form.find('.submitting_msg').hide();
+	};
+	$.ajax({
+	  type: 'POST',
+	  data: form_info,
+	  dataType: 'text',
+	  url: '/api/password_reset_request',
+	  beforeSend: function() {
+	    $form.find('input').attr('disabled', true);
+		$form.find('.submitting_msg').show();
+	  },
+	  success: function(text, text_status, xml_req) {
+		after_submit_func();
+	    if (text.length == 0) {
+		  $form.find('input[name=username]').val('');
+		  if (is_popup) {
+		    $('#recover_password_div').hide();
+		    $('div.login_dialog_package').hide();
+		    $('#recover_password_div .error_msg').text('').hide();
+		  }
+		  show_confirm('You will receive password instructions in your email shortly.');
+		} else {
+		  // display error
+		  error_msg_span.text(text).show();
+		}
+	  },
+	  error: function() {
+		after_submit_func();
+	    error_msg_span.text('Error.').show();
+	  }
+	});
+}
+
+$(document).ready(function() {
+	bind_sign_in_button();
+	register_funcs.bind_username_input('create_account_form', 'div.create');
+	
+	
+  $('div.login_dialog_package form#recover_password_form').submit(function(event) {
+	recoverpass_user($(this), true);
+    event.preventDefault();
+	return false;
+  });
+});
+</script>
+
+
+<!--<div class='main_logo_wrapper' style='width:80px;position:absolute; top:10px; left:10px;display:none;'>-->
+<!--<div class='main_logo_wrapper' style='width:80px;position:absolute; top:10px; left:10px; z-index:3000;'>-->
+<!--<div class='main_logo_wrapper' style='width:100%;position:fixed; top:0;left:0;padding-top:10px; padding-left:10px; z-index:3000;'>-->
+
+<div class="main_logo_wrapper" style="width: 100%; position: fixed; top: 0px; left: 0px; padding-top: 10px; padding-left: 10px; display: none; ">
+<a href="./minus_files/minus.htm" style="border:0px #fff;" alt="Minus">
+<img id="main_logo" style="cursor:pointer;border:0px #fff;" src="./minus_files/logo_small.png">
+<img id="main_logo_hover" style="cursor:pointer;display:none;border:0px #fff;" src="./minus_files/logo_hover_small.png">
+</a>
+</div>
+<div id="drag_indicator" style="display:none;">
+<div class="bg"></div>
+<div class="inside">
+<h1>Start sharing.</h1>
+</div>
+</div>
+
+<script>
+//<![CDATA[
+$(function(){ 
+  $('.gallery_feed').live('mouseenter', function() {
+    $(this).find('img').css('visibility', 'visible');
+	$(this).find('.delete').show();
+  });
+  $('.gallery_feed').live('mouseleave', function() {
+    $(this).find('img').css('visibility', '');
+	$(this).find('.delete').hide();
+  });
+  $('.gallery_feed').live('click', function() {
+    if ($(this).attr('href')) {
+      window.location.href = $(this).attr('href');
+	}
+  });
+  
+  $('#feed_next_page').appendTo('#feed_user_container');
+  $('#visited_next_page').appendTo('#feed_user_container');
+  
+  $("img").error(gal_thumb_on_error);
+  
+  var no_feed = $('.no_feed');
+  var $feed_main = $('#feed_main');
+  var $visited_main = $('#visited_main');
+  var $timeline_tab = $('#timeline_tab');
+  var $visited_tab = $('#visited_tab');
+  var feed_end = $('#feed_end');
+  var $visited_end = $('#visited_end');
+  //var opts = {offset: '100%'};
+  var opts = {offset: 'bottom-in-view'};
+  var img = $('<img>', {'src': '/smedia/minus/images/ajax-loader-circle-gray.gif'});
+  var loading = $('<div>', {'class': 'loading_more'}).append(img).append(' Loading more galleries...');
+  
+  var feed_waypoint_func = function(event, direction) {
+	  if ($feed_main.is(':visible') && isScrolledIntoView(this)) {
+	    if ($feed_main.attr('gal_stat') == 'new_query') {
+		  $feed_main.attr('gal_stat', '');
+		}
+		var $feed_next_page = $('#feed_next_page');
+		if ($feed_next_page.length == 0) {
+		  $feed_next_page = $('<a>', {'href': '/feed/1', 'style': 'display:none;'});
+		}
+        feed_end.waypoint('remove');
+	    $.get($feed_next_page.attr('href'), function(data) {
+	      var $data = $(data);
+	      var new_galleries = $data.find('.gallery_feed');
+		  var new_images = $data.find('img');
+		  new_images.error(gal_thumb_on_error);
+	      if (new_galleries.length > 0) {
+            $('#feed_main').append(new_galleries);
+			if ($('#feed_next_page').length == 0) {
+			  $('#feed_user_container').append($data.find('#feed_next_page'));
+			} else {
+			  $feed_next_page.replaceWith($data.find('#feed_next_page'));
+			}
+			if ($feed_main.is(':visible')) {
+	  	      feed_end.waypoint(opts);
+			}
+	      } else {
+		    if ($('#feed_next_page').length == 0 && $('#feed_main').find('.no_feed').length == 0) {
+			  $('#feed_main').append($(data).find('.no_feed'));
+			} else {
+			  $('#feed_main').attr('gal_stat', 'no_more');
+			}
+	      }
+	    });
+	  }
+    };
+	
+  var visited_waypoint_func = function(event, direction) {
+	  // oldScroll value from waypoint is triggering this function, when first waypoint is triggered from feed_end, 
+	  // to prevent this, check if the visited_end is visible in the window...
+	  if ($visited_main.is(':visible') && isScrolledIntoView(this)) { 
+	    $visited_end.waypoint('remove');
+		var $visited_next_page = $('#visited_next_page');
+		var first_query = false;
+		var href = '';
+		if ($visited_next_page.length == 0) {
+		  first_query = true;
+		  href = '/visited/1';
+		} else {
+		  href = $visited_next_page.attr('href');
+		}
+		$.get(href, function(data) {
+		  var $data = $(data);
+		  var new_galleries = $data.find('.gallery_feed');
+		  new_galleries.find('img').error(gal_thumb_on_error);
+		  if (new_galleries.length > 0) {
+			$('#visited_main').append(new_galleries);
+			var new_link = $data.find('#visited_next_page');
+			if (first_query) {
+			  $('#feed_user_container').append(new_link);
+			} else {
+			  $visited_next_page.replaceWith(new_link);
+			}
+			if ($visited_main.is(':visible')){
+			  $visited_end.waypoint(opts);
+			}
+		  } else {
+		    if (first_query) {
+			  $visited_main.append($data.find('.no_visited'));
+			}
+		    $visited_main.attr('gal_stat', 'no_more');
+		  }
+		});
+	  }
+	};
+  
+  if (no_feed.length == 0) {
+    feed_end.waypoint(feed_waypoint_func, opts);
+  }
+  //$visited_end.waypoint(visited_waypoint_func, opts);
+  
+  var timeline_tab_func = function() {
+    $timeline_tab.addClass('active');
+	$visited_tab.removeClass('active');
+	var $feed_main = $('#feed_main');
+	if ($feed_main.is(':hidden')) {
+	  window.scrollTo(0, 0);
+	  $('#visited_main').hide();
+	  //$visited_end.waypoint('destroy');
+	  $('#feed_main').show(0, function() {  
+		feed_end.waypoint('destroy');
+		if ($feed_main.attr('gal_stat') != 'no_more' && $feed_main.find('.no_feed').length == 0) {
+		  if ($feed_main.attr('gal_stat') == 'new_query') {
+		    feed_end.waypoint(feed_waypoint_func);
+			feed_end.trigger('waypoint.reached');
+		  } else {
+		    feed_end.waypoint(feed_waypoint_func, opts);
+		  }
+		}
+	  });  
+	}
+  };
+  
+  var visited_tab_func = function() {
+    $visited_tab.addClass('active');
+	$timeline_tab.removeClass('active');
+    var $visited_main = $('#visited_main');
+	if ($visited_main.length > 0 && $visited_main.is(':hidden')) {
+	  window.scrollTo(0, 0);
+      $('#feed_main').hide();
+      //feed_end.waypoint('destroy');
+	  $('#visited_main').show(0, function() {  
+	    $visited_end.waypoint('destroy');
+		var $visited_next_page = $('#visited_next_page');
+		var first_query = false;
+		if ($visited_next_page.length == 0) {
+		  first_query = true;
+		}
+		if ($visited_main.attr('gal_stat') != 'no_more' && $visited_main.find('.no_visited').length == 0) {
+		  if (first_query) {
+		    $visited_end.waypoint(visited_waypoint_func);
+		    $visited_end.trigger('waypoint.reached'); // force trigger
+		  } else {
+		    $visited_end.waypoint(visited_waypoint_func, opts);
+		  }
+		}
+	  });
+	}
+  };
+  
+  $timeline_tab.click(function() {
+    if (!$(this).hasClass('active')) {
+      $.address.value('timeline');
+	}
+  });
+  $visited_tab.click(function() {
+    if (!$(this).hasClass('active')) {
+      $.address.value('visited');
+	}
+  });
+  
+  // delete icon
+  var delete_gallery_row = function(url, container_id, substr_start) {
+    substr_start = substr_start || 0;
+    return function(e) {
+      var $gallery_container = $(this).parent().parent().parent();
+	  var first_child = false;
+	  var view_id = $(this).attr('id');
+	  if ($gallery_container.is(':first-child')) {
+	    first_child = true;
+	  }
+      $.ajax({
+	    url: url + view_id.substr(substr_start),
+		cache: false,
+		type: 'GET',
+		dataType: 'html',
+		async: true,
+	    beforeSend: function() {
+	      $gallery_container.hide();
+		  if (first_child) {
+		    $gallery_container.detach();
+		  }
+	    },
+	    success: function(html, textStatus) {
+	      $gallery_container.remove();
+		  $.waypoints('refresh');
+	    },
+	    error: function(XMLHttpRequest, textStatus, errorThrown) {
+	      if (first_child) {
+		    $(container_id).prepend($gallery_container);
+            $gallery_container.show();
+		  } else {
+	        $gallery_container.show();
+		  }
+        }
+	  });
+	  e.stopPropagation();
+    };
+  };
+  $('#feed_container #feed_main .gallery_feed .delete span').live('click', delete_gallery_row(Gallery.URL_DELETE_FROM_TIMELINE, '#feed_main'));
+  $('#feed_container #visited_main .gallery_feed .delete span').live('click', delete_gallery_row(Gallery.URL_DELETE_FROM_HISTORY, '#visited_main'));
+  
+  // embed video
+  try {
+    $f('intro_video', 
+	    {src: '/smedia/flowplayer/swf/flowplayer.commercial-3.2.6.swf', wmode: 'opaque'}, {
+	      key: '#$ab43ecaa1713df1d5c7',
+  	      clip: {autoPlay: true},
+		  plugins: {
+			controls: Item.PLAYER_SKIN_CONF
+		  }
+    });
+  } catch(e) {}
+  
+  $.address.strict(false);
+  $.address.change(function(e) {
+	switch(e.value) {
+	  case '':
+	  case 'timeline':  
+	    if ($timeline_tab.length > 0) {
+	      timeline_tab_func();
+		}
+		break;
+	  case 'visited':
+	    if ($visited_tab.length > 0) {
+		  visited_tab_func();
+		}
+	    break;
+	}
+  });
+  
+  if (BrowserDetect.browser == 'Explorer' && BrowserDetect.version == 7) {
+	$('div.presentation').css('z-index', '3000');
+  }
+});
+//]]>
+</script>
+
+
+
+<div class="dm-editor" style="display: none; "><div class="title"><div class="edit"><img class="inline_edit_btn pencil_light_mode" inline_input_id="listname_edit" src="./minus_files/lightpencil.png"><img class="inline_edit_btn pencil_dark_mode" inline_input_id="listname_edit" src="./minus_files/lightpencil-darkmode.png"></div><div class="listname"><span class="title_add inline_edit_btn" inline_input_id="listname_edit">Add Title</span></div><div class="listname_edit" style="display: none; "><textarea id="listname_edit" class="inline_edit" spellcheck="false" style="height: 21px; "></textarea><div class="loading" style="display:none;"><img class="loading_img" src="./minus_files/ajax-loader-bar-small.gif"></div></div><div class="delete" title="Delete this gallery."></div><div class="gallery_creator"></div><div class="gallery_info"></div></div><div class="body"><div class="filelist ui-sortable" style=""></div></div><div class="insert-indicator"></div></div><div class="dm-editor-dark" style="height: 36px; "></div><div style="position: absolute; top: -10000px; left: -10000px; font-size: 14px; font-family: helvetica, arial, sans-serif; font-weight: bold; line-height: 18px; resize: none; word-wrap: break-word; width: 176px; ">&nbsp;</div><div class="dm-editor-status " style="opacity: 1; bottom: 35px; display: none; "></div><div class="presentation"><div class="scene"></div><div class="confirm" style="display:none;">
+	<div class="confirmcontainer">
+			<p class="confirm_text">You are signed in to Minus.</p>
+	</div><!--confirmcontainer-->
+</div><div class="main_logo_wrapper" style="width: 100%; position: fixed; top: 0px; left: 0px; padding-top: 10px; padding-left: 10px; ">
+<a href="./minus_files/minus.htm" style="border:0px #fff;" alt="Minus">
+<img id="main_logo" style="cursor:pointer;border:0px #fff;" src="./minus_files/logo_small.png">
+<img id="main_logo_hover" style="cursor:pointer;display:none;border:0px #fff;" src="./minus_files/logo_hover_small.png">
+</a>
+</div></div><div class="option_description" style="position: absolute; display: none; ">Lights Off</div></body></html>

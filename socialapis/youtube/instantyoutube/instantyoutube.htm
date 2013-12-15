@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>YouTube Instant - Real-time YouTube video surfing.</title>
+<meta name="title" content="YouTube Instant" />
+<meta name="description" content="Real-time YouTube video surfing." />
+<meta name="keywords" content="youtube instant, google instant, instant, youtube, streaming video, stream video instantly" />
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+$("input.search_input").focus();
+$("input.search_input").keyup(function() {
+	var search_input = $(this).val();
+	var keyword = encodeURIComponent(search_input);
+	var yt_url ='http://gdata.youtube.com/feeds/api/videos?q=' + keyword + '&format=5&max-results=1&v=2&alt=jsonc'; 
+	$.ajax({
+		type: "GET",
+		url: yt_url,
+		dataType:"jsonp",
+		success: function(response) {
+			if (response.data.items) {
+				$.each(response.data.items, function(i,data) {
+					var video_id=data.id;
+					var video_title=data.title;
+					var video_viewCount=data.viewCount;
+					var video_frame="<iframe width='640' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe>";
+					var final="<div id='title'>"+video_title+"</div><div>"+video_frame+"</div><div id='count'>"+video_viewCount+" Views</div>";
+					$("#result").html(final);
+				});
+			} else $("#result").html("<div id='no'>No Video</div>");
+		}
+	});
+});
+});
+</script>
+</head>
+<body>
+<div align="center">
+<h2><img src="images/InstantYT.png" width="120" height="20" longdesc="images/InstantYT.png" />
+<input type="text" class='search_input'  /></h2>
+<div id="result"></div><br />
+</div>
+</body>
+</html>

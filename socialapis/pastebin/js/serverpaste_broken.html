@@ -1,0 +1,52 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+
+<script>
+var
+API_USER_KEY = "",
+API_DEV_KEY = "f058f68ae36897f3f15fcccba445d551",
+API_URL_LOGIN = "http://pastebin.com/api/api_login.php",
+API_URL_POST = "http://pastebin.com/api/api_post.php",
+API_USER_NAME = escape("gerst20051"),
+API_USER_PASSWORD = escape("comwiz05"),
+API_PASTE_PRIVATE = "1",
+API_PASTE_FORMAT = "php",
+API_PASTE_NAME = escape("Server IP Address"),
+API_PASTE_CODE = "";
+
+
+$(document).ready(function(){
+	// method:'login'
+	/*
+	$.post(API_URL_LOGIN, {api_dev_key:API_DEV_KEY,api_user_name:API_USER_NAME,api_user_password:API_USER_PASSWORD}, function(response) {
+		alert(response);
+	});
+	*/
+
+	var http = new XMLHttpRequest();
+	var params = "api_dev_key=" +API_DEV_KEY+ "&api_user_name=" +API_USER_NAME+ "&api_user_password=" +API_USER_PASSWORD;
+	http.open("POST", API_URL_LOGIN, true);
+
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+	
+	http.send(params);
+	
+	http.onreadystatechange = function() {
+		if (http.readyState == 4 && http.status == 200) {
+			if (http.responseText.substring(0,15) == "Bad API request") {
+				alert("bad");
+			} else {
+				API_USER_KEY = http.responseText;
+				alert(API_USER_KEY);
+			}
+		}
+	}
+});
+</script>
+</body>
+</html>

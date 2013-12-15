@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	<style type="text/css">
+	div#image1, div#image2 {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: url(image1.jpg);
+		background-size: auto 100%;
+	}
+	div#image2 {
+		opacity: 0;
+		background: url(image2.jpg);
+	}
+	</style>
+	<script type="text/javascript" src="mootools-core.js"></script>
+	
+	<script type="text/javascript">
+		window.addEvent('domready', function(){
+			var image1 = document.id('image1'),
+				image2 = document.id('image2');
+			
+			window.addEventListener('deviceorientation', function(event){
+				var opacity = Math.max(0, 90 - event.beta) / 90;
+				image2.setStyle('opacity', opacity);
+			}, true);
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<a href="index.html">« Back</a>
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div id="image1"></div>
+<div id="image2"></div>
+</body>
+</html>

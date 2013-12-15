@@ -1,0 +1,134 @@
+/* reset.css */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
+body {line-height:1.5;}
+table {border-collapse:separate;border-spacing:0;}
+caption, th, td {text-align:left;font-weight:normal;}
+table, td, th {vertical-align:middle;}
+blockquote:before, blockquote:after, q:before, q:after {content:"";}
+blockquote, q {quotes:"" "";}
+a img {border:none;}
+
+/* typography.css */
+html {font-size:100.01%;}
+body {font-size:80%;color:#222;background:#fff;font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal;color:#111;}
+h1 {font-size:3em;line-height:1;margin-bottom:0.5em;}
+h2 {font-size:2em;margin-bottom:0.75em;}
+h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+p {margin:0 0 1.5em;}
+p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
+p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+a:focus, a:hover {color:#000;}
+a {color:#009;text-decoration:underline;}
+blockquote {margin:1.5em;color:#666;font-style:italic;}
+strong {font-weight:bold;}
+em, dfn {font-style:italic;}
+dfn {font-weight:bold;}
+sup, sub {line-height:0;}
+abbr, acronym {border-bottom:1px dotted #666;}
+address {margin:0 0 1.5em;font-style:italic;}
+del {color:#666;}
+pre {margin:1.5em 0;white-space:pre;}
+pre, code, tt {font:1em 'andale mono', 'lucida console', monospace;line-height:1.5;}
+li ul, li ol {margin:0;}
+ul, ol {margin:0 1.5em 1.5em 0;padding-left:3.333em;}
+ul {list-style-type:disc;}
+ol {list-style-type:decimal;}
+
+body {
+	background-color: #f2f2f2;
+}
+
+body > div.container {
+	margin: 10px;
+}
+
+a.link, div#more a {
+	font-weight: bold;
+	text-align: center;
+  	margin: 5px 0;
+	display: block;
+	background: #4791d9;
+	text-decoration: none;
+	color: #fff;
+	padding: 4px;
+	outline: 0;
+	border: 0;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-o-border-radius: 4px;
+	-ms-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	-moz-transition-duration: 0.25s;
+	-webkit-transition-duration: 0.25s;
+	-o-transition-duration: 0.25s;
+	transition-duration: 0.25s;
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	-o-transition-property: -o-transform;
+	transition-property: transform;
+	-webkit-transform: scale(1) rotate(0);
+	-moz-transform: scale(1) rotate(0);
+	-o-transform: scale(1) rotate(0);
+	transform: scale(1) rotate(0);
+}
+
+a.link:hover, div#more a:hover {
+	background: #4791d9;
+	text-decoration: none;
+	color: #fff;
+	-webkit-transform: scale(1.05) rotate(-1deg);
+	-moz-transform: scale(1.05) rotate(-1deg);
+	-o-transform: scale(1.05) rotate(-1deg);
+	transform: scale(1.05) rotate(-1deg);
+}
+
+a.link:nth-child(2n):hover, div#more a:nth-child(2n):hover {
+	-webkit-transform: scale(1.05) rotate(1deg);
+	-moz-transform: scale(1.05) rotate(1deg);
+	-o-transform: scale(1.05) rotate(1deg);
+	transform: scale(1.05) rotate(1deg);
+}
+
+.purple, purple:hover {
+	background: #a647db !important;
+}
+
+div.container {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 30px;
+	bottom: 0;
+	z-index: 10;
+}
+
+div.box {
+	position: absolute;
+	top: 10px;
+	left: 50px;
+	right: 50px;
+	
+	line-height: 15em;
+	text-align: center;
+	font-size: 1em;
+	
+	background: #a647db;
+	color: #fff;
+}
+
+div#box1.box {
+	background: #4791d9;
+}
+
+a#start {
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	bottom: 0;
+}

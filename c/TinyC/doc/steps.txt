@@ -1,0 +1,22 @@
+TinyCC Steps
+============
+
+cd C:\CPrograms
+tcc xxxx.c
+
+/* B: Area Of Square */
+
+tcc AreaOfSquare.c
+AreaOfSquare
+
+The computer will execute the code and type
+Enter length of side:
+
+It will then wait for you to enter a number.
+Suppose you type 12.
+
+The screen will then look like this:
+Enter length of side: 12
+Area of square is 144
+
+/* E: Area Of Square */

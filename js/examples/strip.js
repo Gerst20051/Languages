@@ -1,0 +1,1 @@
+String.prototype.strip = function( exp ){ return this.replace(exp?exp:/\s/g,""); };

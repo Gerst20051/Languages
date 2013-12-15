@@ -1,0 +1,13 @@
+Testing
+
+1. To test, run the compiled module. It will block the sites that is listed in the source code.
+
+2. Once you run the file block_Site.exe, restart your browser program. Then, type the URL of the blocked site and you’ll see the browser showing error “Page cannot displayed“.
+
+3. To remove the virus type the following the Run.
+
+%windir%\system32\drivers\etc
+4. There, open the file named “hosts” using the notepad.At the bottom of the opened file you’ll see something like this
+
+127.0.0.1                                google.com
+5. Delete all such entries which contain the names of blocked sites.

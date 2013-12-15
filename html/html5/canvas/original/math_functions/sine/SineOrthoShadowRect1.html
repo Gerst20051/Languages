@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sine Wave</title>
+    <script type="text/javascript"><!--
+window.addEventListener('load', function () {
+  // Get the canvas element in the <body> tag
+  var elem = document.getElementById('myCanvas');
+
+  if (!elem || !elem.getContext) {
+    return;
+  }
+
+  // Get the canvas 2d context 
+  var context = elem.getContext('2d');
+  if (!context) {
+    return;
+  }
+
+  var basePointX  = 200;
+  var basePointY  = 200;
+  var currentX    = 0;
+  var currentY    = 0;
+  var offsetX     = 0;
+  var offsetY     = 0;
+  var radius      = 0;
+  var spiralCount = 4;
+  var Constant    = 0.25;
+  var angle       = 0;
+  var maxAngle    = 720;
+  var rectWidth   = 80;
+  var rectHeight  = 60;
+  var Amplitude   = 120;
+  var frequency   = 3;
+ 
+  for(angle=0; angle<maxAngle; angle++) {
+     offsetY  = Amplitude*Math.sin(frequency*angle*Math.PI/180);
+     currentX = basePointX+angle;
+     currentY = basePointY-offsetY;
+
+     // alternate between red and blue
+     if(angle % 2 == 0) {
+        context.fillStyle = '#f00';
+     }
+     else {
+        context.fillStyle = '#00f';
+     }
+
+     context.shadowOffsetY = 5;
+     context.shadowBlur    = 4;
+     context.shadowColor   = 'rgba(255, 0, 0, 0.5)';
+  
+     // draw the current rectangle
+     context.fillRect(currentX, currentY, rectWidth, rectHeight);
+     context.fillRect(currentY, currentX, rectHeight, rectHeight);
+  }
+}, false);
+    // --></script>
+  </head>
+
+  <body>
+    <canvas id="myCanvas" width="800" height="500">
+         Your browser does not support Canvas
+    </canvas>
+  </body>
+</html>
+

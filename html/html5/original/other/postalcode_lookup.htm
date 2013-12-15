@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Postal Code Lookup</title>
+    <script src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17857948-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+<style type="text/css" media="screen">
+body {
+    font-family: helvetica, arial, sans-serif;
+}
+
+#con {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#incon {
+    position: relative;
+    display: inline-block;
+    margin-left: 130px;
+}
+
+#fulladdy {
+    display: inline-block;
+    width: 500px;
+}
+
+input[type=text] {
+    background: #FFC;
+    border: 1px dotted #aaa;
+    color: #aaa;
+    font-style: italic;
+    font-size: 1.7em;
+    margin: 0;
+    padding: 3px;
+    text-align: center;
+    vertical-align: middle;
+    width: 500px;
+}
+
+input:focus[type=text] {
+    background: #FFA;
+    border: 2px dotted #000;
+    color: #333;
+    font-style: normal;
+    outline: none;
+}
+
+.button {
+    background: #91bd09 url(alert-overlay.png) repeat-x;
+    display: inline-block;
+    padding: 5px 10px 6px;
+    color: #fff;
+    text-decoration: none;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    cursor: pointer;
+    font-family: helvetica, arial, sans-serif;
+    font-weight: bold;
+}
+
+.tinybut {
+    position:absolute;right: 0px;
+    padding: 2px 10px 3px;
+    font-size: .9em;
+    vertical-align: middle;    
+}
+
+.about { background-color: #004080; }
+.about:hover { background-color: #005FBD; color: #fff; }
+
+.prev { 
+    display: none;
+    background-color: #999; 
+    margin-top: 8px;
+}
+.prev:hover { background-color: #808080; color: #fff; }
+
+.lookup {
+    font-size: 1.6em;
+    vertical-align: middle;
+}
+
+.lookup:hover { background-color: #749a02; color: #fff; }
+
+#output {
+    height: 1.2em;
+    width: 600px;
+    font-size: 4em;
+    font-weight: bold;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+
+#mapcon {
+    display:none;
+    height: 100%;
+    margin: 0 auto;
+    width: 500px;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+#flashmsg {
+    color: #fff;
+    padding: 5px 10px;
+    background: #FFA74D;
+    display: none;
+    position: absolute;
+}
+
+.border5 {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.border9 {
+    border-radius: 9px;
+    -moz-border-radius: 9px;
+    -webkit-border-radius: 9px;
+}
+
+p.help {
+    display: inline-block;
+    text-align: right;
+    font-style: italic;
+    padding-left: 19px;
+    background-image: url('help.png');
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+
+#credits {
+    color: #aaa;
+    font-size: .8em;
+    margin-top: 20px;
+}
+
+#about {
+    display: none;
+    background: #fff;
+    border: 3px solid grey;
+    position: absolute;
+    top: 30px;
+    padding: 10px;
+    width: 730px;
+}
+
+#about p {
+    margin: 0 auto;
+    font-size: 1.2em;
+    text-align: left;
+    font-family: "Times New Roman", serif;
+    width: 400px;
+}
+
+#about h1 {
+    float: left;
+    margin: 0px;
+}
+</style>
+</head>
+<body>
+<div id="con">
+    <div id="incon">
+        <a class="about button border5 tinybut" href="#about">About</a>
+        <h1 style="text-align: left; font-size: 1em;margin-top: 0;">Postal Code Lookup</h1>
+        <form>
+            <input tabindex="1" class="border9" type="text" placeholder="Enter address to lookup">
+            <button href="#" class="lookup button border5">Lookup!</button>
+        </form>
+        <button class="prev tinybut button border5">Load Previous Search</button>
+    </div>
+    <div id="output"></div>
+    <div id="flashmsg" class="border5"></div>
+    <div id="fulladdy"></div>
+    <div id="mapcon">
+        <p class="help">You can drag the marker around to lookup as well.</p>
+        <div id="map"></div>
+        <div id="credits">©<a href="mailto:mitchell.amihod@gmail.com">mitchell amihod</a> |
+            used <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">famfamfam</a> silk icon, google maps, <a href="http://jquery.com" target="_blank">jquery</a>,
+            <a href="http://www.zurb.com/blog_uploads/0000/0617/buttons-03.html" target="_blank">awesome buttons</a></div>
+    </div>
+</div>
+<span id="about" class="border9">
+    <h1>About</h1>
+    <p>Postal Code Lookup is a little single function site I came up with to scratch my own itch. </p>
+    <p>I was generally dissatisfied with Canada Post's site - isn't quick enough when I need to look up a postal code.</p>
+    <p>I was pretty sure with geocoding could just feed in an address and get back the Postal Code. So here it is.</p>
+    <p>Works pretty well with anywhere that has a Postal/Zip Codes. The UK has certain restrictions, which is why Postal Code info from that region will be incomplete.</p>
+    <div style="float:right">(Click to hide)</div>
+</span>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function() { //Begin Wrapper
+var bb = {
+    map: false,
+    geo: new google.maps.Geocoder(),
+    marker: false
+};
+
+//Set up a local var for localstorage
+
+//Do Some stuff if last search exists
+
+//Save space, make jqels ahead of time
+var output = $('#output');
+var fulladdy = $('#fulladdy');
+var flashmsg = $('#flashmsg');
+var about = $('#about');
+var form = $('form');
+var input = $('input');
+var lStore = (('localStorage' in window) && window['localStorage'] !== null) ? window.localStorage : false ;
+
+if(lStore && lStore.getItem('previous')) {
+    $('.prev').fadeIn(300).click(function(e) {
+        e.preventDefault();
+        input.val(lStore.getItem('previous'));
+        form.submit();
+    });
+}
+
+
+$('a[href=#about]').click(function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    about.fadeIn(400).css('left', centerHori(about.width()/2));
+    //Make any next click clear out the about
+    $(window).click(function(e) {
+        e.preventDefault();
+        about.hide(400);
+        $(window).unbind('click');
+    });
+});
+
+//extract the postal code from a result set
+//in some cases, multiple results are returned for an address, and the first one sometimes
+//doesnt have the full postal code, but the next one will
+var extractPC = function(result) {
+    var postalCode = false;
+    $.each(result.address_components, function(index,comp) {
+        //Notice for UK people right now - only exception I know of.
+        if('country' == comp.types[0] && comp.short_name == 'GB') {
+            flashError('Full UK Postal Codes not available.');
+        }
+        else if(comp.types && ('postal_code' == comp.types[0]) && comp.long_name.length > 3) {
+            postalCode = comp.long_name;
+            return false; //stop when we find first match
+        }
+    });
+    return postalCode;
+};
+var geoHandler = function(results, status) { //Callback
+    switch(status) {
+        case (google.maps.GeocoderStatus.OK):
+            $('#mapcon').fadeIn(200);
+            bb.map = bb.map || initializeMap();
+            bb.marker = bb.marker || initializeMarker(bb.map);
+            var loc = results[0].geometry.location;
+            bb.marker.setPosition(loc);
+            bb.map.setCenter(loc);
+
+            fulladdy.html('');
+            var postalCode = false;
+            $.each(results, function(index, result) {
+                postalCode = extractPC(result);
+                if(false !== postalCode) {
+                    fulladdy.html("I think you mean: <strong>"+result.formatted_address+"</strong>");
+                    output.html(postalCode);
+                    return false;
+                }
+            });
+
+            if(false === postalCode) {
+                flashError("No Luck. Try again.");
+            }
+        break;
+
+        case (google.maps.GeocoderStatus.ZERO_RESULTS):
+            flashError('Nothing found, try again.');
+        break;
+
+        //Any other error
+        default:
+            flashError('Woe is me. We could not complete your request. Try Again.');
+        break;
+    }
+};
+
+var geocode = function() {
+    bb.geo.geocode(
+        {
+            'address' : input.val()
+        },
+        geoHandler
+    );
+};
+//Main function
+form.submit(function(e) {
+    e.preventDefault();
+    if(lStore){
+        lStore.setItem('previous', input.val());
+        $('.prev').fadeIn(300);
+    }
+    geocode();
+});
+
+var centerHori = function(offset) {
+    return ($(window).width()/2 - offset);
+};
+
+var flashError = function(msg) {
+    output.html('');
+    flashmsg.html(msg)
+        .fadeIn(400)
+        .css('display', 'inline-block')
+        .css('left', centerHori(flashmsg.width()/2));
+
+    setTimeout(function() {
+        flashmsg.fadeOut(500);
+    }, 1500);
+};
+
+var initializeMarker = function(map) {
+    var marker = new google.maps.Marker({"map": map, "draggable":true, "clickable": true});
+    google.maps.event.addListener(marker, 'dragend', function(o) {
+        //Do a reverse lookup based on lat long
+        bb.geo.geocode({"location": o.latLng},geoHandler);
+    });
+
+    google.maps.event.addListener(marker, 'click', function(o) {
+        marker.getMap().setCenter(marker.getPosition());
+        marker.getMap().setZoom(marker.getMap().getZoom() + 1);
+    });
+
+    return marker;
+};
+
+var initializeMap = function() {
+    var mapOptions = {
+      "draggable": true,
+      "mapTypeControl": true,
+      "zoom": 14,
+      "mapTypeId": google.maps.MapTypeId.ROADMAP
+    };
+
+    return themap = new google.maps.Map(document.getElementById("map"), mapOptions);
+};
+
+});//End Wrapper
+</script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+#stage {
+	width: 600px;
+	margin: auto;
+	position: relative;
+}
+
+#ryu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	width: 475px;
+	height: 475px;
+}
+
+#bob {
+	position: absolute;
+	top: 100px;
+	left: 274px;
+	width: 285px;
+	height: 387px;
+}
+
+body {
+	font-family: helvetica, arial;
+	color: #fff;
+	overflow: hidden;
+	background: url(images/background.jpg) no-repeat center -200px;
+}
+
+h1 {
+	font-size: 20px;
+	margin-left: auto;
+	width: 200px;
+}
+
+#log {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	border-top: solid 5px #000;
+	background: rgba(0,0,0,0.66);
+	color: #fff;
+	max-height: 4em;
+	overflow: hidden;
+	padding: 20px;
+	z-index: 2;
+}
+
+#log p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.kill {
+	color: orange;
+}
+
+.attack {
+	color: orange;
+}
+
+.getAttacked {
+	color: red;
+}
+
+.die {
+	color: yellow;
+}
+
+.find {
+	color: yellow;
+}
+
+.find span {
+	color: green;
+}
+
+.revive {
+	color: green;
+}
+
+.eat { color: magenta; }

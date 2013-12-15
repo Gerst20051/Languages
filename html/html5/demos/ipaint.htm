@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://www.jswidget.com/ipaint.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	   <meta http-equiv="X-UA-Compatible" content="IE=9">
+	   
+		<title>iPaint - An online painting program.</title>
+      <meta name="description" content="iPaint is an online painting program. It&#39;s developed using the new HTML5 canvas element. iPaint is essentially an online version of MS Paint program.">
+      <meta name="keywords" content="online painting program, canvas paint, html5, css3.0, javascript object oriented programming">
+      <meta name="author" content="Yubo Dong">
+
+      <link rel="stylesheet" type="text/css" href="./ipaint_files/iPaint.css">      
+      
+		<style type="text/css">
+.dialog_mask{
+   position:absolute;top:0px;left:0px;padding:0;margin:0;
+   width:5000px;height:5000px;
+   background:#ffffff;
+   opacity:0.01;
+   z-index:999;
+}
+.dialog{
+   position:absolute;top:10px;left:100px;visibility:visible;z-index:1000;padding:0;
+
+   background:#ffffff;
+
+   -webkit-border-top-left-radius: 10px 10px;
+   -webkit-border-top-right-radius: 10px 10px;
+   -moz-border-radius-topleft: 10px 10px;
+   -moz-border-radius-topright: 10px 10px;
+   border-top-left-radius: 10px 10px;
+   border-top-right-radius: 10px 10px;
+
+   box-shadow:0px 0px 15px 3px #444444;
+   -moz-box-shadow: 0px 0px 15px 3px #444444; /* Firefox */
+   -webkit-box-shadow: 0px 0px 15px 3px #444444; /* Safari, Chrome */
+}
+
+.dialog .dlg_title{
+   position:absolute;
+   left: 10px; right:10px;
+   top:0px; height:24px;
+   width:auto;
+   padding:0 2px;
+   background:#ffffff;
+   background: -webkit-gradient(linear, left bottom, right bottom, from(#000088), to(#8888ff));
+   background: -moz-linear-gradient(180deg,#8888ff, #000088);
+   filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=1, startColorstr=#000088,endColorstr=#8888ff);
+   
+   font:bold 12px arial;
+   color:white;
+   line-height:24px;
+   cursor:move;
+}   		
+.dialog .dlg_spacer_left{
+   position:absolute;
+   top:0px; left:0px;
+   height:24px;width:10px;
+   background:#000088;
+
+   -webkit-border-top-left-radius: 10px 10px;
+   -moz-border-radius-topleft: 10px 10px;
+   border-top-left-radius: 10px 10px;
+}
+      
+.dialog .dlg_spacer_right{
+   position:absolute;
+   top:0px; right:0px;
+   height:24px;width:10px;
+   background:#8888ff;
+
+   -webkit-border-top-right-radius: 10px 10px;
+   -moz-border-radius-topright: 10px 10px;
+   border-top-right-radius: 10px 10px;
+   cursor:pointer;
+}
+.dialog .dlg_btn_close,
+.dialog .dlg_btn_close_over{
+   position:absolute;
+   top:0px; right:8px;
+   height:17px;width:46px;
+   background:url(style/close.png) 0 0 no-repeat;;
+   cursor:pointer;
+}
+.dialog .dlg_btn_close_over{
+   background:url(style/close.png) 0 -17px no-repeat;;
+   box-shadow:0px 0px 15px 3px #D66857;
+   -moz-box-shadow: 0px 0px 15px 3px #D66857; /* Firefox */
+   -webkit-box-shadow: 0px 0px 15px 3px #D66857; /* Safari, Chrome */
+}
+
+
+.dialog .dlg_content_container{
+   position:absolute;
+   top:24px;left:0px;bottom:0px;right:0px;
+   
+   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#eeeeee));
+   background: -moz-linear-gradient(#ffffff, #eeeeee);
+   background: linear-gradient(#ffffff, #eeeeee);
+   filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#ffffff,endColorstr=#eeeeee);
+}
+.dialog .dlg_content{
+   position:absolute;
+   top:5px;left:5px;bottom:5px;right:5px;
+}
+
+.dialog .dlg_content div
+{
+   height:24px;
+   line-height:24px;
+}
+legend{
+   font:bold 12px arial;   
+}
+fieldset{padding:5px}
+.dialog .dlg_content label.field{
+   font:bold 12px arial;   
+   width:100px;
+   display:inline-block;
+   text-align:right;
+}
+
+.dialog .dlg_content label{
+   font:bold 12px arial;   
+   text-align:left;
+}
+
+.dialog .dlg_content input,
+.dialog .dlg_content textarea,
+.dialog .dlg_content select{
+   font:12px arial;
+}
+button{
+   font:bold 12px arial;  
+}
+/* Stylesheet for Gallery */
+      #gallery_toolbar{
+         position:relative;left:0px;right:0px;top:0px;overflow:auto;border-bottom:1px solid #dddddd;background:#eee;height:30px;
+      }
+      #gallery_toolbar .tool_icon    {width:24px;height:24px;overflow:hidden;float:left;margin-left:3px;margin-top:3px;cursor:pointer;}
+      #gallery_toolbar .refresh      {background-image:url(style/icons.png); background-position:   0px -126px;background-repeat: no-repeat;}
+      #gallery_toolbar .refresh.over {background-image:url(style/icons.png); background-position: -38px -126px;background-repeat: no-repeat;}
+      
+		.gallery{
+		   position:relative;left:0px;right:30px;top:0px;overflow:auto;border:1px solid #dddddd;background:#fff;
+		   
+         background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffffff), to(#eeeeee));
+         background: -moz-linear-gradient(#ffffff, #eeeeee);
+         background: linear-gradient(#ffffff, #eeeeee);
+         filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, startColorstr=#ffffff,endColorstr=#eeeeee);
+		}
+		
+		.gallery .image_cell{
+		   position:relative;
+		   width:140px;
+		   height:120px;
+		   background:transparent;
+		   float:left;
+		}
+		.image_cell_big{
+		   position:absolute;
+		   width:220px;
+		   height:200px;
+		   z-index:1001;
+		}
+		.image_cell_big .close{
+		   position:absolute;
+		   top:0px;right:0px;width:36px;height:36px;
+		   background:url(style/close_box.png);
+		   z-index:1;
+      }
+		
+		.gallery .image_cell .container,
+		.image_cell_big .container{
+		   position:absolute;
+		   left:15px;top:15px;right:15px;bottom:15px;
+		   
+		   background:#fff;
+
+         box-shadow:0px 0px 15px 3px #888888;
+         -moz-box-shadow: 0px 0px 15px 3px #888888; /* Firefox */
+         -webkit-box-shadow: 0px 0px 15px 3px #888888; /* Safari, Chrome */
+         color:black;
+         cursor:pointer;
+         z-index:0;
+		}
+		.gallery .image_cell .container.over{
+         box-shadow:0px 0px 15px 3px #cccccc;
+         -moz-box-shadow: 0px 0px 15px 3px #cccccc; /* Firefox */
+         -webkit-box-shadow: 0px 0px 15px 3px #cccccc; /* Safari, Chrome */
+         background:#00f;
+         color:blue;
+		}
+		
+		.gallery .image_cell .container .image,
+		.image_cell_big .container .image{
+		   position:absolute;
+		   left:2px;top:2px;right:2px;bottom:26px;
+		   background:#fff;
+		   
+		   background-size:contain;
+		   -moz-background-size:contain;
+		   background-repeat:no-repeat;
+		   background-position:center;
+		   background-origin:content-box;
+		}
+		
+		.gallery .image_cell .container .title,
+		.image_cell_big .container .title{
+		   position:absolute;
+		   left:2px;bottom:2px;right:2px;
+		   height:24px;
+		   background:#eeeeee;
+		   font:12px arial;
+		   text-align:center;
+		   line-height:20px;
+		   overflow:hidden;
+		}
+		.image_cell_big .container .title button{float:right;}
+
+		</style>
+      <script type="text/javascript" async="" src="./ipaint_files/ga.js"></script><script type="text/javascript">
+      function EXTEND(cls,superCls){
+         cls.prototype = new superCls();
+         cls.prototype.constructor = cls;
+         cls.prototype.parent = superCls.prototype; 
+      }
+      </script>		
+		<script type="text/javascript" src="./ipaint_files/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="./ipaint_files/dom-drag.js"></script>
+		<script type="text/javascript" src="./ipaint_files/jsColorPicker.js"></script>
+		<script type="text/javascript" src="./ipaint_files/ipaint_v1.js"></script>
+		<script type="text/javascript">
+
+		jQuery(document).ready(function(){
+		   var canvas_width  = 600;
+		   var canvas_height = 400;
+		   var foreColor     = "#000000", backColor = "#ffffff";
+		   var nLineWidth    = 1;
+
+		   //
+		   // Check if target browser supports canvas element
+		   //
+		   ////////////////////////////////////////////////////////
+		   if ( !supports_canvas() ){
+		      $("#not_support_canvas").css("display","");
+		      $("#ipaint_frame").css("display","none");
+		      $("#history").css("display","none");
+		      
+		      return;
+		   }
+		   
+		   $(".image_unit")
+		      .bind("change",
+		            function(){
+		               $(".image_unit").val($(this).val());
+		            });
+		   
+		   
+		   $(".dialog .dlg_title").each(
+		      function(){
+		         var root = this.parentNode;
+		         Drag.init(this,root);
+		      }
+		   );
+		   
+		   $(".dlg_btn_close")
+		      .bind("mouseover",
+		            function(){
+		               this.className = "dlg_btn_close_over";
+		            })
+		      .bind("mouseout",
+		            function(){
+		               this.className = "dlg_btn_close";
+		            });
+		   
+		   $(".dlg_btn_action_cancel")
+		      .bind("click",
+		            function(){
+		               var ref_dlg = $(this).attr("ref");
+		               closeDialog("#" + ref_dlg);
+		               return false;   
+		            });
+		   
+		   //
+		   // Initialize color picker control
+		   //
+		   ////////////////////////////////////////////////////////
+		   var color_picker = new jsColorPicker()
+		      .attachColorPicker(document.getElementById('fore_color'), foreColor, false,
+               function(color){
+                  myApp.foreColor(color).update();
+               })
+            .attachColorPicker(document.getElementById('back_color'), backColor, false,
+               function(color){
+                  myApp.backColor(color).update();
+               });
+
+		   //
+		   // Initialize opacity slider control
+		   //
+		   ////////////////////////////////////////////////////////
+         var opacitySlider = new jsSliderControl(0,1,2,100)
+                           .init(document.getElementById("opacity_slider"));
+         opacitySlider.customTip = function(r){
+            return Math.round(r * 100) + "%";
+         }
+         opacitySlider.onDrag = function(s){
+            myApp.opacity(s).update();
+         }
+		   
+		   //
+		   // Create paint canvas application
+		   //
+		   ////////////////////////////////////////////////////////
+		   
+		   var myApp = new iPaintApp("ipaint_frame",canvas_width,canvas_height,null,null,
+		                                 function trackingCavasSize(canvas,w,h){
+                                             $("#ruler_canvas_width").val(w);
+                                             $("#ruler_canvas_height").val(h);
+		                                 },
+		                                 function actionComplete(p,o){
+		                                    var s = [];
+		                                    for ( var a in o ){
+		                                       s.push(a);
+		                                    }
+		                                 }
+		                               ).foreColor(foreColor)
+	                                   .backColor(backColor)
+		                                .lineWidth(nLineWidth)
+		                                .canvasBackground("white")
+		                                .setColorPicker(color_picker);
+         $(".new_pic")
+            .bind("click",
+                  function(){
+                     showDialog("#dlg_new_image",
+                        function init(dlg,id){
+                           $(id + " input[name=image_name]").val(myApp.name());
+                           $(id + " input[name=image_width]").val(myApp.size().width);
+                           $(id + " input[name=image_height]").val(myApp.size().height);
+                           $(id + " input[name=image_unit_w]").val(myApp.getUnit());
+                           $(id + " input[name=image_unit_h]").val(myApp.getUnit());
+                           $(id + " input[name=image_resolution]").val(myApp.DPI);
+                           $(id + " input[name=image_bg][value=" + myApp.PaintingAttribute.BackgroundColor + "]").attr("checked",true);
+                        },
+                        function onOK(dlg,id){
+                           var name   = $(id + " input[name=image_name]").val();
+                           var width  = $(id + " input[name=image_width]").val();
+                           var height = $(id + " input[name=image_height]").val();
+                           var unit   = $(id + " select[name=image_unit_w]").val();
+                           var dpi    = $(id + " input[name=image_resolution]").val();
+                           var bg     = $(id + " input[name=image_bg]:checked").val();
+                           var w = myApp.toPixel(width,unit),
+                               h = myApp.toPixel(height,unit);
+                               
+                           myApp.sizeTo(w,h)
+                                .name(name)
+                                .setUnit(unit)
+                                .canvasBackground(bg)
+                                .reset();      
+                        
+                           $("input[name=canvas_background][value=" + myApp.PaintingAttribute.BackgroundColor + "]").attr("checked",true);
+                           $("input[name=ruler_unit][value=" +unit + "]").attr("checked",true);
+                           return true;
+                        },null,
+                        true,0,0,true
+                        
+                     );
+                     myApp.reset();
+                  });
+                  
+         $(".save_pic")
+            .bind("click",
+                  function(){
+                     showDialog("#dlg_save_image",
+                        function init(dlg,id){
+                           var sName = myApp.name();
+                           if ( sName.indexOf(".") == -1 ){
+                              sName += ".png";
+                           }
+                           $(id + " input[name=image_file]").val(sName).focus().select();
+                           $(id + " input[name=image_format][value=png]").attr("checked",true);
+                        },
+                        function onOK(dlg,id){
+                           
+                           var sFile   = $.trim($(id + " input[name=image_file]").val());
+                           
+                           if ( sFile == "" ){
+                              $(id + " input[name=image_file]").focus().select();
+                              return;
+                           }
+                           
+                           sFile = sFile.replace(/\//g,"_").replace(/\\/g,"_").replace(/"/g,"_").replace(/:/g,"_");
+                           var ext    = $(id + " input[name=image_format]:checked").val();
+                           sFile = makeFile(sFile,ext);
+                           
+                           if ( ext == "jpg" ){ ext = "jpeg"; }
+                           myApp.save(sFile,"image/" + ext,null,
+                              function onOK(url){
+                              }
+                           );
+                           return true;
+                        },null,
+                        true,0,0,true
+                     );
+                  });
+
+         $(".share_pic")
+            .bind("click",
+                  function(){
+                     showDialog("#dlg_share_image",
+                        function init(dlg,id){
+                           $(id + " textarea[name=email_list]").val("").focus().select();
+                        },
+                        function onOK(dlg,id){
+                           var sEmail   = $.trim($(id + " textarea[name=email_list]").val());
+                           if ( sEmail == "" ){
+                               $(id + " textarea[name=email_list]").val("").focus().select();
+                               $("#frm_share_img_err").html("Please enter emails.");
+                               return;
+                           }
+                           var arrEmail = check_email_list(sEmail);
+                           if ( arrEmail.length === 0 ){
+                              $("#frm_share_img_err").html("Invaid email");
+                              return false;
+                           }
+                           
+                           var sSender = $.trim($(id + " input[name=sender_name]").val());
+                           if ( sSender == "" ){
+                              $("#frm_share_img_err").html("Please enter your name.");
+                              $(id + " input[name=sender_name]").focus();
+                              return false;
+                           }
+                           var sMsg    = $.trim($(id + " textarea[name=email_body]").val());
+                           
+                           myApp.share(arrEmail,sSender,sMsg);
+                           
+                           return true;
+                        },null,
+                        true,0,0,true
+                     );
+                  });
+         $(".about_jswidget")
+            .bind("click",
+               function(){
+                  alert(
+                          "                                   www.jswidget.com\n\n" + 
+                          "                                Developed by Y. Dong\n\n" +
+                          "Copyright @ 2010. www.jswidget.com. All rights reserved.\n\n" +
+                          "                               support@jswidget.com" 
+                       );
+               });
+         $(".about_ipaint")
+            .bind("click",
+               function(){
+                  alert(
+                          "                                        iPaint Beta\n\n" + 
+                          "                                Developed by Y. Dong\n\n" +
+                          "Copyright @ 2010. www.jswidget.com. All rights reserved.\n\n" +
+                          "                               support@jswidget.com" 
+                       );
+               });
+         $("#dlg_save_image input[name=image_format]")
+            .bind("click",
+                  function(){
+                     var ext = $(this).val();
+                     var sFile = $.trim($("#dlg_save_image input[name=image_file]").val());
+                     sFile = makeFile(sFile,ext);
+                     $("#dlg_save_image input[name=image_file]").val(sFile).focus();
+                  });
+
+		   //
+		   // setup history box
+		   //
+		   ////////////////////////////////////////////////////////
+         $("#history .title").each(
+            function(){
+               Drag.init(this,this.parentNode);
+               var l = document.body.clientWidth - 230;
+               var t = 150;
+               $(this.parentNode).css({left:l + "px",top:t + "px"});
+            });
+         
+         var g_top = 10, g_left = window.innerWidth/6;
+         var g_h   = window.innerHeight * 2 / 3;
+         var g_w   = window.innerWidth  * 2 / 3 + 20;
+         
+         $("#guest_gallery").css("height",g_h-90 + "px")
+         $("#dlg_gallery").css({"height":g_h + "px",width:g_w + "px"});
+         $(".mnu_gallery")
+            .bind("click",
+               function(){
+                  showDialog("#dlg_gallery",
+                     function init(dlg,id){
+                        loadGallery(null,
+                           function(arr){
+                              showGallery(myApp,dlg,arr);
+                           }
+                        );
+                     },
+                     null,null,
+                     false,0,0,true
+                  );
+               });
+         
+         $("label").css("cursor","pointer");
+         
+         $("#gallery_toolbar .refresh")
+            .bind("mouseover",
+               function(){
+                  //$(this).removeClass("refresh").addClass("refresh_over");
+                  $(this).addClass("over");
+               })
+            .bind("mouseout",
+               function(){
+                  $(this).removeClass("over");
+               })
+            .bind("click",
+               function(){
+                  $(".gallery").html("");
+                  loadGallery(null,
+                     function(arr){
+                        fillGallery(arr);
+                     }
+                  );
+               })
+               
+		   //
+		   // Bind event handler to both tools icon and shape icon
+		   //
+		   ////////////////////////////////////////////////////////
+		   $(".mi")
+		      .bind("mouseover",
+		            function(){
+		               if ( this.className.indexOf("menu_item_active") == -1 ){
+		                  $(this).removeClass("menu_item menu_item_active").addClass("menu_item_over");
+		               }
+		            })
+		      .bind("mouseout",
+		            function(){
+		               if ( this.className.indexOf("menu_item_active") == -1 ){
+		                  $(this).removeClass("button_19x18_selected menu_item_over").addClass("menu_item");
+		               }
+		            })
+		      .bind("click",
+		            function(){
+		               $(".mi").removeClass("menu_item_active menu_item_over menu_item").addClass("menu_item");
+		               $(this).addClass("menu_item_active");
+		            });
+
+            
+		   //
+		   // Bind event handler to both tools icon and shape icon
+		   //
+		   ////////////////////////////////////////////////////////
+		   $(".button_19x18")
+		      .bind("mouseover",
+		            function(){
+		               if ( $(this).hasClass("disabled") ){return;}
+		               if ( $(this).hasClass("selected") ){return;}
+	                  $(this).addClass("over");
+		            })
+		      .bind("mouseout",
+		            function(){
+		               if ( $(this).hasClass("disabled") ){return;}
+		               if ( $(this).hasClass("selected") ){return;}
+	                  $(this).removeClass("over");
+		            })
+		      .bind("click",
+		            function(){
+		               if ( $(this).hasClass("disabled") ){return;}
+		               $(".button_19x18").removeClass("selected");
+		               $(this).removeClass("over").addClass("selected");
+      		         
+		               var refer_id = $(this).attr("refer");
+		               var refer_from = this.parentNode.refer_from;
+      		         
+      		         
+		               var _this = this;
+		               if ( refer_id ){
+		                  if ( $("#" + refer_id).css("display") != "none" ){
+		                     $("#" + refer_id).css({display:"none"})
+		                     .each(function(){
+		                        this.refer_from = _this;
+		                     });
+		                  }else{
+		                     $(".referee").css({display:"none"});
+		                     $("#" + refer_id)
+		                     .css({
+		                        display:"",
+		                        left:$(this).offset().left + "px",
+		                        top:$(this).offset().top + $(this).height() + "px"
+		                     }).each(function(){
+		                        this.refer_from = _this;
+		                     });
+		                  }
+		               }else{
+		                  $(".referee").css({display:"none"});
+		               }
+		               if ( refer_from ){
+		                  $(refer_from).attr("title",$(this).attr("title"));
+		                  $(refer_from).attr("name",$(this).attr("name"));
+		                  $(refer_from).attr("className",$(this).attr("className"));
+		               }
+		               var name = $(this).attr("name");
+		               switch(name){
+		               default: myApp.setAction(name);
+		               }
+		            });
+
+		   //
+		   // Bind event handler to line width selector
+		   //
+		   ////////////////////////////////////////////////////////
+		   $(".line-width")
+		      .bind("mouseover",
+		            function(){
+		               if ( this.className.indexOf("line_width_selected") == -1 ){
+		                  $(this).removeClass("line_width line_width_selected").addClass("line_width_over");
+		               }
+		            })
+		      .bind("mouseout",
+		            function(){
+		               if ( this.className.indexOf("line_width_selected") == -1 ){
+		                  $(this).removeClass("line_width_selected line_width_over").addClass("line_width");
+		               }
+		            })
+		      .bind("click",
+		            function(){
+		               if ( this.className.indexOf("line_width_selected") == -1 ){
+		                  $(this).removeClass("line_width_selected line_width_over").addClass("line_width");
+		               }
+		               $(".line-width").removeClass("line_width_selected");
+		               $(this).addClass("line_width_selected");
+      		         
+		               //myApp.rubber($(this).attr("name"));
+		               myApp.lineWidth($(this).attr("name").split("_")[1]).update();
+		               $(".input_line_width").val(myApp.lineWidth());
+		            });
+		   
+         $(".input_line_width")
+            .bind("blur",
+                  function(){
+                     var s = $.trim($(this).val());
+                     
+                     if ( !(s == "" || isNaN(s) ) ){
+                        myApp.lineWidth(Math.round(s)).update();
+                     }else{
+                        $(this).val(myApp.lineWidth());
+                     }
+                  }).val(myApp.lineWidth());
+		   
+		   
+		   //
+		   // Bind event handler to b/f color swapper
+		   //
+		   ////////////////////////////////////////////////////////
+		   $(".swap_color")
+		      .bind("click",
+		            function(){
+		               var fColor = $("#fore_color").attr("current_color");  
+		               var fSlider = $("#fore_color").attr("slider_pos");  
+      		         
+		               var bColor = $("#back_color").attr("current_color");  
+		               var bSlider = $("#back_color").attr("slider_pos");  
+		               $("#fore_color").css("backgroundColor",bColor).attr({"current_color":bColor,"slider_pos":bSlider});
+		               $("#back_color").css("backgroundColor",fColor).attr({"current_color":fColor,"slider_pos":fSlider});
+		               myApp
+		               .foreColor(bColor)
+		               .backColor(fColor)
+		               .update();
+		            });
+		   
+		   //
+		   // Bind event handler to outline checkbox
+		   //
+		   ////////////////////////////////////////////////////////
+		   $("#shape_with_outline")
+		      .bind("click",
+		            function(){
+		               if (this.checked){
+		                  myApp.outline("solid");
+		               }else{
+		                  myApp.outline("none");
+		               }
+		               myApp.update();
+		            }).attr("checked",true);
+		   
+		   //
+		   // Bind event handler to fill checkbox
+		   //
+		   ////////////////////////////////////////////////////////
+		   $("#shape_with_fill")
+		      .bind("click",
+		            function(){
+		               if (this.checked){
+		                  myApp.fillMode("solid");
+		               }else{
+		                  myApp.fillMode("none");
+		               }
+		               myApp.update();
+		            }).attr("checked",true);
+
+                          
+		   //
+		   // Bind event handler to show/hide ruler checkbox
+		   //
+		   ////////////////////////////////////////////////////////
+         $("#show_hide_ruler")
+            .bind("click",
+                  function(){
+                     if ( this.checked ){
+                        myApp.showRuler(true);
+                     }else{
+                        myApp.showRuler(false);
+                     }
+                  }).attr("checked",true);
+         
+		   //
+		   // Bind event handler to show/hide grid checkbox
+		   //
+		   ////////////////////////////////////////////////////////
+         $("#show_hide_grid")
+            .bind("click",
+                  function(){
+                     if ( this.checked ){
+                        myApp.showGrid(true);
+                     }else{
+                        myApp.showGrid(false);
+                     }
+                  }).attr("checked",false);
+
+
+		   //
+		   // Bind event handler to unit radioboxes
+		   //
+		   ////////////////////////////////////////////////////////
+         $("input[name=ruler_unit]").css("cursor","pointer")
+            .bind("click",
+               function(){
+                  myApp.setUnit($(this).attr("value"));
+               });
+         $("input[name=ruler_unit][value=px]").attr("checked",true);
+         
+		   //
+		   // Bind event handler to unit radioboxes
+		   //
+		   ////////////////////////////////////////////////////////
+         $("input[name=canvas_background]").css("cursor","pointer")
+            .bind("click",
+                  function(){
+                     myApp.canvasBackground($(this).attr("value"));
+                  });
+         $("input[name=canvas_background][value=white]").attr("checked",true);
+
+		   //
+		   // Bind event handler to canvas size
+		   //
+		   ////////////////////////////////////////////////////////
+         $("#ruler_canvas_width").val(canvas_width)
+            .bind("blur",
+                  function(){
+                     var v = myApp.toPixel(parseFloat($(this).val()),myApp.getUnit());
+                     if ( v != myApp.width ){
+                        myApp.sizeTo(parseFloat($(this).val()),null);
+                     }
+                  });
+               
+         $("#ruler_canvas_height").val(canvas_height)
+            .bind("blur",
+                  function(){
+                     var v = myApp.toPixel(parseFloat($(this).val()),myApp.getUnit());
+                     if ( v != myApp.height ){
+                        myApp.sizeTo(null,parseFloat($(this).val()));
+                     }
+                  });
+         
+         window.onresize = function(){
+            var s = $("tool_bar").attr("toolbar");
+            s = (( s == "dock" ) ? "float" : "dock");
+            myApp.setupFrame({toolbar:s});
+         }
+         
+            
+         $(".image_cell_big .close")
+            .bind("click",
+                  function(){
+                     $(".image_cell_big")
+                     .animate(
+                        {
+                           left    : $(".image_cell_big").attr("src_left"),
+                           top     : $(".image_cell_big").attr("src_top"),
+                           width   : $(".image_cell_big").attr("src_width"),
+                           height  : $(".image_cell_big").attr("src_height"),
+                           opacity : 0.1
+                        },300,
+                        function(){
+                           $(this).css("display","none");
+                        }
+                     );         
+                  });
+		});
+		
+
+function supports_canvas() {
+   return !!document.createElement('canvas').getContext;
+}
+
+function loadGallery(sUser,fnOK){
+   if ( !sUser ){
+      sUser = "guest";
+   }
+   $.ajax({
+      url:"http://www.jswidget.com/load_image.php",
+      data:{user:sUser},
+      dataType:"json",
+      type:"POST",
+      cache:false,
+      beforeSend:function(){},
+      complete:function(){},
+      success:function(data){
+         if ( data ){
+            if ( data.status == 0 ){
+               if ( fnOK ){
+                  fnOK(data.images);
+               }
+            }
+         }
+      },
+      error:function(s){
+      }
+   });
+   
+}
+function fillGallery(arr_image){
+   $(".gallery").html("");
+   
+   for ( var i = 0; i < arr_image.length; i ++ ){
+      var file = arr_image[i].split("/");
+      file = file[file.length-1];
+      
+      if ( file.indexOf("_") != -1 ){
+         file = file.split("_");
+         
+         var file0 = file[0].split("-");
+         if ( file0.length == 4 ){
+            file.splice(0,1);
+         }
+         file = file.join("_");
+      }
+      
+      
+      $(".gallery")
+      .append(
+         $("<div class='image_cell'></div>")
+         .append(
+            $("<div class='container'></div>").attr({file:file,src_url:arr_image[i]})
+            .append(
+               $("<div class='image'></div>")
+                  .css({"backgroundImage":"url(style/loading_16.gif)","backgroundSize":"16px 16px"}))
+                  .attr("title","Loading " + file + "...")
+            .append($("<div class='title' style='color:#228822;'>Loading ...</div>").attr("file",file))
+         )
+      );
+   }
+   
+   for ( var i = 0; i < arr_image.length; i ++ ){
+      var img = new Image();
+      img.index = i+1;
+      img.onload = function(){
+         
+         $(".gallery .image_cell:nth-child(" + this.index + ") .container .image")
+         .css({"backgroundImage":"url(" + this.src + ")","backgroundSize":"contain"})
+         .attr("title","");
+         
+         $(".gallery .image_cell:nth-child(" + this.index + ") .container .title")
+         .css({"color":"black"})
+         .each(function(){
+            $(this).html($(this).attr("file"));
+         });
+      }
+      img.src = arr_image[i];
+   }
+}
+function showGallery(myApp,dlg,arr_image){
+
+   fillGallery(arr_image);
+               
+   $(".gallery .image_cell .container")
+      .live("mouseover",
+            function(){
+               $(this).addClass("over");
+            })
+      .live("mouseout",
+            function(){
+               $(this).removeClass("over");
+            })
+      .live("click",
+            function(){
+               var left = $(this).offset().left, top  = $(this).offset().top;
+
+               var w = window.innerWidth, h = window.innerHeight;
+               var cw = $(this).width(), ch = $(this).height();
+               var newW = cw * 4, newH = ch * 4;
+               var newLeft = Math.round((w - newW) / 2), newTop  = Math.round((h - newH) / 2);
+             
+               $(".image_cell_big .image").css({backgroundImage:$(this).children(":first-child").css("backgroundImage")});
+               $(".image_cell_big .title span").html($(this).attr("file"));
+            
+            
+               $(".image_cell_big .title button")
+                  .attr("src_url",$(this).attr("src_url"))
+                  .attr("file",$(this).attr("file"))
+                  .unbind()
+                  .bind("click",
+                        function(){
+                           myApp.open($(this).attr("file"),$(this).attr("src_url"));
+                           $(".image_cell_big .close").click();
+                           dlg.close();
+                        });
+          
+               $(".image_cell_big")
+                  .css({
+                        opacity:0,
+                        display:"",
+                        left:left+"px",
+                        top:top + "px",
+                        width:cw + "px",
+                        height:ch + "px"})
+                  .attr({
+                        src_left   : left+"px",
+                        src_top    : top + "px",
+                        src_width  : cw + "px",
+                        src_height : ch + "px"})
+                  .animate({
+                        left    : newLeft + "px",
+                        top     : newTop + "px",
+                        width   : newW + "px",
+                        height  : newH + "px",
+                        opacity : 1
+                     },300);
+            });
+}		
+String.prototype.isEmail = function(){
+   var email = this;
+   if ( !email ){return false;}
+     
+   var exclude=/[^@\-\.\w]|^[_@\.\-]|[\._\-]{2}|[@\.]{2}|(@)[^@]*\1/;
+   var check=/@[\w\-]+\./;
+   var checkend=/\.[a-zA-Z]{2,3}$/;
+
+   if(((email.search(exclude) != -1)||
+       (email.search(check)) == -1)||
+       (email.search(checkend) == -1))
+	   return false;
+   else 
+	   return true;
+}
+
+function check_email_list(sList){
+   var arrEmail = sList.split(",");
+   if ( arrEmail.length == 1 ){
+      arrEmail = sList.split(";");
+   }
+   var arr = [];
+   for ( var i = 0; i < arrEmail.length; i ++ ){
+      if ( arrEmail[i].trim() == "" ){
+         continue;
+      }
+      if ( arrEmail[i].isEmail()){
+         arr.push(arrEmail[i]);
+      }
+   }
+   return arr;
+}
+		
+function makeFile(sFile,ext){
+   var arr = sFile.split(".");
+   if ( arr.length == 1 ){
+      sFile += "." + ext;
+   }else{
+      arr[arr.length-1] = ext;
+      sFile = arr.join(".");
+   }
+   return sFile;
+}
+
+function hidePoppedTool(){
+   $(".referee").css({display:"none"});
+} 
+
+function closeDialog(id){
+   $(id)
+   .animate({opacity:0},400,
+      function(){
+         $(this).css("visibility","hidden");
+         $(".dialog_mask").css("visibility","hidden");
+      }
+   );
+}
+
+function showDialog(id,fnInit,fnOnOK,fnOnApply,modal,left,top,center){
+   if ( center ){
+      var w = $(id).width(), h =$(id).height();
+      left = ( document.body.clientWidth - w ) / 2;
+      top  = ( document.body.clientHeight - h ) / 2;
+   }
+   
+   this.onInit  = fnInit;
+   this.onOK    = fnOnOK;
+   this.onApply = fnOnApply;
+   
+   if ( modal ){
+      $(".dialog_mask").css("visibility","visible");
+   }
+   var _this = this;
+   $(id).css(
+      {visibility:"visible",
+       left:left+"px",
+       top:top+"px",
+       opacity:0}
+   ).animate({opacity:1},400,function(){fnInit(_this,id);});
+   
+   if ( fnOnOK ){
+      $(id + " .dlg_btn_action_ok").unbind().bind("click",
+         function(){
+            if ( fnOnOK(_this,id) ){
+               closeDialog(id);
+            }
+            return false;
+         });
+   }
+   if ( fnOnApply ){
+      $(id + " .dlg_btn_action_apply").unbind().bind("click",
+         function(){
+            fnOnApply(_this,id);
+            return false;
+         });
+   }
+   
+   this.close = function(){
+      closeDialog(id);
+   }
+}
+
+function enableIcon(){
+   for ( var i = 0; i < arguments.length; i ++ ){
+      $("." + arguments[i]).removeClass("disabled");
+   }
+}
+function disableIcon(){
+   for ( var i = 0; i < arguments.length; i ++ ){
+      $("." + arguments[i]).addClass("disabled").removeClass("button_19x18_selected");
+   }
+}
+		</script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-6883753-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+		
+	</head>
+	<body>
+	   <div id="ipaint_frame" style="width: 1268px; height: 652px; ">
+	      <div id="menu_bar">
+	         <div class="mi menu_item"><a href="http://www.jswidget.com/index.html" target="_self">Home</a></div>
+	         <div class="mi menu_item_active"><a class="ipaint_beta" href="./ipaint_files/ipaint.htm" target="_self"><span style="font:1em Georgia;">iPaint</span> <span style="font-size:0.7em;">Beta</span></a></div>
+	         <div class="mi menu_item"><a href="http://www.jswidget.com/comment.html" target="_self">Comments</a></div>
+	         <div class="mi menu_item">
+	            <a href="http://www.jswidget.com/blog/" target="ipaintpro_blog">Blog</a>
+	            <img src="./ipaint_files/new.gif" style="position:relative;top:-7px;">
+	         </div>
+	      </div>
+	      <div id="tool_bar" style="position: relative; cursor: default; left: 0px; top: -1px; " toolbar="dock">
+	         <div id="tb_menu">
+               <div class="menu1">
+                  <ul>
+                     <li class="file"><a href="http://www.jswidget.com/ipaint.html#">File</a>
+	                     <ul>
+	                     <li class="new_pic"><a href="http://www.jswidget.com/ipaint.html#">New...</a></li>
+	                     <li class="save_pic"><a href="http://www.jswidget.com/ipaint.html#">Save...</a></li>
+	                     <li class="share_pic"><a href="http://www.jswidget.com/ipaint.html#">Email...</a></li>
+	                     </ul>
+                     </li>
+                     <li class="mnu_gallery"><a href="http://www.jswidget.com/ipaint.html#">Gallery</a></li>
+                     <li class="services"><a href="http://www.jswidget.com/ipaint.html#">About</a>
+	                     <ul>
+	                     <li class="about_jswidget"><a href="http://www.jswidget.com/ipaint.html#">About JSWidget</a></li>
+	                     <li class="about_ipaint"><a href="http://www.jswidget.com/ipaint.html#">About iPaint</a></li>
+	                     </ul>
+                     </li>
+                  </ul>
+               </div>
+               <div class="tb_title">Menu</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	      
+	         <div id="tb_canvas">
+	            <div class="canvas_background">
+	               <input type="radio" id="canvas_bg_white" name="canvas_background" value="white" checked="" style="cursor: pointer; "><label for="canvas_bg_white" style="cursor: pointer; ">White</label><br>
+	               <input type="radio" id="canvas_bg_fill" name="canvas_background" value="background" style="cursor: pointer; "><label for="canvas_bg_fill" style="cursor: pointer; ">Background Color</label><br>
+	               <input type="radio" id="canvas_bg_tran" name="canvas_background" value="transparent" style="cursor: pointer; "><label for="canvas_bg_tran" style="cursor: pointer; ">Transparent</label>
+	            </div>
+	            <div class="tb_title">Canvas Background</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         <!--
+	         <div id="tb_clipboard">
+	            <div class="tb_title">Clipboard</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         
+	         <div id="tb_image">
+	            <div class="tb_title">Image</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         -->
+	         <div id="tb_tool">
+	            <div id="tools_1">
+	               <div title="Draw a free form line" name="pencil" class="button_19x18 tool_pencil"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Fill with color" name="bucket_solid" class="button_19x18 tool_bucket_solid" refer="bucket_selection"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Insert text" name="font" class="button_19x18 tool_font"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Erase part of the picture" name="eraser" class="button_19x18 tool_eraser"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Color picker" name="eye_dropper" class="button_19x18 tool_eye_dropper"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Magnifier" name="zoom_glass" class="button_19x18 tool_glasses"></div>
+	            </div>
+	            <div id="tools_2">
+	               <div title="Rectangular selection" name="select_box" class="button_19x18 tool_select_box" refer="tools_selection"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Simple brush" name="simple_brush" class="button_19x18 tool_brush_simple" refer="brush_selection"></div>
+	               <div class="tool_v_bar"></div>
+	               <!--
+	               <div title="Select all canvas" name="select_all" class="button_19x18 tool_select_all"></div>
+	               <div class="tool_v_bar"></div>
+	               -->
+	               <div title="Cut selection" name="cut" class="button_19x18 tool_cut disabled"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Crop canvas" name="crop" class="button_19x18 tool_crop disabled"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Resize" name="resize" class="button_19x18 tool_resize disabled"></div>
+	               <div class="tool_v_bar"></div>
+	               <div title="Rotate" name="rotate" class="button_19x18 tool_rotate disabled"></div>
+	            </div>
+	            <div class="tb_title">Tools</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         
+	         <!--
+	         <div id="tb_brush"></div>
+	         <div class="tb_v_bar"></div>
+	         -->
+	         
+	         
+	         <div id="tb_shape">
+	            <div id="tb_shape_container">
+		            <div name="line" title="Line" class="button_19x18 shape_line         "></div>
+		            <div name="curve" title="Curve" class="button_19x18 shape_curve        "></div>
+		            <div name="oval" title="Oval" class="button_19x18 shape_oval         "></div>
+		            <div name="rectangle" title="Rectangle" class="button_19x18 shape_box          "></div>
+		            <div name="rounded_rectangle" title="Rounded rectangle" class="button_19x18 shape_round_box    "></div>
+		            <div name="polyline" title="Polyline" class="button_19x18 shape_polyline"></div>
+		            <div name="polygon" title="Polygon" class="button_19x18 shape_polygon      "></div>
+		            <div name="cardinal_spline" title="Cardinal-spline" class="button_19x18 shape_cardinal_spline"></div>
+		            <div name="closed_cardinal_spline" title="Closed cardinal-spline" class="button_19x18 shape_closed_cardinal_spline"></div>
+		            <div name="triangle" title="Triangle" class="button_19x18 shape_triangle     "></div>
+		            <div name="diamond" title="Diamond" class="button_19x18 shape_diamond      "></div>
+		            <div name="pentagon" title="Pentagon" class="button_19x18 shape_pentagon     "></div>
+		            <div name="hexagon" title="Hexagon" class="button_19x18 shape_hexagon      "></div>
+		            <div name="right_arrow" title="Right arrow" class="button_19x18 shape_r_arrow      "></div>
+		            <div name="left_arrow" title="Left arrow" class="button_19x18 shape_l_arrow      "></div>
+		            <div name="up_arrow" title="Up arrow" class="button_19x18 shape_u_arrow      "></div>
+		            <div name="down_arrow" title="Down arrow" class="button_19x18 shape_d_arrow      "></div>
+		            <div name="four_point_star" title="Four-point star" class="button_19x18 shape_4_star       "></div>
+		            <div name="five_point_star" title="Five-point star" class="button_19x18 shape_5_star       "></div>
+		            <div name="six_point_star" title="Six-point star" class="button_19x18 shape_6_star       "></div>
+		            <div name="rounded_rectangular_callout" title="Rounded rectangular callout" class="button_19x18 shape_baloon_box   "></div>
+		            <div name="heart" title="heart" class="button_19x18 shape_heart"></div>
+		            <div name="" title="" class="button_19x18 shape_baloon_shape "></div>
+	            </div>
+	            <div class="tb_shape_outline">
+	               <input type="checkbox" id="shape_with_outline" checked="true"><label for="shape_with_outline" style="cursor: pointer; ">Outline</label>
+	            </div>
+	            <div class="tb_shape_fill">
+	               <input type="checkbox" id="shape_with_fill" checked="true"><label for="shape_with_fill" style="cursor: pointer; ">Fill</label>
+	            </div>
+	            
+	            <div class="tb_title" style="width:auto;right:5px;text-align:right;">Shapes&nbsp;</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         
+	         <div id="tb_size">
+	            <div class="line_width_selected line-width" name="size_1px" title="1px" style="top: 5px;"><div class="size_1_px"></div></div>
+	            <div class="line_width line-width" name="size_3px" title="3px" style="top:16px;"><div class="size_3_px"></div></div>
+	            <div class="line-width line_width" name="size_5px" title="5px" style="top:27px;"><div class="size_5_px"></div></div>
+	            <div class="line-width line_width" name="size_8px" title="8px" style="top:38px;"><div class="size_8_px"></div></div>
+	            <input type="text" class="input_line_width" title="Customized line width" style="position:absolute;top:55px;text-align:center;left:8px;width:40px;height:12px;font:11px arial;">
+	            <div class="tb_title">Size</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         
+	         <div id="tb_color">
+	            <div class="swap_color"></div>
+               <div style="position:absolute;left:5px;top:10px;width:24px;height:24px;overflow:hidden;background:#ffffff;border:1px solid black;z-index:2;">
+                  <div id="fore_color" style="position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px; overflow-x: hidden; overflow-y: hidden; cursor: pointer; background-color: rgb(0, 0, 0); " current_color="#000000"></div>
+               </div>
+               <div style="position:absolute;left:17px;top:20px;width:24px;height:24px;overflow:hidden;background:#ffffff;border:1px solid black;z-index:1;">
+                  <div id="back_color" style="position: absolute; left: 1px; top: 1px; bottom: 1px; right: 1px; overflow-x: hidden; overflow-y: hidden; cursor: pointer; background-color: rgb(255, 255, 255); " current_color="#ffffff"></div>
+               </div>
+               
+               <div id="opacity_slider" class="opacity_selector slider_h">
+	               <div class="slider_bar"></div>
+	               <div class="slider_knob" style="top: 0px; left: 102px; "></div>
+               <div class="tip" style="left: 80px; display: none; ">100%</div></div>
+               
+	            <div class="tb_title">Colors &amp; Opacity</div>
+	         </div>
+	         <div class="tb_v_bar"></div>
+	         
+	         <div id="tb_ruler">
+	            <div class="show_hide_ruler">
+	               <input type="checkbox" id="show_hide_ruler" checked="true"><label for="show_hide_ruler" style="cursor: pointer; ">Rulers</label>
+	               <input type="checkbox" id="show_hide_grid" checked="true"><label for="show_hide_grid" style="cursor: pointer; ">Gridlines</label><br>
+	               <label for="ruler_canvas_width" style="width: 40px; display: inline-block; cursor: pointer; ">Width</label><input type="input" id="ruler_canvas_width" style="width:50px;font:12px arial;"><br>
+	               <label for="ruler_canvas_height" style="width: 40px; display: inline-block; cursor: pointer; ">Height</label><input type="input" id="ruler_canvas_height" style="width:50px;font:12px arial;"><br>
+	            </div>
+	            <div class="ruler_unit">
+	               <input type="radio" id="ruler_unit_px" name="ruler_unit" value="px" checked="" style="cursor: pointer; "><label for="ruler_unit_px" style="cursor: pointer; ">Pixels</label><br>
+	               <input type="radio" id="ruler_unit_cm" name="ruler_unit" value="cm" style="cursor: pointer; "><label for="ruler_unit_cm" style="cursor: pointer; ">Centimeters</label><br>
+	               <input type="radio" id="ruler_unit_in" name="ruler_unit" value="in" style="cursor: pointer; "><label for="ruler_unit_in" style="cursor: pointer; ">Inches</label>
+	            </div>
+	            <div class="tb_title">Ruler</div>
+	         </div>
+	         
+	         
+	      </div>
+	      
+	      <div id="canvas_container" style="height: 498px; "><div id="h_unit">px</div><div id="h_ruler_container" style="width: 1249px; "><canvas id="h_ruler" height="19" width="1249"></canvas><canvas id="h_ruler_1" height="19" width="1249"></canvas><div id="ipaint_frame_h_spacer" class="drag_box canvas_drag_right" style="height: 19px; width: 10px; visibility: hidden; left: 600px; "></div></div><div id="v_ruler_container" style="height: 479px; "><canvas id="v_ruler" width="19" height="479"></canvas><canvas id="v_ruler_1" width="19" height="479"></canvas><div id="ipaint_frame_v_spacer" class="drag_box canvas_drag_down" style="width: 19px; height: 10px; visibility: hidden; top: 400px; "></div></div><div id="inner_container" style="width: 1249px; height: 479px; "><canvas id="ipaint_frame_canvas_bg" width="600" height="400" class="canvas"></canvas><canvas id="ipaint_frame_canvas_grid" width="600" height="400" class="canvas_temp"></canvas><canvas id="ipaint_frame_canvas" width="600" height="400" class="canvas"></canvas><canvas id="ipaint_frame_canvas_temp1" width="600" height="400" class="canvas_temp"></canvas><canvas id="ipaint_frame_canvas_temp" width="600" height="400" class="canvas_temp"></canvas><canvas id="ipaint_frame_canvas_clipboard" width="600" height="400" class="canvas_temp" style="visibility:hidden"></canvas><div id="ipaint_frame_canvas_drag_right" class="drag_box canvas_drag_right" style="left: 600px; top: 198px; "></div><div id="ipaint_frame_canvas_drag_down" class="drag_box canvas_drag_down" style="left: 298px; top: 400px; "></div><div id="ipaint_frame_canvas_drag_right_down" class="drag_box canvas_drag_right_down" style="left: 600px; top: 400px; "></div><textarea id="text_input" style="visibility: hidden; font-size: 25px; font-family: arial; "></textarea><div id="focus_ring"></div><div id="drag_tl" class="focus_ring_drag_box side_t side_l"></div><div id="drag_tm" class="focus_ring_drag_box side_t side_h_m"></div><div id="drag_tr" class="focus_ring_drag_box side_t side_r"></div><div id="drag_lm" class="focus_ring_drag_box side_l side_v_m"></div><div id="drag_rm" class="focus_ring_drag_box side_r side_v_m"></div><div id="drag_bl" class="focus_ring_drag_box side_b side_l"></div><div id="drag_bm" class="focus_ring_drag_box side_b side_h_m"></div><div id="drag_br" class="focus_ring_drag_box side_b side_r"></div></div></div>
+	      
+	      <div id="status_bar">
+	         <div class="status_coord">
+	            <div class="icon_24">
+	               <div class="icon_16 status_icon_coord" style="position:absolute;left:4px;top:4px"></div>
+	            </div>
+	            <div class="status_text">597, 128px</div>
+	            <div class="status_seperator"></div>
+	         </div>
+
+	         <div class="status_select">
+	            <div class="icon_24">
+	               <div class="icon_16 status_icon_select" style="position:absolute;left:4px;top:4px"></div>
+	            </div>
+	            <div class="status_text"></div>
+	            <div class="status_seperator"></div>
+	         </div>
+
+	         <div class="status_dimension">
+	            <div class="icon_24">
+	               <div class="icon_16 status_icon_dimension" style="position:absolute;left:4px;top:4px"></div>
+	            </div>
+	            <div class="status_text">600, 400px</div>
+	            <div class="status_seperator"></div>
+	         </div>
+
+	         <div class="status_prompt"></div>
+
+	      </div>
+	      
+	   </div>
+	   
+	   <div id="history" style="left: 1040px; top: 150px; ">
+	      <div class="title">Undo / Redo</div>
+	      <div class="content"><div style="cursor: pointer; " id="history_0" class="item_selected">Untitled <small style="color:#cccccc">(600 x 400 px)</small></div></div>
+	   </div>
+	   
+	   <div id="dlg_mask" class="dialog_mask" style="visibility:hidden"></div>
+	   
+	   <div id="dlg_new_image" class="dialog" style="width: 360px; height: 360px; visibility: hidden; left: 0px; top: 0px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">New Image</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_new_image"></div>
+	      <div class="dlg_content_container">
+	         <div class="dlg_content"><form name="frm_new_img" method="post">
+	            <fieldset>
+	               <div>
+	                  <label class="field" style="cursor: pointer; ">Name:</label>
+	                  <input type="text" name="image_name" id="image_name" value="" style="width:200px">
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <fieldset>
+	               <div>
+	                  <label class="field" style="cursor: pointer; ">Width:</label>
+	                  <input type="text" name="image_width" id="image_width" style="width:100px">
+	                  <select name="image_unit_w" class="image_unit">
+	                     <option value="px">Pixels</option>
+	                     <option value="cm">Centimeters</option>
+	                     <option value="in">Inches</option>
+	                  </select>
+	               </div>
+	               <div>
+	                  <label class="field" style="cursor: pointer; ">Height:</label>
+	                  <input type="text" name="image_height" id="image_height" style="width:100px">
+	                  <select name="image_unit_h" class="image_unit">
+	                     <option value="px">Pixels</option>
+	                     <option value="cm">Centimeters</option>
+	                     <option value="in">Inches</option>
+	                  </select>
+	               </div>
+	               <div>
+	                  <label class="field" style="cursor: pointer; ">Resolution:</label>
+	                  <input type="text" name="image_resolution" id="Text1" style="width:100px">
+	                  <label style="cursor: pointer; ">DPI</label>
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <fieldset style="text-align:left;padding-left:100px;">
+	               <legend>Image Background</legend>
+	               <div>
+	                  <input type="radio" name="image_bg" id="image_bg_1" value="white">
+	                  <label for="image_bg_1" style="cursor: pointer; ">White</label>
+	               </div>
+	               <div>
+	                  <input type="radio" name="image_bg" id="image_bg_2" value="background">
+	                  <label for="image_bg_2" style="cursor: pointer; ">Background Color</label>
+	               </div>
+	               <div>
+	                  <input type="radio" name="image_bg" id="image_bg_3" value="transparent">
+	                  <label for="image_bg_3" style="cursor: pointer; ">Transparent</label>
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <div style="text-align:right">
+	               <button class="dlg_btn_action_ok">OK</button>
+	               <button class="dlg_btn_action_cancel" ref="dlg_new_image">Cancel</button>
+	            </div>
+	            
+	         </form></div>
+	       </div>
+	   </div>
+	   
+	   <div id="dlg_save_image" class="dialog" style="width: 360px; height: 220px; visibility: hidden; left: 0px; top: 0px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">Save Image</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_save_image"></div>
+	      <div class="dlg_content_container">
+	         <div class="dlg_content"><form name="frm_save_img" method="post">
+	            
+	            <fieldset>
+	               <legend>Image Name</legend>
+	               <div>
+	                  <label class="field" style="cursor: pointer; ">File name:</label>
+	                  <input type="text" name="image_file" id="image_file" value="" style="width:200px">
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <fieldset style="text-align:center;">
+	               <legend>Image Format</legend>
+	               <div>
+	                  <input type="radio" name="image_format" id="image_png" value="png">
+	                  <label for="image_png" style="cursor: pointer; ">PNG</label>
+	                  <input type="radio" name="image_format" id="image_jpg" value="jpg">
+	                  <label for="image_jpg" style="cursor: pointer; ">JPEG</label>
+	                  <input type="radio" name="image_format" id="image_bmp" value="bmp">
+	                  <label for="image_bmp" style="cursor: pointer; ">BMP</label>
+	               </div>
+	               
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <div style="text-align:right">
+	               <button class="dlg_btn_action_ok">Save</button>
+	               <button class="dlg_btn_action_cancel" ref="dlg_save_image">Cancel</button>
+	            </div>
+	            
+	         </form></div>
+	       </div>
+	   </div>
+	   
+	   <div id="dlg_share_image" class="dialog" style="width: 360px; height: 380px; visibility: hidden; left: 0px; top: 0px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">Share My Drawing</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_share_image"></div>
+	      <div class="dlg_content_container">
+	         <div class="dlg_content"><form name="frm_share_img" method="post">
+	            
+	            <div id="frm_share_img_err" style="font:11px arial;height:12px;left:2px;right:2px;text-align:center;color:Red;line-height:12px;"></div>
+	            
+	            <fieldset>
+	               <legend>Share-to list:<small style="color:#888888;"> (Seperate emails using comma ,)</small></legend>
+	               <div style="height:50px;vertical-align:top;">
+	                  <textarea type="text" name="email_list" id="email_list" style="width:320px;height:40px;"></textarea>
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <fieldset>
+	               <legend>Your name:</legend>
+	               <input type="text" name="sender_name" id="sender_name" value="" style="width:320px">
+	            </fieldset>
+	            
+	            <fieldset>
+	               <legend>Message:</legend>
+	               <div style="height:120px;vertical-align:top;">
+	                  <textarea type="text" name="email_body" id="email_body" style="width:320px;height:110px;"></textarea>
+	               </div>
+	            </fieldset>
+	            
+	            <div style="text-align:right">
+	               
+	               <button class="dlg_btn_action_ok">Share</button>
+	               <button class="dlg_btn_action_cancel" ref="dlg_share_image">Cancel</button>
+	            </div>
+	            
+	         </form></div>
+	       </div>
+	   </div>
+	   
+	   
+	   <div id="dlg_selection_resize" class="dialog" style="width: 300px; height: 220px; visibility: hidden; left: 0px; top: 0px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">Resize and Skew</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_selection_resize"></div>
+	      <div class="dlg_content_container">
+	         <div class="dlg_content"><form name="frm_resize" method="post">
+	            
+	            <fieldset>
+	               <legend>Resize</legend>
+	               <div style="text-align:center">
+	                  <label class="field" style="cursor: pointer; ">By:</label>
+	                  <input type="radio" name="resize_by" id="resize_by_per" value="per" checked="">
+	                  <label for="resize_by_per" style="cursor: pointer; ">Percentage</label>
+	                  <input type="radio" name="resize_by" id="resize_by_px" value="px">
+	                  <label for="resize_by_px" style="cursor: pointer; ">Pixels</label>
+	               </div>
+
+	               <div style="text-align:center">
+	                  <label class="field" style="cursor: pointer; ">Horizontal:</label>
+	                  <input type="text" name="resize_h" id="resize_h" value="100" style="width:40px">
+	               </div>
+
+	               <div style="text-align:center">
+	                  <label class="field" style="cursor: pointer; ">Vertical:</label>
+	                  <input type="text" name="resize_v" id="resize_v" value="100" style="width:40px">
+	               </div>
+
+                  <div style="text-align:center">
+	                  <input type="checkbox" name="resize_ratio" id="resize_ratio" checked="">
+	                  <label for="resize_ratio" style="cursor: pointer; ">Maintain aspect ratio</label>
+	               </div>
+	               
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <div style="text-align:right">
+	               
+	               <button class="dlg_btn_action_apply">Apply</button>&nbsp;&nbsp;&nbsp;
+	               <button class="dlg_btn_action_ok">OK</button>
+	               <button class="dlg_btn_action_cancel" ref="dlg_selection_resize">Close</button>
+	            </div>
+	            
+	         </form></div>
+	       </div>
+	   </div>
+
+
+	   <div id="dlg_selection_rotate" class="dialog" style="width: 240px; height: 240px; visibility: hidden; left: 0px; top: 0px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">Rotate</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_selection_rotate"></div>
+	      <div class="dlg_content_container">
+	         <div class="dlg_content"><form name="frm_rotate" method="post">
+	            
+	            <fieldset>
+	               <legend>Rotate</legend>
+	               <div style="margin-left:40px;height:auto;">
+	               <div>
+	                  <input type="radio" name="rotate" id="rotate_1" value="90" checked="">
+	                  <label for="rotate_1" class="field" style="text-align: left; cursor: pointer; ">Rotate right 90°</label>
+	               </div>   
+	               <div>
+	                  <input type="radio" name="rotate" id="rotate_2" value="-90">
+	                  <label for="rotate_2" class="field" style="text-align: left; cursor: pointer; ">Rotate left 90°</label>
+	               </div>   
+	               <div>
+	                  <input type="radio" name="rotate" id="rotate_3" value="180">
+	                  <label for="rotate_3" class="field" style="text-align: left; cursor: pointer; ">Rotate 180°</label>
+	               </div>   
+	               <div>
+	                  <input type="radio" name="rotate" id="rotate_4" value="flip_v">
+	                  <label for="rotate_4" class="field" style="text-align: left; cursor: pointer; ">Flip vertical</label>
+	               </div>   
+	               <div>
+	                  <input type="radio" name="rotate" id="rotate_5" value="flip_h">
+	                  <label for="rotate_5" class="field" style="text-align: left; cursor: pointer; ">Flip horizontal</label>
+	               </div>
+	               </div>
+	            </fieldset>
+	            
+	            <div></div>
+	            
+	            <div style="text-align:right">
+	               
+	               <button class="dlg_btn_action_apply">Apply</button>&nbsp;&nbsp;&nbsp;
+	               <button class="dlg_btn_action_ok">OK</button>
+	               <button class="dlg_btn_action_cancel" ref="dlg_selection_rotate">Close</button>
+	            </div>
+	            
+	         </form></div>
+	       </div>
+	   </div>
+
+	   
+
+	   <div id="dlg_gallery" class="dialog" style="visibility: hidden; left: 0px; top: 0px; height: 471.3333333333333px; width: 873.3333333333334px; ">
+	      <div class="dlg_spacer_left"></div>
+	      <div class="dlg_title">Gallery</div>
+	      <div class="dlg_spacer_right"></div>
+	      <div class="dlg_btn_close dlg_btn_action_cancel" title="close" ref="dlg_gallery"></div>
+	      <div class="dlg_content_container">
+	         <div id="gallery_toolbar">
+	            <div class="tool_icon refresh" title="Refresh"></div>
+	         </div>
+            <div id="guest_gallery" class="gallery" style="height: 381.3333333333333px; "></div>
+            <div style="text-align:right">
+	            <button class="dlg_btn_action_cancel" ref="dlg_gallery">Close</button>
+	         </div>
+	     </div>
+	   </div>
+
+
+	   <div class="image_cell_big" style="display:none;">
+	      <div class="close"></div>
+	      <div class="container">
+	         <div class="image" style="background-image:url(user_data/guest/5.png)"></div>
+	         <div class="title">
+	            <span></span>
+	            <button>Open</button>
+	         </div>
+	      </div>
+	   </div>
+	   
+	   <!--
+	   <img id="dlg_image" class="dialog" 
+	        style="position:absolute;left:100px;top:10px;width:600px;height:400px;visibility:hidden;z-index:1000;
+	               box-shadow:5px 5px 5px #444444;
+	               -moz-box-shadow: 5px 5px 5px #444444;
+	               -webkit-box-shadow: 5px 5px 5px #444444;" />
+
+	   -->
+	   
+	   <div id="not_support_canvas" style="font:16px arial;height:140px;display:none;text-align:center;line-height:140px;color:Red;">
+	      Your browser doesn't support HTML5. You can download IE 9.0, Firefox or Google Chrome to view this site;
+	   </div>
+	   
+	   <div id="bucket_selection" class="referee" style="display: none; ">
+         <div title="Fill with color" name="bucket_solid" class="button_19x18 tool_bucket_solid"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Fill with linear gradient color" name="bucket_linear_grad" class="button_19x18 tool_bucket_linear_grad"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Fill with radial gradient color" name="bucket_radial_grad" class="button_19x18 tool_bucket_radial_grad"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Fill with reflected gradient color" name="bucket_reflected_grad" class="button_19x18 tool_bucket_reflected_grad"></div>
+         <!--
+         <div class="tool_v_bar"></div>
+         <div title="Fill with reflected diamond color"  name="bucket_diamond_grad"   class="button_19x18 tool_bucket_diamond_grad"></div>
+         -->
+	   </div>
+	   
+	   <div id="tools_selection" class="referee" style="display: none; ">
+         <div title="Rectangular selection" name="select_box" class="button_19x18 tool_select_box"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Polygon selection" name="select_polygon" class="button_19x18 tool_select_poly"></div>
+         <!--
+         <div class="tool_v_bar"></div>
+         <div title="Polygon selection" name="select_polygon" class="button_19x18 tool_select_poly"></div>
+         -->
+	   </div>
+	   
+	   <div id="brush_selection" class="referee" style="display: none; ">
+         <div title="Simple brush" name="simple_brush" class="button_19x18 tool_brush_simple"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Ribbon brush" name="ribbon_brush" class="button_19x18 tool_brush_ribbon"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Hair brush" name="hair_brush" class="button_19x18 tool_brush_hair"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Long hair brush" name="long_hair_brush" class="button_19x18 tool_brush_longhair"></div>
+         <div class="tool_v_bar"></div>
+         <div title="Square brush" name="square_brush" class="button_19x18 tool_brush_square"></div>
+	   </div>
+	   
+	   <div style="display:none;background:#fff;position:absolute;right:0px;top:0px;width:200px;height:400px;border:1px solid black;overflow:auto;font:11px arial;z-index:2000;" id="debug_win"></div>
+	
+
+
+
+
+<div style="position: absolute; font-family: tahoma, verdana, sans-serif; font-size: 10px; z-index: 999; display: none; " id="ColorPicker"><div style="background-color: rgb(255, 255, 255); line-height: 2px; width: 423px; height: 21px; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); " id="hColorPicker"><div style="width: 50px; height: 21px; border-right-width: 1px; border-right-style: solid; border-right-color: rgb(255, 255, 255); float: left; " id="hColorDiv"></div><div style="float: left; "><img style="cursor: crosshair; " src="./ipaint_files/cp_horizontal_picker.png" width="350" height="21" id="hColorImg"><img style="cursor: pointer; margin-left: 1px; " src="./ipaint_files/cp_mini_icon.png" width="21" height="21" id="hColorIcon"></div></div><div style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); border-left-color: rgb(0, 0, 0); width: 397px; height: 305px; position: relative; background-color: rgb(224, 223, 227); " id="fColorPicker"><div style="position: absolute; top: 3px; left: 8px; ">Select Color:</div><img src="./ipaint_files/cp_lg_background.png" width="260" height="260" style="position: absolute; top: 20px; left: 8px; " galleryimg="no"><img src="./ipaint_files/cp_lg_overlay.png" width="256" height="256" style="cursor: crosshair; position: absolute; top: 22px; left: 10px; " galleryimg="no" id="fColorImg"><img src="./ipaint_files/cp_color_slider.png" width="23" height="260" style="cursor: pointer; position: absolute; top: 20px; left: 280px; z-index: 2; " id="colorSlider"><img src="./ipaint_files/cp_arrows.gif" width="41" height="9" style="cursor: pointer; position: absolute; top: 18px; left: 271px; z-index: 1; " id="Arrows"><img src="./ipaint_files/cp_cur_color_background.png" width="62" height="70" style="position: absolute; top: 20px; left: 315px; "><img src="./ipaint_files/cp_web_safe.gif" width="14" height="28" style="cursor: pointer; position: absolute; top: 62px; left: 380px; " alt="Click to Select Web Safe Color" id="websafeImg"><div style="z-index: 2; position: absolute; top: 22px; left: 317px; width: 58px; height: 33px; " id="curColorDiv"></div><div style="z-index: 2; cursor: pointer; position: absolute; top: 55px; left: 317px; width: 58px; height: 33px; " id="OrigColorDiv"></div><div style="position: absolute; top: 103px; left: 315px; ">R:</div><div style="position: absolute; top: 128px; left: 315px; ">G:</div><div style="position: absolute; top: 153px; left: 315px; ">B:</div><div style="position: absolute; top: 183px; left: 315px; ">#:</div><input style="font: normal normal normal 12px/normal arial; position: absolute; top: 100px; left: 330px; width: 47px; " id="rInput"><input style="font: normal normal normal 12px/normal arial; position: absolute; top: 125px; left: 330px; width: 47px; " id="gInput"><input style="font: normal normal normal 12px/normal arial; position: absolute; top: 150px; left: 330px; width: 47px; " id="bInput"><input style="font: normal normal normal 12px/normal arial; position: absolute; top: 180px; left: 330px; width: 47px; " id="rgbInput"><button style="position: absolute; bottom: 50px; left: 315px; width: 77px; " id="OK">OK</button><button style="position: absolute; bottom: 25px; left: 315px; width: 77px; " id="Cancel">Cancel</button><input type="checkbox" style="position: absolute; top: 280px; left: 4px; " id="websafeCheckbox"><div style="position: absolute; top: 284px; left: 25px; ">Only Web Colors</div><img src="./ipaint_files/cp_mini_icon.png" height="21" width="21" style="cursor: pointer; position: absolute; top: 0px; right: 0px; " id="fColorIcon"></div></div></body></html>

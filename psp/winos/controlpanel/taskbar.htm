@@ -1,0 +1,101 @@
+<html>
+<head>
+<title>Taskbar Page</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #EBE9ED;
+}
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+function ChangeSettings(){
+	top.icookies.document.settings.chkmenu.value=document.getElementById('chkmenu').checked;
+	top.icookies.document.settings.chkclock.value=document.getElementById('chkclock').checked;
+	top.icookies.document.settings.submit();
+	top.ApplySettings();
+}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+	  <td><div align="center">
+		  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+			  <td width="114"><div align="center"> </div></td>
+			  <td width="243"><table width="243" height="93" border="0" cellpadding="0" cellspacing="0" background="../images/controlpanel/preview.jpg">
+				  <tr>
+					<td width="52" height="8"></td>
+					<td width="140" height="8"></td>
+					<td width="51" height="8"></td>
+				  </tr>
+				  <tr>
+					<td height="70"></td>
+					<td width="140" height="70"><img alt="" name="imgPreview" width="141" height="71" id="imgPreview"></td>
+					<td height="70"></td>
+				  </tr>
+				  <tr>
+					<td width="52"></td>
+					<td width="140" height="15"></td>
+					<td width="51"></td>
+				  </tr>
+				</table></td>
+
+            <td width="115" align="center">&nbsp;</td>
+			</tr>
+		  </table>
+		</div></td>
+	</tr>
+	<tr>
+	  <td><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="55%" valign="top"><p align="left">
+              <label>
+              <input type="checkbox" name="chkmenu" id="chkmenu" value="" checked>
+              Use wide start menu</label>
+          </p></td>
+          <td width="45%" valign="top">
+              <label>
+              <input type="checkbox" name="chkclock" id="chkclock" value="" checked>
+              Show clock</label>
+          </td>
+        </tr>
+      </table>
+		<div align="center">
+		  <table width="150" height="30" border="0" align="center" cellpadding="0" cellspacing="0">
+			<tr valign="bottom">
+			  <td width="50%"><div align="center">
+				  <input name="OK" type="button" id="OK" onClick="location='index.htm';ChangeSettings();" value="OK" style="width:60">
+				</div></td>
+			  <td width="50%"><div align="center">
+                             <input name="Cancel" type="button" id="Cancel3" onClick="location='index.htm';" value="Cancel" style="width:60">
+				</div></td>
+			</tr>
+		  </table>
+		</div></td>
+	</tr>
+  </table>
+				<script language="javascript" type="text/javascript">
+	if(top.document.icookies.document.getElementById('chkmenu').value=="false"){
+		chkmenu.checked=false;
+	}else{
+		chkmenu.checked=true;
+	}
+	if(top.document.icookies.document.getElementById('chkclock').value=="false"){
+		chkclock.checked=false;
+	}else{
+		chkclock.checked=true;
+	}
+	if(top.icookies.document.getElementById('bg').value==''){
+		imgPreview.src="../images/desktop.jpg";
+	}else{
+		imgPreview.src=top.icookies.document.getElementById('bg').value;
+	}
+				</script>
+</div>
+</body>
+</html>

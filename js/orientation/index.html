@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	
+	<script type="text/javascript" src="mootools-core.js"></script>
+	<script type="text/javascript" src="mootools-more.js"></script>
+	
+	<script type="text/javascript">
+		window.addEvent('domready', function(){
+			var box1 = document.getElement('div.container'),
+				toggle = document.id('start'),
+				attach = function(event){
+					event.preventDefault();
+
+					toggle.set('text', 'Stop the madness!').addEvent('click:once', detach);
+					window.addEventListener('deviceorientation', listener, true);
+				},
+				detach = function(event){
+					if (event) event.preventDefault();
+					
+					toggle.set('text', 'Start').addEvent('click:once', attach);
+					window.removeEventListener('deviceorientation', listener, true);
+				};
+			
+			detach();
+			
+			var listener = function(event){
+				var	angles = [];
+				['alpha', 'beta', 'gamma'].each(function(angle){
+					angles.push(Math.round(event[angle]));
+				});
+				box1.style.webkitTransform = 'rotateX(' + angles[1] + 'deg) rotateY(' + angles[2] + 'deg)  rotateZ(' + angles[0] + 'deg)';
+			};
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<span style="float: right;">
+		<a href="http://github.com/cpojer/orientation">Source</a>
+	</span>
+	
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div class="container">
+	<div id="more">
+		<a href="motion.html">Motion</a>
+		<a href="orientation.html">Orientation</a>
+		<a href="perspective.html">Perspective</a>
+		<a href="image.html">Fun: Image</a>
+		<a href="map.html">Map</a>
+	</div>
+	
+	<div>
+		Best viewed on an iPhone4. Lock position in portrait mode. Try moving your phone around and feel the magic.
+		<a href="#" id="start" class="link purple">Start</a>
+	</div>
+</div>
+</body>
+</html>

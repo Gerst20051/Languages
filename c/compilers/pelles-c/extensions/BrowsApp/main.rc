@@ -1,0 +1,34 @@
+
+
+#include "mainres.h"
+
+1 ICON "DISK.ICO"
+2 BITMAP "tools.bmp"
+IDMAINMENU MENU
+BEGIN
+    POPUP "&File"
+        BEGIN
+        MENUITEM "Local Files", IDM_LOCAL
+        MENUITEM "John's Web Page", IDM_JOHN
+        MENUITEM "PellesC Web Page", IDM_PELLESC
+        MENUITEM "PellesC Forum", IDM_FORUM
+        MENUITEM "&E&xit", IDM_EXIT
+        END
+    POPUP "&Help"
+        BEGIN
+        MENUITEM "&About", IDM_ABOUT
+        END
+END
+IDACCEL ACCELERATORS
+BEGIN
+    81, IDM_EXIT, VIRTKEY, CONTROL
+END
+
+DLG_ABOUT DIALOG 6, 18, 180, 95
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "About this Application"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CTEXT           "Demo of using the WebBrowser COM control.", 401, 33, 22, 112, 35
+    PUSHBUTTON      "OK", IDOK, 60, 55, 60, 17
+END

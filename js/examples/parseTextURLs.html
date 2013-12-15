@@ -1,0 +1,25 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<textarea cols="40" rows="10"></textarea>
+<a href="#" class="test">Test</a>
+<div id="output"></div>
+<script>
+$(".test").click(function(){
+var urlex = /\b(([^:\/?#]+):)(\/\/([^\/?#]*))([^?#]*)(\?([^#]*))?(#(.*))?/gi;
+var content = $("textarea").val();
+var contentArray = content.split(" ");
+var linkArray = [];
+$.each(contentArray, function(index,value){
+if (value.match(urlex)) linkArray.push(value);
+});
+$("#output").empty();
+$.each(linkArray, function(index,value){
+$("#output").append(value+"<br/>");
+});
+});
+</script>
+</body>
+</html>

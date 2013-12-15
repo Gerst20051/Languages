@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- saved from url=(0028)http://moo4q.com/Demos/tabs/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+
+	<title>Moo4q Tab Class Demonstration</title>
+	<link rel="stylesheet" href="./moo4q_tab_class_files/style.css" type="text/css" media="screen" title="no title" charset="utf-8">	
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/jquery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/mootools-base.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/Class.Mutators.jQuery.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/Tabs.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/Tabs.Ajax.js"></script>
+	<script type="text/javascript" charset="utf-8" src="./moo4q_tab_class_files/demo.js"></script>
+<script type="text/javascript" async="" src="./moo4q_tab_class_files/ga.js"></script></head>
+
+<body class="toggle">
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16348013-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+	</script>
+	<div id="pane" class="pane" style="position: relative; ">
+		<div class="nav">
+			<a href="http://moo4q.com/Demos/tabs/#" class="current">Tabs.js</a>
+			<a href="http://moo4q.com/Demos/tabs/#" class="">Options &amp; Events</a>
+			<a href="http://moo4q.com/Demos/tabs/#" class="">Managing State</a>
+		</div>
+		<div class="section" style="display: block; ">
+			<h1>About</h1>
+			<p>This is a simple Tab class to illustrate how to use <a href="http://moo4q.com/">moo4q</a> (mootools for jQuery.)  It has a handful of methods for creating a basic tab plugin.  Moo4q automatically extends the jQuery prototype with a tab method so using the plugin has a familiar syntax:
+			</p>
+			<pre><code>// jQuery API
+$('#pane').tabs(options)</code>
+
+// regular javascript
+var myTabs = new Tabs('#pane', options);</pre>
+			<p>
+				Looking at the source is the best way to see what's going on, it's full of comments too. But this page also has some good information as you click through the tabs.
+		 	</p>
+		</div>
+		<div class="section" style="display: none; ">
+			<h1>Options &amp; Events</h1>
+			<p>
+				Think of options as "defaults" or "settings" of regular jQuery plugins.  If you don't provide any, your instance will use the default options.  You pass the options in to a moo4q class the same as a regular plugin:
+			</p>
+			<pre><code>$('#pane').tabs({
+  tab: 'a', 
+  content: '.section'
+});</code></pre>
+			<p>
+				MooTools classes can have their own custom events.  This class has a <code>show</code> event.  In jQuery they are often called "callbacks."  This tab instance added an event like this: <code>#('#pane').tabs('addEvent','show', fn)</code>, and the function toggles the class the of the body, you'll notice the background color changes as you click through the tabs.
+			</p>
+		</div>
+		<div class="section" style="display: none; ">
+			<h1>Managing State</h1>
+			<p>
+				When you use  <code>$('#pane').tabs()</code>, you're creating a new instance of Tabs and storing it on the jQuery object returned for <code>$('#pane')</code>.  You can manage the state of that object very easily. Open the console in webkit or firebug and type
+			</p>
+			<pre><code>$('#pane').tabs('show', 0)</code></pre>
+			<p>Or just click this button <button id="show">show!</button></p>
+		</div>
+	</div>
+	
+	<div id="pane1" class="pane" style="position: relative; ">
+		<div class="nav">
+			<a href="http://moo4q.com/Demos/tabs/xhr.php?page=extends" class="">Tabs.Ajax.js</a>
+			<a href="http://moo4q.com/Demos/tabs/xhr.php?page=parent" class="">Parent</a>
+			<a href="http://moo4q.com/Demos/tabs/xhr.php?page=implements" class="current">Implements</a>
+		</div>
+		<div class="section" style="display: none; ">
+<h1>Extends</h1>
+<p>
+	MooTools classes can extend other classes to create sub classes.  This class Extends Tab.js.  It adds a little code to the <code>show</code> method to include some AJAX functionality but just inherits everything else!
+</p>
+<p>
+	If we fix a bug in Tab.js, we automatically fix the bug in Tab.Ajax.js.
+</p>
+<p>
+	If we add a feature to Tab.js, we automatically add a feature to Tab.Ajax.js.
+</p>
+
+
+</div>
+		<div class="section" style="display: none; ">
+
+<h1>Parent</h1>
+<p>
+	You always have access to the parent class methods with <code>this.parent(args)</code>.  Call that within any method and you'll call the parent method with the same name as the method from which it's called. Yes, I'm aware I said method a lot.
+</p>
+
+</div>
+		<div class="section" style="display: block; ">
+
+
+<h1>Implements</h1>
+<p>
+	Implements sort of feels like Extends but it's different.  Implements simply copies over the methods of class into another class.  In the other box we talked about Options and Events.  Tabs.js implements two classes named Options and Events.  There is no <code>this.parent()</code> when you Implement another class.
+</p>
+</div>
+	</div>
+	
+
+	<a id="back" href="http://moo4q.com/">Back to moo4q.com</a>
+
+
+
+</body></html>

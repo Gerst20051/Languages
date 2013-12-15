@@ -1,0 +1,121 @@
+<!doctype html>
+
+<html>
+<head>
+  <title>Audio sprite</title>
+
+</head>
+<body>
+<audio id="in">
+  <source src="in.mp3">
+  <source src="in.ogg" type="video/ogg">
+</audio>
+<audio id="1">
+  <source src="1.mp3">
+  <source src="1.ogg" type="video/ogg">
+</audio>
+<audio id="2">
+  <source src="2.mp3">
+  <source src="2.ogg" type="video/ogg">
+</audio>
+<audio id="out">
+  <source src="out.mp3">
+  <source src="out.ogg" type="video/ogg">
+</audio>
+
+<audio id="sprite">
+  <source src="combo.mp3">
+  <source src="combo.ogg" type="video/ogg">
+</audio>
+
+
+
+<button onclick="next();">gimme some &#9835;</button> {plays individual files}<br>
+<button onclick="spriteme();">sprite me</button> {seeks through a single combo file}<br>
+<button onclick="shut();">oh, shut up &#9985;</button>
+
+<pre id="log"></pre>
+
+<script>
+var thing = 'the thing';
+var next = (function() {  
+    log('#: file');
+    log('-------');
+    var these = ['in', '1', '2', '1', '2', '1', '2', '1', 'out'],
+        current = 0;
+    return function() {
+        thing = document.getElementById(these[current]);
+        log(current + ': ' + these[current] + ' ' + thing.currentSrc);
+        thing.play();
+        
+        if (current < these.length - 1) {
+            thing.addEventListener('ended', next, false);
+            current++;
+        } else {
+            current = 0;
+        }        
+    }
+}());
+
+function shut() {
+    if (typeof thing.pause !== 'undefined') {
+        thing.pause();
+    }
+}
+
+function log(what) {
+    document.getElementById('log').innerHTML += what + "<br>";
+}
+
+
+var spriteme = function(){
+    var sprites = {
+          // id: [start, length]
+           'in': [0, 3.07],
+            '1': [3.07,  2.68],
+            '2': [3.07 + 2.68,  2.68],
+            out: [3.07 + 2.68 + 2.68, 11.79]
+        },
+        song = ['in', '1', '2', '1', '2', '1', '2', '1', 'out'],
+        current = 0,
+        id = song[current],
+        start = 0,
+        end = sprites[id][1],
+        int;
+    
+    
+    
+    thing = document.getElementById('sprite');
+    thing.play();
+    
+    log('file: ' + thing.currentSrc);
+    log(id + ': start: ' + sprites[id].join(', length: '));
+    
+    // change
+    int = setInterval(function() {
+        if (thing.currentTime > end) {
+            thing.pause();
+            if (current === song.length - 1) {
+                clearInterval(int);
+                return;
+            }
+            current++;
+            
+            id = song[current];
+            start = sprites[id][0];
+            end = start + sprites[id][1]
+            thing.currentTime = start;
+            thing.play();
+            log(id + ': start: ' + sprites[id].join(', length: '));
+
+        }
+    }, 10);
+    
+    
+    
+};
+
+</script>
+
+</body>
+</html>

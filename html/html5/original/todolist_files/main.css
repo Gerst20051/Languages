@@ -1,0 +1,185 @@
+a
+{
+    color: #666;
+}
+
+.button
+{
+    color: #606060;
+    display: inline-block;
+    zoom: 1;
+    display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 12px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover
+{
+    text-decoration: none;
+}
+
+.button:active
+{
+    position: relative;
+    top: 1px;
+}
+
+.white
+{
+    border: 1px solid #B7B7B7;
+}
+
+#todo-list-text
+{
+    display: block;
+    margin-bottom: 20px;
+    border: 1px dotted #ccc;
+    width: 100%;
+    overflow: auto;
+    padding: 10px;
+    height: 80px;
+}
+
+.white, .white:hover
+{
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+    background: gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+    background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+}
+
+.white:active
+{
+    color: #999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+    background: -moz-linear-gradient(top,  #ededed,  #fff);
+    background: linear-gradient(top,  #ededed,  #fff);
+}
+
+
+body
+{
+    background: #EFEFEF;
+    color: #666;
+}
+
+h1
+{
+    color: #666;
+    text-shadow: 2px 2px 4px #fff;
+    font-size: 40px;
+}
+
+#wrapper
+{
+    width: 800px;
+    margin: 100px auto;
+}
+
+#content
+{
+    background: #fff;
+    padding: 20px;
+    -moz-border-radius: 6px;
+    -moz-box-shadow:2px 2px 6px rgba(0,0,0, 0.2);
+    -webkit-border-radius: 6px;
+    -webkit-box-shadow:2px 2px 6px rgba(0,0,0, 0.2);
+    border-radius: 6px;
+    box-shadow:2px 2px 6px rgba(0,0,0, 0.2);
+}
+
+#todo-lists
+{
+    margin-top: 20px;
+}
+
+#todo-lists .controls
+{
+    text-align: right;
+}
+
+#todo-lists .controls span
+{
+    display: inline-block;
+    background: #eaeaea;
+    padding: 1px;
+    cursor: pointer;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-topleft: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    position: relative;
+    top: -28px;
+}
+
+#todo-lists .controls span img
+{
+    opacity: 0.5;
+}
+
+#todo-lists div.todo
+{
+    border-bottom: 1px solid #eaeaea;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.ch
+{
+    display: inline-block;
+    position: relative;
+    margin-left: -15px;
+}
+
+span.status
+{
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    left: -10px;
+    margin-bottom: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.todo.off
+{
+    text-decoration: line-through !important;
+}
+
+.todo.on
+{
+    text-decoration: none !important;
+}
+
+span.status.on
+{
+    background: green !important;
+}
+
+span.status.off
+{
+    background: #999 !important;
+}

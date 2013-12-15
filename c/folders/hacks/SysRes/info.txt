@@ -1,0 +1,44 @@
+SYSTEM RESTART
+==============
+
+Testing And Removing The Virus From Your PC
+
+ 
+You can compile and test this virus on your own PC without any fear. To test, just doubleclick the sysres.exe file and restart the system manually. Now onwards ,when every time the PC is booted and the desktop is loaded, your PC will restart automatically again and again.
+It will not do any harm apart from automatically restarting your system. After testing it, you can remove the virus by the following steps.
+
+ 
+1. Reboot your computer in the SAFE MODE
+
+2. Goto
+
+X:\Windows\System
+(X can be C,D,E or F)
+3.You will find a file by name sysres.exe, delete it.
+
+4.Type regedit in run.You will goto registry editor.Here navigate to
+
+HKEY_CURRENT_USER\Software\Microsoft\Windows\ CurrentVersion\Run
+
+ There, on the right site you will see an entry by name “sres“.Delete this entry.That’s it.You have removed this Virus successfully.
+ 
+Logic Behind The Working Of The Virus
+
+ 
+If I don’t explain the logic(Algorithm) behind the working of the virus,this post will be incomplete. So I’ll explain the logic in a simplified manner. Here I’ll not explain the technical details of the program. If you have further doubts please pass comments.
+
+ 
+LOGIC:
+
+ 
+1. First the virus will find the Root partition (Partition on which Windows is installed).
+
+2. Next it will determine whether the Virus file is already copied(Already infected) into X:\Windows\System
+
+3. If not it will just place a copy of itself into X:\Windows\System and makes a registry entry to put this virus file onto the startup.
+
+4. Or else if the virus is already found in the X:\Windows\System directory(folder), then it just gives a command to restart the computer.
+
+This process is repeated every time the PC is restarted.
+
+NOTE: The system will not be restarted as soon as you double click the Sysres.exe file.The restarting process will occur from the next boot of the system.

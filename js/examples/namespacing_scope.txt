@@ -1,0 +1,159 @@
+var nav = document.getElementById('nav');
+function init(){
+    // do stuff 
+}
+function show(){
+    // do stuff 
+}
+function reset(){
+    // do stuff 
+}
+
+INTO
+
+var myScript = {
+    nav:document.getElementById('nav'),
+    init:function((){
+        // do stuff 
+    },
+    show:function((){
+        // do stuff 
+    },
+    reset:function((){
+        // do stuff 
+    }
+}
+
+--------------------------------------------------------
+
+var nav = document.getElementById('nav');
+function init(){
+    show();
+    if(nav.className === 'show'){
+        reset();
+    }
+    // do stuff 
+}
+function show(){
+    var c = nav.className;
+    // do stuff 
+}
+function reset(){
+    // do stuff 
+}
+
+INTO
+
+var myScript = {
+    nav:document.getElementById('nav'),
+    init:function(){
+        myScript.show();
+        if(myScript.nav.className === 'show'){
+            myScript.reset();
+        }
+        // do stuff 
+    },
+    show:function(){
+        var c = myScript.nav.className;
+        // do stuff 
+    },
+    reset:function(){
+        // do stuff 
+    }
+}
+
+--------------------------------------------------------
+
+var myScript = function(){
+    // these are all private methods and properties
+    var nav = document.getElementById('nav');
+    function init(){
+        // do stuff 
+    }
+    function show(){
+        // do stuff 
+    }
+    function reset(){
+        // do stuff 
+    }
+    // public methods and properties wrapped in a return 
+    // statement and using the object literal
+    return {
+        public:function((){
+        
+        },
+        foo:'bar'
+    }
+}();
+
+--------------------------------------------------------
+
+var myScript = function(){
+    // these are all private methods and properties
+    var nav = document.getElementById('nav');
+    function init(){
+        // do stuff 
+    }
+    function show(){
+        // do stuff 
+        // do stuff 
+    }
+    function reset(){
+        // do stuff 
+    }
+    var foo = 'bar';
+    function public(){
+    
+    }
+    // return public pointers to the private methods and 
+    // properties you want to reveal
+    return {
+        public: public,
+        foo:foo
+    }
+}();
+
+// myScript.public() and myScript.foo
+
+--------------------------------------------------------
+
+(function(){
+    // these are all private methods and properties
+    var nav = document.getElementById('nav');
+    function init(){
+        // do stuff
+        show(); // no need for prepended object name
+    }
+    function show(){
+        // do stuff 
+    }
+    function reset(){
+        // do stuff 
+    }
+})();
+
+--------------------------------------------------------
+
+myscript = function(){
+    var config = {
+        navigationID:'nav',
+        visibleClass:'show'
+    };
+    var nav = document.getElementById(config.navigationID);
+    function init(){
+        show();
+        if(nav.className === config.visibleClass){
+            reset();
+        };
+        // do stuff 
+    };
+    function show(){
+        var c = nav.className;
+        // do stuff 
+    };
+    function reset(){
+        // do stuff 
+    };
+}();
+
+--------------------------------------------------------

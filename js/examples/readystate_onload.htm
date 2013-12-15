@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Javascript includes - ready state and onload</title>
+
+<script type="text/javascript">
+
+var css;
+function include_css(css_file) {
+    var html_doc = document.getElementsByTagName('head')[0];
+    css = document.createElement('link');
+    css.setAttribute('rel', 'stylesheet');
+    css.setAttribute('type', 'text/css');
+    css.setAttribute('href', css_file);
+    html_doc.appendChild(css);
+
+    // alert state change
+    css.onreadystatechange = function () {
+        if (css.readyState == 'complete') {
+            alert('CSS onreadystatechange fired');
+        }
+    }
+    css.onload = function () {
+        alert('CSS onload fired');
+    }
+
+    return false;
+}
+
+
+var js;
+function include_js(file) {
+    var html_doc = document.getElementsByTagName('head')[0];
+    js = document.createElement('script');
+    js.setAttribute('type', 'text/javascript');
+    js.setAttribute('src', file);
+    html_doc.appendChild(js);
+
+    js.onreadystatechange = function () {
+        if (js.readyState == 'complete') {
+            alert('JS onreadystate fired');
+        }
+    }
+
+    js.onload = function () {
+        alert('JS onload fired');
+    }
+
+    return false;
+}
+
+
+</script>
+
+
+</head>
+<body>
+
+        <h1>javascript includes testing - testing readyState and onload</h1>
+        This is a test file, part of the second follow up to the "<strong>javascript includes</strong>" article.
+        <br />
+        To see the article, <a href="http://www.phpied.com/javascript-include">click here</a>.
+        To see the follow-up article, <a href="http://www.phpied.com/javascript-include-ready">click here</a>.
+        To see the second follow-up article, <a href="http://www.phpied.com/javascript-include-ready-onload">click here</a>.
+        <p>
+        </p>
+        <ul>
+            <li style="cursor: pointer" onclick="include_css('1.css')">Click to load 1.css</li>
+            <li style="cursor: pointer" onclick="include_js('jsalert.js')">Click to load jsready.js</li>
+        </ul>
+
+</body>
+</html>

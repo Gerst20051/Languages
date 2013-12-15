@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: exeinfo - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x40d /fo"Release/Script1.res" /d "NDEBUG" "F:\Projects\VC6\Utils\exeinfo\Script1.rc"" 
+Creating temporary file "f:\temp\RSP327.tmp" with contents
+[
+/nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Release/exeinfo.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\Projects\VC6\Utils\exeinfo\main.cpp"
+]
+Creating command line "cl.exe @f:\temp\RSP327.tmp" 
+Creating temporary file "f:\temp\RSP328.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib version.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/exeinfo.pdb" /machine:I386 /out:"Release/exeinfo.exe" /opt:nowin98 
+.\Release\main.obj
+.\Release\Script1.res
+]
+Creating command line "link.exe @f:\temp\RSP328.tmp"
+<h3>Output Window</h3>
+Compiling resources...
+Compiling...
+main.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+exeinfo.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

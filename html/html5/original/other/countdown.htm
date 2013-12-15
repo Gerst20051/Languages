@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html dir="ltr" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+  <title>Countdown</title>
+  <style type="text/css">
+    body{
+      font-family:arial,sans-serif;
+      color:#000;
+      background:#fff;
+      text-align:center;
+    }
+    input{
+      font-size:20px;
+      padding:5px;
+      border:none;
+      background:#69c;
+      margin:0 10px;
+    }
+    input#c[disabled]{
+        background:#eee;
+    }
+    #display{
+        font-weight:bold;
+        margin:20px auto;
+        font-size:200px;
+    }
+    .final{
+      color:#c00;
+    }
+    .over{
+      color:#c00;
+      text-decoration:blink;
+    }
+    #preferences{
+      margin-top:.5em;
+      background:#ccc;
+      border-top:1px solid #999;
+      padding:2em;
+      font-size:1em;
+      text-align:left;
+      
+    }
+    #preferences p {
+      width:49%;
+      float:left;
+      padding:5px 0;
+      margin:0;
+    }
+    #preferences input{
+      font-size:20px;
+      padding:5px;
+      border:1px solid #999;
+      background:#fff;
+      margin:0 2px;
+    }
+    #preferences label{
+      padding-top:10px;
+      width:30%;
+      float:left;
+      display:block;
+      padding-right:1em;
+    }
+    #preferences input#set{
+      font-size:20px;
+      padding:5px;
+      width:600px;
+      margin:0 auto;
+      border:none;
+      background:#69c;
+      clear:both;
+      display:block;
+    }
+    #preferences input#set:hover{
+      background:#ffc;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    countdown = function(){
+      /* 
+        configuration of script, properties with 
+        values and labels will become form elements! 
+      */
+      var cfg = {
+        displayID:'display',
+        preferencesID:'preferences',
+        finalClass:'final',
+        overClass:'over',
+        initialText:{
+          value:'24:00:00',
+          label:'Initial Text'
+        },
+        seconds:{
+          value:86400,
+          label:'Time in Seconds'
+        },
+        finalCountdown:{
+          value:30,
+          label:'Warning start'
+        },
+        pauseLabel:{
+         value:'pause',
+         label:'Pause Text' 
+        },  
+        resumeLabel:{
+          value:'resume',
+          label:'Resume Text'
+        },
+        resetLabel:{
+          value:'reset',
+          label:'Reset Text'
+        },
+        startLabel:{
+          value:'start',
+          label:'Start Text'
+        }
+      };
+
+      /* presets */
+      var seconds = cfg.seconds.value;
+      var interval = null;
+      var secs = null;
+      var startTime = null;
+      var realsecs = null;
+
+      /* create display */
+      var display = document.createElement('div');
+      display.id = cfg.displayID;
+      document.body.appendChild(display);
+      display.innerHTML = cfg.initialText.value;
+
+      /* create form with buttons */
+      var form = document.createElement('form');
+      document.body.appendChild(form);
+      var startButton = createInput('button','startButton',cfg.startLabel.value);
+      startButton.onclick = startCountDown;
+      form.appendChild(startButton);
+      var pauseButton = createInput('button','pauseButton',cfg.pauseLabel.value);
+      pauseButton.onclick = pauseCountDown;
+      pauseButton.disabled = true;
+      form.appendChild(pauseButton);
+      var resetButton = createInput('button','resetButton',cfg.resetLabel.value);
+      resetButton.onclick = resetCountDown;
+      form.appendChild(resetButton);
+
+      /* create preferences panel */
+      var preferencesPanel = document.createElement('div');
+      preferencesPanel.id = cfg.preferencesID;
+      preferencesPanel.style.display = 'none';
+      var firstForm = document.getElementsByTagName('form')[0];
+      firstForm.appendChild(preferencesPanel);
+      var button = createInput('button',null,'preferences');
+      button.onclick = togglePreferences;
+      preferencesPanel.parentNode.insertBefore(button,preferencesPanel);
+      /* create preferences form */
+      var prefs = [];
+      for (var i in cfg){
+        if(cfg[i].value){
+          prefs.push(i);
+          var p = document.createElement('p');
+          p.appendChild(createLabel(cfg[i].label,i));
+          p.appendChild(createInput('text',i,cfg[i].value));
+          preferencesPanel.appendChild(p);
+        }
+      }
+      var setPreferencesButton = createInput('button','set','set');
+      preferencesPanel.appendChild(setPreferencesButton);
+      setPreferencesButton.onclick = setPreferences;
+
+      function setPreferences(){
+        for(var i=0,j=prefs.length;i<j;i++){
+          cfg[prefs[i]].value = document.getElementById(prefs[i]).value;
+        }
+        resetCountDown();
+        preferencesPanel.style.display = 'none';
+      }
+      function togglePreferences(){
+        preferencesPanel.style.display = preferencesPanel.style.display === 'none' ? 'block' : 'none';
+      }
+      function startCountDown(){
+        pauseButton.disabled = false;
+        startButton.disabled = true;
+        startTime = new Date();
+        interval = setInterval(countdown.doCountDown, 100);
+      }
+      function doCountDown(){
+        realsecs = Math.ceil(seconds - (new Date() - startTime) / 1000);
+        var hours = parseInt((realsecs /60 / 60) % 60);
+        var mins = parseInt((realsecs / 60) % 60);
+        var secs = realsecs % 60;
+        var timestring = (hours < 10 ? '0' : '') + parseInt(hours) + 
+                         ':'+ (mins < 10 ? '0' : '') + parseInt(mins) + ':' +
+                         (secs < 10 ? '0' : '') +(secs % 60);
+        display.innerHTML = timestring;
+        document.title = timestring;
+        display.className = (realsecs > cfg.finalCountdown.value) ? '' : cfg.finalClass;
+        if(realsecs===0){
+          display.className = cfg.overClass;
+          window.clearTimeout(interval);
+        }
+      }
+      function resetCountDown(){
+        window.clearTimeout(interval);
+        startButton.disabled = false;
+        pauseButton.disabled = true;
+        display.innerHTML = cfg.initialText.value;
+        interval = null;
+        seconds = cfg.seconds.value;
+        pauseButton.value = cfg.pauseLabel.value;
+        resetButton.value = cfg.resetLabel.value;
+        startButton.value = cfg.startLabel.value;
+        display.className = '';
+      }
+      function pauseCountDown(){
+        if(pauseButton.value === cfg.pauseLabel.value){
+          seconds = realsecs;
+          window.clearTimeout(interval);
+          pauseButton.value = cfg.resumeLabel.value;
+        } else {
+          startCountDown();
+          pauseButton.value = cfg.pauseLabel.value;
+        }
+      }
+      function createInput(type,id,value){
+        var input = document.createElement('input');
+        input.value = value;
+        input.type = type;
+        if(id){
+          input.id = id;
+        }
+        return input;
+      }
+      function createLabel(text,id){
+        var label = document.createElement('label');
+        label.appendChild(document.createTextNode(cfg[id].label));
+        label.htmlFor = id;
+        return label;
+      }
+      return {doCountDown:doCountDown};
+    }();
+  </script>
+</body>
+</html>

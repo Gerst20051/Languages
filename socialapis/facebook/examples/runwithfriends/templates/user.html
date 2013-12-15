@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.name }} &middot; Recent Runs{% endblock %}
+
+{% block body %}
+<div id="runs">
+  <div class="friends">
+    <h1>{{ user.name }} &middot;&nbsp; Recent Runs</h1>
+
+    <div id="friends-runs">
+      {% for run in runs %}
+      <div class="run">
+        <div class="details">
+          <span class="distance"><tt>{{ run.pretty_distance }}</tt> miles</span>
+          <span class="date">{{ run.date }}</span>
+        </div>
+
+        <img class="pic" height="50" width="50"
+             src="{{ user.picture }}">
+        <a class="name" href="/user/{{ user.user_id }}">{{ user.name }}</a>
+        <div style="clear: both;"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

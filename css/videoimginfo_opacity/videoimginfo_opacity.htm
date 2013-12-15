@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+<title>Video Img Info - Opacity</title>
+<style type="text/css">
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+background: transparent;
+border: 0;
+font-size: 100%;
+margin: 0;
+outline: 0;
+padding: 0;
+vertical-align: baseline;
+}
+
+ol, ul {
+list-style: none;
+}
+
+html {
+font-size: 62.5%;
+font-family: helvetica, "microsoft sans serif", arial, sans-serif;
+}
+
+body {
+font-familiy: arial, sans-serif;
+line-height: 1;
+}
+
+.clearfix::after, .container::after {
+content: ".";
+display: block;
+height: 0;
+clear: both;
+visibility: hidden;
+}
+
+div.content-container {
+position: relative;
+margin: 0 auto;
+width: 972px;
+}
+
+body .container {
+margin: 5px auto;
+}
+
+div.container {
+display: block;
+font-size: 1.2em;
+line-height: 1.6em;
+padding-top: 8px;
+width: 972px;
+}
+
+div#video-container {
+float: left;
+min-height: 360px;
+width: 840px;
+}
+
+div#video-container ul {
+margin: 0;
+padding: 0;
+}
+
+div#video-container ul li {
+float: left;
+height: 139px;
+padding: 0 12px 0 0;
+position: relative;
+width: 108px;
+}
+
+div.container a:link {
+color: #36c;
+text-decoration: underline;
+}
+
+div#video-container ul li a {
+display: block;
+outline-style: none;
+padding: 0;
+position: static;
+}
+
+div#video-container ul li div.opacity {
+background-color: #000;
+display: none;
+filter: alpha(opacity=70);
+height: 61px;
+opacity: 0.7;
+position: absolute;
+top: 0;
+width: 108px;
+}
+
+div#video-container ul li:hover div.opacity {
+display: block;
+}
+
+div#video-container ul li img {
+cursor: pointer;
+display: block;
+height: 61px;
+width: 108px;
+}
+
+div#video-container ul li h4 a {
+color: #183a52 !important;
+text-decoration: none !important;
+padding: 0 !important;
+}
+
+div#video-container ul li h4 a:hover {
+text-decoration: underline !important;
+}
+
+div#video-container h4 {
+font-size: 12px !important;
+font-weight: bold;
+line-height: 14px;
+margin: 0 !important;
+padding-top: 3px;
+}
+
+div#video-container div.play-symbol {
+display: none;
+left: 5px;
+position: absolute;
+top: 48px;
+}
+
+div#video-container ul li:hover div.play-symbol  {
+display: block;
+}
+
+div#video-container div.play-symbol img {
+height: 9px;
+width: 9px;
+}
+
+div#video-container ul li div.thumb-info {
+display: none;
+}
+
+div#video-container ul li:hover div.thumb-info {
+display: block;
+}
+
+div.thumb-info {
+cursor: pointer;
+position: absolute;
+right: 17px;
+top: 0;
+}
+
+div.container div.thumb-info .date {
+clear: both;
+color: #ccc;
+display: block;
+float: right;
+font-size: 10px;
+margin: 0 !important;
+}
+
+div.container div.thumb-info .time {
+clear: both;
+color: #fff;
+display: block;
+float: right;
+font-size: 18px;
+line-height: 14px;
+margin: 0 !important;
+zoom: 1;
+}
+
+p.date {
+color: #999;
+font-size: 11px;
+font-weight: normal;
+margin: 0 0 5px 0;
+}
+
+div.container p {
+color: #666;
+font-size: 12px;
+font-weight: normal;
+margin: 0 0 10px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="content-container">
+<div class="container">
+<div id="video-container">
+<ul>
+<li class="video-1">
+<a href="http://video.foxnews.com/v/4595747/us-ready-to-launch-missiles-into-libya/?playlist_id=87485">
+<div class="opacity"></div>
+<img alt src="videothumb1.jpg" />
+</a>
+<h4><a href="http://video.foxnews.com/v/4595747/us-ready-to-launch-missiles-into-libya/?playlist_id=87485">U.S. Ready To Launch Missiles Into Libya</a></h4>
+<div class="play-symbol play-sym-2"><img src="icon-play.png" /></div>
+<div class="thumb-info">
+<p class="date">Mar 19, 2011</p>
+<p class="time">2:22</p>
+</div>
+</li>
+<li class="video-2">
+<a href="http://video.foxnews.com/v/4595929/coach-donates-kidney-to-player/?playlist_id=87937">
+<div class="opacity"></div>
+<img alt src="videothumb2.jpg" />
+</a>
+<h4><a href="http://video.foxnews.com/v/4595929/coach-donates-kidney-to-player/?playlist_id=87937">Coach Donates Kidney To Player</a></h4>
+<div class="play-symbol play-sym-2"><img src="icon-play.png" /></div>
+<div class="thumb-info">
+<p class="date">Mar 19, 2011</p>
+<p class="time">1:31</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+
+</html>

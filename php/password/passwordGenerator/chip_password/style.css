@@ -1,0 +1,52 @@
+/*
+|------------------
+| Tag(s) - Reset
+|------------------
+*/
+
+body {margin:0px;padding:0px;font-family:Arial, Helvetica, sans-serif;font-size:13px;color:#000;background-color:#0e151f;}
+
+h1 {font-size:28px;}
+h2 {font-size:20px;}
+h3 {font-size:16px;}
+
+a:link, a:visited {color:#00F;text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+/*
+|------------------
+| Classes
+|------------------
+*/
+
+.margin0 {margin:0px;}
+.margin10b {margin:0px 0px 10px 0px;}
+
+/*
+|------------------
+| Infrastructure
+|------------------
+*/
+
+#wrap {width:600px;margin:25px auto;background-color:#CCC;}
+#header, #content, #footer {width:100%;}
+#headerdata, #contentdata, #footerdata {padding:10px;}
+
+/*
+|------------------
+| Chip Box(s)
+| Wide - Medium - Small - Tiny
+|------------------
+*/
+
+.chipboxw1{width:100%;}
+.chipboxw1data{padding:5px;}
+
+/*
+|------------------
+| Chip Style(s)
+|------------------
+*/
+
+.chipstyle1 {background-color:#FFF;border-width:1px;border-style:solid;border-color:#445463 #021221 #021221 #445463;}
+.chipstyle2 {background-color:#FC6;border-width:1px;border-style:solid;border-color:#445463 #021221 #021221 #445463;}

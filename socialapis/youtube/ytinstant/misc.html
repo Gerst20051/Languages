@@ -1,0 +1,22 @@
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+var dvalue = [];
+$('input.auto-style1').each(function(i) {
+	dvalue.push(this.value);
+});
+$('input.auto-style1').focus(function() {
+	this.value = '';
+});
+$('input.auto-style1').blur(function() {
+	if (this.value == '') {
+		this.value = dvalue[i];
+	}
+});
+});
+</script>
+<form method="post">
+<input name="username1" type="text" value="Username" style="width: 230px" class="auto-style1" /><br /><br />
+<input name="Password1" type="password" style="width: 230px" class="auto-style1" /><br /><br />
+<input name="Text2" type="password" style="width: 230px" class="auto-style1" />
+</form>

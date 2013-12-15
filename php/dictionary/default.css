@@ -1,0 +1,30 @@
+a:link {color: #0099CC; text-decoration: none;}
+	a:visited {color: #00B8F4; text-decoration: none;}
+	a:hover {color: #82E0FF; background-color: #0088ff; text-decoration: none;}
+	abbr, acronym {font-style: normal; border-bottom: dotted 1px #ABB1B7; cursor: help;}
+	body {
+	color: #3A4956;
+	background: #ECFFEC center top repeat-y;
+	font: 12px/19px "Lucida Grande", "Lucida Sans Unicode", Verdana, Tahoma, Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	min-width: 730px;
+	background-color: #BCD2E9;
+}
+	code, var, kbd {font-family: monaco, courier, monospace; color: #B96A0E;}
+	dd {margin: 0; padding: 0 0 1em 17px;}
+	dt {font-weight: bold; padding: 0 0 0 17px; background: url(/i/ice/deco-dt.gif) 2px 4px no-repeat;}
+	form {margin: 0;}
+	h1 {font: bold 24px Helvetica, Arial, sans-serif; color: #003366; letter-spacing: -1px; margin: 0;}
+	h2 {color: #EB694A; font: normal 18px Helvetica, Arial, sans-serif; letter-spacing: -1px; margin: 2em 0 0 0;}
+	h3 {font-size: 12px; color: #6F90B5;}
+	h4 {font-size: 12px;}
+	hr {border: none; height: 1px; background: #ccc; margin: 2em 0;}
+	img {border: 0; padding: 0;}
+	ins {text-decoration: none; color: #EC694A;}
+	pre {width: 580px;}
+	table {margin: 2em 0;}
+	table caption {color: #fff; background: #98A0A6;}
+	th {text-align: left; background: #C7CBCE;}
+	tr.alt {background: #E9EAEB;}

@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title></title>
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div>
+<div id="debug" style="display:none"></div>
+<script>
+var currentPSearch = "";
+var jsonarray = {"data":{"Playlists":["Current Popular Artists","Current Popular Songs","A Cappella"],"Playlist2":["Bar Bat Mitzvah Candlelighting","Best Selling Albums","Break Up Songs","Cartoons"],"Current Popular Artists":["YouTube","AutoTune","Rihanna","Far East Movement","Glee Cast"]}};
+var jsontext = JSON.stringify(jsonarray);
+var json = $.parseJSON(jsontext);
+var searchBox = $("input[type='text']#sPB");
+searchBox.focus(function() { if ($(this).val() == "Search Playlists") $(this).val(''); }).blur(function() { if ($(this).val() == "") $(this).val('Search Playlists'); }).keyup(doPlaylistSearch);
+
+function doPlaylistSearch() {
+	currentPSearch = searchBox.val();
+	if (currentPSearch == '') {
+		if ($("div#debug").is(":visible")) $("div#debug").hide();
+		return;
+	} else {
+		if ($("div#debug").is(":hidden")) $("div#debug").show();
+		updatePSearchResults(searchArr("/" + currentPSearch + "/i",json["data"]));
+	}
+}
+
+function updatePSearchResults(playlists) {
+	var sresults = $("<ul />").attr('id','pl'), allplaylists = [];
+	$.each(playlists, function(playlist) {
+		var numSongs = playlists[playlist].length;
+		if (numSongs == 0) return;
+		sresults.append('<li id="' + playlist + '">' + playlist + '</li>');
+		allplaylists.push('<ul class="pl ' + playlist + '">');
+		for (s = 0; s < numSongs; s++) allplaylists.push('<li>' + playlists[playlist][s] + '</li>');
+		allplaylists.push('</ul>');
+	});
+	$("div#debug").html(sresults).append(allplaylists.join(""));
+}
+
+function searchArr(pattern,data) {
+	var subdata = {}, retObj = {};
+	if (typeof pattern === 'string') pattern = eval(pattern);
+	$.each(data, function(v) {
+		subdata = data[v];
+		retObj[v] = new Array();
+		$.each(subdata, function(i,t) {
+			if (t.match(pattern)) retObj[v].push(t);
+		});
+	});
+	return retObj;
+}
+
+/*
+function loadSongPlaylists() {
+	var html = []; var allplaylists = [];
+	$.each(dC.playlists, function(playlist) {
+		var numSongs = dC.playlists[playlist].length;
+		if (playlist.substring(0,5) == "Year ") html.push('<li id="' + playlist + '">' + playlist.substring(5) + '</li>');
+		else html.push('<li id="' + playlist + '">' + playlist + '</li>');
+		allplaylists.push('<ul class="pl ' + removeChars(' ', playlist) + '">');
+		for (s = 0; s < numSongs; s++) allplaylists.push('<li>' + dC.playlists[playlist][s] + '</li>');
+		allplaylists.push('</ul>');
+	});
+	$("div#sP ul#pls").html(html.join(""));
+	$("div#sP").append(allplaylists.join(""));
+}
+*/
+</script>
+</body>
+</html>

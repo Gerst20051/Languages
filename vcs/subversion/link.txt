@@ -1,0 +1,2 @@
+http://subversion.apache.org/
+http://code.google.com/p/support/wiki/SubversionFAQ

@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <script src="jquery.js">//</script>
+        <!--[if IE]><script src="excanvas.js">//</script><![endif]-->
+        <script src="../jqcanvas/jquery.jqcanvas.js">//</script>
+        <script>
+            $(function () {
+                $("ul li").jqcanvas(function (canvas, width, height){
+                    var ctx = canvas.getContext("2d");
+                    ctx.clearRect(0,0,width,height);
+                    ctx.fillStyle = "rgba(255,165,0,1)";
+                    ctx.fillRect(0, 0, width, height);
+                },
+                {
+                    verifySize: false
+                }
+                );
+                $("#texto").jqcanvas(function (canvas, width, height) {
+                    var ctx = canvas.getContext("2d");
+                    ctx.clearRect(0,0,width,height);
+                    var lingrad = ctx.createLinearGradient(0,0,0,150);
+                    lingrad.addColorStop(0, '#00ABEB');
+                    lingrad.addColorStop(0.5, '#fff');
+                    ctx.fillStyle = lingrad;
+                    ctx.fillRect(0, 0, width, height);
+                });
+                $(".texto2").jqcanvas(function (canvas, width, height) {
+                    var corner = 16;
+                    var ctx = canvas.getContext("2d");
+                    ctx.clearRect(0,0,width,height);
+                    ctx.fillStyle = "blue";
+                    ctx.beginPath();
+                    ctx.arc(corner,corner,corner,Math.PI+(Math.PI*0)/2,Math.PI+(Math.PI*1)/2,0);
+                    ctx.lineTo(width-corner,0);
+                    ctx.arc(width-corner,corner,corner,Math.PI+(Math.PI*1)/2,Math.PI+(Math.PI*2)/2,0);
+                    ctx.lineTo(width,height-corner);
+                    ctx.arc(width-corner,height-corner,corner,Math.PI+(Math.PI*2)/2,Math.PI+(Math.PI*3)/2,0);
+                    ctx.lineTo(corner,height);
+                    ctx.arc(corner,height-corner,corner,Math.PI+(Math.PI*3)/2,Math.PI+(Math.PI*0)/2,0);
+                    ctx.closePath();
+                    ctx.fill();
+                });
+            });
+        </script>
+        <style>
+            *{
+                margin: 0px;
+                padding: 0px;
+                font-size: 12pt;
+            }
+            h1{
+                font-size: 150%;
+            }
+            .menu li{
+                display: inline;
+                margin-right: 16px;
+                padding: 0.25em 0.5em;
+            }
+            #texto{
+                padding: 0.5em;
+            }
+            .texto2{
+                margin-left: 5em;
+                margin-right: 10em;
+                padding: 0.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <ul class="menu">
+            <li><a href="javascript:void(0)">Link 1</a></li>
+            <li><a href="javascript:void(0)">Link GRAAAAAANDE</a></li>
+            <li><a href="javascript:void(0)">peq</a></li>
+        </ul>
+        <div id="texto">
+           <h1>What is Lorem Ipsum?</h1>
+           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+        <div class="texto2">
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+        </div>
+    </body>
+</html>

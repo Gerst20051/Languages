@@ -1,0 +1,889 @@
+body
+{
+  background-image: url("background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: top left;
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  color: white;
+  background-color: transparent;
+}
+
+div.closebutton
+{
+  position: absolute;
+  top: 13px;
+  left: 408px;
+  width: 15px;
+  height: 15px;
+  background: transparent url(closebutton.png) no-repeat;
+}
+
+div.configbutton
+{
+  visibility: hidden;
+  position: absolute;
+  top: 13px;
+  left: 390px;
+  width: 15px;
+  height: 15px;
+  background: transparent url(configbutton.png) no-repeat;
+}
+
+div.imgbutton:hover
+{
+  background-position: 0 50%;
+}
+
+div.imgbutton:active
+{
+  background-position: 0 100%;
+}
+
+div#start
+{
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 400px;
+  height: 400px;
+}
+
+hr
+{
+  border: 0;
+  width: 80%;
+  color: gray;
+  background-color: gray;
+  height: 1px;
+}
+
+abbr
+{
+  border-bottom: none;
+  cursor: help;
+}
+
+img#startlogo
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 400px;
+  height: 210px;
+}
+
+div#startcredz
+{
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 12px;
+  color: lightgray;
+}
+
+div#menu
+{
+  position: absolute;
+  top: 200px;
+  left: 0;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+}
+
+span.menuitem
+{
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 36px;
+  color: white;
+  text-align: center;
+  width: 400px;
+}
+
+span.menuitem:hover
+{
+  color: skyblue;
+}
+
+span.menuitem:active
+{
+  color: red;
+}
+
+div#revision
+{
+  position: absolute;
+  top: 380px;
+  left: 0px;
+  width: 395px;
+  text-align: right;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 10px;
+  color: white;
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+div#revision2
+{
+  position: absolute;
+  top: 392px;
+  left: 0px;
+  width: 395px;
+  text-align: right;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 10px;
+  color: white;
+  opacity: 0.5;
+}
+
+div#revision2 a
+{
+  color: skyblue;
+  text-decoration: none;
+}
+
+div#revision2 a:hover
+{
+  text-decoration: underline;
+}
+
+div#options
+{
+  opacity: 0.0;
+  visibility: hidden;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 400px;
+  height: 200px;
+}
+
+div#optionsbox
+{
+  position: absolute;
+  top: 30px;
+  left: 0px;
+}
+
+div#optionsbox input
+{
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 12px;
+}
+
+div#demomode
+{
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 12px;
+  color: skyblue;
+}
+
+div#demomode:hover
+{
+  text-decoration: underline;
+}
+
+div#optionsback
+{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  text-align: left;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  width: 200px;
+  height: 20px;
+  color: skyblue;
+}
+
+div#optionsback:hover
+{
+  text-decoration: underline;
+}
+
+div#optionsreturn
+{
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 210px;
+  text-align: right;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  width: 170px;
+  height: 20px;
+  color: skyblue;
+}
+
+div#optionsreturn:hover
+{
+  text-decoration: underline;
+}
+
+div#teamselect
+{
+  opacity: 0.0;
+  visibility: hidden;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 400px;
+  height: 400px;
+}
+
+div#playtime
+{
+  opacity: 0.0;
+  visibility: hidden;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 400px;
+  height: 400px;
+}
+
+div#playtimeback
+{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  text-align: left;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  width: 200px;
+  height: 20px;
+  color: skyblue;
+}
+
+div#playtimeback:hover
+{
+  text-decoration: underline;
+}
+div#playtimeheading
+{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS";
+  font-size: 14pt;
+  font-style: italic;
+  color: white;
+}
+
+ul#playtimes
+{
+  position: absolute;
+  top: 100px;
+  left: 60px;
+  width: 200px;
+  list-style: none;
+}
+
+ul#playtimes li
+{
+  font-family: "Trebuchet MS";
+  font-size: 16pt;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+ul#playtimes li:hover
+{
+  color: skyblue;
+}
+
+ul#playtimes li:active
+{
+  color: red;
+}
+
+div#playtimeinfo
+{
+  position: absolute;
+  top: 300px;
+  left: 75px;
+  width: 250px;
+  text-align: justify;
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  font-style: italic;
+  color: white;
+}
+
+div#instructions
+{
+  opacity: 0.0;
+  visibility: hidden;
+  position: absolute;
+  top: 24px;
+  left: 10px;
+  width: 404px;
+  height: 400px;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
+div#instructionsback
+{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  text-align: left;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  width: 400px;
+  height: 20px;
+  color: skyblue;
+}
+
+div#instructionsback:hover
+{
+  text-decoration: underline;
+}
+
+iframe.instructionsframe
+{
+  visibility: hidden;
+  position: absolute;
+  top: 20px;
+  left: 0;
+  width: 414px;
+  height: 380px;
+  border: none;
+}
+
+div#teamselectback
+{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  text-align: left;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  width: 200px;
+  height: 20px;
+  color: skyblue;
+}
+
+div#teamselectback:hover
+{
+  text-decoration: underline;
+}
+
+div#teamheading
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 14pt;
+  font-style: italic;
+  color: white;
+}
+
+div#teamstats
+{
+  position: absolute;
+  top: 313px;
+  left: 0px;
+  width: 160px;
+  height: 100px
+}
+
+div#teamname
+{
+  position: absolute;
+  top: 280;
+  left: 0;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS";
+  font-size: 24px;
+  color: white;
+}
+
+div#teamdesc
+{
+  position: absolute;
+  top: 310px;
+  left: 180px;
+  width: 220px;
+  height: 100px;
+  font-family: "Trebuchet MS";
+  font-size: 12px;
+  color: white;
+}
+
+div.label
+{
+  position: absolute;
+  font-family: "Small Fonts";
+  font-size: 12px;
+  text-transform: uppercase;
+  width: 60px;
+  color: white;
+  text-align: right;
+  left: 0px;
+}
+
+div#strlbl
+{
+  top: 0px;
+}
+
+div#agilbl
+{
+  top: 18px;
+}
+
+div#stalbl
+{
+  top: 36px;
+}
+
+div#skilllbl
+{
+  top: 54px;
+}
+
+div#tacticslbl
+{
+  top: 72px;
+}
+
+div.bar
+{
+  position: absolute;
+  width: 0px;
+  height: 7px;
+  background-color: red;
+  left: 64px;
+}
+
+div.bardark
+{
+  position: absolute;
+  width: 100px;
+  height: 7px;
+  background-color: #1a1a1a;
+  left: 64px;
+}
+
+div#teamstr, div#teamstrdark
+{
+  top: 3px;
+}
+
+div#teamagi, div#teamagidark
+{
+  top: 21px;
+}
+
+div#teamsta, div#teamstadark
+{
+  top: 39px;
+}
+
+div#teamskill, div#teamskilldark
+{
+  top: 57px;
+}
+
+div#teamtactics, div#teamtacticsdark
+{
+  top: 75px;
+}
+
+img.teampic
+{
+  position: absolute;
+}
+
+img#teampic0
+{
+  top: 20px;
+  left: 0px;
+  width: 100px;
+  height: 125px;
+}
+
+img#teampic1
+{
+  top: 20px;
+  left: 100px;
+  width: 100px;
+  height: 135px;
+}
+
+img#teampic2
+{
+  top: 20px;
+  left: 200px;
+  width: 88px;
+  height: 130px;
+}
+
+img#teampic3
+{
+  top: 20px;
+  left: 288px;
+  width: 91px;
+  height: 130px;
+}
+
+img#teampic4
+{
+  top: 150px;
+  left: 0px;
+  width: 83px;
+  height: 130px;
+}
+
+img#teampic5
+{
+  top: 155px;
+  left: 70px;
+  width: 138px;
+  height: 130px;
+}
+
+img#teampic6
+{
+  top: 155px;
+  left: 200px;
+  width: 121px;
+  height: 130px;
+}
+
+img#teampic7
+{
+  top: 146px;
+  left: 290px;
+  width: 100px;
+  height: 139px;
+}
+
+div#main
+{
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  width: 400px;
+  height: 400px;
+}
+
+div#canvascontainer
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 400px;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  background-image: url(field.png);
+}
+
+canvas#canvas
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 400px;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  cursor: crosshair;
+  border: 1px solid black;
+  background: transparent;
+}
+
+div#panel
+{
+  position: absolute;
+  left: 303px;
+  top: 0;
+  width: 100px;
+  height: 400px;
+}
+
+div#statecard
+{ 
+  position: absolute;
+  top: 36px;
+  left: 0;
+}
+
+div.gamestate
+{
+  width: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+div#gamestate
+{
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+
+div#gamestateshadow
+{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: black;
+}
+
+div.stateteam
+{
+  width: 100px;
+  text-align: center;
+  color: red;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+div#stateteam
+{
+  position: absolute;
+  top: 12px;
+  left: 0;
+}
+
+div#stateteamshadow
+{
+  position: absolute;
+  top: 14px;
+  left: 2px;
+  color: black;
+}
+
+div#timecard
+{
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+div.time
+{
+  width: 100px;
+  text-align: center;
+  font-family: monospaced;
+  font-size: 24px;
+}
+
+div#time
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div#timeshadow
+{
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  color: black;
+}
+
+div#scorecard
+{
+  position: absolute;
+  top: 70px;
+  left: 0;
+}
+
+div.name
+{
+  width: 100px;
+  font-variant: small-caps;
+  font-size: 16px;
+  text-align: center;
+}
+
+div#name1
+{
+  position: absolute;
+  top: 10px;
+  left: 0px;
+}
+
+div#name1shadow
+{
+  position: absolute;
+  top: 12px;
+  left: 2px;
+  color: black;
+}
+
+div.score
+{
+  width: 100px;
+  font-family: "Small Fonts";
+  font-size: 36px;
+  text-align: center;
+}
+
+div#score
+{
+  position: absolute;
+  top: 30px;
+  left: 0px;
+}
+
+div#scoreshadow
+{
+  position: absolute;
+  top: 32px;
+  left: 2px;
+  color: black;
+}
+
+div#name2
+{
+  position: absolute;
+  top: 69px;
+  left: 0px;
+}
+
+div#name2shadow
+{
+  position: absolute;
+  top: 71px;
+  left: 2px;
+  color: black;
+}
+
+div#aicontrol
+{
+  position: absolute;
+  top: 358px;
+  left: 310px;
+  width: 90px;
+}
+
+div.aimode
+{
+  width: 85px;
+  border: 1px dashed white;
+  color: white;
+  font-family: "Small Fonts";
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+div#offensive
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+div#defensive
+{
+  position: absolute;
+  top: 22px;
+  left: 0;
+}
+
+div#gameover
+{
+  visibility: hidden;
+  opacity: 0.0;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 400px;
+  height: 400px;
+}
+
+div#gameovertext
+{
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  color: white;
+  font-size: 18pt;
+}
+
+div#gameresult
+{
+  position: absolute;
+  top: 100px;
+  left: 0px;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  color: white;
+  font-size: 16pt;
+  font-style: italic;
+}
+
+table#gamestatistics
+{
+  position: absolute;
+  top: 200px;
+  left: 50px;
+  width: 300px;
+}
+
+table.statistics td
+{
+  color: white;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  font-size: 12px;
+}
+
+table.statistics td.label
+{
+  font-weight: bold;
+}
+
+table.statistics td.left
+{
+  text-align: right;
+}
+
+div#gameoverback
+{
+  position: absolute;
+  top: 350;
+  left: 0px;
+  width: 400px;
+  text-align: center;
+  font-family: "Trebuchet MS", "Tahoma", "Verdana";
+  color: skyblue;
+  font-size: 12pt;
+  font-style: italic;
+  font-weight: bold;
+}
+
+div#gameoverback:hover
+{
+  text-decoration: underline;
+}
+
+.clickable
+{
+  cursor: pointer;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<html>
+<head>
+	<title>HtmlBox 2.6 - Demonstration Full</title>
+	<script language="Javascript" src="jquery-1.2.6.min.js" type="text/javascript"></script>
+	<script language="Javascript" src="htmlbox.colors.js" type="text/javascript"></script>
+	<script language="Javascript" src="htmlbox.styles.js" type="text/javascript"></script>
+	<script language="Javascript" src="htmlbox.syntax.js" type="text/javascript"></script>
+	<script language="Javascript" src="xhtml.js" type="text/javascript"></script>
+	<script language="Javascript" src="htmlbox.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+<textarea id='ha'></textarea>
+<script language="Javascript" type="text/javascript">
+$("#ha").css("height","100%").css("width","100%").htmlbox()
+   // Cut, Copy, Paste
+   .separator("dots").button("cut").button("copy").button("paste")
+   // Undo, Redo
+   .separator("dots").button("undo").button("redo")
+   // Bold, Italic, Underline, Strikethrough, Sup, Sub
+   .separator("dots").button("bold").button("italic").button("underline").button("strike")
+   .button("sup").button("sub")
+   // Left, Right, Center, Justify
+   .separator("dots").button("left").button("center").button("right").button("justify")
+   // Ordered List, Unordered List, Indent, Outdent
+   .separator("dots").button("ol").button("ul").button("indent").button("outdent")
+   // Hyperlink, Image
+   .separator("dots").button("hyperlink").button("unlink").button("image")
+   // Show code
+   .separator("dots",2).button("code",2)
+   // Formats, Font size, Font family, Font color, Font, Background
+   .separator("dots",2).button("formats",2).button("fontsize",2).button("fontfamily",2)
+   .button("fontcolor",2).button("highlight",2)
+   // Strip tags
+   .separator("dots",2).button("removeformat",2).button("striptags",2).button("hr",2).button("paragraph",2)
+   // Styles
+   .separator("dots",3).button("quote",3)
+   // Styles
+   .separator("dots",3).button("styles",3)
+   // Source code syntax buttons
+   .separator("dots",3).button("syntax",3)
+   
+   
+   .init();
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Query String</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<meta http-equiv="content-language" content="en"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+</head>
+<body>
+<script>
+String.prototype.trimEnd = function(c) {
+	if (c) return this.replace(new RegExp(c.escapeRegExp() + "*$"), '');
+	return this.replace(/\s+$/, '');
+};
+String.prototype.trimStart = function(c) {
+	if (c) return this.replace(new RegExp("^" + c.escapeRegExp() + "*"), '');
+	return this.replace(/^\s+/, '');
+};
+String.prototype.escapeRegExp = function() {
+	return this.replace(/[.*+?^${}()|[\]\/\\]/g, "\\$0");
+};
+$.urlParam = function(key){
+	var results = new RegExp('[\\?&]' + key + '=([^&#]*)').exec(window.location.search);
+	if (!results) return 0;
+	return decodeURIComponent(results[1].replace(/\+/g, " ")) || 0;
+};
+$.setUrlParam = function(key,value){
+	if (key.length > 0 && value.length > 0) {
+		var query = window.location.search;
+		var q = query + "&";
+		var re = new RegExp('[\\?&]' + key + '=([^&#]*)');
+		if (!re.test(q)) q += key + "=" + encodeURI(value);
+		else q = q.replace(re, "&" + key + "=" + encodeURIComponent(value) + "&");
+		q = q.trimStart("&").trimEnd("&");
+		//window.location.search = (q[0] == "?") ? q : q = "?" + q;
+	}
+};
+$(document).ready(function(){
+	$.setUrlParam("name","andrew");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+// Fichier ressource généré par "Pelles C pour Windows, version 4.50".
+
+#include <windows.h>
+#include <commctrl.h>
+#include <richedit.h>
+#include "FindUsage.h"
+
+LANGUAGE LANG_ENGLISH,SUBLANG_ENGLISH_US
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 3,0,0,0
+PRODUCTVERSION 3,0,0,0
+FILEFLAGSMASK 0x3F
+FILEFLAGS 0x0
+FILEOS VOS__WINDOWS32
+FILETYPE VFT_APP
+FILESUBTYPE VFT2_UNKNOWN
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "Comments", "Add-in for Pelles C (FindUsage.dll)\0"
+      VALUE "FileDescription", "Find Word Usage\0"
+      VALUE "FileVersion", "3.0.0.0\0"
+      VALUE "ProductVersion", "3.0.0.0\0"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END
+
+LANGUAGE LANG_FRENCH,SUBLANG_FRENCH
+
+IDICON ICON "alpha-f3.ico"
+

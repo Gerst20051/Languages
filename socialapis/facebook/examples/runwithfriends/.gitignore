@@ -1,0 +1,4 @@
+*.pyc
+/TODO
+/conf.py
+/index.yaml

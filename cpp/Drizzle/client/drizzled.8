@@ -1,0 +1,48 @@
+.\"     Title: \fBdrizzled\fR
+.\"    Author: 
+.\" Generator: DocBook XSL Stylesheets v1.70.1 <http://docbook.sf.net/>
+.\"      Date: 03/18/2010
+.\"    Manual: drizzle Database System
+.\"    Source: drizzle
+.\"
+.TH "\fBdrizzled\fR" "8" "03/18/2010" "drizzle" "drizzle Database System"
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.SH "NAME"
+drizzled \- the drizzle server
+.SH "SYNOPSIS"
+.HP 17
+\fBdrizzled [\fR\fB\fIoptions\fR\fR\fB]\fR
+.SH "DESCRIPTION"
+.PP
+\fBdrizzled\fR, also known as drizzle Server, is the main program that does most of the work in a drizzle installation. drizzle Server manages access to the drizzle data directory that contains databases and tables. The data directory is also the default location for other information such as log files and status files.
+.PP
+When drizzle server starts, it listens for network connections from client programs and manages access to databases on behalf of those clients.
+.PP
+The
+\fBdrizzled\fR
+program has many options that can be specified at startup. For a complete list of options, run this command:
+.sp
+.RS 3n
+.nf
+shell> \fBdrizzled \-\-verbose \-\-help\fR
+.fi
+.RE
+.PP
+drizzle Server also has a set of system variables that affect its operation as it runs. System variables can be set at server startup, and many of them can be changed at runtime to effect dynamic server reconfiguration. drizzle Server also has a set of status variables that provide information about its operation. You can monitor these status variables to access runtime performance characteristics.
+.PP
+.SH "COPYRIGHT"
+.PP
+Copyright 2007\-2008 MySQL AB, 2009 Sun Microsystems, Inc. 
+.PP
+This documentation is free software; you can redistribute it and/or modify it only under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License.
+.PP
+This documentation is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+.PP
+You should have received a copy of the GNU General Public License along with the program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110\-1301 USA or see http://www.gnu.org/licenses/.
+.SH "SEE ALSO"
+For more information about drizzle visit the drizzle wiki at http://wiki.drizzle.org
+.SH AUTHOR
+drizzle Team

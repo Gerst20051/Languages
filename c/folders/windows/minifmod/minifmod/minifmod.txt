@@ -1,0 +1,53 @@
+-----------------------------------------------------------------------------
+MiniFMOD 1.7 Public source code release, 
+
+Copyright Firelight Technologies, 1999-2003. [http://www.fmod.org]
+-----------------------------------------------------------------------------
+
+============== 
+DOCUMENTATION 
+==============
+
+*** Disclaimer and legal ***
+----------------------------
+- *MiniFMOD is not FMOD*.  The code is a complete hack, and does 
+  by no way represent the source contained within the main FMOD library.  
+  I stripped and copied code around, took out functions and
+  inlined them (ie i put waveout code in the music file!), and generally 
+  turned it upside down to try and squeeze some size!
+- MiniFMOD may not replay XM files 100% as FMOD does, due to some cutting of 
+  corners.  It seems to be ok so far.
+- This source is provided as-is.  Firelight Technologies will not support or answer 
+  questions about the source provided.  (unless there are some REALLY nasty bugs.. 
+  remember im NOT going to spend time on this! fix it yourself!)
+- MiniFMOD Sourcecode is copyright (c) 2000, Firelight Technologies.
+- This source must not be redistributed without this text. 
+- The source can be modified, and redistributed as long as no copyright or comment
+  blocks (see at the top of each source file) are removed.
+
+AGAIN : DONT NAG ME WITH QUESTIONS ABOUT THE SOURCE, ASK SOMEONE ELSE. 
+        (i recommend #coders on ircnet.)
+
+General Usage Instructions just using minifmod.lib IMPORTANT (no source recompile)
+--------------------------------------------------------------------------
+- See MAIN.CPP for an example of how to use MINIFMOD.
+- You MUST set file IO callbacks for FMOD to use.  This is a very flexible way to
+  work, and saves having multiple file routines for file, memory or wad loading!
+  Just rip the sample if you dont know what it is about, or get the full FMOD 3 API and
+  read the documentation entries on the functions in the help file provided.
+- There are no error codes.  All functions return true or false, and it should be obvious why they fail.
+- FSOUND_Init will fail if no IO callbacks are set.
+- Compile your exe with SIZE optimizations ON. (like the test example)
+- Compress your exe with UPX.  It is the best exe packer around.  It is at http://www.nexus.hu/upx/
+- Pass a callback function to FMUSIC_LoadSong or NULL.  This will allow you to get a 
+  callback when each sample is loaded in a song.  Here you can then fill in the data for
+  the sample yourself.  Note if you set callbacks, the samples are not loaded from file,
+  and will be just silence if not filled in.
+- If rewriting C standard libraries you need to supply pow() for fmod music playback routine.
+  FMUSIC_XMLINEARPERIOD2HZ uses pow and not a lookup table because it would bloat the size.
+
+Greets! :)
+-----------
+Hi's go out to sulphur, gaffer, Nix, gyr, zoon, pheon, and gay russian aktion.
+
+Firelight Technologies is a registered Australian company.

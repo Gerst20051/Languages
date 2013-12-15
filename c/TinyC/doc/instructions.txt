@@ -1,0 +1,52 @@
+TinyCC Instructions
+===================
+
+The Command Prompt window
+
+In this article, we show you how to compile and run your C program. We assume that the Tiny C compiler has been installed in
+
+C:\TinyC
+
+and your program is stored in a file AreaOfSquare.c in the folder C:\CPrograms.
+We will run our programs using the “Command Prompt” window. This is also called the MS-DOS window.
+Open the window by clicking on Start > All Programs > Accessories > Command Prompt
+At the command prompt >, type cd C:\CPrograms
+The window should now look as follows (your first lines may be slightly different):
+This changes the current directory to the folder (C:\CPrograms) containing your program, 
+
+AreaOfSquare.c.
+
+To compile the program, we would like to type
+
+tcc AreaOfSquare.c
+
+where tcc.exe is the file containing the compiler.
+However, if we did this, we would get a message to the effect that tcc is unknown.
+The file tcc.exe is found in the folder, C:\TinyC.
+C:\ TinyC is called the “path” to the compiler. We must tell Windows where to find the compiler by setting the Path “environment variable.”
+How to set the "Path"
+To set Path, go to Start > Control Panel and open the System control panel.
+Click on the Advanced tab and then on Environment Variables. In the section System variables, click on Path (you may need to scroll) and then on Edit. In the pop-up window, click in the Variable value field and use the right arrow key to go to the end of the field.
+Type a semi-colon ( ; ) if one is not present as the last character on the line. After the semi-colon, type the path C:\TinyC. Click OK all the way out to the Control Panel.
+Now you can type
+
+tcc xxxx.c
+
+(where xxxx is the name of your program) from any command prompt and Windows will know where to find the compiler.
+Helpful hint: if you’ve set Path correctly and it doesn’t work, close the Command Prompt window and then reopen it. (If it is open when you set Path, it will not recognize the change.)
+Compile and execute
+Now that you’ve set Path, you can compile the program with
+
+tcc AreaOfSquare.c
+
+If there are no errors in the program, the compiler will create a file called AreaOfSquare.exe in the folder C:\CPrograms. This file contains the machine language equivalent of the source program.
+To execute the program, type
+
+AreaOfSquare
+
+The computer will execute the code and type
+Enter length of side:
+It will then wait for you to enter a number. Suppose you type 12. The screen will then look like this:
+Enter length of side: 12
+Area of square is 144
+and you are returned to the command prompt. The following shows the Command Prompt window at the end of the above activities:

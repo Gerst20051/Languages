@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>Last.fm - Recent Tracks</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<meta http-equiv="content-language" content="en"/>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+<style>
+body{font:12pt arial #000}
+#main{margin:0 auto}
+#input{width:720px}
+</style>
+</head>
+<body>
+<div id="main">
+<div id="header"><input id="input" type="text" placeholder="Last.fm Username"/><input id="go" type="button" value="Go"/></div>
+<div id="panel"><div id="output"><div id="username"></div><div class="lastfm"></div></div>
+</div>
+<script>
+function sleep(ms){
+	var start = new Date().getTime();
+	while ((new Date().getTime() - start) < ms){}
+}
+
+window.Hash = {
+	query: {},
+	getHash: function(){return decodeURIComponent(window.location.hash.substring(1))},
+	clearHash: function(){window.location.replace("#")},
+	setHash: function(hash){window.location.replace("#"+encodeURI(hash))},
+	get: function(key){
+		if (this.exists(key)) {
+			return this.query[key];
+		}
+	},
+	clear: function(){
+		this.query = {};
+		this.update();
+	},
+	set: function(key, value){
+		if (value != null) {
+			this.query[key] = value;
+			this.update();
+			return value;
+		}
+	},
+	exists: function(key) {
+		return this.query[key] != null;
+	},
+	parse: function(){
+		var that = this;
+		this.getHash().replace(
+		    new RegExp("([^?=&]+)(=([^&]*))?", "g"),
+		    function($0, $1, $2, $3) { that.query[$1] = $3; }
+		);
+		return this.query;
+	},
+	update: function(){
+		this.setHash("?"+$.param(this.query));
+	}
+};
+
+window.aC = {
+user: 'andrewmofizzy',
+method: 'user.getrecenttracks',
+limit: 10,
+nowp: true,
+results: 50,
+page: 1,
+lfmurl: (function(){
+	var appkey = 'a4a30dff7a34add7275a73deeb00364a';
+	return function(){
+		return 'http://ws.audioscrobbler.com/2.0/?method='+this.method+'&user='+this.user+'&limit='+this.limit+'&nowplaying='+this.nowp+'&api_key='+appkey+'&format=json&page='+this.page;
+	};
+})(),
+handleHash: function(){
+	if (Hash.getHash().length > 0) {
+		Hash.parse();
+		if (Hash.exists("user")) {
+			$("#input").val(Hash.get("user"));
+			this.user = Hash.get("user");
+		}
+	}
+},
+init: function(){
+	if ($('.lastfm ol').length <= 0) {
+		$('.lastfm').append('<ol/>');
+	}
+	this.dom();
+	this.handleHash();
+	this.getTracks();
+},
+getTracks: function(){
+	var originalPage = this.page;
+	var pages = Math.ceil(this.results / this.limit);
+	for (;pages--;) {
+		$.getJSON(this.lfmurl(), function(data){
+			if (data) {
+				$.each(data.recenttracks.track, function(index, item){
+					$('.lastfm ol').append('<li><a href="'+item.url+'">'+item.name+'</a> - <cite>'+item.artist['#text']+'</cite></li>');
+				});
+			}
+		});
+		this.page++;
+		sleep(300);
+	}
+	this.page = originalPage;
+},
+dom: function(){
+	var that = this;
+	$("#go").click(function(){
+		$(".lastfm ol").empty();
+		var input = $("#input").val();
+		var result = Hash.set("user", input);
+		if (typeof result != "undefined") {
+			that.user = result;
+			that.getTracks();
+		}
+	});
+}
+};
+
+$(document).ready(function(){aC.init()});
+</script>
+</body>
+</html>

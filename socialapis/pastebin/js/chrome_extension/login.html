@@ -1,0 +1,50 @@
+<!-- Made by Joshua Lückers < http://joshualuckers.nl > -->
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="pastebin.js"></script>
+		<script type="text/javascript">
+			function login() {
+				var username = document.getElementById('username').value;
+				var password = document.getElementById('password').value;
+				chrome.extension.sendRequest({ method: 'login', username: username, password: password }, function(response) {
+					if (localStorage["API_USER_KEY"] != "") {
+						setUsername(username);
+						window.location = "pastebin.html";
+					}
+					else {
+						document.getElementById('error').style.visibility = "visible";
+						logout();
+					}
+					password = "";
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<div id="error">
+			Error: There was an error with your login details. Please try again.
+		</div>
+		<div id="loginform">
+			<form class="loginform" onsubmit="login(); return false;" action="pastebin.html">
+				<div class="left formitem">
+					Username:
+				</div>
+				<div class="right formitem">
+					<input type="text" name="username" id="username" size="20" class="post_input" placeholder="Username" required="required" autofocus="autofocus">
+				</div>
+				<div class="clear"></div>
+				<div class="left formitem">
+					Password:
+				</div>
+				<div class="right formitem">
+					<input type="password" name="password"  id="password" size="20" id="paste_name" placeholder="Password" required="required">
+				</div>
+				<div class="clear"></div>
+				<input type="submit" value="Login" id="submit" />
+				<input type="button" value="Cancel" id="cancel" onclick="window.location = 'pastebin.html';" />
+			</form>
+			<span><em>Your password will not be stored!</em></span>
+		</div>
+	</body>
+</html>

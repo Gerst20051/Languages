@@ -1,0 +1,157 @@
+/*
+	This stylesheet is only used to style the demo page.
+	You can see the CSS that styles the player controls
+	in youTubeEmbed/youTubeEmbed-jquery-1.0.css
+*/
+
+
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font-size:13px;
+	color:#777;
+	font-family:Arial, Helvetica, sans-serif;
+	text-shadow:1px 1px 0 white;
+	border-top:4px solid #444;
+}
+
+h1{
+	border-bottom: 1px solid #DDDDDD;
+	display: block;
+	font-size: 40px;
+	line-height: 1.35;
+	margin: 40px auto;
+	padding: 35px 0;
+	width: 660px;
+}
+
+h1 i{
+	display:block;
+	font-size:20px;
+	font-style:normal;
+	margin-top:8px;
+}
+
+h1,h2{
+	font-family:'Myriad Pro',Arial, Helvetica, sans-serif;
+}
+
+.flashContainer{
+	border:1px solid #fff;
+	margin:40px auto;
+	outline:1px solid #aaa;
+}
+
+
+p{
+	line-height:1.5;
+	margin:0 26px;
+	padding-bottom:15px;
+	text-align:justify;
+}
+
+pre{
+	background-color:#fafafa;
+	border-left:2px solid #eee;
+	font-family:Arial,Helvetica,sans-serif;
+	margin:0 25px 15px;
+	padding:8px;	
+}
+
+blockquote{
+	background-color:#fafafa;
+	padding:18px;
+	margin:0 25px 15px;
+}
+
+blockquote p{
+	margin:0;
+	padding-bottom:0;
+}
+
+fieldset{
+	border:none;
+	margin:0;padding:0;
+}
+
+input{
+	font-family:Arial, Helvetica, sans-serif;
+	padding:4px;
+	color:#555;
+	border:1px solid #ccc;
+	display:block;
+	margin-top:10px;
+}
+
+input[type="text"]{
+	width:380px;
+}
+
+form small{
+	float:left;
+	position:relative;
+	right:-70px;
+	top:-20px;
+}
+
+#page{
+	/* This the main container div */
+	width:700px;
+	margin:0 auto 100px;
+	position:relative;
+	padding-top:1px;
+}
+
+a, a:visited {
+	text-decoration:none;
+	outline:none;
+	color:#159ce9;
+}
+
+a:hover{	text-decoration:underline;}
+a img{	border:none;}
+
+/* The Footer */
+
+#footer{
+	background-color:#212121;
+	position:fixed;
+	width:100%;
+	height:70px;
+	bottom:0;
+	left:0;
+	z-index: 100000;
+	text-shadow:none;
+}
+
+#footer h2{
+	font-size:20px;
+	font-weight:normal;
+	left:50%;
+	margin-left:-400px;
+	padding:22px 0;
+	position:absolute;
+	width:400px;
+	color:#eee;
+	right:0;
+	top:0;
+	font-style:normal;
+}
+
+#footer a.tzine,a.tzine:visited{
+	background:url("img/tzine.png") no-repeat right top;
+	border:none;
+	text-decoration:none;
+	color:#FCFCFC;
+	font-size:12px;
+	height:70px;
+	left:50%;
+	line-height:31px;
+	margin:23px 0 0 110px;
+	position:absolute;
+	top:0;
+	width:290px;
+}

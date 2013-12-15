@@ -1,0 +1,18 @@
+JavaScript:
+
+var dynamicClass = 'js';
+var b = document.body;
+b.className = b.className ? b.className + ' js' : 'js';
+
+CSS:
+/* static version */
+
+#nav {
+  ....
+}
+
+/* dynamic version */
+
+body.js #nav {
+  ....
+}

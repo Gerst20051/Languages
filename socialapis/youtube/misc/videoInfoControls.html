@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Youtube Player Test</title>
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">google.load("swfobject", "2.1");</script> 
+<script type="text/javascript">
+/*
+* Change out the video that is playing
+*/
+
+// Update a particular HTML element with a new value
+function updateHTML(elmId, value) {
+document.getElementById(elmId).innerHTML = value;
+}
+
+// Loads the selected video into the player.
+function loadVideo(elm) {
+// var selectBox = document.getElementById("videoSelection");
+// var videoID = selectBox.options[selectBox.selectedIndex].value
+
+var videoID = elm.name;
+
+if(ytplayer) {
+ytplayer.loadVideoById(videoID);
+}
+}
+
+// This function is called when an error is thrown by the player
+function onPlayerError(errorCode) {
+alert("An error occured of type:" + errorCode);
+}
+
+//controls info
+
+// This function is called when the player changes state
+function onPlayerStateChange(newState) {
+updateHTML("playerState", newState);
+}
+
+
+// Display information about the current state of the player
+function updatePlayerInfo() {
+// Also check that at least one function exists since when IE unloads the
+// page, it will destroy the SWF before clearing the interval.
+if(ytplayer && ytplayer.getDuration) {
+updateHTML("videoDuration", ytplayer.getDuration());
+updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
+updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
+updateHTML("startBytes", ytplayer.getVideoStartBytes());
+updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
+// updateHTML("volume", ytplayer.getVolume());
+}
+}
+
+// Allow the user to set the volume from 0-100
+function setVideoVolume(elm) {
+var volume = parseInt(elm.name);
+// var volume = parseInt(document.getElementById("volumeSetting").value);
+if(isNaN(volume) || volume < 0 || volume > 100) {
+alert("Please enter a valid volume between 0 and 100.");
+}
+else if(ytplayer){
+ytplayer.setVolume(volume);
+}
+}
+
+function playVideo() {
+if (ytplayer) {
+ytplayer.playVideo();
+}
+}
+
+function pauseVideo() {
+if (ytplayer) {
+ytplayer.pauseVideo();
+}
+} 
+
+// This function is automatically called by the player once it loads
+function onYouTubePlayerReady(playerId) {
+ytplayer = document.getElementById("ytPlayer");
+setInterval(updatePlayerInfo,250);
+updatePlayerInfo();
+ytplayer.addEventListener("onError", "onPlayerError");
+}
+
+
+// The "main method" of this sample. Called when someone clicks "Run".
+function loadPlayer() {
+// The video to load
+var videoID = "GVS7PlJdba8";
+// Lets Flash from another domain call JavaScript
+var params = { allowScriptAccess: "always", rel: "0", fs: "0", showsearch: "0", showinfo: "1" };
+// The element id of the Flash embed
+var atts = { id: "ytPlayer" };
+// All of the magic handled by SWFObject (http://code.google.com/p/swfobject/)
+var embeddedVideo = swfobject.embedSWF("http://www.youtube.com/apiplayer?" + videoID + "&enablejsapi=1&playerapiid=player1", "videoDiv", "480", "295", "8", null, null, params, atts);
+}
+
+function _run() {
+loadPlayer();
+}
+google.setOnLoadCallback(_run);
+</script>
+</head>
+<body>
+<div id="wrap">
+<div class="videoPlayer">
+<div id="videoDiv">Loading...</div><br />
+<p>
+Current Time: <span id="videoCurrentTime">--:--</span> | Duration: <span id="videoDuration">--:--</span>
+Bytes Total: <span id="bytesTotal">--</span> | Start Bytes: <span id="startBytes">--</span> | Bytes Loaded: <span id="bytesLoaded">--</span>
+<a href="#play" onclick="playVideo();">Play</a>
+<a href="#pause" onclick="pauseVideo();">Pause</a>
+<a href="#volume" onclick="setVideoVolume(this);" name="0">Mute</a>
+<a href="#volume" onclick="setVideoVolume(this);" name="10">Set Volume to 50</a>
+<a href="#volume" onclick="setVideoVolume(this);" name="100">Set Volume to 100</a>
+</p>
+</div>
+<div id="videoControls">
+<p>Select a video to load:</p>
+<a href="#" onclick="javascript:loadVideo(this);" name="GVS7PlJdba8" title="01">01</a><br />
+<a href="#" onclick="javascript:loadVideo(this);" name="fEP8Xp6A6Ew" title="02">02</a>
+</div>
+</div>
+</body>
+</html>

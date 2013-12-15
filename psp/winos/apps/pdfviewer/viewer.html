@@ -1,0 +1,61 @@
+<HTML> 
+<HEAD><title>PDF Viewer - Viewer</title>
+<style type="text/css">
+Body {background-color: #006699; padding: 0px; font-family: arial,  helvetica, tahoma, sans-serif; font-size:12px; color:#FFFFFF;}
+
+a {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: underline;}
+:link {color: #FFFFFF;}
+:visited {color: #FFFFFF;}
+:hover {color: #FFFFFF;}
+tr.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+td.td1 {font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+div.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+hr.Light {color: #006699;}
+
+input.i1 {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: none;}
+:link.i1 {color: #000000;}
+:visited.i1 {color: #000000;}
+:hover.i1 {color: #000000;}
+</style>
+</HEAD>
+
+<BODY> 
+<div align="center">
+<table align="center" width="390" height="200" bgcolor="#006699" border="0" cellpadding="2" cellspacing="1">
+<tr>
+<td height="40" colspan="2" align="center">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td class="td1" align="left"><b>PDF - Viewer</b></td>
+<td align="right"><a href="javascript:history.go(-1)">Return To Main Page</a></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<FORM METHOD="POST" ACTION="http://www.sanface.com/cgi-bin/webpdfviewer.cgi" ENCTYPE="multipart/form-data">
+<font color="white" face="arial"><B>Browse and Select your PDF you want to View</B></font>
+<tr class="DarkCenter">
+<td align="center">
+<INPUT TYPE="file" CLASS="i1" NAME="uploaded_file">
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<font color="white" face="arial"><b>Select the PDF Format</b></font><BR>
+<font color="white" face="arial"><b><INPUT TYPE="radio" NAME="format" VALUE="html" CHECKED>HTML<INPUT TYPE="radio" NAME="format" VALUE="text">Text</b></font>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<INPUT TYPE="reset" VALUE="Clear">&nbsp;<INPUT TYPE="submit" NAME="submit" VALUE="View"><INPUT TYPE="hidden" NAME="cgifields" VALUE="format"><INPUT TYPE="hidden" NAME="cgifields" VALUE="ascii">
+</td>
+</tr>
+</FORM>
+</td>
+</tr>
+</table>
+</div>
+</BODY> 
+</HTML>

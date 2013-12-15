@@ -1,0 +1,155 @@
+<html>
+<head>
+<title>Note List</title>
+<!-- Original Code written by mooncricket11 July 2006 -->
+<!-- Modified for Sony PSP portal usage by TimW (TombstoneTim) July 2006 -->
+<style type="text/css">
+Body {background-color: #006699; padding: 0px; font-family: arial,  helvetica, tahoma, sans-serif; font-size:12px; color:#FFFFFF;}
+
+a {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: underline;}
+:link {color: #FFFFFF;}
+:visited {color: #FFFFFF;}
+:hover {color: #FFFFFF;}
+tr.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+td.td1 {font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+div.DarkCenter {background-color: #003366; font-family: arial, helvetica, tahoma, sans-serif; font-size:16px; color:#FFFFFF;}
+hr.Light {color: #006699;}
+
+input.i1 {font-family: arial, helvetica, tahoma, sans-serif; font-size: 12px; text-decoration: none;}
+:link.i1 {color: #000000;}
+:visited.i1 {color: #000000;}
+:hover.i1 {color: #000000;}
+</style>
+
+<script type="text/javascript">
+function setnlInput1(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm1.nlInput1.value = newValue;
+document.nlFrame.document.nlForm1.submit();
+}
+function deletenlInput1() {
+document.nlFrame.document.nlForm1.nlInput1.value = ' ';
+document.nlFrame.document.nlForm1.submit();
+}
+function setnlInput2(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm1.nlInput2.value = newValue;
+document.nlFrame.document.nlForm1.submit();
+}
+function deletenlInput2() {
+document.nlFrame.document.nlForm1.nlInput2.value = ' ';
+document.nlFrame.document.nlForm1.submit();
+}
+function setnlInput3(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm1.nlInput3.value = newValue;
+document.nlFrame.document.nlForm1.submit();
+}
+function deletenlInput3() {
+document.nlFrame.document.nlForm1.nlInput3.value = ' ';
+document.nlFrame.document.nlForm1.submit();
+}
+function setnlInput4(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm1.nlInput4.value = newValue;
+document.nlFrame.document.nlForm1.submit();
+}
+function deletenlInput4() {
+document.nlFrame.document.nlForm1.nlInput4.value = ' ';
+document.nlFrame.document.nlForm1.submit();
+}
+function setnlInput5(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm2.nlInput5.value = newValue;
+document.nlFrame.document.nlForm2.submit();
+}
+function deletenlInput5() {
+document.nlFrame.document.nlForm2.nlInput5.value = ' ';
+document.nlFrame.document.nlForm2.submit();
+}
+function setnlInput6(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm2.nlInput6.value = newValue;
+document.nlFrame.document.nlForm2.submit();
+}
+function deletenlInput6() {
+document.nlFrame.document.nlForm2.nlInput6.value = ' ';
+document.nlFrame.document.nlForm2.submit();
+}
+function setnlInput7(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm2.nlInput7.value = newValue;
+document.nlFrame.document.nlForm2.submit();
+}
+function deletenlInput7() {
+document.nlFrame.document.nlForm2.nlInput7.value = ' ';
+document.nlFrame.document.nlForm2.submit();
+}
+function setnlInput8(newValue) {
+newValue = (!newValue) ? prompt('Enter Message to Save') : newValue;
+document.nlFrame.document.nlForm2.nlInput8.value = newValue;
+document.nlFrame.document.nlForm2.submit();
+}
+function deletenlInput8() {
+document.nlFrame.document.nlForm2.nlInput8.value = ' ';
+document.nlFrame.document.nlForm2.submit();
+}
+</script>
+</head>
+
+<body>
+<div align="center">
+<table align="center" width="390" height="200" bgcolor="#006699" border="0" cellpadding="2" cellspacing="1">
+<tr>
+<td height="40" colspan="2" align="center">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td class="td1" align="left"><b>Note List</b></td>
+</tr>
+</table>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<font size="1">Use controls below the text area to enter or delete an entry.</font>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<iframe name="nlFrame" align="middle" frameborder="0" border="0" style="height:76px; width:400px" src="nl_input.html"></iframe>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<font size="2">
+Enter Text:
+&nbsp;&nbsp;<a href="javascript:setnlInput1();">1</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput2();">2</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput3();">3</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput4();">4</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput5();">5</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput6();">6</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput7();">7</a>
+&nbsp;|&nbsp;<a href="javascript:setnlInput8();">8</a>
+<br>
+Delete Text:
+&nbsp;&nbsp;<a href="javascript:deletenlInput1();">1</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput2();">2</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput3();">3</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput4();">4</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput5();">5</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput6();">6</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput7();">7</a>
+&nbsp;|&nbsp;<a href="javascript:deletenlInput8();">8</a>
+</font>
+</td>
+</tr>
+<tr class="DarkCenter">
+<td align="center">
+<font size="1">Warning: deleting the Input History under Tools will erase your entire list.</font>
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

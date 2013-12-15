@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title></title>
+<script type="text/javascript" src="jquery.js"></script>
+</head>
+<body>
+<div id="sPI"><input type="text" id="sPB" value="Search Playlists" spellcheck="false"></input></div>
+<div id="debug" style="display:none"></div>
+<script>
+var currentPSearch = "";
+var jsonarray = {"data":{"Playlists":["Current Popular Artists","Current Popular Songs","A Cappella"],"Playlist2":["Bar Bat Mitzvah Candlelighting","Best Selling Albums","Break Up Songs","Cartoons"],"Current Popular Artists":["YouTube","AutoTune","Rihanna","Far East Movement","Glee Cast"]}};
+var jsontext = JSON.stringify(jsonarray);
+var json = $.parseJSON(jsontext);
+var searchBox = $("input[type='text']#sPB");
+searchBox.focus(function() { if ($(this).val() == "Search Playlists") $(this).val(''); }).blur(function() { if ($(this).val() == "") $(this).val('Search Playlists'); }).keyup(doPlaylistSearch);
+
+function doPlaylistSearch() {
+	currentPSearch = searchBox.val();
+	if (currentPSearch == '') {
+		if ($("div#debug").is(":visible")) $("div#debug").hide();
+		return;
+	} else {
+		if ($("div#debug").is(":hidden")) $("div#debug").show();
+		updatePSearchResults(searchArr("/" + currentPSearch + "/i",json));
+	}
+}
+
+function updatePSearchResults(results) {
+	var sresults = $("<ul />").attr('id','pl');
+	$.each(results, function(pn,pl) {
+		$.each(pl, function(i,result) {
+			sresults.append('<li class="sI">' + result + '</li>');
+		});
+	});
+	$("div#debug").empty().html(sresults);
+}
+
+function searchArr(pattern,input) {
+	var data = {}, subdata = {}, retObj = {}; data = input["data"];
+	if (typeof pattern === 'string') pattern = eval(pattern);
+	$.each(data, function(v) {
+		subdata = data[v];
+		retObj[v] = new Array();
+		$.each(subdata, function(i,t) {
+			if (t.match(pattern)) retObj[v].push(t);
+		});
+	});
+	return retObj;
+}
+</script>
+</body>
+</html>

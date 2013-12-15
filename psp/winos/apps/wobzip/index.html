@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>Wob Zip</title>
+<style type="text/css">
+<!--
+#Layer1 {
+	position:absolute;
+	width:480;
+	height:168px;
+	z-index:1;
+	left: 0;
+	top: 0;
+}
+-->
+</style>
+</head>
+
+<body>
+<div id="Layer1">
+  <div align="center">
+    <p><img src='wobzip_title.png' alt='WobZip'>
+    
+    <form name='uploadform' enctype='multipart/form-data' action='http://wobzip.zitr.us/index.php' method='POST'>
+<input type='hidden' name='passcode' value= />
+<div id='uploadfilediag' align="center">
+<table>
+<tr>
+<td class='filenamecol'>
+<input type='file' size='30' name='filepath'/>
+</td>
+<td class='filenamecol'>
+<input type='submit' value='Uncompress' onclick="doneDownload()" name='submitbut'/>
+</td>
+</tr>
+</table>
+</p>
+    </div>
+</form>
+  </div>
+</div>
+</body>
+</html>

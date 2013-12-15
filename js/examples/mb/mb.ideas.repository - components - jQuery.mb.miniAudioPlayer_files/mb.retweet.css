@@ -1,0 +1,28 @@
+/*
+ * jquery.mb.components
+ * Copyright (c) 2001-2010. Matteo Bicocchi (Pupunzi); Open lab srl, Firenze - Italy
+ * email: mbicocchi@open-lab.com
+ * site: http://pupunzi.com
+ *
+ * Licences: MIT, GPL
+ * http://www.opensource.org/licenses/mit-license.php
+ * http://www.gnu.org/licenses/gpl.html
+ */
+
+a.mbretweet{font: 14px/14px Arial, Helvetica, sans-serif !important;text-decoration:none;display: inline-block;overflow: hidden;padding: 6px; vertical-align: middle; height:15px;}
+a.mbretweet .mbretweetLabel{background: url("twitter.png") no-repeat 4px 2px;color:white;border: 0 solid #fff;padding: 6px;padding-left:25px;position:relative;z-index:0;}
+a.mbretweet:hover .mbretweetLabel{background-color: #42c0e9;}
+a.mbretweet.disabled .mbretweetLabel{background-color:#ccc!important;cursor:default!important;}
+a.mbretweet.disabled:hover .mbretweetLabel{background-color:#ccc!important;}
+a.mbretweet .mbretweetStats{font: 14px/14px Arial, Helvetica, sans-serif;background:rgba(0,0,0,0.3);border: 0 solid #fff;color:#fff;padding: 6px;}
+a.mbretweet .mbopenExtra{font: 10px/10px Arial, Helvetica, sans-serif;color:#fff;margin-left: 10px;padding: 5px 0 5px 7px;border-left:1px dotted white;}
+a.mbretweet span.mbopenExtra:hover{color:#000;}
+a.mbretweet.disabled span.mbopenExtra:hover{color:#fff;}
+.mbretweetExtra{background: #f3f3f3;padding:5px;position:absolute;width:170px;right:0 !important;z-index:1;margin-top:15px;-moz-box-shadow:rgba(0,0,0,0.3) 2px 2px 4px;-webkit-box-shadow:rgba(0,0,0,0.3) 2px 2px 4px;font: 12px/13px Arial, Helvetica, sans-serif;color: gray;}
+.mbretweetExtra #mbretweetDesc{border:none;color:#42c0e9;margin-top:10px;background:#fff;width:156px;height:70px;padding:6px;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+.mbretweetExtra #mbcounter{color:#aaa;}
+.mbretweetExtra #mbcounter.alert{color:red;}
+.mbretweetExtra .extraretweet{margin-top:2px;padding:5px;color:#42c0e9;}
+.mbretweetExtra .extraretweet span.goretweet{padding:3px;background: #fff;cursor:pointer;-moz-border-radius: 5px;-webkit-border-radius: 5px;}
+.mbretweetExtra .extraretweet span.goretweet:hover{color:white!important;}
+a.mbretweet:focus {outline: 0;}

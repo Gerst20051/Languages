@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8">
+<title>Centered and Nice Forms</title>
+<link rel="stylesheet" href="helper.css">
+</head>
+<body>
+<h1>Centered</h1>
+<div class="hbox center">
+<div class="vbox center">
+<div>...</div>
+<div>...</div>
+</div>
+</div>
+
+<h1>Nice Forms</h1>
+<form action="handler.cgi" method="POST" class="hbox">
+<div class="vbox">
+<label>First Name (required):</label>
+<label>Last Name:</label>
+</div>
+<div class="vbox">
+<input type="text" name="first"/>
+<input type="text" name="last"/>
+<input type="submit"/>
+</div>
+</form>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Having Fun With YouTube's API - Making a Custom Video Player | Tutorialzine Demo</title>
+<link rel="stylesheet" type="text/css" href="styles.css" />
+<link rel="stylesheet" type="text/css" href="youTubeEmbed-jquery-1.0.css" />
+</head>
+<body>
+<h1>Making a Custom <br /> YouTube Video Player</h1>
+<div id="page">
+<p>This is a demo for Tutorialzine's Youtube API tutorial, in which we show you how to use YouTube's APIs, to create a custom CSS player for YouTube videos in a form of a jQuery plugin. Embedding videos in your website has never been easier. Just run the following code:</p>
+<pre>$('#element').youTubeEmbed('http://www.youtube.com/watch?v=u1zgFlCw8Aw');
+// Or:
+$('#element').youTubeEmbed({
+	video			: 'http://www.youtube.com/watch?v=u1zgFlCw8Aw',
+	width			: 600, 		// Height is calculated automatically
+	progressBar	: false		// Hide the progress bar
+});
+</pre>
+<p>The plugin uses YouTube's chromeless player, which allows you to build your own player controls. Changing the play/pause buttons or the progress bar is as easy as changing a couple of CSS values.</p>
+<blockquote>
+<p>To test the plugin, fill in a YouTube Video URL in the textbox below and hit "Embed".</p>
+<form action="">
+<fieldset>
+<input type="text" id="url" />
+<input type="submit" id="submitButton" value="Embed" />
+<small>(if embedding has been disabled on the video, it will not show up)</small>
+</fieldset>
+</form>
+</blockquote>
+<div id="player"></div>
+</div>
+<div id="footer">
+<h2>Making a Custom YouTube Video Player</h2>
+<a class="tzine" href="http://tutorialzine.com/2010/07/youtube-api-custom-player-jquery-css/">Read &amp; Download on</a>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script src="jquery.swfobject.1-1-1.min.js"></script>
+<script src="youTubeEmbed-jquery-1.0.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

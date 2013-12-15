@@ -1,0 +1,30 @@
+LIBRARY Packet32
+
+EXPORTS
+	PacketOpenAdapter
+	PacketSendPacket
+	PacketAllocatePacket
+	PacketInitPacket
+	PacketFreePacket
+	PacketResetAdapter
+	PacketReceivePacket
+	PacketCloseAdapter
+	PacketSetHwFilter
+	PacketGetAdapterNames
+	PacketRequest
+	PacketSetBuff
+	PacketSetBpf
+	PacketGetNetType
+	PacketSetReadTimeout
+	PacketSetNumWrites
+	PacketGetNetInfo
+	PacketSetMinToCopy
+	PacketSetMaxLookahead
+	PacketCancelPacket
+	PacketLoadDriver
+	PacketUnloadDriver
+
+;	PacketSetMode
+;	PacketGetStats
+;	PacketCheckLoadState
+;	PacketGetLastError

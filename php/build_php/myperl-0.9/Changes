@@ -1,0 +1,31 @@
+Version 0.9 
+* Removed limit of 255 rows
+* Fixed error control
+* Removed perl 8 requirements
+* Fix in deinit 
+* DynaLoader fix for most platforms!
+* Fix for hidden row being passed in
+
+Version 0.8 
+* Added support for the perl interpreter to persist for requests
+* re-aranged package to meet CPAN spec.
+* Fix for myperlgroup (it was calling itself too frequently)
+
+Version 0.6 
+* Added code so that all arguements would be passed to perl as strings
+
+Version 0.5 
+* Rewrite to work with Perl 5.6.1
+* Thread safety has been improved
+* myperlgroup() added (look at README)
+
+Version 0.3 
+* You can now specify an integer for the first
+  parameter if you need something longer then
+	255 characters.
+* Perl Interpreter is not longer created for
+  each connection!
+* Other random cleanup
+
+Version 0.1 
+* Initial Release

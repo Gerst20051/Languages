@@ -1,0 +1,1 @@
+jQuery.ad.callback({"dc": {"site":"fnc","s1":"default","s2":"","s3":"","s4":"","hub":""}, "ptype": "channel", "col": "", "qu": {"qu_channel_1": {"placeid": 1426719, "pid": 1374767, "ps": -1, "width": 405, "height": 220}}})

@@ -1,0 +1,2 @@
+http://mercurial.selenic.com/
+http://code.google.com/p/support/wiki/MercurialFAQ

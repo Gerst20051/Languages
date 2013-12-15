@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="SymTab (Unix)" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="default">
+				<Option output="../../../devel/share/codeblocks/plugins/libSymTab.so" prefix_auto="0" extension_auto="0" />
+				<Option object_output="../../../.objs/plugins/contrib/symtab" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option parameters="--debug-log -ns -ni" />
+				<Option host_application="../../../devel/codeblocks" />
+			</Target>
+			<Environment>
+				<Variable name="CBDIR" value="../../.." />
+			</Environment>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="default;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-Ulinux" />
+			<Add option="-Uunix" />
+			<Add option="`wx-config --cflags`" />
+			<Add option="-fPIC" />
+			<Add option="-DcbDEBUG" />
+			<Add option="-DCB_PRECOMP" />
+			<Add directory="$(CBDIR)/include" />
+			<Add directory="$(CBDIR)/sdk/wxscintilla/include" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+			<Add library="codeblocks" />
+			<Add directory="$(CBDIR)/devel" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="zip -j9 ../../../devel/share/codeblocks/SymTab.zip resources/manifest.xml resources/*.xrc" />
+			<Mode after="always" />
+		</ExtraCommands>
+		<Unit filename="symtab.cpp" />
+		<Unit filename="symtab.h" />
+		<Unit filename="symtabconfig.cpp" />
+		<Unit filename="symtabconfig.h" />
+		<Unit filename="symtabexec.cpp" />
+		<Unit filename="symtabexec.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

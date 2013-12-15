@@ -1,0 +1,352 @@
+
+<!-- saved from url=(0072)http://radio.psp.dl.playstation.net/psp/radio/player/PLAYER_I/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./INTERNET RADIO PLAYER I_files/basic.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/coldspot.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/magicwindow.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/pushbutton.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/gauge.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/metainfo.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/genre_button.css" rel="stylesheet" type="text/css">
+<link href="./INTERNET RADIO PLAYER I_files/station_point.css" rel="stylesheet" type="text/css">
+
+<title>INTERNET RADIO PLAYER I</title>
+</head>
+<body bgcolor="#000000" link="#eeeeee" vlink="#eeeeee" alink="#a0d0ff">
+<script language="JavaScript" src="./INTERNET RADIO PLAYER I_files/radioplayer.js">
+</script>
+<img id="face" src="./INTERNET RADIO PLAYER I_files/bg0.png" width="480" height="544" usemap="#BG" border="0">
+<map name="BG">
+<area shape="rect" coords="368,1,475,19" href="JavaScript:" onclick="jumpToShoutcast()" alt="SHOUTcast">
+</map>
+<img id="leftMWindow" name="leftMWindow" src="./INTERNET RADIO PLAYER I_files/magic_window0_4.png" width="40" height="40"> 
+<img id="centerMWindow" name="centerMWindow" src="./INTERNET RADIO PLAYER I_files/magic_window1_4.png" width="40" height="40"> 
+<img id="rightMWindow" name="rightMWindow" src="./INTERNET RADIO PLAYER I_files/magic_window2_4.png" width="40" height="40"> 
+<a href="JavaScript:">
+<img id="prevButton" onmouseover="b_mouseOver(-1);" onmouseout="b_mouseOut(-1);" onmousedown="b_mouseDown(-1);" onmouseup="b_mouseUp(-1);" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/leftarrow_small_button.png" width="29" height="30"> </a>
+<a href="JavaScript:">
+<img id="playButton" onmouseover="b_mouseOver(0);" onmouseout="b_mouseOut(0);" onmousedown="b_mouseDown(0);" onmouseup="b_mouseUp(0);" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/reconnect_small_button.png" width="86" height="30"> </a>
+<a href="JavaScript:">
+<img id="nextButton" onmouseover="b_mouseOver(1);" onmouseout="b_mouseOut(1);" onmousedown="b_mouseDown(1);" onmouseup="b_mouseUp(1);" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/rightarrow_small_button.png" width="29" height="30"> </a>
+
+<a href="JavaScript:">
+<img id="sleepSw" name="sleepSw" onmouseover="sw_sleep(0);" onmouseout="sw_sleep(1);" onmousedown="sw_sleep(2);" src="./INTERNET RADIO PLAYER I_files/sw_sleep_small_off.png" width="29" height="30"> </a>
+<span id="sleepCountDown"> </span>
+<a href="JavaScript:">
+<img id="shiftTglSw" name="shiftTglSw" onmouseover="sw_shift(0);" onmouseout="sw_shift(1);" onmousedown="sw_shift(2);" src="./INTERNET RADIO PLAYER I_files/sw_shift_small_off.png" width="29" height="30"> </a>
+<a href="JavaScript:">
+<img id="sinTglSw" name="sinTglSw" onmouseover="sw_sin(0);" onmouseout="sw_sin(1);" onmousedown="sw_sin(2);" src="./INTERNET RADIO PLAYER I_files/sw_sin_small_off.png" width="29" height="30"> </a>
+<a href="JavaScript:">
+<img id="cwTglSw" name="cwTglSw" onmouseover="sw_cw(0);" onmouseout="sw_cw(1);" onmousedown="sw_cw(2);" src="./INTERNET RADIO PLAYER I_files/sw_cw_small_off.png" width="29" height="30"> </a>
+<a href="JavaScript:">
+<img id="noiseTglSw" name="noiseTglSw" onmouseover="sw_noise(0);" onmouseout="sw_noise(1);" onmousedown="sw_noise(2);" src="./INTERNET RADIO PLAYER I_files/sw_noise_small_off.png" width="29" height="30"> </a>
+<a href="JavaScript:">
+<img id="helpSw" name="helpSw" onmouseover="sw_help(0);" onmouseout="sw_help(1);" onmousedown="sw_help(2);" src="./INTERNET RADIO PLAYER I_files/sw_help_small_off.png" width="29" height="30"> </a>
+
+<img id="sleepTimerIndicator" name="sleepTimerIndicator" src="./INTERNET RADIO PLAYER I_files/indicator_off.png" width="7" height="7">
+<img id="shiftSwIndicator" name="shiftSwIndicator" src="./INTERNET RADIO PLAYER I_files/indicator_off.png" width="7" height="7">
+<img id="sinSwIndicator" name="sinSwIndicator" src="./INTERNET RADIO PLAYER I_files/indicator_off.png" width="7" height="7">
+<img id="cwSwIndicator" name="cwSwIndicator" src="./INTERNET RADIO PLAYER I_files/indicator_off.png" width="7" height="7">
+<img id="noiseSwIndicator" name="noiseSwIndicator" src="./INTERNET RADIO PLAYER I_files/indicator_off.png" width="7" height="7">
+
+<a href="JavaScript:" onmousedown="t_mouseDown(0);">
+<img id="stationP0" name="stationP0" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(1);">
+<img id="stationP1" name="stationP1" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(2);">
+<img id="stationP2" name="stationP2" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(3);">
+<img id="stationP3" name="stationP3" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(4);">
+<img id="stationP4" name="stationP4" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(5);">
+<img id="stationP5" name="stationP5" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(6);">
+<img id="stationP6" name="stationP6" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(7);">
+<img id="stationP7" name="stationP7" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(8);">
+<img id="stationP8" name="stationP8" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(9);">
+<img id="stationP9" name="stationP9" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(10);">
+<img id="stationP10" name="stationP10" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(11);">
+<img id="stationP11" name="stationP11" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(12);">
+<img id="stationP12" name="stationP12" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(13);">
+<img id="stationP13" name="stationP13" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(14);">
+<img id="stationP14" name="stationP14" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(15);">
+<img id="stationP15" name="stationP15" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(16);">
+<img id="stationP16" name="stationP16" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(17);">
+<img id="stationP17" name="stationP17" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(18);">
+<img id="stationP18" name="stationP18" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(19);">
+<img id="stationP19" name="stationP19" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(20);">
+<img id="stationP20" name="stationP20" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(21);">
+<img id="stationP21" name="stationP21" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(22);">
+<img id="stationP22" name="stationP22" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(23);">
+<img id="stationP23" name="stationP23" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(24);">
+<img id="stationP24" name="stationP24" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(25);">
+<img id="stationP25" name="stationP25" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(26);">
+<img id="stationP26" name="stationP26" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(27);">
+<img id="stationP27" name="stationP27" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(28);">
+<img id="stationP28" name="stationP28" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+<a href="JavaScript:" onmousedown="t_mouseDown(29);">
+<img id="stationP29" name="stationP29" src="./INTERNET RADIO PLAYER I_files/stationMarker_off.gif" width="7" height="10"></a>
+
+<img id="gaugeLine" name="gaugeLine" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/gauge_animation1.gif" width="480" height="25">
+<img id="gaugeHand" name="gaugeHand" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/hand3.png" width="26" height="60">
+
+<table id="genreButtonPanel" width="430px" height="190px" border="0" cellspacing="0" cellpadding="0">
+<tbody><tr>
+  <td width="16%">
+    <a id="gb_0_0" href="JavaScript:" onmouseover="g_mouseOver(0, 0);" onmouseout="g_mouseOut(0, 0);" onmousedown="g_mouseDown(0, 0);" onmouseup="g_mouseUp(0, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">50s</a>
+  </td>
+  <td width="16%">
+    <a id="gb_0_1" href="JavaScript:" onmouseover="g_mouseOver(0, 1);" onmouseout="g_mouseOut(0, 1);" onmousedown="g_mouseDown(0, 1);" onmouseup="g_mouseUp(0, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Bossa Nova</a>
+  </td>
+  <td width="16%">
+    <a id="gb_0_2" href="JavaScript:" onmouseover="g_mouseOver(0, 2);" onmouseout="g_mouseOut(0, 2);" onmousedown="g_mouseDown(0, 2);" onmouseup="g_mouseUp(0, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">HardRock</a>
+  </td>
+  <td width="16%">
+    <a id="gb_0_3" href="JavaScript:" onmouseover="g_mouseOver(0, 3);" onmouseout="g_mouseOut(0, 3);" onmousedown="g_mouseDown(0, 3);" onmouseup="g_mouseUp(0, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Live</a>
+  </td>
+  <td width="16%">
+    <a id="gb_0_4" href="JavaScript:" onmouseover="g_mouseOver(0, 4);" onmouseout="g_mouseOut(0, 4);" onmousedown="g_mouseDown(0, 4);" onmouseup="g_mouseUp(0, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">R&amp;B</a>
+  </td>
+</tr>
+<tr>
+  <td width="16%">
+    <a id="gb_1_0" href="JavaScript:" onmouseover="g_mouseOver(1, 0);" onmouseout="g_mouseOut(1, 0);" onmousedown="g_mouseDown(1, 0);" onmouseup="g_mouseUp(1, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">60s</a>
+  </td>
+  <td>
+    <a id="gb_1_1" href="JavaScript:" onmouseover="g_mouseOver(1, 1);" onmouseout="g_mouseOut(1, 1);" onmousedown="g_mouseDown(1, 1);" onmouseup="g_mouseUp(1, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">British</a>
+  </td>
+  <td>
+    <a id="gb_1_2" href="JavaScript:" onmouseover="g_mouseOver(1, 2);" onmouseout="g_mouseOut(1, 2);" onmousedown="g_mouseDown(1, 2);" onmouseup="g_mouseUp(1, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Hawaiian</a>
+  </td>
+  <td>
+    <a id="gb_1_3" href="JavaScript:" onmouseover="g_mouseOver(1, 3);" onmouseout="g_mouseOut(1, 3);" onmousedown="g_mouseDown(1, 3);" onmouseup="g_mouseUp(1, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Metal</a>
+  </td>
+  <td>
+    <a id="gb_1_4" href="JavaScript:" onmouseover="g_mouseOver(1, 4);" onmouseout="g_mouseOut(1, 4);" onmousedown="g_mouseDown(1, 4);" onmouseup="g_mouseUp(1, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Reggae</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_2_0" href="JavaScript:" onmouseover="g_mouseOver(2, 0);" onmouseout="g_mouseOut(2, 0);" onmousedown="g_mouseDown(2, 0);" onmouseup="g_mouseUp(2, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">70s</a>
+  </td>
+  <td>
+    <a id="gb_2_1" href="JavaScript:" onmouseover="g_mouseOver(2, 1);" onmouseout="g_mouseOut(2, 1);" onmousedown="g_mouseDown(2, 1);" onmouseup="g_mouseUp(2, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Classical</a>
+  </td>
+  <td>
+    <a id="gb_2_2" href="JavaScript:" onmouseover="g_mouseOver(2, 2);" onmouseout="g_mouseOut(2, 2);" onmousedown="g_mouseDown(2, 2);" onmouseup="g_mouseUp(2, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">House</a>
+  </td>
+  <td>
+    <a id="gb_2_3" href="JavaScript:" onmouseover="g_mouseOver(2, 3);" onmouseout="g_mouseOut(2, 3);" onmousedown="g_mouseDown(2, 3);" onmouseup="g_mouseUp(2, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Modern</a>
+  </td>
+  <td>
+    <a id="gb_2_4" href="JavaScript:" onmouseover="g_mouseOver(2, 4);" onmouseout="g_mouseOut(2, 4);" onmousedown="g_mouseDown(2, 4);" onmouseup="g_mouseUp(2, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Religious</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_3_0" href="JavaScript:" onmouseover="g_mouseOver(3, 0);" onmouseout="g_mouseOut(3, 0);" onmousedown="g_mouseDown(3, 0);" onmouseup="g_mouseUp(3, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_on.png" width="15" height="15 ">80s</a>
+  </td>
+  <td>
+    <a id="gb_3_1" href="JavaScript:" onmouseover="g_mouseOver(3, 1);" onmouseout="g_mouseOut(3, 1);" onmousedown="g_mouseDown(3, 1);" onmouseup="g_mouseUp(3, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Contempo</a>
+  </td>
+  <td>
+    <a id="gb_3_2" href="JavaScript:" onmouseover="g_mouseOver(3, 2);" onmouseout="g_mouseOut(3, 2);" onmousedown="g_mouseDown(3, 2);" onmouseup="g_mouseUp(3, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Indie</a>
+  </td>
+  <td>
+    <a id="gb_3_3" href="JavaScript:" onmouseover="g_mouseOver(3, 3);" onmouseout="g_mouseOut(3, 3);" onmousedown="g_mouseDown(3, 3);" onmouseup="g_mouseUp(3, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">News</a>
+  </td>
+  <td>
+    <a id="gb_3_4" href="JavaScript:" onmouseover="g_mouseOver(3, 4);" onmouseout="g_mouseOut(3, 4);" onmousedown="g_mouseDown(3, 4);" onmouseup="g_mouseUp(3, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Salsa</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_4_0" href="JavaScript:" onmouseover="g_mouseOver(4, 0);" onmouseout="g_mouseOut(4, 0);" onmousedown="g_mouseDown(4, 0);" onmouseup="g_mouseUp(4, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">90s</a>
+  </td>
+  <td>
+    <a id="gb_4_1" href="JavaScript:" onmouseover="g_mouseOver(4, 1);" onmouseout="g_mouseOut(4, 1);" onmousedown="g_mouseDown(4, 1);" onmouseup="g_mouseUp(4, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Country</a>
+  </td>
+  <td>
+    <a id="gb_4_2" href="JavaScript:" onmouseover="g_mouseOver(4, 2);" onmouseout="g_mouseOut(4, 2);" onmousedown="g_mouseDown(4, 2);" onmouseup="g_mouseUp(4, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">International</a>
+  </td>
+  <td>
+    <a id="gb_4_3" href="JavaScript:" onmouseover="g_mouseOver(4, 3);" onmouseout="g_mouseOut(4, 3);" onmousedown="g_mouseDown(4, 3);" onmouseup="g_mouseUp(4, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Oldies</a>
+  </td>
+  <td>
+    <a id="gb_4_4" href="JavaScript:" onmouseover="g_mouseOver(4, 4);" onmouseout="g_mouseOut(4, 4);" onmousedown="g_mouseDown(4, 4);" onmouseup="g_mouseUp(4, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Talk</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_5_0" href="JavaScript:" onmouseover="g_mouseOver(5, 0);" onmouseout="g_mouseOut(5, 0);" onmousedown="g_mouseDown(5, 0);" onmouseup="g_mouseUp(5, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">2000s</a>
+  </td>
+  <td>
+    <a id="gb_5_1" href="JavaScript:" onmouseover="g_mouseOver(5, 1);" onmouseout="g_mouseOut(5, 1);" onmousedown="g_mouseDown(5, 1);" onmouseup="g_mouseUp(5, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Eclectic</a>
+  </td>
+  <td>
+    <a id="gb_5_2" href="JavaScript:" onmouseover="g_mouseOver(5, 2);" onmouseout="g_mouseOut(5, 2);" onmousedown="g_mouseDown(5, 2);" onmouseup="g_mouseUp(5, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Island</a>
+  </td>
+  <td>
+    <a id="gb_5_3" href="JavaScript:" onmouseover="g_mouseOver(5, 3);" onmouseout="g_mouseOut(5, 3);" onmousedown="g_mouseDown(5, 3);" onmouseup="g_mouseUp(5, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Pakistani</a>
+  </td>
+  <td>
+    <a id="gb_5_4" href="JavaScript:" onmouseover="g_mouseOver(5, 4);" onmouseout="g_mouseOut(5, 4);" onmousedown="g_mouseDown(5, 4);" onmouseup="g_mouseUp(5, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Techno</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_6_0" href="JavaScript:" onmouseover="g_mouseOver(6, 0);" onmouseout="g_mouseOut(6, 0);" onmousedown="g_mouseDown(6, 0);" onmouseup="g_mouseUp(6, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Alt</a>
+  </td>
+  <td>
+    <a id="gb_6_1" href="JavaScript:" onmouseover="g_mouseOver(6, 1);" onmouseout="g_mouseOut(6, 1);" onmousedown="g_mouseDown(6, 1);" onmouseup="g_mouseUp(6, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Electronica</a>
+  </td>
+  <td>
+    <a id="gb_6_2" href="JavaScript:" onmouseover="g_mouseOver(6, 2);" onmouseout="g_mouseOut(6, 2);" onmousedown="g_mouseDown(6, 2);" onmouseup="g_mouseUp(6, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Jazz</a>
+  </td>
+  <td>
+    <a id="gb_6_3" href="JavaScript:" onmouseover="g_mouseOver(6, 3);" onmouseout="g_mouseOut(6, 3);" onmousedown="g_mouseDown(6, 3);" onmouseup="g_mouseUp(6, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Polskie</a>
+  </td>
+  <td>
+    <a id="gb_6_4" href="JavaScript:" onmouseover="g_mouseOver(6, 4);" onmouseout="g_mouseOut(6, 4);" onmousedown="g_mouseDown(6, 4);" onmouseup="g_mouseUp(6, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Top40</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_7_0" href="JavaScript:" onmouseover="g_mouseOver(7, 0);" onmouseout="g_mouseOut(7, 0);" onmousedown="g_mouseDown(7, 0);" onmouseup="g_mouseUp(7, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Ambient</a>
+  </td>
+  <td>
+    <a id="gb_7_1" href="JavaScript:" onmouseover="g_mouseOver(7, 1);" onmouseout="g_mouseOut(7, 1);" onmousedown="g_mouseDown(7, 1);" onmouseup="g_mouseUp(7, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Euro</a>
+  </td>
+  <td>
+    <a id="gb_7_2" href="JavaScript:" onmouseover="g_mouseOver(7, 2);" onmouseout="g_mouseOut(7, 2);" onmousedown="g_mouseDown(7, 2);" onmouseup="g_mouseUp(7, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">JPOP</a>
+  </td>
+  <td>
+    <a id="gb_7_3" href="JavaScript:" onmouseover="g_mouseOver(7, 3);" onmouseout="g_mouseOut(7, 3);" onmousedown="g_mouseDown(7, 3);" onmouseup="g_mouseUp(7, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Pop</a>
+  </td>
+  <td>
+    <a id="gb_7_4" href="JavaScript:" onmouseover="g_mouseOver(7, 4);" onmouseout="g_mouseOut(7, 4);" onmousedown="g_mouseDown(7, 4);" onmouseup="g_mouseUp(7, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Turkish</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_8_0" href="JavaScript:" onmouseover="g_mouseOver(8, 0);" onmouseout="g_mouseOut(8, 0);" onmousedown="g_mouseDown(8, 0);" onmouseup="g_mouseUp(8, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Ballade</a>
+  </td>
+  <td>
+    <a id="gb_8_1" href="JavaScript:" onmouseover="g_mouseOver(8, 1);" onmouseout="g_mouseOut(8, 1);" onmousedown="g_mouseDown(8, 1);" onmouseup="g_mouseUp(8, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Folk</a>
+  </td>
+  <td>
+    <a id="gb_8_2" href="JavaScript:" onmouseover="g_mouseOver(8, 2);" onmouseout="g_mouseOut(8, 2);" onmousedown="g_mouseDown(8, 2);" onmouseup="g_mouseUp(8, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">KPOP</a>
+  </td>
+  <td>
+    <a id="gb_8_3" href="JavaScript:" onmouseover="g_mouseOver(8, 3);" onmouseout="g_mouseOut(8, 3);" onmousedown="g_mouseDown(8, 3);" onmouseup="g_mouseUp(8, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Progressive</a>
+  </td>
+  <td>
+    <a id="gb_8_4" href="JavaScript:" onmouseover="g_mouseOver(8, 4);" onmouseout="g_mouseOut(8, 4);" onmousedown="g_mouseDown(8, 4);" onmouseup="g_mouseUp(8, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Urban</a>
+  </td>
+</tr>
+<tr>
+  <td>
+    <a id="gb_9_0" href="JavaScript:" onmouseover="g_mouseOver(9, 0);" onmouseout="g_mouseOut(9, 0);" onmousedown="g_mouseDown(9, 0);" onmouseup="g_mouseUp(9, 0);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Blues</a>
+  </td>
+  <td>
+    <a id="gb_9_1" href="JavaScript:" onmouseover="g_mouseOver(9, 1);" onmouseout="g_mouseOut(9, 1);" onmousedown="g_mouseDown(9, 1);" onmouseup="g_mouseUp(9, 1);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Game</a>
+  </td>
+  <td>
+    <a id="gb_9_2" href="JavaScript:" onmouseover="g_mouseOver(9, 2);" onmouseout="g_mouseOut(9, 2);" onmousedown="g_mouseDown(9, 2);" onmouseup="g_mouseUp(9, 2);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Latin</a>
+  </td>
+  <td>
+    <a id="gb_9_3" href="JavaScript:" onmouseover="g_mouseOver(9, 3);" onmouseout="g_mouseOut(9, 3);" onmousedown="g_mouseDown(9, 3);" onmouseup="g_mouseUp(9, 3);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Public</a>
+  </td>
+  <td>
+    <a id="gb_9_4" href="JavaScript:" onmouseover="g_mouseOver(9, 4);" onmouseout="g_mouseOut(9, 4);" onmousedown="g_mouseDown(9, 4);" onmouseup="g_mouseUp(9, 4);">
+    <img border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/radioButton0_off.png" width="15" height="15 ">Various</a>
+  </td>
+</tr>
+</tbody></table>
+
+<div id="metaInfo">I N T E R N E T - R A D I O</div>
+<a href="JavaScript:" onmousedown="s_mouseDown();"><div id="stationInfo">P L A Y E R - I</div></a>
+<span id="prevStation">Other Stations</span>
+<span id="nextStation">Other Stations</span>
+
+<!---------- コールドスポット ---------->
+<img id="coldspotUL1x1" onmouseover="hs_mouseOver();" onmouseout="hs_mouseOut();" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/1x1c.png" width="1" height="1">
+<img id="coldspotUR1x1" onmouseover="hs_mouseOver();" onmouseout="hs_mouseOut();" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/1x1c.png" width="1" height="1">
+<img id="coldspotBL1x1" onmouseover="hs_mouseOver();" onmouseout="hs_mouseOut();" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/1x1c.png" width="1" height="1">
+<img id="coldspotBR1x1" onmouseover="hs_mouseOver();" onmouseout="hs_mouseOut();" border="0" hspace="0" vspace="0" src="./INTERNET RADIO PLAYER I_files/1x1c.png" width="1" height="1">
+
+
+
+</body></html>

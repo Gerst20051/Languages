@@ -1,0 +1,35 @@
+This program is an example of how to create a virus in C. This program demonstrates a simple virus program which upon execution (Running) creates a copy of itself in the other file. Thus it destroys other files by infecting them. But the virus infected file is also capable of spreading the infection to another file and so on. Here’s the source code of the virus program.
+
+COMPILING METHOD:
+ 
+USING BORLAND TC++ 3.0 (16-BIT):
+
+1. Load the program in the compiler, press Alt-F9 to compile
+
+2. Press F9 to generate the EXE file (DO NOT PRESS CTRL-F9,THIS WILL INFECT ALL THE FILES IN CUR DIRECTORY INCLUDIN YOUR COMPILER)
+
+3. Note down the size of generated EXE file in bytes (SEE EXE FILE PROPERTIES FOR IT’S SIZE)
+
+4. Change the value of X in the source code with the noted down size (IN THE ABOVE SOURCE CODE x= 89088; CHANGE IT)
+
+5. Once again follow the STEP 1 & STEP 2.Now the generated EXE File is ready to infect
+
+ 
+USING BORLAND C++ 5.5 (32-BIT) :
+
+1. Compile once,note down the generated EXE file length in bytes
+
+2. Change the value of X in source code to this length in bytes
+
+3. Recompile it.The new EXE file is ready to infect
+
+ 
+HOW TO TEST:
+ 
+1. Open new empty folder
+
+2. Put some EXE files (BY SEARCHING FOR *.EXE IN SEARCH & PASTING IN THE NEW FOLDER)
+
+3. Run the virus EXE file there you will see all the files in the current directory get infected.
+
+4. All the infected files will be ready to reinfect

@@ -1,0 +1,564 @@
+#
+# Suppress some common (not fatal) errors in system libraries found by valgrind
+#
+
+{
+  dlopen memory leak
+  Memcheck:Leak
+  fun:*alloc
+  ...
+  fun:*dlopen*
+  ...
+}
+
+{
+  dlerror memory leak
+  Memcheck:Leak
+  fun:*alloc
+  ...
+  fun:*dlerror*
+  ...
+}
+
+{
+  dlclose memory leak
+  Memcheck:Leak
+  fun:*alloc
+  ...
+  fun:*dl_close*
+  ...
+}
+
+{
+  dlpreload memory leak
+  Memcheck:Leak
+  ...
+  fun:do_preload
+  fun:dl_main
+  ...
+}
+
+{
+  dl_main issue
+  Memcheck:Cond
+  ...
+  fun:dl_main
+  ...
+}
+
+# Masking an issue in system tzset call
+{
+  tzset() on debian reports issues
+  Memcheck:Cond
+  ...
+  fun:tzset
+  fun:_ZN8drizzled21init_common_variablesEPKciPPcPS1_
+  ...
+}
+{
+  tzset() on debian reports issues
+  Memcheck:Addr8
+  ...
+  fun:tzset
+  fun:_ZN8drizzled21init_common_variablesEPKciPPcPS1_
+  ...
+}
+{
+  tzset() on debian reports issues
+  Memcheck:Addr4
+  ...
+  fun:tzset
+  fun:_ZN8drizzled21init_common_variablesEPKciPPcPS1_
+  ...
+}
+{
+  tzset() on debian reports issues
+  Memcheck:Addr8
+  ...
+  fun:_ZN8drizzled21init_common_variablesEPKciPPcPS1_
+  fun:main
+}
+{
+  tzset() on debian reports issues
+  Memcheck:Addr4
+  ...
+  fun:_ZN8drizzled21init_common_variablesEPKciPPcPS1_
+  fun:main
+}
+
+
+
+# Masking static allocation issues in InnoDB
+{
+   InnoDB Unclean Startup
+   Memcheck:Cond
+   ...
+   fun:innobase_start_or_create_for_mysql
+   ...
+}
+
+{
+   InnoDB Unclean Startup
+   Memcheck:Leak
+   fun:*alloc
+   ...
+   fun:innobase_start_or_create_for_mysql
+   ...
+}
+
+{
+   InnoDB Unclean Startup
+   Memcheck:Cond
+   ...
+   fun:srv_master_thread
+   ...
+}
+
+{
+   InnoDB Unclean Startup
+   Memcheck:Leak
+   fun:malloc
+   ...
+   fun:srv_master_thread
+   ...
+}
+
+{
+   InnoDB allocing out of its internal heap is always confusing to valgrind
+   Memcheck:Leak
+   ...
+   fun:mem_heap_create_block
+   ...
+}
+
+{
+   InnoDB Insert Row
+   Memcheck:Cond
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+{
+   InnoDB Insert Row
+   Memcheck:Value4
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+{
+   InnoDB Insert Row
+   Memcheck:Value8
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+{
+   InnoDB Insert Row
+   Memcheck:Leak
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+{
+   InnoDB Insert Row
+   Memcheck:Param
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+{
+   InnoDB Insert Row
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:row_insert_for_mysql
+   ...
+}
+
+{
+   InnoDB Create Table
+   Memcheck:Cond
+   ...
+   fun:row_create_table_for_mysql
+   ...
+}
+{
+   InnoDB Create Table
+   Memcheck:Leak
+   ...
+   fun:row_create_table_for_mysql
+   ...
+}
+
+{
+   InnoDB Drop Table
+   Memcheck:Cond
+   ...
+   fun:row_drop_table_for_mysql
+   ...
+}
+{
+   InnoDB Drop Table
+   Memcheck:Leak
+   ...
+   fun:row_drop_table_for_mysql
+   ...
+}
+
+
+{
+   HailDB Inherited some issues from InnoDB
+   Memcheck:Cond
+   fun:rw_lock_x_lock_func
+   ...
+   fun:innobase_start_or_create
+   fun:_ZL20embedded_innodb_initRN8drizzled6module7ContextE
+   fun:_ZN8drizzled15plugin_finalizeERNS_6module8RegistryE
+   fun:_ZN8drizzled22init_server_componentsERNS_6module8RegistryE
+   fun:main
+}
+
+{
+   HailDB Inherited some issues from InnoDB
+   Memcheck:Cond
+   fun:rw_lock_x_lock_func
+   ...
+}
+
+
+# Masking Leaks in System Libraries
+{
+   libnss static allocation
+   Memcheck:Leak
+   ...
+   fun:getpwnam
+   ...
+}
+
+{
+  Static buffer created on gcrypt library initialization. Not a leak.
+  Memcheck:Leak
+  fun:malloc
+  ...
+  obj:*libgcrypt.so.*
+  fun:_ZL10initializeRN8drizzled6module7ContextE
+  ...
+}
+
+{
+   Static buffer in pcre. Not a leak.
+   Memcheck:Leak
+   fun:malloc
+   fun:pcre_compile2
+   ...
+}
+
+{
+   azflush issue in libazio
+   Memcheck:Param
+   pwrite64(buf)
+   ...
+   fun:azflush
+   ...
+}
+{
+   azflush issue in libazio
+   Memcheck:Cond
+   fun:deflate
+   ...
+   fun:azflush
+   ...
+}
+
+{
+   azclose issue in libazio
+   Memcheck:Param
+   pwrite64(buf)
+   ...
+   fun:azclose
+   ...
+}
+{
+   azclose issue in libazio
+   Memcheck:Cond
+   fun:deflate
+   ...
+   fun:azclose
+   ...
+}
+
+{
+   azwrite_row issue in libazio
+   Memcheck:Cond
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite_row
+   ...
+}
+{
+   azwrite_row issue in libazio
+   Memcheck:Cond
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite
+   fun:azwrite_row
+   ...
+}
+{
+   azwrite_row issue in libazio
+   Memcheck:Value8
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite_row
+   ...
+}
+{
+   azwrite_row issue in libazio
+   Memcheck:Value4
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite_row
+   ...
+}
+{
+   azwrite_row issue in libazio
+   Memcheck:Value8
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite
+   fun:azwrite_row
+   ...
+}
+
+{
+   azwrite_row issue in libazio
+   Memcheck:Value4
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:azwrite
+   fun:azwrite_row
+   ...
+}
+
+{
+   azopen issue in libz
+   Memcheck:Cond
+   fun:inflateReset2
+   fun:inflateInit2_
+   fun:azopen
+   ...
+}
+
+{
+   uncompress issue in libz
+   Memcheck:Cond
+   fun:inflateReset2
+   fun:inflateInit2_
+   fun:uncompress
+   ...
+}
+
+{
+   uncompress issue in libz (32bit)
+   Memcheck:Cond
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:_ZL7azwriteP11azio_streamPvj
+   fun:azwrite_row
+   ...
+}
+
+{
+   uncompress issue in libz (32bit)
+   Memcheck:Value4
+   fun:memcpy
+   ...
+   fun:deflate
+   fun:_ZL7azwriteP11azio_streamPvj
+   fun:azwrite_row
+   ...
+}
+
+{
+   MyISAM pwrite issue. Teh Suck.
+   Memcheck:Param
+   pwrite64(buf)
+   fun:pwrite64
+   fun:_Z15key_cache_writePN8drizzled12st_key_cacheEiyiPhjji
+   ...
+}
+{
+   MyISAM pwrite issue. Teh Suck.
+   Memcheck:Param
+   pwrite64(buf)
+   fun:pwrite64
+   fun:_Z15key_cache_writePN8drizzled12st_key_cacheEimiPhjji
+   ...
+}
+{
+   MyISAM pwrite issue. Teh Suck.
+   Memcheck:Param
+   pwrite64(buf)
+   ...
+   fun:_Z15key_cache_writePN8drizzled12st_key_cacheEimiPhjji
+  ...
+}
+
+# Things we don't like in Drizzle
+
+{
+   This whole codebase is going away, so suppress this annoyance.
+   Memcheck:Cond
+   fun:_ZN8drizzledL17construct_optionsEPNS_6memory4RootEPNS_6module6ModuleEPNS_6optionE
+   fun:_ZN8drizzledL19test_plugin_optionsEPNS_6memory4RootEPNS_6module6ModuleEPiPPcRN5boost15program_options19options_descriptionE
+   fun:_ZN8drizzledL16plugin_load_listERNS_6module8RegistryEPNS_6memory4RootEPiPPcRKSt3setISsSt4lessISsESaISsEERN5boost15program_options19options_descriptionEb
+   fun:_ZN8drizzled11plugin_initERNS_6module8RegistryEPiPPcRN5boost15program_options19options_descriptionE
+   fun:_ZN8drizzled22init_server_componentsERNS_6module8RegistryE
+   fun:main
+}
+
+# https://bugs.launchpad.net/drizzle/+bug/582495
+{
+   Bug 582495 - Syscall param write(buf) points to uninitialised byte(s)
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:_ZN8drizzled8internal8my_writeEiPKhmi
+   ...
+   fun:_ZN8drizzled9SortParam10write_keysEPPhjPNS_8internal11st_io_cacheES5_
+   ...
+}
+
+{
+   Bug 582495 - Syscall param write(buf) points to uninitialised byte(s)
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:_ZN8drizzled8internal8my_writeEiPKhmi
+   ...
+   fun:_ZN8drizzled8FileSort3runEPNS_5TableEPNS_9SortFieldEjPNS_9optimizer9SqlSelectEmbRm
+   ...
+}
+
+{
+   Bug 582495 - Syscall param write(buf) points to uninitialised byte(s)  (32bit)
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:_ZN8drizzled8internalL11_my_b_writeEPNS0_11st_io_cacheEPKhj
+   ...
+   fun:_ZN8drizzled8FileSort3runEPNS_5TableEPNS_9SortFieldEjPNS_9optimizer9SqlSelectEybRy
+   ...
+}
+
+{
+   Bug 582495 - Syscall param write(buf) points to uninitialised byte(s)  (32bit)
+   Memcheck:Param
+   write(buf)
+   ...
+   fun:_ZN8drizzled8FileSort3runEPNS_5TableEPNS_9SortFieldEjPNS_9optimizer9SqlSelectEybRy
+   ...
+   fun:_ZN8drizzled13handle_selectEPNS_7SessionEPNS_3LEXEPNS_13select_resultEy
+}
+
+# Issues with boost::thread
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  ...
+  fun:_ZN5boost6detail16add_new_tss_nodeEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPv
+  fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+  fun:_ZN8drizzled8internal14my_thread_initEv
+  fun:_ZN8drizzled8internal21my_thread_global_initEv
+  fun:_ZN8drizzled8internal7my_initEv
+  fun:main
+}
+
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  fun:_Znwm
+  fun:_ZNSt8_Rb_treeIPKvSt4pairIKS1_N5boost6detail13tss_data_nodeEESt10_Select1stIS7_ESt4lessIS1_ESaIS7_EE10_M_insert_EPKSt18_Rb_tree_node_baseSG_RKS7_
+  fun:_ZN5boost6detail16add_new_tss_nodeEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPv
+  fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+  fun:_ZN5boost19thread_specific_ptrIN8drizzled8internal16st_my_thread_varEED1Ev
+  ...
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  ...
+  fun:_ZN5boost6detail23get_current_thread_dataEv
+  fun:_ZN5boost6detail13find_tss_dataEPKv
+  fun:_ZN5boost6detail12get_tss_dataEPKv
+  fun:_ZN8drizzled8internal14my_thread_initEv
+  fun:_ZN8drizzled8internal21my_thread_global_initEv
+  fun:_ZN8drizzled8internal7my_initEv
+  ...
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  ...
+  fun:_ZN5boost19thread_specific_ptrIPN8drizzled6memory4RootEED1Ev
+  fun:__run_exit_handlers
+  fun:exit
+  ...
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  ...
+  fun:_ZN5boost19thread_specific_ptr*
+  fun:__run_exit_handlers
+  fun:exit
+  ...
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+  Memcheck:Leak
+  fun:_Znwm
+  ...
+  fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+   fun:_ZN8drizzled8internal14my_thread_initEv
+   fun:_ZN8drizzled8internal21my_thread_global_initEv
+   fun:_ZN8drizzled8internal7my_initEv
+   fun:main
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+   Memcheck:Leak
+   fun:_Znwj
+   ...
+   fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+   fun:_ZN8drizzled8internal14my_thread_initEv
+   fun:_ZN8drizzled8internal21my_thread_global_initEv
+   fun:_ZN8drizzled8internal7my_initEv
+   fun:main
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+   Memcheck:Leak
+   fun:_Znwm
+   fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+   fun:_ZN8drizzled7Session12storeGlobalsEv
+   fun:_ZN8drizzled21drizzle_rm_tmp_tablesEv
+   fun:main
+}
+{
+  Boost::thread issues. Not a problem - static init issues.
+   Memcheck:Leak
+   fun:_Znwj
+   fun:_ZN5boost6detail12set_tss_dataEPKvNS_10shared_ptrINS0_20tss_cleanup_functionEEEPvb
+   fun:_ZN8drizzled7Session12storeGlobalsEv
+   fun:_ZN8drizzled21drizzle_rm_tmp_tablesEv
+   fun:main
+}
+

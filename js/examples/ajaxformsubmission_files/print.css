@@ -1,0 +1,15 @@
+/* Remove all unnecessary elements, and make the ones that survive black text on white background */
+body {margin: 0.6em; background: none #fff; }
+
+#wrapper {width: auto; margin: 0; padding: 1em; background: none #fff; }
+#header, #otherstuff, #navigation, #footer {display: none; }
+
+#content {float: none; width: auto; margin: 0; padding: 0; background: #fff; text-align: left; } #main > #content {margin: 0; }
+
+/* This'll only work in modern browsers like Firefox, but will add an explanation to the top of the page when printed. Slick, eh? */
+#content:before {content: "This is a printer-friendly version. The navigation and other unnecessary elements have been removed. Come back and visit us at www.yourhtmlsource.com. Enjoy!"; 
+display: block; margin-bottom: 3mm; padding: 3px 3px 2px; background: #f9f8e4; text-align: center; }
+
+/* Dump the ads etc. */
+#searchhioption, .pagenavbox, #adsense, .adsense, #endlinks, .featured, #brucebanner, #delicio {display: none; }
+#content .searchword {background: transparent; border: none; }

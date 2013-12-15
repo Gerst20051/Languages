@@ -1,0 +1,739 @@
+<!--
+	Poker10k - Progrom for 10k tournament
+    Copyright (C) 2010  Andriy Chaika http://seagull.net.ua/
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<html>
+<head><title>Poker</title>
+<style>*{margin:0;font-family:Verdana,Geneva,sans-serif}body{background:#0b1b03}#tw,.s{margin:auto}#tw{border-radius:105px;-moz-border-radius:105px;-webkit-border-radius:105px;background:#fff;height:325px;width:825px}#tw,.c,.be{padding:5px}#tw,#t,.ds{display:block}#t{background:#019901;width:800px;padding:10px;border-radius:100px;-moz-border-radius:100px;-webkit-border-radius:100px;border:solid 2px #060;background:-moz-linear-gradient(top,rgb(2,209,2) 0%,rgb(1,82,1) 100%);background:-webkit-gradient(linear,top,bottom,color-stop(0,rgb(2,209,2)),color-stop(1,rgb(1,82,1)))}#t,.o{height:300px}#t,.be{position:relative}.c{background:#FFF;border:solid 1px #000;width:60px;height:90px;background:-moz-linear-gradient(top,#fff 0%,#cfcfcf 100%);margin:2px;font-size:40px;line-height:40px}.c,.na{background:-webkit-gradient(linear,top,bottom,color-stop(0,#fff),color-stop(1,#cfcfcf))}.c,.b,.o{float:left}.rc{border-radius:5px!important;-moz-border-radius:5px;-webkit-border-radius:5px;-webkit-box-shadow:1px 1px 2px #000;box-shadow:1px 1px 2px #000;-moz-box-shadow:1px 1px 2px #000}.ds{padding:8px;text-decoration:none}.ds,.be{font-size:20px}.ds,.be,.tex,#info{text-align:center}.b{background:#36F;color:#FFF;margin-right:5px;font-size:16px;width:70px;height:35px;outline:none}.b:hover{background:#09F}.o,#bu,.be,#river,#turn,#flop,#op1ca,#op2ca{display:none}.o{width:160px;padding-top:40px}.na{background:#055ac2;background:-moz-linear-gradient(top,#0a6ed5 0%,#0148b1 100%)}.fr{float:right}#b{margin-left:200px;margin-top:30px}#bu,.be1,.be2,.pot,#info{position:absolute}#bu{top:250px}#bu,.be1,#info{left:180px}.be{background:#F9C;width:80px}.be1,.be2{top:180px}.be2{left:540px}.pot{font-size:36px;background:none;top:150px;left:330px;width:150px}.tex{font-size:24px;margin-top:80px}#info{top:210px;width:450px;font-size:10px}.c span,h1{font-size:60px}.s{background:#FF9;margin-bottom:10px;width:120px}h1{color:#fff}.r{color:#F00}</style>
+<script src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+<script>var ms = ['&spades;', '&clubs;', '&diams;', '&hearts;'];
+var cs = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
+var used, bord, opo, poti, sb, bb, free, step, beti, st, lastst, ev, allin;
+var blind = 0;
+var stack = [5000, 5000];
+function ssteet(a, b)
+{
+    if (a[1] > b[1]) {
+        return - 1;
+    }
+    if (a[1] < b[1]) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+function sflush(a, b)
+{
+    if (a[0] > b[0]) {
+        return - 1;
+    }
+    if (a[0] < b[0]) {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+}
+function isflush(ar)
+{
+    i = 0;
+    n = ar.length;
+    while (i < n)
+    {
+        if (ar[i + 4])
+        {
+            if (ar[i][0] == ar[i + 1][0] && ar[i + 1][0] == ar[i + 2][0] && ar[i + 2][0] == ar[i + 3][0] && ar[i + 3][0] == ar[i + 4][0]) {
+                return [5, ar[i][1] + ar[i + 1][1] + ar[i + 2][1] + ar[i + 3][1] + ar[i + 4][1]];
+            }
+            i++;
+        }
+        else {
+            return false;
+        }
+    }
+}
+function istreet(ar)
+{
+    i = 0;
+    n = ar.length;
+    while (i < n)
+    {
+        if (ar[i + 4])
+        {
+            if (ar[i][1] - 1 == ar[i + 1][1] && ar[i + 1][1] - 1 == ar[i + 2][1] && ar[i + 2][1] - 1 == ar[i + 3][1] && ar[i + 3][1] - 1 == ar[i + 4][1]) {
+                return [4, ar[i][1]];
+            }
+            i++;
+        }
+        else {
+            return false;
+        }
+    }
+}
+function istreetflush(ar)
+{
+    i = 0;
+    n = ar.length;
+    while (i < n)
+    {
+        if (ar[i + 4])
+        {
+            if (ar[i][1] - 1 == ar[i + 1][1] && ar[i + 1][1] - 1 == ar[i + 2][1] && ar[i + 2][1] - 1 == ar[i + 3][1] && ar[i + 3][1] - 1 == ar[i + 4][1] && ar[i][0] == ar[i + 1][0] && ar[i + 1][0] == ar[i + 2][0] && ar[i + 2][0] == ar[i + 3][0] && ar[i + 3][0] == ar[i + 4][0]) {
+                return [8, ar[i][1]];
+            }
+            i++;
+        }
+        else {
+            return false;
+        }
+    }
+}
+function pairs(ar)
+{
+    respair = [];
+    i = 0;
+    n = ar.length;
+    while (i < n)
+    {
+        if (ar[i + 3] && ar[i][1] == ar[i + 1][1] && ar[i + 1][1] == ar[i + 2][1] && ar[i + 2][1] == ar[i + 3][1]) {
+            respair[respair.length] = [4, ar[i][1]];
+            i = i + 3;
+        }
+        else if (ar[i + 2] && ar[i][1] == ar[i + 1][1] && ar[i + 1][1] == ar[i + 2][1]) {
+            respair[respair.length] = [3, ar[i][1]];
+            i = i + 2;
+        }
+        else if (ar[i + 1] && ar[i][1] == ar[i + 1][1]) {
+            respair[respair.length] = [2, ar[i][1]];
+            i = i + 1;
+        }
+        i++;
+    }
+    num = respair.length;
+    allc = ar[0][1] + ar[1][1] + ar[2][1] + ar[3][1] + ar[4][1];
+    if (num == 0) {
+        return [0, allc];
+    }
+    b = respair[0][0];
+    d = respair[0][1];
+    if (num == 1)
+    {
+        if (b == 4) {
+            return [7, d];
+        }
+        else if (b == 3) {
+            return [3, d * 10 + allc];
+        }
+        else if (b == 2) {
+            return [1, d * 10 + allc];
+        }
+    }
+    else
+    {
+        e = respair[1][0];
+        f = respair[1][1];
+        if (b == e) {
+            return [2, d * 100 + f * 10 + allc];
+        }
+        if (b == 3 && e == 2) {
+            return [6, d * 100 + f * 10];
+        }
+        if (b == 2 && e == 3) {
+            return [6, d * 10 + f * 100];
+        }
+    }
+    return false;
+}
+function comb(arr)
+{
+    fl = arr.sort(function (a, b)
+    {
+        return sflush(a, b);
+    });
+    isfl = isflush(fl);
+    st = arr;
+    st.sort(function (a, b)
+    {
+        return ssteet(a, b);
+    });
+    isst = istreet(st);
+    isstfl = istreetflush(st);
+    pair = pairs(st);
+    if (!isst)
+    {
+        if (st[0][1] == 13) {
+            st[0][1] =- 1;
+        }
+        st.sort(function (a, b)
+        {
+            return ssteet(a, b);
+        });
+        isst = istreet(st);
+        isstfl = istreetflush(st);
+    }
+    if (isstfl) {
+        return isstfl;
+    }
+    if (pair[0] > 5) {
+        return pair;
+    }
+    if (isfl) {
+        return isfl;
+    }
+    if (isst) {
+        return isst;
+    }
+    return pair;
+}
+function hmes(me)
+{
+    if ($('#info').html() == me) {
+        $('#info').html('');
+    }
+}
+function mess(op, me)
+{
+    r = ['You', 'SeagullKiev'];
+    mes = r[op] + ' ' + me;
+    $('#info').html(mes);
+    setInterval('hmes("' + mes + '");', 3000);
+}
+function rand(t)
+{
+    return Math.floor(Math.random() * t);
+}
+function startbl(op)
+{
+    st[op] = 1;
+    setTimeout('dobl(' + op + ');', 500);
+    if (op == 1) {
+        $('#bu').fadeOut(300)
+    }
+    else {
+        ucontrols();
+        $('#bu').fadeIn(300)
+    }
+}
+function stopbl(op)
+{
+    st[op] = 0;
+    if (op == 0) {
+        $('#bu').fadeOut(300)
+    }
+}
+function dobl(op)
+{
+    if (st[op] == 1) 
+    {
+        bc = '#FF9';
+        if ($('#bl' + op).css('backgroundColor') == 'rgb(255, 255, 153)') {
+            bc = '#77d7fb';
+        }
+        $('#bl' + op).css('backgroundColor', bc);
+        setTimeout('dobl(' + op + ');', 500);
+    }
+    else {
+        $('#bl' + op).css('backgroundColor', '#FF9');
+    }
+}
+function getcard()
+{
+    m = rand(4);
+    c = rand(13);
+    if (used[m][c] == true) {
+        return getcard()
+    }
+    else {
+        used[m][c] = true;
+        return [m, c];
+    }
+}
+function precard(dummy, ca)
+{
+    t = '';
+    c = '';
+    if (dummy) {
+        t = ' na';
+    }
+    else {
+        c = cs[ca[1]] + '<br><span>' + ms[ca[0]] + '</span>';
+        if (ca[0] >= 2) {
+            t = ' r';
+        }
+    }
+    return '<p class="c' + t + ' rc">' + c + '</p>';
+}
+function button(id, title)
+{
+    return '<a class="b rc ds" href="#" id="' + id + '">' + title + '</a>';
+}
+function player(name, chips, num)
+{
+    return '<p class="rc s ds" id="bl' + (num - 1) + '">' + name + '<br>$<b id="m' + num + '">' + chips + '</b></p><div id="c' + num + '"></div><div id="op' + num + 'ca"></div>';
+}
+function bet(num, id)
+{
+    return '<div class="be ' + id + ' rc" id="' + id + '">$' + num + '</div>';
+}
+function pot()
+{
+    $('#pot').fadeOut(1);
+    $('#pot').html('$' + poti);
+    $('#pot').fadeIn(300);
+}
+function sp()
+{
+    return Math.random() * (1500 - 200) + 200;
+}
+function think(st)
+{
+    /*alert(st);*/
+    stopbl(1);
+    if (st == 0)
+    {
+        ev = opo[1][0][1] + opo[1][1][1] + 2;
+        if (opo[1][0][1] == opo[1][1][1]) {
+            ev = 28;
+        }
+        if (opo[1][0][0] == opo[1][1][0]) {
+            ev *= 1, 2;
+        }
+        if (ev >= 27 || (ev >= 25 && lastst == 1000)) {
+            pcbet(beti[0] * 4);
+        }
+        else if (ev >= 23 && ev < 27 ) {
+            pcbet(beti[0] * 2);
+        }
+        else if (beti[0] == beti[1]) {
+            pcbet(0);
+        }
+        else if (ev >= 10 && lastst < 4) {
+            pcbet(beti[0]);
+        }
+        else {
+            fold(1);
+        }
+    }
+    else 
+    {
+        t = Array.apply(null, bord);
+        t[t.length] = opo[1][0];
+        t[t.length] = opo[1][1];
+        my = comb(t);
+        r = beti[0];
+        if (r == 0) {
+            r = 100;
+        }
+        if (beti[0] == beti[1]) {
+            if (my[0] > 1) {
+                pcbet(r * 4);
+            }
+            else {
+                pcbet(0);
+            }
+        }
+        else {
+            if (my[0] > 3) {
+                pcbet(r * 10);
+            }
+            if (my[0] > 1) {
+                pcbet(0);
+            }
+            else {
+                fold(1);
+            }
+        }
+    }
+}
+function ucontrols() 
+{
+    $('#bu').fadeOut(1);
+    r = beti[1];
+    if (r == 0) {
+        r = 100;
+    }
+    if (beti[0] == beti[1]) {
+        ct = 'Check';
+    }
+    else {
+        ct = 'Call $' + (r - beti[0])
+    }
+    $('#call').html(ct);
+    $('#raise2').html('Raise $' + (r * 2));
+    $('#raise4').html('Raise $' + (r * 4));
+    $('#bu').fadeIn(300);
+}
+function pcbet(num) 
+{
+    stopbl(1);
+    if (stack[1] < num) {
+        num = stack[1] + beti[1];
+    }
+    if (num == 0) 
+    {
+        m = 'checks';
+        if (beti[0] != beti[1]) {
+            opbet(2, beti[0]);
+            m = 'calls';
+        }
+        mess(1, m);
+        if (lastst == 0) {
+            startbl(0);
+            free = true;
+            lastst = 1;
+        }
+        else {
+            nextst();
+        }
+    }
+    else 
+    {
+        if (num > stack[0] + beti[0]) {
+            num = stack[0] + beti[0];
+        }
+        opbet(2, num);
+        if (beti[0] == beti[1]) {
+            mess(1, 'calls');
+            if (lastst == 0) {
+                startbl(0);
+                free = true;
+                lastst = 1;
+            }
+            else {
+                nextst();
+            }
+        }
+        else {
+            mess(1, 'raises');
+            lastst = 1;
+            free = true;
+        }
+    }
+}
+function opbet(op, num)
+{
+    poti += num - beti[op - 1];
+    stack[op - 1] -= num - beti[op - 1];
+    if (stack[op - 1] == 0) {
+        allin = true;
+    }
+    beti[op - 1] += num - beti[op - 1];
+    ustack(op - 1);
+    $('#be' + op).fadeOut(1);
+    $('#be' + op).html('$' + num);
+    $('#be' + op).fadeIn(300);
+    pot();
+}
+function blin() 
+{
+    setTimeout('think(' + step + ');', sp() * 3);
+    stopbl(0);
+    startbl(1);
+}
+function doraise(size)
+{
+    r = beti[1];
+    if (r == 0) {
+        r = 100;
+    }
+    num = size * r + beti[0];
+    if (num > (stack[0] + beti[0])) {
+        num = stack[0] + beti[0] * 2;
+    }
+    lastst = size;
+    blin();
+    re = num - beti[0];
+    if (re > stack[1] + beti[1]) {
+        re = stack[1] + beti[1];
+    }
+    opbet(1, re);
+}
+function flop()
+{
+    bord[0] = getcard();
+    bord[1] = getcard();
+    bord[2] = getcard();
+    card = precard(false, bord[0]) + precard(false, bord[1]) + precard(false, bord[2]);
+    givecard(1, card, 'flop');
+}
+function shdown()
+{
+    t = Array.apply(null, bord);
+    t[5] = opo[0][0];
+    t[6] = opo[0][1];
+    p1 = comb(t);
+    pl1 = p1[0] * 10000 + p1[1];
+    t = Array.apply(null, bord);
+    t[5] = opo[1][0];
+    t[6] = opo[1][1];
+    p2 = comb(t);
+    pl2 = p2[0] * 10000 + p2[1];
+    cards = precard(false, opo[1][0]) + precard(false, opo[1][1]);
+    $('#op2ca').html(cards);
+    if (pl1 >= pl2) {
+        wn = 0;
+    }
+    else {
+        wn = 1;
+    }
+    mess(0, ' or SeagullKiev???');
+    setTimeout('win(' + wn + ');', 5000);
+}
+function nextst()
+{
+    if (step == 0) {
+        flop();
+    }
+    else if (step == 1) {
+        turn();
+    }
+    else if (step == 2) {
+        river();
+    }
+    else {
+        shdown();
+    }
+}
+function call()
+{
+    if (beti[1] != beti[0]) {
+        opbet(1, beti[1]);
+    }
+    if (lastst == 0) {
+        blin();
+        lastst = 1;
+    }
+    else {
+        $('#bu').fadeOut(1);
+        stopbl(0);
+        nextst();
+    }
+}
+function turn()
+{
+    bord[3] = getcard();
+    card = precard(false, bord[3]);
+    givecard(2, card, 'turn');
+}
+function river()
+{
+    bord[4] = getcard();
+    card = precard(false, bord[4]);
+    givecard(3, card, 'river');
+}
+function givecard(steps, card, name)
+{
+    hidebe();
+    $('#b').append('<div id="' + name + '">' + card + '</div>');
+    beti = [0, 0];
+    setTimeout(function ()
+    {
+        $('#' + name).slideDown(1000);
+        step = steps;
+        lastst = 0;
+        if (allin) {
+            nextst();
+            $('#bu').fadeOut(1);
+        }
+        else if (sb == 1) {
+            startbl(0);
+            free = true;
+        }
+        else {
+            startbl(1);
+            setTimeout('think(' + steps + ');', sp() * 3)
+        }
+    },
+    sp());
+}
+function ustack(op)
+{
+    $('#m' + (op + 1)).html(stack[op]);
+}
+function hidebe()
+{
+    $('#be1').fadeOut(500);
+    $('#be2').fadeOut(500);
+}
+function hidec(op)
+{
+    $('#op' + (op + 1) + 'ca').slideUp(500);
+    setTimeout("$('#op" + (op + 1) + "ca').html('');", 500);
+}
+function win(pl)
+{
+    stack[pl] += poti;
+    mess(pl, 'won $' + poti);
+    ustack(pl);
+    hidebe();
+    m = 1;
+    if (pl == 0) {
+        m =- 1;
+    }
+    $('#pot').animate({
+        marginLeft : 150 * m + 'px'
+    },
+    1000, function ()
+    {
+        $('#pot').fadeOut(500);
+        hidec(0);
+        hidec(1);
+        setTimeout('shufca();', sp());
+    })
+};
+function fold(pl)
+{
+    free = false;
+    stopbl(pl);
+    wn = 0;
+    if (pl == 0) {
+        wn = 1;
+    }
+    win(wn);
+    hidec(pl);
+}
+function opcard(pl)
+{
+    pl1 = pl + 1;
+    opo[pl][0] = getcard();
+    opo[pl][1] = getcard();
+    dum = true;
+    if (pl == 0) {
+        dum = false;
+    }
+    cards = precard(dum, opo[pl][0]) + precard(dum, opo[pl][1]);
+	$('#op' + pl1 + 'ca').html(cards).slideDown(500);
+}
+function endgame()
+{
+    if (stack[0] == 0) {
+        t = 'You lose! Try playing more.';
+    }
+    else {
+        t = 'Congratulations! You won me. You are genius.';
+    }
+    $('#t').html('<div class="tex">' + t + '<br>Update page to play more.</div>');
+}
+function shufca()
+{
+    if (stack[0] > 0 && stack[1] > 0)
+    {
+        if (blind == 0) {
+            sb = 0;
+            bb = 1;
+            blind = 1;
+        }
+        else {
+            sb = 1;
+            bb = 0;
+            blind = 0;
+        }
+        allin = false;
+        used = [[], [], [], []];
+        poti = 0;
+        opo = [[], []];
+        bord = [];
+        lastst = 0;
+        st = [0, 0];
+        beti = [0, 0];
+        step = 0;
+        $('#b').html('');
+        $('#pot').css("marginLeft", 0);
+        setTimeout(function ()
+        {
+            opbet(sb + 1, 50);
+            setTimeout(function ()
+            {
+                opbet(bb + 1, 100);
+                setTimeout(function ()
+                {
+                    opcard(1);
+                    setTimeout(function ()
+                    {
+                        opcard(0);
+                        if (sb == 0) {
+                            startbl(0);
+                            free = true;
+                        }
+                        else {
+                            startbl(1);
+                            lastst = 0;
+                            setTimeout('think(0);', sp() * 3)
+                        }
+                    },
+                    sp());
+                },
+                sp());
+            },
+            sp());
+        },
+        sp());
+    }
+    else {
+        endgame();
+    }
+}
+$(function ()
+{
+    $('#bu').html(button('fold', 'Fold') + button('call', 'Call $50') + button('raise2', 'Raise $200') + button('raise4', 
+    'Raise $400') + button('raiseall', 'Raise All-in'));
+    $('#op1').html(player('You', 5000, 1)).slideToggle(1000);
+    $('#op2').html(player('SeagullKiev', 5000, 2)).slideToggle(1000);
+    $('#pm').append(bet(0, 'pot') + bet(0, 'be1') + bet(0, 'be2'));
+    $('#fold').click(function ()
+    {
+        if (free) {
+            fold(0);
+        }
+        return false;
+    });
+    $('#call').click(function ()
+    {
+        if (free) {
+            call();
+        }
+        return false;
+    });
+    $('#raise2').click(function ()
+    {
+        if (free) {
+            doraise(2);
+        }
+        return false;
+    });
+    $('#raise4').click(function ()
+    {
+        if (free) {
+            doraise(4);
+        }
+        return false;
+    });
+    $('#raiseall').click(function ()
+    {
+        if (free) {
+            doraise(100);
+        }
+        return false;
+    });
+    shufca();
+});
+</script>
+</head>
+<body>
+<h1 align="center">Poker</h1>
+<div id="tw"><div id="t"><div class="o" id="op1"></div><div class="o fr" id="op2"></div><div id="b"></div><div id="bu"></div><div id="pm"></div><div id="info"></div></div></div></body></html>

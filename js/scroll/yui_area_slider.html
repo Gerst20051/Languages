@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>Scrolling a content region using Slider and hover events</title>
+    <link rel="stylesheet" type="text/css" href="dpSyntaxHighlighter.css">
+    <style type="text/css">
+        body {
+            padding: 1px 0 0 0; /* fix for Safari margin bug */
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        #page {
+            width: 45em;
+            margin: 2em auto 0;
+        }
+        #wrapper {
+            height: 342px;
+            overflow: hidden;
+            background: #ffe;
+            border: 1px solid #aaa;
+            position: relative;
+        }
+        #content {
+            padding: 0 40px 0 20px;
+            position: relative; /* to allow for scrolling */
+        }
+        #controls {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 25px;
+            border: 1px solid #aaa;
+            background: #eee;
+        }
+        #controls a {
+            display: block;
+            width: 25px;
+            height: 20px;
+            background: #333;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+        }
+        #controls a:hover {
+            color: #333;
+            background: #cee;
+        }
+        #slider {
+            position: relative;
+            width: 25px;
+            height: 300px;
+        }
+        #slide_thumb {
+            position: absolute;
+            border: 2px outset;
+            background: #cee;
+            width: 21px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="t"></div>
+<div id="page">
+
+    <div id="wrapper">
+        <div id="content">
+            <p>Hover over the up and down arrows on either side of the slider to activate auto scrolling.</p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis.</p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis.</p>
+            <p>Wasn't that fun?<p>
+        </div>
+
+        <div id="controls">
+            <a id="up">^</a>
+            <div id="slider" tabindex="-1">
+                <div id="slide_thumb"></div>
+            </div>
+            <a id="down">v</a>
+        </div>
+    </div>
+
+    <h2>Caveat</h2>
+    <p>This example is largely to demonstrate syncing a slider and content area with two elements that activate a constant scroll on hover.  While an interesting exercise, simply setting the content area's dimensions and <code>overflow: auto</code> is preferrable for accessibility.</p>
+
+    <h2>CSS</h2>
+    <textarea name="code" class="CSS" cols="60" rows="1">
+body {
+    padding: 1px 0 0 0; /* fix for Safari margin bug */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+#page {
+    width: 45em;
+    margin: 2em auto 0;
+}
+#wrapper {
+    height: 342px;
+    overflow: hidden;
+    background: #ffe;
+    border: 1px solid #aaa;
+    position: relative;
+}
+#content {
+    padding: 0 40px 0 20px;
+    position: relative; /* to allow for scrolling */
+}
+#controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    border: 1px solid #aaa;
+    background: #eee;
+}
+#controls a {
+    display: block;
+    width: 25px;
+    height: 20px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+#controls a:hover {
+    color: #333;
+    background: #cee;
+}
+#slider {
+    position: relative;
+    width: 25px;
+    height: 300px;
+}
+#slide_thumb {
+    position: absolute;
+    border: 2px outset;
+    background: #cee;
+    width: 21px;
+    height: 40px;
+}
+    </textarea>
+
+    <h2>Markup</h2>
+    <textarea name="code" class="HTML" cols="60" rows="1">
+<div id="wrapper">
+    <div id="content">
+        <p>Lorem ipsum dolor sit (etc etc)</p>
+    </div>
+
+    <div id="controls">
+        <a id="up">^</a>
+        <div id="slider" tabindex="-1">
+            <div id="slide_thumb"></div>
+        </div>
+        <a id="down">v</a>
+    </div>
+</div>
+    </textarea>
+
+    <h2>JavaScript</h2>
+    <textarea name="code" class="JScript" cols="60" rows="1">
+YAHOO.util.Event.onDOMReady(function () {
+    var slider = YAHOO.widget.Slider.getVertSlider('slider','slide_thumb',0,256);
+    YAHOO.lang.augmentObject(slider, {
+        contentNode     : YAHOO.util.Dom.get('content'),
+        containerNode   : YAHOO.util.Dom.get('wrapper'),
+
+        scrollContent   : function (offset) {
+            // +30 to account for 20px bottom padding +10 for breathing room
+            var conversionFactor = 
+                    (this.contentNode.offsetHeight -
+                        this.containerNode.offsetHeight + 30) /
+                    (this.thumb.topConstraint +
+                        this.thumb.bottomConstraint);
+
+            YAHOO.util.Dom.setStyle(this.contentNode, 'top',
+                (-1 * Math.floor(offset * conversionFactor)) + 'px');
+
+        }
+    });
+
+    slider.subscribe('change', slider.scrollContent, slider, true);
+
+    // I could have moved the auto-scroll into the slider object....but I didn't
+    var si   = 0,
+        freq = 50;
+
+    YAHOO.util.Event.on('up','mouseover',function (e) {
+        if (!si && slider.getYValue()) {
+            si = setInterval(function () {
+                var val = slider.getYValue();
+                if (val) {
+                    slider.setValue(val - 10, true, false, false);
+                } else {
+                    clearInterval(si);
+                    si = 0;
+                }
+            }, freq);
+        }
+    });
+    YAHOO.util.Event.on('down','mouseover',function (e) {
+        if (!si && slider.getYValue() < slider.thumb.bottomConstraint) {
+            si = setInterval(function () {
+                var val = slider.getYValue();
+                if (val < slider.thumb.bottomConstraint) {
+                    slider.setValue(val + 10, true, false, false);
+                } else {
+                    clearInterval(si);
+                    si = 0;
+                }
+            }, freq);
+        }
+    });
+
+    YAHOO.util.Event.on('up','mouseout',function () {
+        clearInterval(si);
+        si = 0;
+    });
+    YAHOO.util.Event.on('down','mouseout',function () {
+        clearInterval(si);
+        si = 0;
+    });
+
+})
+    </textarea>
+</div>
+<script src = "http://yui.yahooapis.com/2.3.1/build/yahoo-dom-event/yahoo-dom-event.js" ></script> 
+<script src = "http://yui.yahooapis.com/2.3.1/build/dragdrop/dragdrop-min.js" ></script> 
+<script src = "http://yui.yahooapis.com/2.3.1/build/animation/animation-min.js" ></script> 
+<script src = "http://yui.yahooapis.com/2.3.1/build/slider/slider-min.js" ></script>
+<script type="text/javascript" src="dpSyntaxHighlighter.js"></script>
+<script type="text/javascript">
+    YAHOO.util.Event.onDOMReady(function () {
+        var slider = YAHOO.widget.Slider.getVertSlider('slider','slide_thumb',0,256);
+        YAHOO.lang.augmentObject(slider, {
+            contentNode     : YAHOO.util.Dom.get('content'),
+            containerNode   : YAHOO.util.Dom.get('wrapper'),
+
+            scrollContent   : function (offset) {
+                // +30 to account for 20px bottom padding +10 for breathing room
+                var conversionFactor = 
+                        (this.contentNode.offsetHeight -
+                            this.containerNode.offsetHeight + 30) /
+                        (this.thumb.topConstraint +
+                            this.thumb.bottomConstraint);
+
+                YAHOO.util.Dom.setStyle(this.contentNode, 'top',
+                    (-1 * Math.floor(offset * conversionFactor)) + 'px');
+
+            }
+        });
+
+        slider.subscribe('change', slider.scrollContent, slider, true);
+
+        // I could have moved the auto-scroll into the slider object....but I didn't
+        var si   = 0,
+            freq = 50;
+
+        YAHOO.util.Event.on('up','mouseover',function (e) {
+            if (!si && slider.getYValue()) {
+                si = setInterval(function () {
+                    var val = slider.getYValue();
+                    if (val) {
+                        slider.setValue(val - 10, true, false, false);
+                    } else {
+                        clearInterval(si);
+                        si = 0;
+                    }
+                }, freq);
+            }
+        });
+        YAHOO.util.Event.on('down','mouseover',function (e) {
+            if (!si && slider.getYValue() < slider.thumb.bottomConstraint) {
+                si = setInterval(function () {
+                    var val = slider.getYValue();
+                    if (val < slider.thumb.bottomConstraint) {
+                        slider.setValue(val + 10, true, false, false);
+                    } else {
+                        clearInterval(si);
+                        si = 0;
+                    }
+                }, freq);
+            }
+        });
+
+        YAHOO.util.Event.on('up','mouseout',function () {
+            clearInterval(si);
+            si = 0;
+        });
+        YAHOO.util.Event.on('down','mouseout',function () {
+            clearInterval(si);
+            si = 0;
+        });
+
+        dp.SyntaxHighlighter.HighlightAll('code');
+    });
+</script>
+</body>
+</html>
+<!-- text below generated by server. PLEASE REMOVE --><!-- Counter/Statistics data collection code --><script language="JavaScript" src="http://l.yimg.com/d/lib/smb/js/hosting/cp/js_source/whv2_001.js"></script><script language="javascript">geovisit();</script><noscript><img src="http://visit.webhosting.yahoo.com/visit.gif?us1310323208" alt="setstats" border="0" width="1" height="1"></noscript>

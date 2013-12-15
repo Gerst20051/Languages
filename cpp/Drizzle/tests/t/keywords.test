@@ -1,0 +1,26 @@
+#
+# Test keywords as fields
+#
+
+--disable_warnings
+drop table if exists t1;
+--enable_warnings
+
+create table t1 (date_arg date, timestamp_arg timestamp,
+quarter int, week int, year int, timestampadd int, timestampdiff int);
+insert into t1 values ("97/02/03","1997-01-02",1,2,3,4,5);
+select * from t1;
+select t1.date_arg+0, t1.timestamp_arg+0,
+       t1.quarter+t1.week, t1.year+timestampadd,  timestampdiff from t1;
+drop table t1;
+create table events(binlog int);
+insert into events values(1);
+select events.binlog from events;
+drop table events;
+
+# End of 4.1 tests
+
+
+# End of 5.1 tests
+
+# End of 5.0 tests

@@ -1,0 +1,17 @@
+Memcached
+
+If you need memcached you can get this up and running in a variety of ways.  If you want to build from source you can find it here.  Otherwise search for a pre-compiled windows32 version.  Copy the binaries to some place on your development machine and then you will need to start and install the service.
+
+To install the service open a command prompt as an administrator and navigate to the directory with memcached.exe.  Install the service by typing: memcached -d install
+
+To start the service type: memcached -d start
+
+Note that the default reserved cache size for memcached is only 64MB, so if you would like it to be larger, launch the service and append a -m followed by the number of megabytes as an integer.  So to launch and reserve a half gig you would launch it as: memcached -d start -m 512
+
+Now that the service is running, you will need to let php know that it is.  Make sure that you have the correct extension (php_memcache.dll) in the php\ext folder in your xampp directory.  After you have verified that this is there, you should update the php.ini file and uncomment (remove the preceding “;”) the following line:
+
+extension=php_memcache.dll
+
+Make sure that this is the php.ini file associated with apache if you want to test this on your local pc (i.e. the one in your apache folder), otherwise you will just have access to this via the CLI version of PHP.  Restart Apache and you should be good to go.  If you are having issues make sure that there is a Memcache section in your phpinfo() output to verify that the extension is being loaded.
+
+Hope this helps, leave any questions in the comments and I’ll try to help.

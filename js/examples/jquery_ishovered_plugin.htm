@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0036)http://mktgdept.com/jquery-ishovered -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+ 
+<meta http-equiv="Content-Language" content="en-us"> 
+<meta name="keywords" content="jQuery isHovered, see if an element is hovered, jQuery, javascript"> 
+<meta name="description" content="A jQuery plugin to test if an element is currently hovered"> 
+<title>jQuery isHovered Plugin</title> 
+<style type="text/css">html,body{margin:0;padding:0}body{margin:2em;color:#333;font-family:'myriad pro',helvetica,arial,sans-serif;background:#fff}a{color:#ba3030;text-decoration:none}.code{color:#3a6ff8}.example{width:400px;border-right:4px double #eee;padding:10px 20px 10px 0;margin-right:20px;float:left}.clear{clear:both}</style> 
+<script src="./jQuery isHovered Plugin_files/ga.js" async="true"></script></head> 
+<body> 
+<h1><a href="http://mktgdept.com/jquery-tinymce-plugin">jQuery isHovered Plugin</a></h1> 
+<h2>Summary</h2> 
+<p>A jQuery plugin to test if an element is currently hovered.</p> 
+<h2>Author</h2> 
+<p><a href="http://twitter.com/chadsmith">Chad Smith</a> (<a href="mailto:chad@nospam.me">email</a>)</p> 
+<h2>Requires</h2> 
+<ul> 
+<li><a href="http://code.jquery.com/jquery-latest.js">jQuery</a></li> 
+</ul> 
+<h2>Download</h2> 
+<p><a href="http://mktgdept.com/js/jquery-ishovered.js?v0.0.1">jquery-ishovered.js</a> (729 bytes)</p> 
+<h2>License</h2> 
+<p>Dual licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a> and <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a> licenses.</p> 
+<h2>Usage</h2> 
+<p>Test if an element is hovered using:</p> 
+<p class="code">$(selector).isHovered();</p> 
+<p>Or:</p> 
+<p class="code">$.isHovered(selector);</p> 
+<h2>Version History</h2> 
+<ul> 
+<li><strong><a href="http://plugins.jquery.com/node/15650">v0.0.1</a></strong> - June 11th, 2010</li> 
+</ul>
+<div class="example">
+	<h2>Example 1</h2>
+	<h3><a href="http://mktgdept.com/jquery-ishovered#">Link 1</a> <a href="http://mktgdept.com/jquery-ishovered#">Link 2</a> <span>Span 1</span> <span>Span 2</span></h3>
+	<p>Is Link 1 hovered? <strong>N</strong></p>
+	<p>Is Span 2 hovered? <strong>N</strong></p>
+	<p>Is any A element hovered? <strong>N</strong></p>
+	<p>Is any SPAN or A element in Example 1 hovered? <strong>N</strong></p>
+	<p>Are any of the examples hovered? <strong>Y</strong></p>
+	<p>Is Example 2 hovered? <strong>Y</strong></p>
+	<p>Is Example 3 hovered? <strong>N</strong></p>
+</div>
+<div class="example" style="display: none; ">
+	<h2>Example 2</h2>
+	<h3>You moved the mouse!</h3>
+	<p>I will fade out in 3 seconds if the mouse doesn't move and you <em>are</em> hovering me.</p>
+</div>
+<div class="example" style="display: none; ">
+	<h2>Example 3</h2>
+	<h3>You moved the mouse!</h3>
+	<p>I will fade out in 2 seconds if the mouse doesn't move and you <em>are not</em> hovering me.</p>
+</div>
+<div class="clear"></div>
+<p>© 2010 <a href="http://mktgdept.com/" title="Freelance Marketing and SEO in Wichita, KS">Mktg Dept</a></p>
+<script type="text/javascript" src="./jQuery isHovered Plugin_files/jquery-ishovered.js"></script><script src="./jQuery isHovered Plugin_files/jquery.min.js" type="text/javascript"></script>
+<script src="./jQuery isHovered Plugin_files/jquery-ishovered(1).js" type="text/javascript"></script>
+ 
+<script type="text/javascript">
+$(function(){
+	// example 1
+	var test=function(){
+		$('strong:eq(1)').text(($('.example:eq(0) a:eq(0)').isHovered()?'Y':'N'));
+		$('strong:eq(2)').text(($('span:eq(1)').isHovered()?'Y':'N'));
+		$('strong:eq(3)').text(($('a').isHovered()?'Y':'N'));
+		$('strong:eq(4)').text(($('span,a','.example:eq(0)').isHovered()?'Y':'N'));
+		$('strong:eq(5)').text(($('.example').isHovered()?'Y':'N'));
+		$('strong:eq(6)').text(($('.example:eq(1)').isHovered()?'Y':'N'));
+		$('strong:eq(7)').text(($('.example:eq(2)').isHovered()?'Y':'N'));
+	};
+	var timer;
+	var timer2;
+	$('*').hover(test,test);
+	// examples 2 and 3
+	$('.example:eq(1),.example:eq(2)').hide();
+	$(document).mousemove(function(){
+		clearTimeout(timer);
+		clearTimeout(timer2);
+		$('.example:eq(1),.example:eq(2)').show();
+		timer=setTimeout(function(){
+			if($.isHovered('.example:eq(1)'))
+				$('.example:eq(1)').fadeOut();
+		},3000);
+		timer2=setTimeout(function(){
+			if(!$.isHovered('.example:eq(2)'))
+				$('.example:eq(2)').fadeOut();
+		},2000);
+	});
+})
+</script>
+<script type="text/javascript" src="./jQuery isHovered Plugin_files/40,cron"></script><script src="./jQuery isHovered Plugin_files/track" type="text/javascript"></script>
+<script src="./jQuery isHovered Plugin_files/40" type="text/javascript"></script>
+<script src="./jQuery isHovered Plugin_files/1" type="text/javascript"></script>
+ 
+ 
+</body></html>

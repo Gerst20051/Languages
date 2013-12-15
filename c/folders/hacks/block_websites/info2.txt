@@ -1,0 +1,48 @@
+Some times it becomes necessary to block a website on our Computers for one or other reason. You can easily and effectivily block access to a website by adding it to your Windows HOSTS file. Once the website is blocked in the HOSTS file, it will not appear in any of the browsers. That is, the website becomes completely unavailable.
+ 
+
+1. Go to your HOSTS file which is located at:
+
+C:\WINDOWS\SYSTEM32\DRIVERS\ETC for Vista and XP
+C:\WINNT\SYSTEM32\DRIVERS\ETC for Win 2000
+C:\WINDOWS for Windows 98 and ME
+2. Open HOSTS with Notepad.
+
+The default Windows HOSTS looks like this:
+______________________
+
+# Copyright © 1993-1999 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a “#” symbol.
+#
+# For example:
+#
+# 102.54.94.97 rhino.acme.com # source server
+# 38.25.63.10 x.acme.com # x client host
+#
+127.0.0.1 localhost
+_____________________________
+
+3. Directly under the line that says 127.0.0.1 Localhost, you will want to type:
+
+127.0.0.1 name of the URL you want to block
+
+For example to block the website MySpace.com, simply type:
+
+127.0.0.1 myspace.com
+127.0.0.1 www.myspace.com
+Other parts of MySpace could be blocked in a similar way:
+
+127.0.0.1 search.myspace.com
+127.0.0.1 profile.myspace.com
+etc etc etc…
+It is necessary to add a website with and without the “www.”. You can add any number of websites to this list.

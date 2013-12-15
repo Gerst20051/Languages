@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>YouTube Instant Search</title>
+<meta name="description" content="Find videos on YouTube in a flash with this YouTube Instant Search tool, looks and functions exactly like Google Instant!"/>
+<link rel="StyleSheet" type="text/css" href="global-source.css"/>
+<!--[if lte IE 8]>
+<style type="text/css">
+.textbox{
+height: 28px;
+width: 646px;
+}
+button.submit{
+margin-left: -62px;
+width: 62px;
+}
+button.x{
+margin-left: -84px;
+}
+button.x span{
+position: relative;
+top: 3px;
+}
+div#moreSuggestions{
+height: 115px;
+}
+div.resultRow{
+height: 135px;
+}
+</style>
+<![endif]-->
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery.popup.js"></script>
+<script type="text/javascript" src="ytsearch.app.js"></script>
+<script type="text/javascript">
+<!--
+var lh;
+setInterval(function( ){//
+	var h = window.location.hash;
+	if( h ){//
+		var hk = h.split("#!/");
+		hk = hk[1].replace(/\+/g, ' ');
+		if( ( hk && ( hk!=lh && lh ) ) || !q ){//
+			sk( hk );
+			ge( "query" ).value = hk;
+			ge( "x" ).style.display = "block";
+			ge( "moreSuggestions" ).style.display = "none";
+			ge( "suggestion" ).value = "";
+			st( hk + " - YouTube Instant Search" );
+		};
+		lh = hk;
+	};
+}, 200);
+//-->
+</script>
+</head>
+
+<body>
+<!--Modal Window-->
+<div id="boxes">
+	<div class="window">
+		<div id="dialog" style="text-align: left;"></div>
+	</div>
+
+	<div id="mask"></div>
+</div>
+
+<div id="container">
+	<div id="topBar">
+		<div style="font-size: 18px; position: relative; bottom: 20px;">
+			<div style="float: left; position: relative; left: -110px; margin-top: 20px;"><img src="gfx/yt-powered.png" border="0" style="width: 85px;"/></div>
+			<div style="float: left; position: relative; left: -100px; margin-top: 30px;">
+				<i style="font-size: 16px;">Instant Search!</i><br/>
+				<span style="font-size: 10px;">version 3.0</span>
+			</div>
+			<br clear="all"/>
+		</div>
+		<form name="search[form]" onsubmit="return s( );">
+			<div class="textbox">
+				<input type="text" name="suggestion" autocomplete="off" id="suggestion" style="width: 542px;" value="" readonly="readonly" onfocus="sf('query');"/>
+				<input type="text" id="query" autocomplete="off" name="query" style="width: 542px;" onkeyup="ps( event );"/>
+			</div>
+			<button type="button" class="x" id="x" onclick="return cf( );" title="Clear" onmouseover="this.style.color='#446fe9';" onmouseout="this.style.color='#d6e1ff';"><span id="xtxt" style="font-family: Verdana;">X</span></button>
+			<button type="submit" class="submit" name="sb" id="sb" onmouseover="this.style.backgroundImage='url(gfx/button-standard-pressed.gif)';this.style.backgroundPosition='bottom';" onmouseout="this.style.backgroundImage='url(gfx/button-standard.gif)';this.style.backgroundPosition='top';" onclick="this.style.backgroundImage='none';this.style.backgroundColor='#999999';setTimeout(function( ){ge('sb', 'id').style.backgroundColor='#dddddd';ge('sb', 'id').style.backgroundImage='url(gfx/button-standard.gif)';ge('sb', 'id').style.backgroundPosition='top';sf('query');},100)" title="Search" style="cursor: pointer;">Search</button>
+			<br clear="all"/>
+		</form>
+	</div>
+	<div id="moreSuggestions"><small><i style="padding: 3px;">Start typing to see suggestions.</i></small></div>
+	<div id="contentContainer" style="padding-top: 10px;">Start typing your search to locate videos.</div>
+
+	<div style="margin-top: 25px; font-size: 10px; margin-bottom: 80px;">
+		This web application was inspired by Google Instant, but has no affiliation with Google, Inc. or any of its web properties.<br />
+		Created by Jeff Marrone &mdash; Do you like it? Come and tell me on <a href="http://twitter.com/jeffmarrone" style="color: #000000;" target="_blank">Twitter</a>!<br/>
+		Have an iPad or an iPhone?  Visit our <a href="/m/" style="color: #003CFF; font-weight: bold;">Mobile Optimized</a> Instant Search!
+	</div>
+</div>
+</body>
+</head>

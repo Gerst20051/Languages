@@ -1,0 +1,48 @@
+#
+# Test of like
+#
+
+--disable_warnings
+drop table if exists t1;
+--enable_warnings
+
+create table t1 (a varchar(10), key(a));
+insert into t1 values ("a"),("abc"),("abcd"),("hello"),("test");
+explain extended select * from t1 where a like 'abc%';
+explain extended select * from t1 where a like concat('abc','%');
+select * from t1 where a like "abc%";
+select * from t1 where a like concat("abc","%");
+select * from t1 where a like "ABC%";
+select * from t1 where a like "test%";
+select * from t1 where a like "te_t";
+
+#
+# The following will test the Turbo Boyer-Moore code
+#
+select * from t1 where a like "%a%";
+select * from t1 where a like "%abcd%";
+select * from t1 where a like "%abc\d%";
+
+drop table t1;
+
+create table t1 (a varchar(10), key(a));
+
+#
+# Bug #2231
+#
+insert into t1 values ('a'), ('a\\b');
+select * from t1 where a like 'a\\%' escape '#';
+select * from t1 where a like 'a\\%' escape '#' and a like 'a\\\\b';
+
+#
+# Bug #2885: like and datetime
+#
+
+drop table t1;
+create table t1 (a datetime);
+insert into t1 values ('2004-03-11 12:00:21');
+select * from t1 where a like '2004-03-11 12:00:21';
+drop table t1;
+
+#
+# End of 4.1 tests

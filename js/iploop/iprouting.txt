@@ -1,0 +1,172 @@
+IP Routing on Subnets
+
+The subnet mask for a particular IP address is actually used by the router to resolve which part of the IP address is providing the network address and which part of the address is providing host address.
+
+Class	Subnet Mask
+A	255.0.0.0
+B	255.255.0.0
+C	255.255.255.0
+
+
+
+Subnet-Mask: 255.255.0.0
+IP-Address: 180.20.5.9
+Network-Address: ?
+
+Subnet Mask:     11111111  11111111  00000000   00000000
+IP-Address:      10110100  00010100  00000101   00001001
+--------------------------------------------------------
+Network-Address: 10110100  00010100  00000000   00000000
+
+Network-Address: 180.20
+
+
+
+Creating Subnets on a Class A Network
+
+The subnetting math is actually easiest when working with Class A and Class B networks. Let's say that you've been assigned the network address 10.0.0.0 and you need 30 subnets.
+
+In Class A networks, the first octet defines the network address. The remaining three octets provide the node address information because you have all the possible bit combinations available in 3 octets. That's 24 bit positions, so the number of node addresses available
+would be 2^24-2 or 16,777,214 nodes
+
+Take the first five high order bits (128, 64, 32, 16, and 8) working from left to right. Add them together: 128+64+32+16+8=248. The 248 is very important. Normally, a Class A subnet mask is 255.0.0.0. but this Class A network has been subnetted, so the new subnet mask is 255.248.0.0.
+
+The high-order decimal values that you used for the subnet mask were: 128, 64, 32, 16, and 8.
+
+
+
+To determine the range of addresses for a particular subnet, we take that subnet's starting address and use all the addresses that are between it and the starting address of the next subnet. For example, the first subnet will contain all the addresses between 10.8.0.1 and 10.16.0.1 (but not including 10.16.0.1).
+
+Subnet#   Start Address   End Address
+-------------------------------------
+1         10.8.0.1        10.15.255.254
+2         10.16.0.1       10.23.255.254
+3         10.24.0.1       10.3 1.255.254
+4         10.32.0.1       10.39.255.254
+5         10.40.0.1       10.47.255.254
+6         10.48.0.1       10.55.255.254
+7         10.56.0.1       10.63.255.254
+8         10.64.0.1       10.71.255.254
+9         10.72.0.1       10.79.2 55.254
+10        10.80.0.1       10.87.255.254
+..        .........       .............
+
+
+
+Calculating IP Subnet Ranges
+
+Calculating the number of node addresses available in each subnet is very straightforward. In our Class A network, you originally had 24 bits dedicated to node addressing. To create the 30 subnets, we had to steal 5 bits from the second octet. This means that now only 19 bits (24-5) are available to create node IP addresses. To calculate the nodes addresses per subnet, take 2 and raise it to the 19th power and then subtract 2: 2^19-2 = 524286 IP addresses per subnet.
+
+Class B networks that aren't subnetted provide 2 octets (I 6 bits) for node addressing. This provides 65,534 node addresses. The basic subnet mask for a Class B network is 255.255.0.0.
+
+
+
+Subnet#     Start Address     End Address
+--------------------------------------------
+1           180.10.32.1       180.10.63.254
+2           180.10.64.1       180.10.95.254
+3           180.10.96.1       180.10.127.254
+4           180.10.128.1      180.10.159.254
+5           180.10.160.1      180.10.191.254
+6           180.10.192.1      180.10.223.254
+
+Calculating Available Node Addresses
+
+Because you took 3 bits to create your subnets, you are left with 13 (16-3) bits for nodes. So, 2^13 - 2 = 8190. That's 8190 IP addresses available per subnet.
+
+Class C subnetting is a little more problematic than Class A and B networks because you only have one octet to steal bits from to create your subnets. Class C networks are also small to begin with (only 254 IP addresses are available), so creating more than just a few subnets will leave you with a very small number of node addresses available in each subnet.
+
+The two high-order bits are 128 and 64. Add them together and you get 192. So the new subnet mask for
+the network is 255.255.255.192.
+
+
+
+Subnet#  Subnetwork     Start          End            Broadcast
+         Address        Address        Address        Address
+-----------------------------------------------------------------
+1        200.10.44.64   200.10.44.65   200.10.44.126  200.10.44.127
+2        200.10.44.128  200.10.44.129  200.10.44.190  200.10.44.191
+
+
+
+Understanding Subnet 0
+
+There is a way to "cheat" and use these lost addresses for your network nodes, in our case addresses 200.10.44.2 through 200.10.44.62. The IP Address 200.10.44.1 is reserved for the subnetwork address and 200.10.44.63 would be the broadcast address. These "lost" addresses are referred to as subnet 0 and normally cannot be used
+
+
+
+Using subnet 0 means that only 1 bit needs to be stolen to create subnet 0 and subnet 1. So, the subnet mask would now be 255.255.255.128 (only 1 high-order bit is used to create the new subnet mask). The range of IP addresses for the 2 subnets would be:
+
+Subnet#  Subnetmask       Start          End            Broadcast
+                          Address        Address        Address
+---------------------------------------------------------------------
+1        255.255.255.128  200.10.44.1    200.10.44.126  200.10.44.127
+2                         200.10.44.129  200.10.44.254  200.10.44.255
+
+
+
+IP Addresses Ranges for Class C Subnets using Subnet 0 for 2,4 and 8 Subnets
+
+Subnet#  Subnetmask       Start          End            Broadcast
+                          Address        Address        Address
+---------------------------------------------------------------------
+1        255.255.255.128  X.X.X.1        X.X.X.126      X.X.X.127
+2                         X.X.X.129      X.X.X.254      X.X.X.255
+
+1        255.255.255.192  X.X.X.1        X.X.X.62       X.X.X.63
+2                         X.X.X.65       X.X.X.126      X.X.X.127
+3                         X.X.X.129      X.X.X.190      X.X.X.191
+4                         X.X.X.193      X.X.X.254      X.X.X.255
+
+1        255.255.255.224  X.X.X.1        X.X.X.30       X.X.X.31
+2                         X.X.X.33       X.X.X.62       X.X.X.63
+3                         X.X.X.65       X.X.X.94       X.X.X.95
+4                         X.X.X.97       X.X.X.126      X.X.X.127
+5                         X.X.X.129      X.X.X.158      X.X.X.159
+6                         X.X.X.161      X.X.X.190      X.X.X.191
+7                         X.X.X.193      X.X.X.222      X.X.X.223
+8                         X.X.X.225      X.X.X.254      X.X.X.255
+
+
+
+Slash notation to enter subnet masks
+
+In slash notation, a single number indicates how many bits of the IP address identify the network the host is on. A netmask of 255.255.255.0 has a netmask of 8 + 8 + 8 = 24.
+For example, writing 192.168.42.23/24 is the same as specifying an IP address of 192.168.42.23 with a corresponding netmask of 255.255.255.0. Often you have to enter the netmask as slash notation, an easy task with the usual 255.255.255.0. However if your network doesn't have 255 hosts, for example only 8 hosts, then the netmask will be 255.255.255.248.
+
+The following table lists the variable length subnets from 1 to 32, the CIDR [3] representation form (/xx) and the Decmial equivalents. (M = Million, K=Thousand, A,B,C= traditional class values)
+
+Mask value:                             # of
+Hex            CIDR   Decimal           addresses  Classfull
+80.00.00.00    /1     128.0.0.0         2048 M     128 A
+C0.00.00.00    /2     192.0.0.0         1024 M      64 A
+E0.00.00.00    /3     224.0.0.0          512 M      32 A
+F0.00.00.00    /4     240.0.0.0          256 M      16 A
+F8.00.00.00    /5     248.0.0.0          128 M       8 A
+FC.00.00.00    /6     252.0.0.0           64 M       4 A
+FE.00.00.00    /7     254.0.0.0           32 M       2 A
+FF.00.00.00    /8     255.0.0.0           16 M       1 A
+FF.80.00.00    /9     255.128.0.0          8 M     128 B
+FF.C0.00.00   /10     255.192.0.0          4 M      64 B
+FF.E0.00.00   /11     255.224.0.0          2 M      32 B
+FF.F0.00.00   /12     255.240.0.0       1024 K      16 B
+FF.F8.00.00   /13     255.248.0.0        512 K       8 B
+FF.FC.00.00   /14     255.252.0.0        256 K       4 B
+FF.FE.00.00   /15     255.254.0.0        128 K       2 B
+FF.FF.00.00   /16     255.255.0.0         64 K       1 B
+FF.FF.80.00   /17     255.255.128.0       32 K     128 C
+FF.FF.C0.00   /18     255.255.192.0       16 K      64 C
+FF.FF.E0.00   /19     255.255.224.0        8 K      32 C
+FF.FF.F0.00   /20     255.255.240.0        4 K      16 C
+FF.FF.F8.00   /21     255.255.248.0        2 K       8 C
+FF.FF.FC.00   /22     255.255.252.0        1 K       4 C
+FF.FF.FE.00   /23     255.255.254.0      512         2 C
+FF.FF.FF.00   /24     255.255.255.0      256         1 C
+FF.FF.FF.80   /25     255.255.255.128    128       1/2 C
+FF.FF.FF.C0   /26     255.255.255.192     64       1/4 C
+FF.FF.FF.E0   /27     255.255.255.224     32       1/8 C
+FF.FF.FF.F0   /28     255.255.255.240     16      1/16 C
+FF.FF.FF.F8   /29     255.255.255.248      8      1/32 C
+FF.FF.FF.FC   /30     255.255.255.252      4      1/64 C
+FF.FF.FF.FE   /31     255.255.255.254      2     1/128 C
+FF.FF.FF.FF   /32     255.255.255.255   This is a single host route

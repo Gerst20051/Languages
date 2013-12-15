@@ -1,0 +1,607 @@
+{"apiVersion":"2.0","data":{"updated":"2011-02-12T21:04:18.468Z","totalItems":1000000,"startIndex":1,"itemsPerPage":2,"items":[{"id":"PIkWJZf33UY","uploaded":"2007-03-01T18:39:47.000Z","updated":"2011-02-11T22:22:27.000Z","uploader":"eeebroadcast","category":"Music","title":"Pixies Hey","description":"My clip version of the best song ever \"written\". www.haroom.ru All frames are taken from some of the best music videos of Enigma!","tags":["Pixies","Hey","Enigma","we","chained"],"thumbnail":{"sqDefault":"http://i.ytimg.com/vi/PIkWJZf33UY/default.jpg","hqDefault":"http://i.ytimg.com/vi/PIkWJZf33UY/hqdefault.jpg"},"player":{"default":"http://www.youtube.com/watch?v\u003dPIkWJZf33UY&feature\u003dyoutube_gdata_player"},"content":{"5":"http://www.youtube.com/v/PIkWJZf33UY?f\u003dvideos&app\u003dyoutube_gdata"},"duration":207,"viewCount":3362216,"favoriteCount":17414,"commentCount":3218,"status":{"value":"restricted","reason":"limitedSyndication"},"accessControl":{"syndicate":"denied","commentVote":"allowed","rate":"allowed","list":"allowed","comment":"allowed","embed":"allowed","videoRespond":"moderated"}},{"id":"prgm4eKq6d4","uploaded":"2009-03-22T02:10:48.000Z","updated":"2011-02-12T05:33:15.000Z","uploader":"AlexanderBrady","category":"Film","title":"Hey!","description":"","tags":["jurassic park","hey","dinosaurs"],"thumbnail":{"sqDefault":"http://i.ytimg.com/vi/prgm4eKq6d4/default.jpg","hqDefault":"http://i.ytimg.com/vi/prgm4eKq6d4/hqdefault.jpg"},"player":{"default":"http://www.youtube.com/watch?v\u003dprgm4eKq6d4&feature\u003dyoutube_gdata_player","mobile":"http://m.youtube.com/details?v\u003dprgm4eKq6d4"},"content":{"1":"rtsp://v2.cache6.c.youtube.com/CiILENy73wIaGQne6ari4Sa4phMYDSANFEgGUgZ2aWRlb3MM/0/0/0/video.3gp","5":"http://www.youtube.com/v/prgm4eKq6d4?f\u003dvideos&app\u003dyoutube_gdata","6":"rtsp://v7.cache1.c.youtube.com/CiILENy73wIaGQne6ari4Sa4phMYESARFEgGUgZ2aWRlb3MM/0/0/0/video.3gp"},"duration":73,"viewCount":1274533,"favoriteCount":19400,"commentCount":2399,"accessControl":{"syndicate":"allowed","commentVote":"allowed","rate":"allowed","list":"allowed","comment":"allowed","embed":"allowed","videoRespond":"moderated"}}]}}
+
+
+{"color" : "green"}
+
+
+{"accounting":[{"firstName":"John","lastName":"Doe","age":23},{"firstName":"Mary","lastName":"Smith","age":32}],"sales":[{"firstName":"Sally","lastName":"Green","age":27},{"firstName":"Jim","lastName":"Galley","age":41}]}
+
+
+var employees = { "accounting" : [   // accounting is an array in employees.
+                                    { "firstName" : "John",  // First element
+                                      "lastName"  : "Doe",
+                                      "age"       : 23 },
+                                    
+                                    { "firstName" : "Mary",  // Second Element
+                                      "lastName"  : "Smith",
+                                      "age"       : 32 }
+                                  ], // End "accounting" array.                                  
+                  "sales"       : [ // Sales is another array in employees.
+                                    { "firstName" : "Sally", // First Element
+                                      "lastName"  : "Green",
+                                      "age"       : 27 },
+                                    
+                                    { "firstName" : "Jim", // Second Element
+                                      "lastName"  : "Galley",
+                                      "age"       : 41 }
+                                  ] // End "sales" Array.
+                } // End Employees
+
+var toServer = employees.toJSONString();                
+document.writeln(toServer);
+
+//Outputs:
+//{"accounting":[{"firstName":"John","lastName":"Doe","age":23},{"firstName":"Mary","lastName":"Smith","age":32}],"sales":[{"firstName":"Sally","lastName":"Green","age":27},{"firstName":"Jim","lastName":"Galley","age":41}]}
+
+
+{
+    "response": {
+        "status": {
+            "version": "4.1",
+            "code": 0,
+            "message": "Success"
+        },
+        "terms": [{
+            "frequency": 1.0,
+            "name": "rock"
+        },
+        {
+            "frequency": 0.71378867608195351,
+            "name": "alternative"
+        },
+        {
+            "frequency": 0.02221207591779616,
+            "name": "north carolina"
+        }],
+        "description": [],
+        "seed_songs": [],
+        "banned_artists": ["ARNRPX81187FB5CE09"],
+        "rules": [{
+            "rule": "Don't put two copies of the same song in a playlist."
+        },
+        {
+            "rule": "Give preference to artists that are not already in the playlist"
+        }],
+        "session_id": "c1fdacd5a1164449b49584398ca807f3",
+        "seeds": ["AR633SY1187B9AC3B9"],
+        "skipped_songs": [{
+            "served_time": 1291233888.934294,
+            "artist_id": "ARSPUJF1187B9A14B8",
+            "id": "SOOYDAZ12A58A7AE08",
+            "artist_name": "Death Cab for Cutie",
+            "title": "I Will Follow You into the Dark (Album Version)"
+        },
+        {
+            "served_time": 1291233922.2778349,
+            "artist_id": "ARKLKMU1187FB4EF65",
+            "id": "SONGJXQ12A58A799F7",
+            "artist_name": "OK Go",
+            "title": "What To Do"
+        }],
+        "banned_songs": [{
+            "served_time": 1291233915.4518731,
+            "artist_id": "ARBK9N71187B99B9AE",
+            "id": "SOUTUGY12A58A78912",
+            "artist_name": "Size 14",
+            "title": "People Get Really Drunk In Las Vegas"
+        }],
+        "playlist_type": "artist-radio",
+        "seed_catalogs": [],
+        "rated_songs": [],
+        "history": [{
+            "served_time": 1291233873.952306,
+            "artist_id": "ARTH2D01187B98D865",
+            "id": "SOMMIKO12AB01827FC",
+            "artist_name": "Everclear",
+            "title": "I Will Buy You A New Life"
+        },
+        {
+            "served_time": 1291233931.589036,
+            "artist_id": "ARIDDOM1187B9A1360",
+            "id": "SOSVAUK12A6D4F5FCB",
+            "artist_name": "We Are Scientists",
+            "title": "the great escape"
+        }]
+    }
+}
+
+{
+    "response": {
+        "status": {
+            "version": "4.1",
+            "code": 0,
+            "message": "Success"
+        },
+        "terms": [{
+            "frequency": 1.0,
+            "name": "rock"
+        },
+        {
+            "frequency": 0.71378867608195351,
+            "name": "alternative"
+        },
+        {
+            "frequency": 0.69095668193199911,
+            "name": "alternative rock"
+        },
+        {
+            "frequency": 0.65668272782813841,
+            "name": "indie"
+        },
+        {
+            "frequency": 0.64766399493540405,
+            "name": "indie rock"
+        },
+        {
+            "frequency": 0.61232526472113424,
+            "name": "pop"
+        },
+        {
+            "frequency": 0.51026002081414024,
+            "name": "punk"
+        },
+        {
+            "frequency": 0.33250036778616132,
+            "name": "power pop"
+        },
+        {
+            "frequency": 0.31902738195194952,
+            "name": "emo"
+        },
+        {
+            "frequency": 0.31391704059473652,
+            "name": "pop rock"
+        },
+        {
+            "frequency": 0.30739945700325128,
+            "name": "grunge"
+        },
+        {
+            "frequency": 0.23041887347399467,
+            "name": "soundtrack"
+        },
+        {
+            "frequency": 0.22837311042124264,
+            "name": "acoustic"
+        },
+        {
+            "frequency": 0.22022382070655525,
+            "name": "guitar"
+        },
+        {
+            "frequency": 0.21791384448994017,
+            "name": "hard rock"
+        },
+        {
+            "frequency": 0.20734542132020858,
+            "name": "electronic"
+        },
+        {
+            "frequency": 0.20620638149698217,
+            "name": "indie pop"
+        },
+        {
+            "frequency": 0.19632422057344523,
+            "name": "new wave"
+        },
+        {
+            "frequency": 0.18508973492552899,
+            "name": "90s"
+        },
+        {
+            "frequency": 0.18473382084126663,
+            "name": "pop punk"
+        },
+        {
+            "frequency": 0.17224351527852039,
+            "name": "american"
+        },
+        {
+            "frequency": 0.17135561535722449,
+            "name": "jazz"
+        },
+        {
+            "frequency": 0.16903079873464968,
+            "name": "hardcore"
+        },
+        {
+            "frequency": 0.16198390097464166,
+            "name": "experimental"
+        },
+        {
+            "frequency": 0.14677949691206213,
+            "name": "instrumental"
+        },
+        {
+            "frequency": 0.1421983853683873,
+            "name": "classic rock"
+        },
+        {
+            "frequency": 0.1372265944836682,
+            "name": "electronica"
+        },
+        {
+            "frequency": 0.13715444847388056,
+            "name": "modern rock"
+        },
+        {
+            "frequency": 0.12618860220988484,
+            "name": "punk pop"
+        },
+        {
+            "frequency": 0.11959638026044632,
+            "name": "metal"
+        },
+        {
+            "frequency": 0.11668085846558782,
+            "name": "singer-songwriter"
+        },
+        {
+            "frequency": 0.10745519624820681,
+            "name": "hip hop"
+        },
+        {
+            "frequency": 0.10610794155762615,
+            "name": "ska"
+        },
+        {
+            "frequency": 0.10517110231419696,
+            "name": "post-grunge"
+        },
+        {
+            "frequency": 0.10438449913022113,
+            "name": "80s"
+        },
+        {
+            "frequency": 0.10255617783743638,
+            "name": "funk"
+        },
+        {
+            "frequency": 0.097947478031036511,
+            "name": "dance"
+        },
+        {
+            "frequency": 0.094503575393161524,
+            "name": "country"
+        },
+        {
+            "frequency": 0.090790867540085085,
+            "name": "psychedelic"
+        },
+        {
+            "frequency": 0.083041279179575878,
+            "name": "blues"
+        },
+        {
+            "frequency": 0.081892954317720659,
+            "name": "alternative pop rock"
+        },
+        {
+            "frequency": 0.081026488940155392,
+            "name": "ambient"
+        },
+        {
+            "frequency": 0.080174964390734557,
+            "name": "piano rock"
+        },
+        {
+            "frequency": 0.078974899883130098,
+            "name": "california"
+        },
+        {
+            "frequency": 0.078246028105182552,
+            "name": "classic"
+        },
+        {
+            "frequency": 0.077151062748579427,
+            "name": "united states"
+        },
+        {
+            "frequency": 0.074835844268721613,
+            "name": "progressive rock"
+        },
+        {
+            "frequency": 0.074826282548542275,
+            "name": "noise pop"
+        },
+        {
+            "frequency": 0.072881570284492408,
+            "name": "folk"
+        },
+        {
+            "frequency": 0.07232616366067135,
+            "name": "soul"
+        },
+        {
+            "frequency": 0.071751310483442479,
+            "name": "garage rock"
+        },
+        {
+            "frequency": 0.071152784717570847,
+            "name": "rap"
+        },
+        {
+            "frequency": 0.068413820520809576,
+            "name": "chill-out"
+        },
+        {
+            "frequency": 0.067575912746499572,
+            "name": "piano"
+        },
+        {
+            "frequency": 0.067208796683664362,
+            "name": "male vocalist"
+        },
+        {
+            "frequency": 0.066820869490416185,
+            "name": "00s"
+        },
+        {
+            "frequency": 0.06297434389951026,
+            "name": "trip hop"
+        },
+        {
+            "frequency": 0.061302531571268519,
+            "name": "hardcore punk"
+        },
+        {
+            "frequency": 0.057403240335956361,
+            "name": "heavy metal"
+        },
+        {
+            "frequency": 0.05701438705589032,
+            "name": "chicago"
+        },
+        {
+            "frequency": 0.055265503191344018,
+            "name": "british pop"
+        },
+        {
+            "frequency": 0.054837283282155994,
+            "name": "noise"
+        },
+        {
+            "frequency": 0.053086173760937501,
+            "name": "funny"
+        },
+        {
+            "frequency": 0.052642459353716801,
+            "name": "house"
+        },
+        {
+            "frequency": 0.050893604092999783,
+            "name": "punk revival"
+        },
+        {
+            "frequency": 0.048124396945421387,
+            "name": "college rock"
+        },
+        {
+            "frequency": 0.047690438894100941,
+            "name": "comedy rock"
+        },
+        {
+            "frequency": 0.045332097359129034,
+            "name": "beautiful"
+        },
+        {
+            "frequency": 0.044463743706655151,
+            "name": "post-hardcore"
+        },
+        {
+            "frequency": 0.043472596865702283,
+            "name": "soft rock"
+        },
+        {
+            "frequency": 0.041768595030146613,
+            "name": "glam rock"
+        },
+        {
+            "frequency": 0.041768595030146613,
+            "name": "oldies"
+        },
+        {
+            "frequency": 0.0412299784376731,
+            "name": "breakbeat"
+        },
+        {
+            "frequency": 0.04116230880218321,
+            "name": "industrial"
+        },
+        {
+            "frequency": 0.040337378384973643,
+            "name": "trance"
+        },
+        {
+            "frequency": 0.040072855162149194,
+            "name": "folk rock"
+        },
+        {
+            "frequency": 0.039223459052319228,
+            "name": "post rock"
+        },
+        {
+            "frequency": 0.03882218487585886,
+            "name": "drum and bass"
+        },
+        {
+            "frequency": 0.038293557141114751,
+            "name": "downtempo"
+        },
+        {
+            "frequency": 0.037674499131549154,
+            "name": "dream pop"
+        },
+        {
+            "frequency": 0.036657857163671384,
+            "name": "blues-rock"
+        },
+        {
+            "frequency": 0.036320971632124076,
+            "name": "female vocalist"
+        },
+        {
+            "frequency": 0.035560508632410406,
+            "name": "lo-fi"
+        },
+        {
+            "frequency": 0.034043905997630179,
+            "name": "japanese"
+        },
+        {
+            "frequency": 0.032735575005635405,
+            "name": "synthpop"
+        },
+        {
+            "frequency": 0.032045073661869095,
+            "name": "bass"
+        },
+        {
+            "frequency": 0.028603166734215899,
+            "name": "surf music"
+        },
+        {
+            "frequency": 0.027405637932073089,
+            "name": "female"
+        },
+        {
+            "frequency": 0.027261698761248617,
+            "name": "ballad"
+        },
+        {
+            "frequency": 0.026468755648966544,
+            "name": "christian"
+        },
+        {
+            "frequency": 0.026048676185550949,
+            "name": "comedy"
+        },
+        {
+            "frequency": 0.026011231653848395,
+            "name": "los angeles"
+        },
+        {
+            "frequency": 0.024969915380155021,
+            "name": "shoegaze"
+        },
+        {
+            "frequency": 0.024882377480574615,
+            "name": "italy"
+        },
+        {
+            "frequency": 0.024291952918233661,
+            "name": "experimental rock"
+        },
+        {
+            "frequency": 0.023436010208923434,
+            "name": "rock 'n roll"
+        },
+        {
+            "frequency": 0.023378429806138652,
+            "name": "dance rock"
+        },
+        {
+            "frequency": 0.022742637136285111,
+            "name": "skacore"
+        },
+        {
+            "frequency": 0.022742637136285111,
+            "name": "jungle music"
+        },
+        {
+            "frequency": 0.02221207591779616,
+            "name": "north carolina"
+        }],
+        "description": [],
+        "seed_songs": [],
+        "banned_artists": ["ARNRPX81187FB5CE09"],
+        "rules": [{
+            "rule": "Don't put two copies of the same song in a playlist."
+        },
+        {
+            "rule": "Give preference to artists that are not already in the playlist"
+        }],
+        "session_id": "c1fdacd5a1164449b49584398ca807f3",
+        "seeds": ["AR633SY1187B9AC3B9"],
+        "skipped_songs": [{
+            "served_time": 1291233888.934294,
+            "artist_id": "ARSPUJF1187B9A14B8",
+            "id": "SOOYDAZ12A58A7AE08",
+            "artist_name": "Death Cab for Cutie",
+            "title": "I Will Follow You into the Dark (Album Version)"
+        },
+        {
+            "served_time": 1291233915.4518731,
+            "artist_id": "ARBK9N71187B99B9AE",
+            "id": "SOUTUGY12A58A78912",
+            "artist_name": "Size 14",
+            "title": "People Get Really Drunk In Las Vegas"
+        },
+        {
+            "served_time": 1291233922.2778349,
+            "artist_id": "ARKLKMU1187FB4EF65",
+            "id": "SONGJXQ12A58A799F7",
+            "artist_name": "OK Go",
+            "title": "What To Do"
+        }],
+        "banned_songs": [{
+            "served_time": 1291233915.4518731,
+            "artist_id": "ARBK9N71187B99B9AE",
+            "id": "SOUTUGY12A58A78912",
+            "artist_name": "Size 14",
+            "title": "People Get Really Drunk In Las Vegas"
+        }],
+        "playlist_type": "artist-radio",
+        "seed_catalogs": [],
+        "rated_songs": [],
+        "history": [{
+            "served_time": 1291233873.952306,
+            "artist_id": "ARTH2D01187B98D865",
+            "id": "SOMMIKO12AB01827FC",
+            "artist_name": "Everclear",
+            "title": "I Will Buy You A New Life"
+        },
+        {
+            "served_time": 1291233888.934294,
+            "artist_id": "ARSPUJF1187B9A14B8",
+            "id": "SOOYDAZ12A58A7AE08",
+            "artist_name": "Death Cab for Cutie",
+            "title": "I Will Follow You into the Dark (Album Version)"
+        },
+        {
+            "served_time": 1291233891.8415,
+            "artist_id": "ARNRPX81187FB5CE09",
+            "id": "SOUOGBJ12A58A7D64A",
+            "artist_name": "We Shot the Moon",
+            "title": "The Brightside"
+        },
+        {
+            "served_time": 1291233904.8374181,
+            "artist_id": "AR633SY1187B9AC3B9",
+            "id": "SOBSLVH12A8C131F38",
+            "artist_name": "Weezer",
+            "title": "Island In The Sun"
+        },
+        {
+            "served_time": 1291233915.4518731,
+            "artist_id": "ARBK9N71187B99B9AE",
+            "id": "SOUTUGY12A58A78912",
+            "artist_name": "Size 14",
+            "title": "People Get Really Drunk In Las Vegas"
+        },
+        {
+            "served_time": 1291233922.2778349,
+            "artist_id": "ARKLKMU1187FB4EF65",
+            "id": "SONGJXQ12A58A799F7",
+            "artist_name": "OK Go",
+            "title": "What To Do"
+        },
+        {
+            "served_time": 1291233931.589036,
+            "artist_id": "ARIDDOM1187B9A1360",
+            "id": "SOSVAUK12A6D4F5FCB",
+            "artist_name": "We Are Scientists",
+            "title": "the great escape"
+        }]
+    }
+}

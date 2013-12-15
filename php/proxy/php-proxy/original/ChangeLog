@@ -1,0 +1,50 @@
+PHP Proxy, Dean 1.6 changelog
+
+Contact: Scott Atkins <atkinssc@engr.orst.edu>
+
+Key:
+  * = Bugfix
+  + = New feature added or existing feature changed.
+  - = feature taken out
+  ! = known bug or glitch that isn't fixed yet.
+  ~ = feature still to be added
+  ? = Notes
+
+Release 1.6 pre-alpha (7/15/02)
+ + Added GPL to the header of all the files
+ + Added GPL to the CVS
+
+Release 1.5 pre-alpha (7/12/02)
+ * "//" can now be used as a shortcut for http:// (from source forge home page.)
+ * Fixed a bug in the encryption process that killed it at a \r
+ ? config file changed to use sourceforge pages
+ ~ Error Handling
+ ~ Dynamic pages
+ ~ Authentication
+ ~ Pass post and get vars
+ ~ Documentation of how things interact
+  
+Release 1.4 pre-alpha (7/10/02)
+ ? No changes, just getting CVS versions correct
+
+Release 1.3 pre-alpha (7/10/02)
+ ? Added comments for documentation
+ ? encryptURL changed to encryptPage
+ ? getPage changed to openLink
+ * encryptPage now works in classWebPage.php
+ * Mailto and # should be fixed along with javascript
+ ! Download headers aren't being added
+ ~ Error Handling
+ ~ Dynamic pages
+ ~ Authentication
+ ~ Pass post and get vars
+ ~ Documentation of how things interact
+ 
+Release 1.2 pre-alpha (7/9/02)
+* Fixed a bug in classWebPage, speeling mistake.
++ Made the varible passing the page user defined.
+! Mailto isn't fixed, nor is #
+! Error Handling still to be added
+
+Release 1.1 pre-alpha (7/5/02)
++ First release to Sourceforge CVS

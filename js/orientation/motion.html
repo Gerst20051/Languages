@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Mobile Power! by @cpojer</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" />
+	
+	<link rel="stylesheet" media="all" type="text/css" href="style.css" />
+	<link rel="stylesheet" media="all" type="text/css" href="http://cpojer.net/CSS/Packager.css" />
+	<style type="text/css">
+	div#box2 {
+		webkit-transition-property: color;
+		webkit-transition-duration: 200ms;
+	}
+	</style>
+	<script type="text/javascript" src="mootools-core.js"></script>
+	
+	<script type="text/javascript">
+		window.addEvent('domready', function(){
+			var box2 = document.id('box2');
+			window.addEventListener('devicemotion', function(event){
+				var acceleration = event.acceleration,
+					text = [],
+					translate = [],
+					color = 0;
+				['x', 'y', 'z'].each(function(orientation){
+					text.push(orientation + ': ' + Math.round(acceleration[orientation]));
+					translate.push((acceleration[orientation] * 5) + 'px');
+					color += Math.round(acceleration[orientation]) * 7;
+				});
+				box2.set('text', text.join(', '));
+				(function(){
+					box2.setStyle('background-color', 'rgb(' + color.min(255) + ', 0, 0)');
+					box2.style.webkitTransform = 'translate3d(' + translate.join(',') + ')';
+				}).delay(100);
+			}, true);
+		});
+	</script>
+</head>
+<body>
+<div class="head">
+	<a href="index.html">« Back</a>
+	<b>Mobile Power! by @cpojer.</b> <a href="http://github.com/cpojer">GitHub</a> <a href="http://twitter.com/cpojer">Twitter</a>
+</div>
+<div class="container">	
+	<div id="box2" class="box">
+		Motion!
+	</div>
+</div>
+</body>
+</html>

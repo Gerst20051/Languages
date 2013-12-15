@@ -1,0 +1,28 @@
+<script type="text/javascript" src="api.js"></script>
+<script type="text/javascript" src="pastebin.js"></script>
+<script type="text/javascript">
+chrome.browserAction.onClicked.addListener( function(tab) {
+	chrome.tabs.sendRequest(tab.id, "openPastebin", function (url) {
+		chrome.tabs.create( { url: "http://pastebin.com" } );
+	});
+});
+chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
+	if (request.method == "login") {
+		login(request.username, request.password);
+		localStorage["API_RESPONSE"] = "";
+		sendResponse({login: "done"});
+	}
+	if (request.method == "submit") {
+		console.log("submitting..");
+		localStorage["API_RESPONSE"] = "";
+		submitPaste(request.paste, request.exposure, request.name, request.expire, request.format);
+		sendResponse({paste: "done"});
+	}
+	if (request.method == "getSelection") {
+		sendResponse({data: window.getSelection().toString()});
+    }
+	else {
+      sendResponse({});
+    }
+});
+</script>

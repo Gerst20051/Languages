@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://www.yourhtmlsource.com/examples/ajaxformsubmission.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+  <title>AJAX Form Submission | example</title>
+
+<meta name="author" content="Ross Shannon">
+<meta name="copyright" content="Ross Shannon 2000–2011 and beyond...">
+<meta name="robots" content="all">
+
+<meta name="viewport" content="width=780">
+<!--<base target="_top">--><base href="." target="_top">
+
+<style type="text/css" media="all">
+@import "/bubbleicious.css";
+</style>
+<link rel="stylesheet" type="text/css" href="./ajaxformsubmission_files/print.css" media="print">
+
+<link rel="shortcut icon" type="image/ico" href="http://www.yourhtmlsource.com/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" title="HTML Source" href="http://www.yourhtmlsource.com/htmlsource-search.xml">
+
+<script src="./ajaxformsubmission_files/jsapi"></script>
+<script>
+  google.load("jquery", "1");
+</script><script src="./ajaxformsubmission_files/jquery.min.js" type="text/javascript"></script>
+<script src="./ajaxformsubmission_files/sourcescripts.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-204627-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script');
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
+        'http://www') + '.google-analytics.com/ga.js';
+    ga.setAttribute('async', 'true');
+    document.getElementsByTagName("head")[0].appendChild(ga);
+  })();
+
+</script><script src="./ajaxformsubmission_files/ga.js" async="true"></script>
+	<style type="text/css">
+	<!--
+	body {margin: 2em; background-image: none; background-color: white; font-size: .8em; text-align: left; }
+  fieldset {padding: 10px 5px; background: #fffbef; -moz-border-radius: 5px; }
+  legend {background: #fff; padding: 2px 6px; border: 1px #999 solid; -moz-border-radius: 5px; }
+  p {margin: 15px 0; padding: 8px; }
+  select {margin: 0 5px; }
+  label {margin: 4px 0; }
+  p img {margin-left: 10px; }
+  .success {padding: 7px; background: #fef8d9; color: #977; border: 1px solid #eca; }
+  .ajaxresponse {margin-left: 10px; color: #c63; }
+	-->
+	</style>
+  
+  <script type="text/javascript" src="./ajaxformsubmission_files/sarissa.js"></script>
+  <script type="text/javascript" src="./ajaxformsubmission_files/util-functions.js"></script>
+  
+  <script type="text/javascript">
+  
+  addEvent(window, 'load', init, false);
+
+  function init() {
+      if (!Sarissa || !document.getElementById) return;
+      
+      var formElements = document.getElementsByTagName('form');
+      for (var i = 0; i < formElements.length; i++) {
+          if (formElements[i].className.match(/\bajaxify\b/)) {
+              addEvent(formElements[i], 'submit', submitRating, false);
+          }
+      }
+  }
+  
+  function submitRating(e) {
+      /* Cancel the submit event, and find out which form was submitted */
+      knackerEvent(e);
+      var target = window.event ? window.event.srcElement : e ? e.target : null;
+      if (!target) return;
+      
+      /* Check if this form is already in the process of being submitted. 
+       * If so, don't allow it to be submitted again. */
+      if (target.ajaxInProgress) return;
+      
+      /* Set up the request */
+      var xmlhttp =  new XMLHttpRequest();
+      xmlhttp.open('POST', 'rating-submit.php', true);
+      
+      /* The callback function */
+      xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4) {
+              if (xmlhttp.status == 200)
+                  addRatingFeedback(xmlhttp.responseXML, target);
+              else
+                  target.submit();
+          }
+      }
+      
+      /* Send the POST request */
+      xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xmlhttp.send('rating=' + target.elements['rating'].value);
+      
+      /* Add temporary feedback that the request has been sent */   
+      var loadingImg = document.createElement('img');
+      loadingImg.src = 'media/working.gif';
+      target.getElementsByTagName('p')[0].appendChild(loadingImg);
+      target.ajaxInProgress = true;
+  }
+  
+  function addRatingFeedback(responseXML, target) {
+      var loadingImg = target.getElementsByTagName('img')[0];
+      loadingImg.parentNode.className += ' success';
+      var feedbackText = 'Your score of ' + 
+          responseXML.getElementsByTagName('rating')[0].firstChild.data + 
+          ' has been recorded. Thank you.';
+      var feedbackSpan = document.createElement('span');
+      feedbackSpan.className = 'ajaxresponse';
+      feedbackSpan.appendChild(document.createTextNode(feedbackText));
+      loadingImg.parentNode.replaceChild(feedbackSpan, loadingImg);
+
+      // Free up the form to go again
+      target.ajaxInProgress = false;
+      
+      // Disable form inputs
+      target.getElementsByTagName('select')[0].disabled = true;
+      target.getElementsByTagName('input')[0].disabled = true;
+  }
+  
+  </script>
+
+</head>
+
+
+<body id="htmlsource">
+<h1>AJAX Form Submission</h1>
+
+<fieldset>
+<legend>I wanna AJAX you up</legend>
+
+<form action="http://www.yourhtmlsource.com/examples/ajaxless-submit.php" method="post" class="ajaxify">
+<p><label>Please rate the tutorial on AJAX: 
+<select name="rating">
+  <option value="1">It’s rubbish, total rubbish.</option>
+  <option value="2" selected="selected">It’s pretty goooood so far.</option>
+  <option value="3">It’s terrific!</option>
+</select></label>
+
+<input type="submit" value="Submit"></p>
+</form>
+
+<form action="http://www.yourhtmlsource.com/examples/ajaxless-submit.php" method="post" class="ajaxify">
+<p><label>Please rate the overall quality of this site: 
+<select name="rating">
+  <option value="1">It’s rubbish, total rubbish.</option>
+  <option value="2" selected="selected">It’s pretty goooood so far.</option>
+  <option value="3">It’s terrific!</option>
+</select></label>
+
+<input type="submit" value="Submit"></p>
+</form>
+
+</fieldset>
+
+<p>Go back to the <a href="http://www.yourhtmlsource.com/javascript/ajax.html">Ajax tutorial</a>.</p>
+
+
+
+<!-- ~Fin~ -->
+</body></html>

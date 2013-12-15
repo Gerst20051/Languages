@@ -1,0 +1,44 @@
+=head1 NAME
+
+memc_server_count
+
+=head1 UDF 
+
+Libmemcached User Defined Function for MySQL 
+
+=head1 SYNOPSIS
+
+=head1 DESCRIPTION
+
+memc_server_count() is a UDF used to count how many memcached servers 
+are defined
+
+=head1 RETURN
+
+Integer value of the number of memcached servers
+
+=head1 USAGE 
+
+memc_server_count()
+
+=head1 HOME
+
+To find out more information please check:
+L<http://hg.tangent.org/memcached_functions_mysql>
+L<http://tangent.org/552/libmemcached.html>
+
+=head1 INSTALL
+
+CREATE FUNCTION memc_server_count RETURNS INT SONAME "libmemcached_functions_mysql.so";
+
+=head1 AUTHOR
+
+Patrick Galbraith, E<lt>patg@patg.netE<gt>
+Brian Aker, E<lt>brian@tangent.orgE<gt>
+
+=head1 SEE ALSO
+
+memc_servers_set(), memc_servers_behavior_set(), memc_server_version()
+
+=cut
+

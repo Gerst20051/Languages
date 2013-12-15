@@ -1,0 +1,5 @@
+Step 1:
+cd C:\Users\gerst\Desktop // Navigate To Folder Containing Script
+
+Step 2:
+C:\xampp\php\php.exe test.php // Path to php.exe file

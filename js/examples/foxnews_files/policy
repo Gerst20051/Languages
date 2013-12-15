@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+var basePolicyJSON = '{\"guide\":{\"fmt\":\"results2\",\"ok\":true},\"baynoteObserver\":{\"dt\":60,\"so\":true,\"uhd\":false,\"cds\":true,\"eec\":true,\"cdt\":true,\"hn\":\"handler2.js\",\"ec\":true,\"uca\":\"315360000000\",\"alt\":true,\"ub\":false,\"ep\":50,\"om\":2,\"sv\":true,\"sdl\":false,\"ok\":true,\"st\":true},\"search\":{\"ok\":true},\"customScript\":{\"hn\":\"custom-script.js\"},\"trail\":{\"tl\":5,\"so\":false,\"ok\":false},\"GuideSet\":{\"eids\":[\"baynote-recs-js\"]},\"inf\":{\"dt\":\"Fri Mar 18 23:42:52 PDT 2011\",\"exp\":86400,\"u\":\"ANONYMOUS\",\"cn\":\"foxnews\",\"ve\":\"V1\",\"cc\":\"news\",\"cd\":\"d&g&s&r=0.01\"},\"baynoteGuide\":{\"ok\":true},\"guidePro\":{\"ok\":true}}';
+var userPolicyJSON = '{\"baynoteObserver\":{\"so\":false},\"inf\":{\"dt\":\"Sat Mar 19 17:51:35 PDT 2011\",\"u\":\"6923466295680095857\",\"ve\":\"V1\",\"cd\":\"d&g&s&r=0.01\"}}';
+
+bnPolicy.registerPolicy(basePolicyJSON, userPolicyJSON);
+

@@ -1,0 +1,780 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>Hyperlink Control Manual</title>
+  <meta content="Alexander Stoica" name="author">
+</head>
+<body style="direction: ltr;">
+<h1>Hyperlink Control Manual</h1>
+<div style="text-align: justify;">Author: Alexander Stoica (Berlin,
+Germany) <a href="mailto:nitex@freenet.de?subject=Hyperlink%20Control">nitex@freenet.de</a><br>
+Version: 0.2<br>
+<br>
+If you find bugs, have suggestions, find translation errors or just
+want to write some constructive criticism you may mail me to the
+address above. You can write in English or German. You're free to use
+this control in your projects, even commercial. A short credit in the
+about box or documentation would be nice but is not required.<br>
+<br>
+Special thanks to John Findlay, who helped me with the first version
+of&nbsp; the hyperlink control.<br>
+<a href="http://www.john.findlay1.btinternet.co.uk">http://www.john.findlay1.btinternet.co.uk</a><br>
+<br>
+Also thanks to Pelle Orinius for making such a nice developement
+environment.<br>
+<a href="http://smorgasbordet.com/pellesc">http://smorgasbordet.com/pellesc</a><br>
+<br>
+I've decided not to use Pelles C integrated custom control feature,
+because i want to avoid shipping additional *.dll files with a program.</div>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h3>Content:</h3>
+<a href="#anc1">1. The
+structure members of HYPCTRL</a><br>
+<a href="#anc2">2. Tutorial:
+How to use the hyperlink control</a><br>
+<a href="#anc3">3. Tutorial:
+How to use the callback feature</a><br>
+<a href="#anc4">4. Remarks</a><br>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h3><a name="anc1"></a>1. The
+structure members of HYPCTRL</h3>
+<div style="text-align: justify;">First have a look at the HYPCTRL
+structure.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">typedef
+struct {</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+LPTSTR&nbsp;&nbsp;&nbsp; &nbsp; szLink;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+LPTSTR&nbsp;&nbsp;&nbsp; &nbsp; szText;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+LPTSTR&nbsp;&nbsp;&nbsp; &nbsp; szTooltip;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+COLORREF&nbsp;&nbsp;&nbsp; fgcNormal;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+COLORREF&nbsp;&nbsp;&nbsp; fgcHover;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+COLORREF&nbsp;&nbsp;&nbsp; bgcNormal;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+COLORREF&nbsp;&nbsp;&nbsp; bgcHover;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+ULSTYLE&nbsp;&nbsp;&nbsp;&nbsp; ulStyle;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+UINT&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+dtStyle;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+BOOL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+bAutoSize;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+BOOL&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+bPlaySound;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+callback&nbsp;&nbsp;&nbsp; cbFn;</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+DWORD&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; cbID;<br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">}
+HYPCTRL;</span></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span>You'll
+not need to fill out all structure members for using the hyperlink
+control. You'll only modify the members as needed. Let's have a look at
+what each member is used for.<br>
+<br>
+<span style="font-weight: bold;">LPTSTR
+szLink;</span><br>
+This is the link which will be opened when the hyperlink control was
+clicked. It should include the protocol which will be used by
+<span style="font-style: italic;">ShellExecute()</span> to open the
+required application. This structure member is
+required to fill out as long as no callbacks are used. If you use
+callbacks, this value is ignored. The default
+value is <span style="font-style: italic;">NULL</span>.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.szLink =
+_T("http://smorgasbordet.com/pellesc");</span><br
+ style="color: rgb(204, 153, 51);">
+      <span style="color: rgb(204, 153, 51);">hc.szLink =
+_T("mailto:someone@somewhere.net");</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">LPTSTR
+szText;</span><br>
+This is the text which will be displayed as link. This structure member
+is optional as long as no callbacks are used. If you use callbacks,
+this value is required. The default value is <span
+ style="font-style: italic;">NULL</span>. If you don't fill out this
+structure member, the value of <span style="font-style: italic;">szLink</span>
+will be used as <span style="font-style: italic;">szText</span>.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.szText =
+_T("Pelles C Website");</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">LPTSTR
+szTooltip;</span><br>
+This is the text which will be displayed as tooltip to provide
+additional information for the user. This value is optional. The
+default value is <span style="font-style: italic;">NULL</span>.</div>
+<br style="font-family: monospace;">
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td><span
+ style="font-family: monospace; color: rgb(204, 153, 51);">hc.szTooltip
+=
+_T("Click here to visit Pelles C website");</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">COLORREF
+fgcNormal;</span><br>
+This is the text color. This value is optional. The default value is <span
+ style="font-style: italic;">RGB(0, 0, 255);</span> (blue).</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace; color: rgb(204, 153, 51);">hc.fgcNormal
+=
+RGB(0, 0, 255); </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">COLORREF
+fgcHover;</span><br>
+This is the text color when the mouse is over the control. This value
+is optional. The default value is <span style="font-style: italic;">RGB(255,
+0, 0);</span> (red).</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.fgcHover =
+RGB(255, 0, 0);</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">COLORREF
+bgcNormal;</span><br>
+This is the background color. This value is optional. The default value
+is <span style="font-style: italic;">(COLORREF)
+GetSysColor(COLOR_3DFACE)</span>.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace; color: rgb(204, 153, 51);">hc.bgcNormal
+= (COLORREF) GetSysColor(COLOR_3DFACE); </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">COLORREF
+bgcHover;</span><br>
+This is the background color when the mouse is over the control. This
+value is optional. The default value is <span
+ style="font-style: italic;">(COLORREF) GetSysColor(COLOR_3DFACE)</span>.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace; color: rgb(204, 153, 51);">hc.bgcHover
+= (COLORREF) GetSysColor(COLOR_3DFACE); </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">ULSTYLE
+ulStyle;</span><br>
+This value is used to define how the hyperlink control text will be
+underlined. This value is optional. The default value is <span
+ style="font-style: italic;">ulAlways</span>. ULSTYLE is defined like
+the following:</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">typedef enum {<br>
+&nbsp;&nbsp; &nbsp;ulHover, ulNone, ulAlways<br>
+} ULSTYLE;</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="width: 10%; vertical-align: top; text-align: left;">ulHover<br>
+ulNone<br>
+ulAlways<br>
+      </td>
+      <td>- underline text when mouse is over control<br>
+- never underline text<br>
+- always underline text<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.ulStyle = ulAlways;</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">UINT
+dtStyle;</span><br>
+This value defines how the hyperlink control text will be drawn. This
+value is optional. The default value is <span
+ style="font-style: italic;">DT_LEFT | DT_TOP</span>. You can use the
+same flags which <span style="font-style: italic;">DrawText()</span>
+uses.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.dtStyle = DT_LEFT | DT_TOP;</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">BOOL
+bAutoSize;</span><br>
+This value defines if the hyperlink control should resize to fit the
+text. This value is optional. The default value is <span
+ style="font-style: italic;">TRUE</span>.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.bAutoSize = TRUE;</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">BOOL
+bPlaySound;</span><br>
+This value defines if the hyperlink control should play a sound when
+clicked. This value is optional. The default value is <span
+ style="font-style: italic;">TRUE</span>. The sound will be located
+through the registry and is defined in the control panel applet "Sounds
+and Audio devices" -&gt; "Sounds" -&gt; "Windows Explorer" -&gt; "Start
+navigating".</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td
+ style="width: 10%; vertical-align: top; text-align: left; font-family: monospace;">Example:
+      <br>
+      </td>
+      <td style="font-family: monospace;"><span
+ style="color: rgb(204, 153, 51);">hc.bPlaySound = TRUE;</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">callback
+cbFn;</span><br>
+This is a pointer to a callback function which will be called when the
+hyperlink control was clicked. This value is optional. the default
+value is <span style="font-style: italic;">NULL</span>. The callback
+function is defined like the following:</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">typedef void
+(*callback) (DWORD HypCtrlID); </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="width: 10%; vertical-align: top; text-align: left;"><span
+ style="font-family: monospace;">Example: </span><br>
+      </td>
+      <td style="color: rgb(204, 153, 51);"><span
+ style="font-family: monospace;">hc.cbFn = HypCtrlCallback; </span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;"><span style="font-weight: bold;">DWORD
+cbID;</span><br>
+This value can be used to identify a hyperlink control. This value is
+optional. The default value is <span style="font-style: italic;">0</span>.
+This value will be passed to the callback function as argument.<br>
+</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="0"
+ cellspacing="0">
+  <tbody>
+    <tr>
+      <td style="width: 10%; vertical-align: top; text-align: left;"><span
+ style="font-family: monospace;">Example:</span><br>
+      </td>
+      <td style="color: rgb(204, 153, 51);"><span
+ style="font-family: monospace;">hc.cbID = 1;</span><br
+ style="font-family: monospace;">
+      <br style="font-family: monospace;">
+      <span style="font-family: monospace;">#define HC_WEBSITE 1</span><br
+ style="font-family: monospace;">
+      <span style="font-family: monospace;">hc.cbID = HC_WEBSITE;</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<span style="font-weight: bold;"></span><br>
+<hr style="width: 100%; height: 2px;">
+<h3><a name="anc2"></a>2. Tutorial:
+How to use the hyperlink control</h3>
+<div style="text-align: justify;">Copy the files "hyperlink.c" and
+"hyperlink.h" to your project directory and add them to your project.
+After that include the hyperlink header file in your source code.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">#include
+"hyperlink.h"</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">The best place for creating hyperlink
+controls is while a window or dialog initializes. First we need to
+declare a variable of type <span style="font-style: italic;">HYPCTRL</span>
+to store our modified values. You can use the same variable to create
+multiple hyperlink controls. In that example we will create two of them.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">HYPCTRL hc;</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span></td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">The first thing we should do with our
+new variable is initializing. This is accomplished with a call to <span
+ style="font-style: italic;">InitHypCtrl()</span>. This function
+creates the hyperlink control class if it doesn't exists and
+initializes the <span style="font-style: italic;">HYPCTRL</span>
+structure with default values.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">InitHypCtrl(&amp;hc);</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">Next we need to modify the values to
+suit our needs. We want the link to underline only if the mouse is over
+the
+control. We're also adding a tooltip text to the control.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">hc.ulStyle =
+ulHover;<br>
+hc.szLink = _T("http://smorgasbordet.com/pellesc");<br>
+hc.szTooltip = _T("Visit Pelles C Website");</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">Now it's time to create the control.
+This is done with a call to <span style="font-style: italic;">CreateHypCtrl()</span>.
+This function requires six parameters, the first is the handle to the
+parent window, the second is the address of our structure with the
+modified values, the third and fourth are the left and top positions of
+the control and the fifth and sixth value specifies the width and
+height of the control. You can pass 0 to the fifth and sixth parameter
+if the auto sizing feature is enabled (which is the default).</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">CreateHypCtrl(hwndDlg,
+&amp;hc, 10, 10, 0, 0);</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+So the complete code for a website and mail link would look like this:<br>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">...<br>
+#include "hyperlink.h"<br>
+...</span><br>
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">static
+LRESULT CALLBACK MainDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam,
+LPARAM lParam)</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">{</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+switch (uMsg)</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+{</span><br style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case WM_INITDIALOG: {<br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HYPCTRL hc;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+InitHypCtrl(&amp;hc);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.ulStyle =
+ulHover;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szLink =
+_T("http://smorgasbordet.com/pellesc");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szTooltip =
+_T("Visit Pelles C Website");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+CreateHypCtrl(hwndDlg, &amp;hc, 10, 10, 0, 0);<br>
+      <br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; InitHypCtrl(&amp;hc);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.ulStyle =
+ulHover;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szLink =
+_T("mailto:someone@somewhere.net");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szTooltip =
+_T("Send program author a mail");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+CreateHypCtrl(hwndDlg, &amp;hc, 10, 30, 0, 0);<br>
+      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return TRUE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+...</span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h3><a name="anc3"></a>3. Tutorial:
+How to use the callback feature</h3>
+<div style="text-align: justify;">You should have read the first
+tutorial before starting with this one<br>
+<br>
+If you want to call a function in your program instead of opening a
+link when the hyperlink control was clicked you should use callbacks.
+First we need to define a function used as callback. This function
+requires one argument, the ID of the calling hyperlink control.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">void
+HypCtrlCallback(DWORD HypCtrlID);</span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">In that function we can differentiate
+various hyperlink controls and perform some action when the control was
+clicked. In that example we're opening a message box.</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">void
+HypCtrlCallback(DWORD HypCtrlID)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; switch(HypCtrlID) {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; case 1:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+MessageBox(NULL, _T("Callback Test 1 clicked!"), _T("Test"), MB_OK);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; case 2:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+MessageBox(NULL, _T("Callback Test 2 clicked!"), _T("Test"), MB_OK);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}</span><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">Now it's time to tell the hyperlink
+control that it should use a callback function. First we define a
+variable of type <span style="font-style: italic;">HYPCTRL</span> and
+initialize this variable with <span style="font-style: italic;">InitHypCtrl()</span>.
+We fill out the <span style="font-style: italic;">cbFn</span>, <span
+ style="font-style: italic;">cbID</span> and <span
+ style="font-style: italic;">szText</span> members of the <span
+ style="font-style: italic;">HYPCTRL</span> structure and create the
+control. The <span style="font-style: italic;">szLink</span> member is
+ignored when a callback function is used. The complete code for
+creating two hyperlink controls with callback support looks like the
+following:</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">...<br>
+#include "hyperlink.h"<br>
+...<br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">void
+HypCtrlCallback(DWORD HypCtrlID);</span><br>
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">... </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"><br>
+void HypCtrlCallback(DWORD HypCtrlID)<br>
+{<br>
+&nbsp;&nbsp;&nbsp; switch(HypCtrlID) {<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; case 1:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+MessageBox(NULL, _T("Callback Test 1 clicked!"), _T("Test"), MB_OK);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; case 2:<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+MessageBox(NULL, _T("Callback Test 2 clicked!"), _T("Test"), MB_OK);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; break;<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+      <br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">static LRESULT
+CALLBACK MainDlgProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM
+lParam)</span><br style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">{</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+switch (uMsg)</span><br
+ style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+{</span><br style="font-family: monospace; color: rgb(0, 153, 0);">
+      <span style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+case WM_INITDIALOG: {<br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+HYPCTRL hc;<br>
+      <br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+InitHypCtrl(&amp;hc);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szText =
+_T("Callback Test 1");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.cbFn =
+HypCtrlCallback;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hc.cbID = 1;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+CreateHypCtrl(hwndDlg, &amp;hc, 10, 10, 0, 0);<br>
+      <br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; InitHypCtrl(&amp;hc);<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.szText =
+_T("Callback Test 2");<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; hc.cbFn =
+HypCtrlCallback;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+hc.cbID = 2;<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+CreateHypCtrl(hwndDlg, &amp;hc, 10, 30, 0, 0);<br>
+      </span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);"></span><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+return TRUE;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+&nbsp;&nbsp;&nbsp; ...<br>
+&nbsp;&nbsp;&nbsp; }<br>
+}<br>
+... </span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">It is also possible to use multiple
+callback functions by assigning the <span style="font-style: italic;">cbFn</span>
+member of the <span style="font-style: italic;">HYPCTRL</span>
+structure different functions.<br>
+</div>
+<br>
+<hr style="width: 100%; height: 2px;">
+<h3><a name="anc4"></a>4. Remarks</h3>
+<div style="text-align: justify;">If you want to use the hyperlink
+control with Windows 95 you should modify "hyperlink.c" to load a hand
+cursor from your resource section. This could look like this:<br>
+</div>
+<br>
+<table style="width: 100%; text-align: left;" border="0" cellpadding="2"
+ cellspacing="2">
+  <tbody>
+    <tr>
+      <td style="width: 100%; background-color: rgb(239, 239, 239);"><span
+ style="font-family: monospace; color: rgb(0, 153, 0);">BOOL
+InitHypCtrl(HYPCTRL* pHc)<br>
+{<br>
+...<br>
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; wc.hCursor = LoadCursor(hInst,
+MAKEINTRESOURCE(IDR_CUR_HAND));<br>
+...<br>
+}<br>
+      </span> </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div style="text-align: justify;">Other restrictions should not exist.<br>
+</div>
+<br>
+</body>
+</html>

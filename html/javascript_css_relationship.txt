@@ -1,0 +1,17 @@
+var n = document.getElementById('nav');
+if(n){
+    var as = n.getElementsByTagName('a');
+    if(as.length > 0){
+        for(var i=0;as[i];i++){
+            as[i].style.color = '#369';
+            as[i].style.textDecoration = 'none';
+        }
+    }
+}
+
+/* is the same as */
+
+#nav a{
+    color:#369;
+    text-decoration:none;
+}

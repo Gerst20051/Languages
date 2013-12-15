@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Socket Test</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<script>
+var ws = new WebSocket("ws://localhost:11001/");
+
+ws.onopen = function(){
+	alert("open");
+	ws.send("Hello Mr. Server!");
+};
+
+ws.onmessage = function(e){
+	alert(e.data);
+};
+
+ws.onclose = function(){
+};
+</script>
+</body>
+</html>

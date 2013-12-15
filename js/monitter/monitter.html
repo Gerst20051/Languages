@@ -1,0 +1,98 @@
+<!DOCTYPE HTML> 
+<html lang="en-US"> 
+<head> 
+	<meta charset="UTF-8"> 
+	<title>monitter : real time, live twitter search and monitoring</title> 
+	<script src="http://platform.twitter.com/anywhere.js?id=1IwCAV5mWknP0rDZY2cw&v=1" type="text/javascript"></script> 
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAdV5OA00w6Zo_dA2Om_mCWhQNVDhmc4aLQ2jmBHaUgOyqV2QF3RRwBme9UNtNKsl99sCnruWkWufuRQ" type="text/javascript"></script> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js"></script> 
+	<script type="text/javascript" charset="utf-8" src="http://bit.ly/javascript-api.js?version=latest&login=monitter&apiKey=R_2332338150c3bafe5cccf5e733e5cfed"></script> 
+	<script type="text/javascript" src="timers.jquery.js"></script>		
+	<script type="text/javascript" src="lowpro.jquery.js"></script> 
+	<script type="text/javascript" src="jquery.cookie.js"></script> 
+	<script type="text/javascript" src="config.js"></script>	
+	<script type="text/javascript" src="monitter5.js"></script>	
+	<link rel="stylesheet" href="css/monitter.css" /> 
+	<link rel="icon" href="img/favicon.ico" type="image/png" /> 
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/png" /> 
+</head> 
+<body class="black"> 
+	<div id="mainwrap"> 
+	<div id="column-manager"> 
+		<div id="toolbar"> 
+		<form action="#" id="toolbarform" method="post"> 
+			<span id="login"></span> 
+			<span id="share"> 
+				<a href="#" class="tweet">Share on Twitter</a> 
+				<a href="mailto:alex@monitter.com" id="contactlink">Contact</a> 
+				<a href="/widget/index.html">Widgets</a> 
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5091474">Donate</a> 
+				<a href="#trends" id="loadTrends">Trending</a> 
+			</span> 
+			tweets containing <input id="search" value="monitter" /> 
+						
+			<input id="addcolumn" class="button" value="Add Column" type="submit"> 
+			</form> 
+		</div> 
+	</div>	
+	</div> 
+ 
+ 
+	<div id="tweetblockout"></div> 
+	<div id="tweetbox"> 
+		<div class="inner"> 
+			<a href="#" class="closer">x</a> 
+			<h2>Send a Tweet!</h2> 
+			<div class="reply"></div> 
+			<div class="frame"></div> 
+		</div> 
+	</div> 
+	<div id="profile"></div> 
+ 
+<div id="welcome"> 
+<h2>Welcome to monitter.</h2> 
+<p>Monitter is a real time twitter search tool that enables you to monitor a set of keywords on twitter. It also allows you to narrow the search to a particular geographic location, allowing you to find out what’s going onin a particular part of the world.</p> 
+<p>To begin: just type a search term into the box above and click the “add column” button - or, if you prefer, click on the “Trending” link to  load three columns with current twitter trends in them.</p> 
+</div> 
+ 
+<div id="columntemplate" class="template"> 
+	<div class="column"> 
+		<div class="controls"><a class="close">x</a><a class="pause">p</a><a class="settings">s</a></div> 
+		
+		<div class="title"></div> 
+		
+		<div class="settings-panel"> 
+			<div class="inner"> 
+				<h2>Settings</h2> 
+				<h3>Geocoding:</h3> 
+				<div class="geo"> 
+				<label>Location: </label> 
+				<input type="text" name="location" value="" class="loc" /></p> 
+				<label>Radius:</label> <select name="radius" class="radius" > 
+					<option>100</option> 
+					<option>50</option> 
+					<option>30</option> 
+					<option>20</option> 
+					<option>10</option> 
+				</select> 
+				
+				<select name="units" class="units"> 
+					<option value="km">Km</option> 
+					<option value="mi">Mi</option> 
+				</select> 
+				</div> 
+			</div> 
+			<div class="hide-settings">&uarr;&nbsp;SAVE SETTINGS&nbsp;&uarr;</div> 
+		</div> 
+		
+		<div class="pausedmessage"> 
+			<span class="msg">Paused</span> 
+			<div class="counter"></div> 
+		</div> 
+		<div class="stream"></div> 
+	</div> 
+</div> 
+<script src="http://monitter.uservoice.com/pages/general/widgets/tab.js?alignment=right&amp;color=ffffff" type="text/javascript"></script> 
+</body> 
+</html>

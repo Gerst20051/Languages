@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://10k.aneventapart.com/Uploads/111/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>The Monty Hall Problem</title>
+		
+		<link rel="stylesheet" href="http://10k.aneventapart.com/Uploads/111/style/layout.css">
+		
+		<script src="./montyhallproblem_files/jquery.min.js"></script>
+		<script src="./montyhallproblem_files/app.js"></script>
+	</head>
+	
+	<body>
+		<div id="main_page">
+			<header><h1>The Monty Hall Problem</h1></header>
+			<article id="basic_about"><p>Statistics say that in a card game that you have to guess a card among three cards, and a wrong card is discarded when you guess first, if you change your guess you will have more chances to get it right than if you keep your guess. <a href="javascript:void(0);" id="show_more">Show more</a></p></article>
+			
+			
+			<section id="about" style="display: none; ">
+				<header><h2>Monty Hall Problem?</h2></header>
+				<article>
+				
+					<p>According to <a href="http://en.wikipedia.org/wiki/Monty_Hall_problem">Wikipedia</a>, <em>"The Monty Hall problem is a probability puzzle loosely based on the American television game show</em> Let's Make a Deal<em>. The problem is also called the Monty Hall Paradox, as it is a veridical paradox in that the result appears absurd, but is demonstrably true".</em></p>
+					
+					<blockquote><p>Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which he knows has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice? — <em>Whitaker (1990)</em></p></blockquote>
+					
+					<p>This is a card game which works exactly like the problem mentioned above. Try to demonstrate the odds! <a href="javascript:void(0);" id="show_less">Show less</a></p>
+				
+				</article>
+			</section>
+			
+			<section id="app">
+				<ul>
+					<li><a href="javascript:;" id="card_one" title="Card One" class=""></a></li>
+					<li><a href="javascript:;" id="card_two" title="Card Two" class=""></a></li>
+					<li><a href="javascript:;" id="card_three" title="Card Three" class=""></a></li>
+				</ul>
+				<div id="message" style="display: none; ">
+					<span></span>
+				</div>
+				<a href="javascript:;" id="card_restart">Restart</a>
+			</section>
+			
+			<section id="results">
+				<header><h2>Results</h2></header>
+				<article>
+					<ul>
+						<li><div class="rl">Changed your guess right (<span id="trc">7</span>)</div> <span id="pc1">64%</span><div class="clean"></div></li>
+						<li><div class="rl">Kept your guess right (<span id="tkc">0</span>)</div> <span id="pc2">0%</span><div class="clean"></div></li>
+						<li><div class="rl">Times you played at all</div> <span id="tp">12</span><div class="clean"></div></li>
+					</ul>
+				</article>
+			</section>
+			
+			<footer>
+				<address>
+					<p>by <a href="http://twitter.com/CrociDB">@CrociDB</a> - <a href="http://crocidb.com/">http://crocidb.com/</a></p>
+				</address>
+			</footer>
+		</div>
+	
+
+</body></html>

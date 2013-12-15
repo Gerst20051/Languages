@@ -1,0 +1,218 @@
+<head>
+<title>scrape.py</title>
+<link rel=stylesheet href="style.css">
+</head>
+<div class="header">
+<h1>scrape.py</h1>
+<a href="http://zesty.ca/">Ka-Ping Yee</a>
+</div>
+<div class="content">
+
+<p><code>scrape.py</code> is a Python module
+for scraping content from webpages.
+Using it, you can easily fetch pages, follow links, and submit forms.
+Cookies, redirections, and SSL are handled automatically.
+(For SSL, you either need a version of Python
+with the <code>socket.ssl</code> function,
+or the <code>curl</code> command-line utility.)
+
+<p>
+<code>scrape.py</code> does <strong>not</strong>
+parse the page into a complete parse tree,
+so it can handle pages with sloppy syntax.
+You are free to locate content in the page
+according to nearby text, tags, or even comments.
+
+<p>You can read the <a href="http://zesty.ca/python/scrape.html">documentation page</a>.
+
+<p>Here's a quick walkthrough.
+
+<h2>Fetching a page</h2>
+
+<p>To fetch a page, you call the <code>go(url)</code> method
+ on a <code>Session</code> object.
+The module provides a default session object
+in a variable called <code>s</code>.
+
+<pre>
+&gt;&gt;&gt; <span class="input">from scrape import *</span>
+&gt;&gt;&gt; <span class="input">s.go('http://zesty.ca/')</span>
+<span class="output">&lt;Region 0:17780&gt;</span>
+</pre>
+
+<p>The result is a <code>Region</code> object
+spanning the entire retrieved document (all 17780 bytes).
+<code>Region</code> objects are
+what you use to get around inside an HTML document;
+they represent a region of text in the HTML source code,
+with a starting point and an ending point.
+
+<p>
+After any successful fetch,
+the session's <code>doc</code> attribute
+also contains the document.
+The <code>headers</code> attribute
+contains the headers that were received,
+and the <code>url</code> attribute
+contains the URL that was retrieved
+(which might be different from the URL you requested,
+if redirection took place).
+
+<pre>
+&gt;&gt;&gt; <span class="input">s.doc</span>
+<span class="output">&lt;Region 0:17780&gt;</span>
+&gt;&gt;&gt; <span class="input">s.headers</span>
+<span class="output">{'date': 'Sat, 05 Jul 2008 11:25:04 GMT',
+ 'accept-ranges': 'bytes',
+ 'content-type': 'text/html; charset=UTF-8',
+ 'connection': 'close',
+ 'server': 'Apache/2.0.46 (Red Hat)'}</span>
+&gt;&gt;&gt; <span class="input">s.url</span>
+<span class="output">'http://zesty.ca/'</span>
+</pre>
+
+<p>On a <code>Region</code>,
+the raw content is available in the <code>content</code> attribute,
+and the plain text is available in the <code>text</code> attribute.
+(In this case, both of these are Unicode strings
+because a Unicode encoding was specified by the server.)
+
+<pre>
+&gt;&gt;&gt; <span class="input">d = s.doc</span>
+&gt;&gt;&gt; <span class="input">print d.content[:70]</span>
+<span class="output">&lt;!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;
+&lt;html</span>
+&gt;&gt;&gt; <span class="input">d.text[:30]</span>
+<span class="output">u'Ka-Ping Yee\nKa-Ping Yee pingze'</span>
+</pre>
+
+<h2>Extracting content</h2>
+
+<p>A <code>Region</code> object can be sliced, just like a string.
+The object remembers its starting and ending positions in the original document,
+but any indices you supply are with respect to the region itself.
+
+<pre>
+&gt;&gt;&gt; <span class="input">d</span>
+<span class="output">&lt;Region 0:17780&gt;</span>
+&gt;&gt;&gt; <span class="input">r = d[1400:1450]</span>
+&gt;&gt;&gt; <span class="input">r</span>
+<span class="output">&lt;Region 1400:1450&gt;</span>
+&gt;&gt;&gt; <span class="input">len(r)</span>
+<span class="output">50</span>
+&gt;&gt;&gt; <span class="input">r.start</span>
+<span class="output">1400</span>
+&gt;&gt;&gt; <span class="input">r.end</span>
+<span class="output">1450</span>
+&gt;&gt;&gt; <span class="input">r.content</span>
+<span class="output">u'd voting system security.\nOr check out my\n&lt;a href='</span>
+&gt;&gt;&gt; <span class="input">r[-15:]</span>
+<span class="output">&lt;Region 1435:1450&gt;</span>
+</pre>
+
+<p>Call <code>first(tagname)</code> on a <code>Region</code> object
+to find the first block (inside the region)
+with matching start and end tags of the tag name you specify.
+The resulting <code>Region</code> object
+retains information about the tag;
+you get dictionary-style access to the attributes.
+The region starts just after the start tag
+and ends just before the end tag.
+
+<pre>
+&gt;&gt;&gt; <span class="input">t = d.first('title')</span>
+&gt;&gt;&gt; <span class="input">t</span>
+<span class="output">&lt;Region 247:258 title&gt;</span>
+&gt;&gt;&gt; <span class="input">t.tagname</span>
+<span class="output">'title'</span>
+&gt;&gt;&gt; <span class="input">t.text</span>
+<span class="output">u'Ka-Ping Yee'</span>
+&gt;&gt;&gt; <span class="input">s = d.first('span')</span>
+&gt;&gt;&gt; <span class="input">s</span>
+<span class="output">&lt;Region 2212:2213 span class='flag'&gt;</span>
+&gt;&gt;&gt; <span class="input">s.keys()</span>
+<span class="output">['class']</span>
+&gt;&gt;&gt; <span class="input">s['class']</span>
+<span class="output">'flag'</span>
+</pre>
+
+<p><code>last(tagname)</code> finds the last block inside the region;
+<code>next(tagname)</code> finds the first block
+that starts after the end of the region; and
+<code>previous(tagname)</code> finds the last block
+that ends before the start of the region.
+
+
+<h2>Basic navigation</h2>
+
+<p>If you know the exact text of a link anchor,
+<code>follow(anchor)</code> will find the link,
+resolve it, and follow it.
+There happens to be a link on my home page that says "CV".
+
+<pre>&gt;&gt;&gt; <span class="input">s.follow('CV')</span>
+<span class="output">&lt;Region 0:19843&gt;</span>
+&gt;&gt;&gt; <span class="input">s.headers</span>
+<span class="output">{'date': 'Sat, 05 Jul 2008 11:25:04 GMT',
+ 'accept-ranges': 'bytes',
+ 'content-type': 'text/html; charset=UTF-8',
+ 'connection': 'close',
+ 'server': 'Apache/2.0.46 (Red Hat)'}</span>
+&gt;&gt;&gt; <span class="input">s.url</span>
+<span class="output">'http://zesty.ca/cv.html'</span>
+&gt;&gt;&gt; <span class="input">s.doc</span>
+<span class="output">&lt;Region 0:19843&gt;</span>
+</pre>
+
+The <code>doc</code> attribute contains the retrieved document
+(the same thing returned by <code>go()</code>,
+<code>submit()</code>, or <code>follow()</code>).
+
+<p>
+Instead of the exact anchor text,
+you can supply a regular expression for the anchor.
+There's a link on my CV to the University of Waterloo,
+but the text isn't exactly "Waterloo".
+It ends in "Waterloo", though.
+
+<pre>&gt;&gt;&gt; <span class="input">s.follow('Waterloo')</span>
+<span class="error">Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+  File "/Users/ping/python/scrape.py", line 243, in follow
+    raise ScrapeError('link %r not found' % anchor)
+scrape.ScrapeError: link 'Waterloo' not found</span>
+&gt;&gt;&gt; <span class="input">s.follow(re.compile('.*waterloo', re.I))</span>
+<span class="output">&lt;Region 0:10851&gt;</span>
+</pre>
+
+<p>
+Calling <code>back()</code> takes us back to my CV page.
+
+<pre>&gt;&gt;&gt; <span class="input">s.url</span>
+<span class="output">'http://www.uwaterloo.ca/'</span>
+&gt;&gt;&gt; <span class="input">s.doc</span>
+<span class="output">&lt;Region 0:10851&gt;</span>
+&gt;&gt;&gt; <span class="input">s.back()</span>
+<span class="output">'http://zesty.ca/cv.html'</span>
+&gt;&gt;&gt; <span class="input">s.doc</span>
+<span class="output">&lt;Region 0:10851&gt;</span>
+</pre>
+
+
+<p>
+A <code>Region</code> object can be associated
+with an HTML element,
+in which case the starting point is just after the start tag,
+and the ending point is just before the end tag;
+or it can be associated with an individual tag,
+in which case the starting point is just before the "&lt;"
+and the ending point is just after the "&gt;".
+
+
+<pre>&gt;&gt;&gt; <span class="input">from scrape import *</span>
+&gt;&gt;&gt; <span class="input">s.go('http://zesty.ca/')</span>
+<span class="output">&lt;Region 0:17780&gt;</span>
+</pre>
+
+
+</div>

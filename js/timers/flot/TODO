@@ -1,0 +1,42 @@
+These are mostly ideas, that they're written down here is no guarantee
+that they'll ever be done. If you want something done, feel free to
+say why or come up with a patch. :-)
+
+handling time data
+  - dataformat
+  - axis adjustment
+  - tick generation
+
+grid configuration
+  - how ticks look like
+
+selection
+  - user should be able to cancel selection with escape
+  - select points
+
+interactive zooming
+  - convenience zoom(x1, y1, x2, y2)? and zoomOut() (via zoom stack)?
+  - auto-zoom mode?
+  - auto-margins
+
+support for highlighting stuff
+  - lines
+  - points
+
+legend
+  - interactive auto-highlight of graph?
+
+interactive hover over
+  - fire event with value for points
+  - fire event with graph id for lines
+
+support segmented lines
+  - put in null value to signify a break in the data set
+
+error margin indicators
+  - for scientific/statistical purposes
+
+non-xy based graph types
+  - figure out how to integrate them with the rest of the plugin
+  - pie charts
+  - bar charts with keys instead of x values

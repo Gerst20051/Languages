@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title>Decoder for Dean Edwards' Javascript Packer</title>
+<script language="javascript" type="text/javascript">
+function Decode() {
+eval("var value=String" + txtInput.value.slice(4));
+txtOutput.value = value;
+}
+</script>
+</head>
+<body>
+<div>Input</div>
+<textarea id="txtInput" style="width: 632px; height: 253px"></textarea>
+<br />
+<input id="btnDecode" style="width: 198px" 
+type="button" value="Decode" onclick="Decode()" />
+<br />
+<div>Output</div>
+<textarea id="txtOutput" style="width: 630px; height: 273px"></textarea>
+<br />
+<a href="http://dean.edwards.name/packer/">Dean Edwards' JS packer</a>
+<br />
+<a href="http://jsbeautifier.org/">Javascript unpacker and beautifier</a>
+</body>
+</html>

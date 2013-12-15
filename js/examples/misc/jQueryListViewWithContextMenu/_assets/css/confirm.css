@@ -1,0 +1,39 @@
+/*
+ * SimpleModal Basic Modal Dialog
+ * http://www.ericmmartin.com/projects/simplemodal/
+ * http://code.google.com/p/simplemodal/
+ *
+ * Copyright (c) 2008 Eric Martin - http://ericmmartin.com
+ *
+ * Licensed under the MIT license:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *
+ * Revision: $Id: basic.css 132 2008-05-23 16:05:17Z emartin24 $
+ *
+ */
+
+/* Simple Popup */
+/* Overlay */
+#modalOverlay {background-color:#000; cursor:wait;}
+
+/* Container */
+#modalContainer {width: 300px; height: 200px; margin-left:-170px; left:50%; top:15%; background-color:#fff; border:3px solid #ccc;}
+#modalContainer a.modalCloseImg {background:url(../img/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-18px; cursor:pointer;}
+#modalContainer .modalheader {height:30px; width:100%; background:url(../img/sprite.png) repeat-x 0px 0px; color:#0192BF; font-size:1.1em; font-weight:bold; line-height:30px;}
+#modalContainer .modalheader span {padding-left:8px;}
+#modalContainer .modalbody {padding:15px 5px 15px 5px;}
+#modalContainer .modalbody th {text-align:right;}
+#modalContainer .modalbodysubmitbuttons {text-align:center;}
+
+/* Confirm Popup
+/* Overlay */
+#confirmModalOverlay {background-color:Gray; cursor:wait;}
+
+/* Container */
+#confirmModalContainer {height:140px; width:420px; left:50%; top:15%; margin-left:-210px; font-family:Calibri, Verdana, Arial; font-size:16px; text-align:left; background:#fff; border:4px solid #989898;}
+#confirmModalContainer .confirmheader {height:30px; width:100%; background:url(../img/sprite.png) repeat-x 0px 0px; color:#0192BF; font-size:1.1em; font-weight:bold; line-height:30px;}
+#confirmModalContainer .confirmheader span {padding-left:8px;}
+
+#confirmModalContainer a.modalCloseImg {background:url(../img/x.png) no-repeat; width:25px; height:29px; display:inline; z-index:3200; position:absolute; top:-15px; right:-18px; cursor:pointer;}
+#confirmModalContainer .confirmmessage {color:#333; text-align:center; margin:0; padding:12px 4px; font-size:1em;}
+#confirmModalContainer .confirmbuttons {text-align:center;}

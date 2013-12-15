@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>Buzz API Example</title>
+  </head>
+  <body>
+    <ul id="content"></ul>
+    <script>
+      function handler(response) {
+        for (var i = 0; i < response.data.items.length; i++) {
+          var item = response.data.items[i];
+          // in production code, item.title should have the HTML entities escaped.
+          document.getElementById("content").innerHTML += "<li>" + item.title + "</li>";
+        }
+      }
+    </script>
+    <script src="https://www.googleapis.com/buzz/v1/activities/googlebuzz/@public?alt=json&callback=handler&key=YOUR-KEY"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+DROP TABLE IF EXISTS t1, t2;
+select format(1.5555,0),format(123.5555,1),format(1234.5555,2),format(12345.55555,3),format(123456.5555,4),format(1234567.5555,5),format("12345.2399",2);
+format(1.5555,0)	format(123.5555,1)	format(1234.5555,2)	format(12345.55555,3)	format(123456.5555,4)	format(1234567.5555,5)	format("12345.2399",2)
+2	123.6	1,234.56	12,345.556	123,456.5555	1,234,567.55550	12,345.24
+select length(format('nan', 2)) > 0;
+length(format('nan', 2)) > 0
+1
+Warnings:
+Warning	1292	Truncated incorrect DOUBLE value: 'nan'
+select concat("$",format(2500,2));
+concat("$",format(2500,2))
+$2,500.00
+create table t1 ( a timestamp );
+insert into t1 values ( '2004-01-06 12:34' );
+select a from t1 where left(a+0,6) in ( left(20040106,6) );
+a
+2004-01-06 12:34:00
+select a from t1 where left(a+0,6) = ( left(20040106,6) );
+a
+2004-01-06 12:34:00
+select a from t1 where right(a+0,6) in ( right(20040106123400,6) );
+a
+2004-01-06 12:34:00
+select a from t1 where right(a+0,6) = ( right(20040106123400,6) );
+a
+2004-01-06 12:34:00
+select a from t1 where mid(a+0,6,3) in ( mid(20040106123400,6,3) );
+a
+2004-01-06 12:34:00
+select a from t1 where mid(a+0,6,3) = ( mid(20040106123400,6,3) );
+a
+2004-01-06 12:34:00
+drop table t1;
+End of 4.1 tests
+create table t1 as select uuid(), length(uuid());
+show create table t1;
+Table	Create Table
+t1	CREATE TABLE `t1` (
+  `uuid()` VARCHAR(36) COLLATE utf8_general_ci DEFAULT NULL,
+  `length(uuid())` INT DEFAULT NULL
+) ENGINE=DEFAULT COLLATE = utf8_general_ci
+drop table t1;
+End of 5.0 tests
+select connection_id() > 0;
+connection_id() > 0
+1
+End of tests

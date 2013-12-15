@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Login Page</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #EBE9ED;
+}
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+function ChangeSettings(){
+	if(document.getElementById('txtOldPassword').value==top.icookies.document.getElementById('thepassword').value){
+		if(document.getElementById('txtNew1').value==document.getElementById('txtNew2').value){
+			top.icookies.document.settings.thepassword.value=txtNew1.value;
+			top.icookies.document.settings.loginshow.value=document.getElementById('chkShow').checked;
+	                top.icookies.document.settings.chkul.value=document.getElementById('chkULImage').checked;
+	                top.icookies.document.settings.ul.value=document.getElementById('File').value;
+			top.icookies.document.settings.submit();
+		}else{
+			alert("The new passwords do not match.");
+		}
+	}else{
+		alert("Incorrect Password.");
+	}
+}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+   <td>
+    <table width="270" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+       <td align="center"><img alt="" name="imgPreview" width="70" height="70" id="imgPreview"></td>
+    </tr>
+    <tr>
+    <tr>
+       <td><input name="chkULImage" type="checkbox" id="chkULImage" value="1" checked><font size="2">User image:</font></td>
+    </tr>
+       <td><input name="File" type="file" id="File" onChange="imgPreview.src=File.value;chkULImage.checked=true;">&nbsp;<input name="Default" type="button" id="Default" value="Default" onClick="Default();"></td>
+    </tr>
+    </table>
+   </td>
+   <td>
+     <table height="50" border="0" cellspacing="0" cellpadding="0"><tr><td></td></tr></table>
+    <table width="200" border="1" cellspacing="0" cellpadding="0" bordercolor="#D6D3CE">
+      <tr>
+        <td colspan="4"><font size="2">Change Password</font></td>
+      </tr>
+      <tr>
+        <td><font size="2">Old Password:</font></td>
+        <td><input name="txtOldPassword" type="password" id="txtOldPassword" size="10"></td>
+      </tr>
+      <tr>
+        <td><font size="2">New Password:</font></td>
+        <td><input name="txtNew1" type="password" id="txtNew1" size="10"></td>
+      </tr>
+      <tr>
+        <td><font size="2">Confirm Password:</font></td>
+        <td><input name="txtNew2" type="password" id="txtNew2" size="10"></td>
+      </tr>
+      <tr>
+        <td colspan="4"><label><input name="chkShow" type="checkbox" value="" id="chkShow"><font size="2">Display login screen</font></label></td>
+      </tr>
+      </table>
+   </td>
+  </tr>
+</table>
+  <p align="center">
+    <input name="OK" type="button" id="OK2" onClick="location='index.htm';ChangeSettings();" value="OK" style="width:60">
+    <input name="Cancel" type="button" id="Cancel3" onClick="location='index.htm';" value="Cancel" style="width:60">
+  </p>
+				<script language="javascript" type="text/javascript">
+	if(top.document.icookies.document.getElementById('chkul').value=="true"){
+		chkULImage.checked=true;
+	}else{
+		chkULImage.checked=false;
+	}
+	File.value=top.document.icookies.document.getElementById('ul').value;
+	imgPreview.src=File.value;
+	if(top.document.icookies.document.getElementById('loginshow').value=="true"){
+		chkShow.checked=true;
+	}else{
+		chkShow.checked=false;
+	}
+	function Default(){
+	top.document.icookies.document.getElementById('ul').value='../images/userlogin.png';
+	File.value=top.document.icookies.document.getElementById('ul').value;
+	imgPreview.src=File.value;
+	}
+	if(top.document.icookies.document.getElementById('ul').value==''){
+		File.value="../images/userlogin.png";
+		imgPreview.src="../images/userlogin.png";
+	}else{
+		File.value=top.document.icookies.document.getElementById('ul').value;
+		imgPreview.src=top.document.icookies.document.getElementById('ul').value;
+	}
+				</script>
+</body>
+</html>

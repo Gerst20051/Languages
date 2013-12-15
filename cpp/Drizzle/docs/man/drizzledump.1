@@ -1,0 +1,490 @@
+.TH "DRIZZLEDUMP" "1" "March 15, 2011" "7" "Drizzle"
+.SH NAME
+drizzledump \- a database backup program
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.\" Man page generated from reStructeredText.
+.
+.SH SYNOPSIS
+.sp
+\fBdrizzledump\fP [\fI\%OPTIONS\fP] \fIdatabase\fP [\fItables\fP]
+.sp
+\fBdrizzledump\fP [\fI\%OPTIONS\fP] \fI\%--databases\fP \fIDB1\fP [\fIDB2\fP \fIDB3\fP...]
+.sp
+\fBdrizzledump\fP [\fI\%OPTIONS\fP] \fI\%--all-databases\fP
+.SH DESCRIPTION
+.sp
+\fBdrizzledump\fP is used for backing up and
+restoring logical backups of a Drizzle database, as well as for migrating
+from a more traditional \fIMySQL\fP server.
+.sp
+When connecting to a Drizzle server it will do a plain dump of the server.
+When connecting to a MySQL server, it will automatically detect this, and
+will convert the dump of the tables and data into a Drizzle compatible format.
+.sp
+Any binary data in tables will be converted into hexadecimal output so that it
+does not corrupt the dump file.
+.SH DRIZZLEDUMP OPTIONS
+.sp
+The \fBdrizzledump\fP tool has several available options:
+.INDENT 0.0
+.TP
+.B \-\-all\-databases, \-A
+.sp
+Dumps all databases found on the server apart from \fCinformation_schema\fP and
+\fCdata_dictionary\fP in Drizzle and \fCinformation_schema\fP,
+\fCperformance_schema\fP and \fCmysql\fP in MySQL.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-force, \-f
+.sp
+Continue even if a sql\-error is received.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-help
+.
+Show a message with all the available options.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-lock\-all\-tables, \-x
+.sp
+Locks all the tables for all databases with a global read lock.  The lock is
+released automatically when \fBdrizzledump\fP ends.
+Turns on \fI\%--single-transaction\fP and \fI\-\-lock\-tables\fP.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-single\-transaction
+.
+Creates a consistent snapshot by dumping the tables in a single transaction.
+During the snapshot no other connected client should use any of the
+following as this will implicitly commit the transaction and prevent the
+consistency:
+.sp
+.nf
+.ft C
+ALTER TABLE
+DROP TABLE
+RENAME TABLE
+TRUNCATE TABLE
+.ft P
+.fi
+.sp
+Only works with InnoDB.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-skip\-opt
+.
+A shortcut for \fI\-\-skip\-drop\-table\fP, \fI\%--skip-create\fP,
+\fI\%--skip-extended-insert\fP and \fI\%--skip-disable-keys\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-tables t1 t2 ...
+.sp
+Dump a list of tables.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-show\-progress\-size rows (=10000)
+.sp
+Show progress of the dump every \fIrows\fP of the dump.  Requires
+\fI\%--verbose\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-verbose, \-v
+.sp
+Sends various verbose information to stderr as the dump progresses.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-skip\-extended\-insert
+.
+Dump every row on an individual line.  For example:
+.UNINDENT
+.sp
+.nf
+.ft C
+     INSERT INTO \(gat1\(ga VALUES (1,\(aqhello\(aq);
+     INSERT INTO \(gat1\(ga VALUES (2,\(aqworld\(aq);
+
+This is useful for calculating and storing diffs of dump files.
+.ft P
+.fi
+.INDENT 0.0
+.TP
+.B \-\-skip\-dump\-date
+.
+Do not display the date/time at the end of the dump.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-no\-defaults
+.
+Do not attempt to read configuration from configuration files.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-add\-drop\-database
+.
+Add \fCDROP DATABASE\fP statements before \fCCREATE DATABASE\fP.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-compact
+.
+Gives a more compact output by disabling header/footer comments and enabling
+\fI\-\-skip\-add\-drop\-table\fP, \fI\%--skip-disable-keys\fP
+and \fI\-\-skip\-add\-locks\fP.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-databases, \-B
+.sp
+Dump several databases.  The databases do not need to follow on after this
+option, they can be anywhere in the command line.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-skip\-disable\-keys, \-K
+.sp
+Do not dump the statements \fCALTER TABLE ... DISABLE KEYS\fP and
+\fCALTER TABLE ... ENABLE KEYS\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-ignore\-table table
+.sp
+Do not dump specified table, needs to be in the format \fCdatabase.table\fP.
+Can be specified multiple times for multiple tables.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-insert\-ignore
+.
+Add the \fCIGNORE\fP keyword into every \fCINSERT\fP statement.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-no\-autocommit
+.
+Make the dump of each table a single transaction by wrapping it in \fCCOMMIT\fP
+statements.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-no\-create\-db, \-n
+.sp
+Do not dump the \fCCREATE DATABASE\fP statements when using
+\fI\%--all-databases\fP or \fI\%--databases\fP.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-skip\-create, \-t
+.sp
+Do not dump the \fCCREATE TABLE\fP statements.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-no\-data, \-d
+.sp
+Do not dump the data itself. Used to dump the schemas only.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-replace
+.
+Use \fCREPLACE INTO\fP statements instead of \fCINSERT INTO\fP
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-type type (=stdout)
+.sp
+Destination of the data.
+.sp
+\fBstdout\fP
+The default.  Output to the command line
+.sp
+\fBdatabase\fP
+Connect to another database and pipe data to that.
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-host hostname (=localhost)
+.sp
+The hostname for the destination database.  Requires
+\fI\%--destination-type\fP \fI= database\fP
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-port port (=3306)
+.sp
+The port number for the destination database.  Requires
+\fI\%--destination-type\fP \fI= database\fP
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-user username
+.sp
+The username for the destinations database.  Requires
+\fI\%--destination-type\fP \fI= database\fP
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-password password
+.sp
+The password for the destination database.  Requires
+\fI\%--destination-type\fP \fI= database\fP
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-destination\-database database
+.sp
+The database for the destination database, for use when only dumping a
+single database.  Requires
+\fI\%--destination-type\fP \fI= database\fP
+.sp
+New in version Drizzle7: 2010\-09\-27
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-my\-data\-is\-mangled
+.
+If your data is UTF8 but has been stored in a latin1 table using a latin1
+connection then corruption is likely and drizzledump by default will retrieve
+mangled data.  This is because MySQL will convert the data to UTF8 on the way
+out to drizzledump and you effectively get a double\-conversion to UTF8.
+.sp
+This typically happens with PHP apps that do not use \fCSET NAMES\fP.
+.sp
+In these cases setting this option will retrieve the data as you see it in
+your application.
+.sp
+New in version Drizzle7: 2011\-01\-31
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-host, \-h hostname (=localhost)
+.sp
+The hostname of the database server.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-user, \-u username
+.sp
+The username for the database server.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-password, \-P password
+.sp
+The password for the database server.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-port, \-p port (=4427)
+.sp
+The port number of the database server.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B \-\-protocol protocol (=mysql)
+.sp
+The protocol to use when connecting to the database server.  Options are:
+.sp
+\fBmysql\fP
+The standard MySQL protocol.
+.sp
+\fBdrizzle\fP
+The Drizzle protocol.
+.UNINDENT
+.SH BACKUPS USING DRIZZLEDUMP
+.sp
+Backups of a database can be made very simply by running the following:
+.sp
+.nf
+.ft C
+$ drizzledump \-\-all\-databases > dumpfile.sql
+.ft P
+.fi
+.sp
+This can then be re\-imported into drizzle at a later date using:
+.sp
+.nf
+.ft C
+$ drizzle < dumpfile.sql
+.ft P
+.fi
+.SH MYSQL MIGRATION USING DRIZZLEDUMP
+.sp
+As of version 2010\-09\-27 there is the capability to migrate databases from
+MySQL to Drizzle using \fBdrizzledump\fP.
+.sp
+\fBdrizzledump\fP will automatically detect whether it is talking to a
+MySQL or Drizzle database server.  If it is connected to a MySQL server it will
+automatically convert all the structures and data into a Drizzle compatible
+format.
+.IP Warning
+.
+\fBdrizzledump\fP will by default try to connect via. port 4427 so to
+connect to a MySQL server a port (such as 3306) must be specified.
+.RE
+.sp
+So, simply connecting to a MySQL server with \fBdrizzledump\fP as follows
+will give you a Drizzle compatible output:
+.sp
+.nf
+.ft C
+$ drizzledump \-\-all\-databases \-\-host=mysql\-host \-\-port=3306 \-\-user=mysql\-user \-\-password > dumpfile.sql
+.ft P
+.fi
+.sp
+Additionally \fBdrizzledump\fP can now dump from MySQL and import directly
+into a Drizzle server as follows:
+.sp
+.nf
+.ft C
+$ drizzledump \-\-all\-databases \-\-host=mysql\-host \-\-port=3306 \-\-user=mysql\-user \-\-password \-\-destination\-type=database \-\-desination\-host=drizzle\-host
+.ft P
+.fi
+.IP Note
+.
+Please take special note of \fIold\-passwords\-label\fP if you have connection
+issues from \fBdrizzledump\fP to your MySQL server.
+.RE
+.IP Note
+.
+If you find your VARCHAR and TEXT data does not look correct in a drizzledump
+output, it is likely that you have UTF8 data stored in a non\-UTF8 table.  In
+which case please check the \fI\%--my-data-is-mangled\fP option.
+.RE
+.sp
+When you migrate from MySQL to Drizzle, the following conversions are required:
+.INDENT 0.0
+.INDENT 3.5
+.INDENT 0.0
+.IP \(bu 2
+.
+MyISAM \-> InnoDB
+.IP \(bu 2
+.
+FullText \-> drop it (with stderr warning)
+.IP \(bu 2
+.
+int unsigned \-> bigint
+.IP \(bu 2
+.
+tinyint \-> int
+.IP \(bu 2
+.
+smallint \-> int
+.IP \(bu 2
+.
+mediumint \-> int
+.IP \(bu 2
+.
+tinytext \-> text
+.IP \(bu 2
+.
+mediumtext \-> text
+.IP \(bu 2
+.
+longtext \-> text
+.IP \(bu 2
+.
+tinyblob \-> blob
+.IP \(bu 2
+.
+mediumblob \-> blob
+.IP \(bu 2
+.
+longblob \-> blob
+.IP \(bu 2
+.
+year \-> int
+.IP \(bu 2
+.
+set \-> text [1]
+.IP \(bu 2
+.
+date/datetime default 0000\-00\-00 \-> default NULL [2]
+.IP \(bu 2
+.
+date/datetime NOT NULL columns \-> NULL [2]
+.IP \(bu 2
+.
+any date data containing 0000\-00\-00 \-> NULL [2]
+.IP \(bu 2
+.
+time \-> int of the number of seconds [3]
+.IP \(bu 2
+.
+enum\-> DEFAULT NULL [4]
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SH FOOTNOTES
+.IP [1] 5
+.
+There is currently no good alternative to SET, this is simply to preserve
+the data in the column.  There is a new alternative to SET to be included
+at a later date.
+.IP [2] 5
+.
+Currently, ALL date columns have their DEFAULT set to NULL on migration.
+This is so that any rows with 0000\-00\-00 dates can convert to NULL.
+.IP [3] 5
+.
+This prevents data loss since MySQL\(aqs TIME data type has a range of
+\-838:59:59 \- 838:59:59, and Drizzle\(aqs TIME type has a range of
+00:00:00 \- 23:59:59.
+.IP [4] 5
+.
+This is so that empty entries such as \(aq\(aq will convert to NULL.
+.SH AUTHOR
+Andrew Hutchings
+.SH COPYRIGHT
+2010, Drizzle Developers
+.\" Generated by docutils manpage writer.
+.\" 
+.

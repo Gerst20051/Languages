@@ -1,0 +1,55 @@
+var G_vmlCanvasManager; // so non-IE won't freak out in canvasInit
+
+function canvasInit() {
+        var cv = document.getElementById("cv");
+        if (G_vmlCanvasManager != undefined) { // ie IE
+                G_vmlCanvasManager.initElement(cv);
+        }
+
+        if (cv.getContext) {
+                var ctx = cv.getContext('2d');
+                ...
+        }
+}
+
+
+
+var canvas = document.getElementById("cv");
+if (typeof(G_vmlCanvasManager) != 'undefined')
+canvas = G_vmlCanvasManager.initElement(canvas);
+
+
+
+append('<div id=\"foo\"><canvas width=\"400\" height=\"300\"></canvas></div>');
+
+
+
+var foo = document.getElementById("foo");
+var canvas = document.createElement('canvas');
+canvas.setAttribute("width", CANVAS_WIDTH);
+canvas.setAttribute("height", CANVAS_HEIGHT);
+foo.appendChild(canvas);
+
+el.innerHTML = '';
+
+while (el.childNodes.length > 0) el.removeChild(el.childNodes[0]);
+
+
+
+<html> <head> <script src="/js/jquery.js"></script> <!--IE?><script src="excanvas.js"></script><!endif?-->
+
+<script type="text/javascript"> $(document).ready(function(){
+
+var canvasElem = document.createElement('canvas');
+var CANVAS_WIDTH = 200; var CANVAS_HEIGHT = 200;
+document.getElementById('myCanvas').appendChild(canvasElem);
+// if it is IE if (typeof G_vmlCanvasManager != 'undefined') {
+// reassign the variable to the new element created by initElement canvasElem = G_vmlCanvasManager.initElement(canvasElem);
+}
+canvasElem.setAttribute("width", CANVAS_WIDTH); canvasElem.setAttribute("height", CANVAS_HEIGHT); canvasElem.setAttribute("id", "myCanvas");
+var context = canvasElem.getContext("2d"); context.fillStyle = '#f0f'; context.fillRect(0,0,200,200); context.fillStyle = '#00f'; context.fillRect(50,50,100,100);
+}); </script> </head> <body> <div id="myCanvas"></div> </body> </html>
+
+
+
+var canvas = document.createElement('canvas'); $(canvas).attr('width',100).attr('height',100).appendTo($('#item')); if($.browser.msie) canvas = G_vmlCanvasManager.initElement(canvas);

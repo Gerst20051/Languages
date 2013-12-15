@@ -1,0 +1,26 @@
+{
+   "background_page": "background.html",
+   "browser_action": {
+      "default_icon": "icons/19.png",
+      "default_title": "Paste your text to pastebin.com",
+      "popup": "pastebin.html"
+   },
+   "content_scripts": [ {
+      "all_frames": true,
+      "js": [ "pastebin.js" ],
+      "matches": [ "http://*/*", "https://*/*" ],
+      "run_at": "document_start"
+   } ],
+   "description": "Store text for a certain period of time with Pastebin.com the #1 paste tool since 2002",
+   "icons": {
+      "128": "icons/128.png",
+      "19": "icons/19.png",
+      "48": "icons/48.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDUw7R/jX1RuDWKWa0F3aK8J5D3mje7seKiepTPDW+XAZCoYEdxfCXb4WNfebXxxBwtP9iT/wT/ZNvqUxc6D4IGfX8rCNw0o0+Docu4lUMOJyzB36Wh8gOCao8vyJJsqHKWm62RhXES/XrEXKIYhX67jCP5m3ZHhFQ22lOxvAKpgQIDAQAB",
+   "name": "Pastebin.com",
+   "options_page": "options.html",
+   "permissions": [ "tabs", "http://*.pastebin.com/" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "2.1"
+}

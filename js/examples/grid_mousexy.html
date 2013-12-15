@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>jQuery Mouse Events: ClientX vs. PageX</title>
+<style type="text/css">
+ 
+div.grid {
+border: 1px solid #CCCCCC ;
+cursor: pointer ;
+font: 10px verdana ;
+height: 99px ;
+position: absolute ;
+width: 99px ;
+z-index: 100 ;
+}
+ 
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+ 
+// I draw the grid on the document.
+function createGrid(){
+var body = $( "body" );
+ 
+// Draw the X axis.
+for (var x = 0 ; x <= 2000 ; x += 100){
+ 
+// Draw the Y axis.
+for (var y = 0 ; y <= 2000 ; y += 100){
+ 
+$( "<div class='grid'></div>" )
+.appendTo( body )
+.css({
+left: (x + "px"),
+top: (y + "px")
+})
+.text( x + "," + y )
+;
+ 
+}
+ 
+}
+};
+ 
+ 
+// When the DOM is ready, initialize the scripts.
+jQuery(function( $ ){
+ 
+// Create the grid for coordinate affordance.
+createGrid();
+ 
+// Bind the mouse event to the document so that we
+// can see what kind of coordinates we have to play
+// with.
+$( document ).click(
+function( event ){
+ 
+// Client variables.
+console.log(
+"clientX/Y: " +
+event.clientX + ", " +
+event.clientY
+);
+ 
+// Page variables. NOTE: These are the ones
+// that are officially supported by the
+// jQuery Event object.
+console.log(
+"pageX/Y: " +
+event.pageX + ", " +
+event.pageY
+);
+ 
+// Hrule.
+console.log( "......" );
+ 
+}
+);
+ 
+});
+ 
+</script>
+</head>
+<body>
+<!-- Nothing needed here. -->
+</body>
+</html>

@@ -1,0 +1,21 @@
+Windows
+-------
+PhotoGrabber is a stand alone executable file, there is no install
+or uninstall process.  Just extract pg.exe and dep to the same directory.
+
+If you try to run pg.exe from within the zip folder you will get a warning:
+
+"This application may depend on other compressed files in this folder."
+
+You should click "Extract all".
+
+OSX
+---
+Unzip and drag PhotoGrabber.app into your Applications folder.
+
+Errors
+------
+Please report any problems you find to the issue tracker:
+http://code.google.com/p/photograbber/issues/list
+
+Thank you for downloading PhotoGrabber!

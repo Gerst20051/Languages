@@ -1,0 +1,49 @@
+AtNow v1.1
+Copyright (c) 2002 - 2004 Nir Sofer
+Web site: http://nirsoft.mirrorz.com
+
+Description
+===========
+AtNow is a command-line utility that schedules programs and commands to run
+in the near future. By default, the commands are executed within 70 seconds
+or less from the moment that you run the AtNow utility with the desired command. 
+
+Syntax
+======
+AtNow [\\ComputerName] [Delay] [/interactive] "command" [parameters]
+
+\\ComputerName 	
+Specifies a remote computer. If this parameter is omitted, the commands are 
+executed on the local computer
+
+Delay		
+Specifies when the command is to run, expressed as a number of seconds from
+the current time. The default is 70 seconds. In most cases, you should 
+not change this value (See the notice below)
+Notice: In most systems, there is a nasty bug in Microsoft Scheduler Service:
+When you schedule a command for a specific time, the seconds in the scheduled
+time are always truncated. For example: if a command is scheduled to execute 
+at 16:35:32, it'll actually be executed at 16:35:00. Due to this bug, 
+the delay value must be greater than 60 seconds. Otherwise, the command might
+not be executed.
+ 
+
+/interactive	
+If this parameter is specified, the executed program can
+interact with the desktop of user who is currently logged on.
+(Similar to /interactive parameter in AT command) 
+
+"command"	
+Specifies the Windows NT command or program. If the command 
+contains space characters, you must enclose the command with quotes.
+
+
+Parameters	
+Specifies the parameters of the program.
+
+Examples
+========
+AtNow \\COMP1 /interactive "c:\winnt\system32\regedt32.exe"
+AtNow "c:\program files\cmds\cmd2.cmd"
+AtNow "c:\program files\MySoft\test1.exe" /p /m
+AtNow \\192.168.0.5 /interactive "calc.exe"

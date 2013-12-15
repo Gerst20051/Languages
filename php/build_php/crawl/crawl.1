@@ -1,0 +1,133 @@
+.\"	$OpenBSD: mdoc.template,v 1.6 2001/02/03 08:22:44 niklas Exp $
+.\"
+.\" The following requests are required for all man pages.
+.Dd May 29, 2001
+.Dt CRAWL 1
+.Os
+.Sh NAME
+.Nm crawl
+.Nd a small and efficient HTTP crawler
+.Sh SYNOPSIS
+.\" For a program:  program [-abc] file ...
+.Nm crawl
+.Op Fl u Ar urlincl
+.Op Fl e Ar urlexcl
+.Op Fl i Ar imgincl
+.Op Fl I Ar imgexcl
+.Op Fl d Ar imgdir
+.Op Fl m Ar depth
+.Op Fl c Ar state
+.Op Fl t Ar timeout
+.Op Fl A Ar agent
+.Op Fl R
+.Op Fl E Ar external
+.Op Ar url ...
+.Sh DESCRIPTION
+The
+.Nm
+utility starts a depth-first traversal of the web at the specified URLs.  
+It stores all JPEG images that match the configured constraints.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds_imagedir
+.It Fl v Ar level
+The verbosity level of
+.Nm
+in regards to printing information about URL processing.  The default
+is 1.
+.It Fl u Ar urlincl
+A
+.Xr regex 3
+expression that all URLs that should be included in the traversal
+have to match.
+.It Fl e Ar urlexcl
+A
+.Xr regex 3
+expression that determines which URLs will be excluded from the
+traversal.
+.It Fl i Ar imgincl
+A
+.Xr regex 3
+expression that all image URLs have to match in order to be
+stored on disk.
+.It Fl I Ar imgexcl
+A
+.Xr regex 3
+expression that determines the images that will not be stored.
+.It Fl d Ar imagedir
+Specifies the directory under which the images will be stored.
+.It Fl m Ar depth
+Specifies the maximum depth of the traversal.
+A 0 means that only the URLs specified on the command line will
+be retrieved. A -1 stands for unlimited traversal and should
+be used with caution.
+.It Fl c Ar state
+Continues a traversal that was interrupted previosly.  The remaining
+URLs with be read from the file
+.Ar state .
+.It Fl t Ar timeout
+Specifies the time in seconds that needs to pass between successive
+access of a single host.  The parameter is a float.  The default
+is five seconds.
+.It Fl A Ar agent
+Specifies the agent string that will be included in all HTTP
+requests.
+.It Fl R
+Specifies that the crawler should ignore the
+.Pa robots.txt
+file.
+.It Fl E Ar external
+Specifies an external filter program that can refine which
+URLs are to be included in the traversal.  The filter program
+reads the URLs on
+.Dv stdin
+and outputs a single character on
+.Dv stdout .
+An output of
+.Ql y
+indicates that the URL may be included,
+.Ql n
+means that the URL should be excluded.
+.El
+.Pp
+The source code for existing web crawlers tend to be very complicated.
+.Nm
+is a very simple design with pretty simple source code.
+.Pp
+A configuration file can be used instead of the command line
+arguments.  The configuration file contains the MIME-type that
+is being used.  To download other objects besides images the
+MIME-type needs to be adjusted accordingly.
+For more information, see
+.Pa crawl.conf .
+.\" The following requests should be uncommented and used where appropriate.
+.Sh EXAMPLES
+.Cm crawl -m 0 http://www.w3.org/
+.Pp
+Searches for images in  the index page of the web consortium without
+following any other links.
+.\" This next request is for sections 2 and 3 function return values only.
+.\" .Sh RETURN VALUES
+.\" The next request is for sections 2 and 3 error and signal handling only.
+.\" .Sh ERRORS
+.\" This next request is for section 4 only.
+.\" .Sh DIAGNOSTICS
+.\" This next request is for sections 1, 6, 7 & 8 only.
+.\" .Sh ENVIRONMENT
+.\" .Sh FILES
+.\" .Sh SEE ALSO
+.\" .Xr foobar 1
+.\" .Sh COMPATIBILITY
+.\" .Sh STANDARDS
+.Sh ACKNOWLEDGEMENTS
+This product includes software developed by Ericsson Radio Systems.
+.Pp
+This product includes software developed by the University of
+California, Berkeley and its contributors.
+.Sh AUTHORS
+The
+.Nm
+utility has been developed by Niels Provos.
+.\" .Sh HISTORY
+.\" .Sh BUGS
+.\" .Sh CAVEATS

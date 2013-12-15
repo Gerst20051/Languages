@@ -1,0 +1,151 @@
+<div align="left"> </div>
+<div align="left" class="red">[TOKEN_ERROR]<br>
+</div>
+<form name="form" enctype="multipart/form-data" method="post" action="" onSubmit="return CheckForm();">
+<input type="hidden" name="MAX_FILE_SIZE" value="[TOKEN_MAX_FILE_SIZE]" />
+	
+  <table align="left">
+    <tr>
+			<td colspan="2">
+				<div class="grey">News title : </div>
+				<input type="text" name="news_title" value="[FORM_NEWS_TITLE]" style="width: 350px" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" valign="top">
+				<div class="grey">News content : </div>
+				<textarea name="news_content">[FORM_NEWS_CONTENT]</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News short preview : </div>
+				<table>
+					<tr>
+						<td><input type="checkbox" name="news_short_check" value="1"[TOKEN_NEWS_SHORT_CHECK] OnClick="CheckShort();" /></td>
+						<td id="ns1"><input type="text" name="news_short" value="[FORM_NEWS_SHORT]" maxlength="3" size="3" /></td>
+						<td id="ns2" class="grey"> words</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News date : </div>
+				<input type="text" name="news_date" value="[FORM_NEWS_DATE]" maxlength="10" size="10" />
+				<a href="javascript: show_calendar('form.news_date', null, null, 'DD-MM-YYYY')"><img src="images/calendar.jpg" border="0" /></a>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News location : </div>
+				<select name="news_place">
+					<option value="">Select</option>
+					<option value="1">Left side</option>
+					<option value="2">Middle</option>
+					<option value="3">Right side</option>
+					<option value="4">Bottom</option>
+					<option value="5">Top</option>
+					<option value="6">Archive</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News order : </div>
+				<input type="text" name="news_order" value="[FORM_NEWS_ORDER]" maxlength="3" size="3" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">Show thumbnail in list : </div>
+				<input type="checkbox" name="news_show_thumb" value="1"[TOKEN_NEWS_SHOW_THUMB_CHECK] />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News detail picture : </div>
+				<input type="file" name="news_pict1" value=""/>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="grey">News thumbnail picture : </div>
+				<input type="file" name="news_pict2" />
+			</td>
+		</tr>
+		<tr><td height="10"></td></tr>
+		<tr>
+			<td></td>
+			
+      <td rowspan="2" align="right">&nbsp;</td>
+		</tr>
+		<tr>
+			<td><input type="button" value="Cancel" OnClick="window.location='?[TOKEN_TOFROM]';" />
+        <input name="submit2" type="submit" value="Send" /></td>
+		</tr>
+	</table>
+	<input type="hidden" name="submit" value="1">
+</form>
+<br />
+
+
+<script>
+function CheckForm() {
+	var c = document.form;
+	if (c.news_title.value == '') {
+		alert ('Please input news title');
+		c.news_title.focus();
+		return false;
+	}
+	if (c.news_content.value == '') {
+		alert ('Please input news content');
+		c.news_content.focus();
+		return false;
+	}
+	if ((c.news_short_check.checked) && (c.news_short.value == '')) {
+		alert ('Please input news short preview');
+		c.news_short.focus();
+		return false;
+	}
+	if (c.news_date.value == '') {
+		alert ('Please input news date');
+		c.news_date.focus();
+		return false;
+	}
+	if (c.news_place.value == '') {
+		alert ('Please select news location');
+		c.news_place.focus();
+		return false;
+	}
+	if (((c.news_pict1.value == '') &&(c.news_pict2.value != '')) || ((c.news_pict1.value != '') &&(c.news_pict2.value == ''))) {
+		alert ('Please select both a thumbnail and a detail picture');
+		c.news_pict1.focus();
+		return false;
+	}
+	return true;
+}
+function CheckShort() {
+	var c = document.form;
+	if (c.news_short_check.checked) {
+		document.getElementById('ns1').style.visibility = 'visible';
+		document.getElementById('ns2').style.visibility = 'visible';
+	} else {
+		document.getElementById('ns1').style.visibility = 'hidden';
+		document.getElementById('ns2').style.visibility = 'hidden';
+	}
+}
+function SelectPlace(x) {
+	var c = document.form;
+	for (var i = 0; i < c.news_place.length; i++) {
+		if (c.news_place[i].value == x) {
+			c.news_place[i].selected = true;
+		}
+	}
+	
+}
+
+
+CheckShort();
+SelectPlace([FORM_NEWS_PLACE]);
+</script>

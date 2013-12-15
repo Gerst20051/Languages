@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Making a Custom Facebook Wall with jQuery | Tutorialzine Demo</title>
+
+<link rel="stylesheet" type="text/css" href="css/styles.css" />
+
+</head>
+<body>
+
+<div id="page">
+
+	<div id="wall" class="facebookWall"></div>
+
+    <!-- You are free to remove this footer -->
+    
+    <div id="footer">
+        <h2>Custom Facebook Wall with jQuery and CSS</h2>
+        <a class="tzine" href="http://tutorialzine.com/2011/03/custom-facebook-wall-jquery-graph/">Read &amp; Download on</a>
+    </div>
+
+</div>
+
+<!-- jQuery templates. Not rendered by the browser. Notice the type attributes -->
+
+<script id="headingTpl" type="text/x-jquery-tmpl">
+<h1>${name}<span>on Facebook</span></h1>
+</script>
+
+<script id="feedTpl" type="text/x-jquery-tmpl">
+<li>
+	<img src="${from.picture}" class="avatar" />
+	
+	<div class="status">
+		<h2><a href="http://www.facebook.com/profile.php?id=${from.id}" target="_blank">${from.name}</a></h2>
+		<p class="message">{{html message}}</p>
+		{{if type == "link" }}
+			<div class="attachment">
+				{{if picture}}
+					<img class="picture" src="${picture}" />
+				{{/if}}
+				<div class="attachment-data">
+					<p class="name"><a href="${link}" target="_blank">${name}</a></p>
+					<p class="caption">${caption}</p>
+					<p class="description">${description}</p>
+				</div>
+			</div>
+		{{/if}}
+	</div>
+	
+	<p class="meta">${created_time} · 
+	{{if comments}}
+		${comments.count} Comment{{if comments.count>1}}s{{/if}}
+	{{else}}
+		0 Comments
+	{{/if}} · 
+	{{if likes}}
+		${likes.count} Like{{if likes.count>1}}s{{/if}}
+	{{else}}
+		0 Likes
+	{{/if}}
+	</p>
+	
+</li>
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script src="js/jquery.tmpl.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

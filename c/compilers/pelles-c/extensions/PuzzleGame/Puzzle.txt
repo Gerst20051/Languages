@@ -1,0 +1,17 @@
+
+this is a small Boulder puzzle game, not really a Boulder Dash! 
+thirty-two maps to play through. 
+use the arrow keys to move your hero around the maps. 
+you can suck ground or emeralds. 
+to do so, just hold down the left control key and press an arrow key 
+in the direction where you want to suck. 
+with running over an emerald, you will get him likewise. 
+you can push stones in two directions, to the left or to the right.
+watch the time and let it not run out! 
+do not touch the butterfly!  
+be careful when the stones are falling!
+
+Peter 
+
+Attention!
+You are playing this Game on your own risk! 

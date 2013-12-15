@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://developers.facebook.com/schema/">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="robots" content="INDEX,FOLLOW"/>
+	<meta name="description" content="YTPlaylist.com - Instant YouTube Playlist. A web application that really enhances YouTube users' online video watching experience by providing an easy way to instantly search, add videos to a custom playlist, embed to websites/blogs, and share custom playlists on Facebook/Twitter all with no login required."/>
+	<meta name="keywords" content="YouTube, Playlist, Instant YouTube Playlist, YumeFave, Alex Ho (Vnitus), Steven Ton, Ngoc Tran, YouTube API"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="My Youtube playlist @ YTPlaylist.com" />
+	<meta property="og:description" content="YTPlaylist.com - Instant YouTube Playlist" />
+	<meta property="og:image" content="http://www.ytplaylist.com/img/ytp_logo_fb.jpg" />
+	<meta property="og:url" content="http://www.ytplaylist.com" />
+	<meta property="og:site_name" content="YTPlaylist" />
+	<meta property="fb:app_id" content="182303641798154" />
+	<title>YTPlaylist - Instant YouTube Playlist</title>
+	<link rel="stylesheet" type="text/css" href="ytp.css">
+</head>
+<body>
+	<div id="fb-root"></div>
+	<script>
+	//Facebook
+	window.fbAsyncInit = function() {
+		FB.init({appId: '182303641798154', status: true, cookie: true, xfbml: true});
+		FB.Event.subscribe('edge.create', function(response) {
+			alert('Thanks for your interest in YTPlaylist.com');
+		});
+		(function() {
+			var e = document.createElement('script');
+			e.type = 'text/javascript';
+			e.src = document.location.protocol + '//static.ak.fbcdn.net/connect.php/js/FB.Share';
+			e.async = true;
+			document.getElementById('fb-root').appendChild(e);
+		}());
+	};
+	(function() {
+		var e = document.createElement('script');
+		e.type = 'text/javascript';
+		e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+		e.async = true;
+		document.getElementById('fb-root').appendChild(e);
+	}());
+	</script>
+	<div id="header">
+		<div class="container">
+			<div id="logo">
+				<a href="./"><img src="ytp_logo.png"/></a>
+			</div>
+			<form method="post" action="#" autocomplete="off" onsubmit="ymfInstSearch(); return false;">
+				<div id="search_box"><input id="search_area" type="text" value="" onkeypress="ymfSugKeyPress(event);"/></div>
+				<div id="suggest_area"></div>
+				<input id="submit_search" class="button" type="submit" value="Search" />
+				<div class="clear"></div>
+			</form>
+			<div id="top_links"><a href="help.html">Help</a> | <a href="contact.html">Contact Us</a></div>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div id="main" class="container">
+		<div id="main_area">
+			<div id="player_area">
+				<h1 id="headline_title"></h1>
+				<div id="ymf_yt_player_div"></div>
+				<div id="ymf_yt_player_extra_div"></div>
+				<div class="clear"></div>
+			</div>
+			<div id="external_area">
+				<div id="external_buttons">
+					<input type="button" value="Share" class="button" onclick="ymfBtnShare();" title="Share this playlist"/>
+					<input type="button" value="Embed" class="button" onclick="ymfBtnEmbed();" title="Embed this player"/>
+					<input id="ymf_btn_save" type="button" value="Save" class="button" onclick="ymfBtnSave();" title="Save the playlist for next time"/>
+					<input id="ymf_btn_resize" type="button" value="" class="ymf_btns" onclick="ymfBtnResize();"/>
+					<input id="ymf_btn_lights_off" type="button" value="" class="ymf_btns" onclick="ymfBtnLights();"/>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+				<div id="share_area">
+					<input type="text" id="share_url" value="http://www.ytplaylist.com/"/>
+					Autoplay: <input type="checkbox" id="share_autoplay" onclick="ymfShareURL();"/>
+					<div class="clear"></div>
+					<div id="social_share">
+						<div class="btn fb_s">
+							<a name="fb_share" id="fb-share" rel="nofollow" share_url="http://www.ytplaylist.com/" type="button_count">Share</a>
+						</div>
+						<div class="btn tw">
+							<a id="tw-share" href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.ytplaylist.com" data-text="Check out my #YTPlaylist (YouTube playlist) @ytplaylist -" data-count="horizontal">Tweet</a>
+						</div> 
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div id="embed_area">
+					<span><textarea id="embed_text"></textarea></span>
+					<span class="autoplay">Autoplay: <input type="checkbox" id="embed_autoplay" onclick="ymfEmbedText();"/></span>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div id="testimonials">
+				<b>In The News</b><br/><br/>
+				YTPlaylist wins Mashup of the day<br/>
+				&nbsp;&nbsp;&nbsp; - <a href="http://bit.ly/elvbdt">ProgrammableWeb.com</a> (<a href="http://bit.ly/hfi1hh">Screenshot</a>)<br/><br/>
+				YTPlaylist: Create, Share & Embed YouTube Playlists<br/>
+				&nbsp;&nbsp;&nbsp; - <a href="http://muo.fm/dTgCc6">MakeUseOf.com</a><br/><br/>
+				<b>Testimoninals</b><br/><br/>
+				"Creators of YTPlaylist.com - Best way to listen to music since Grooveshark."<br/>
+				&nbsp;&nbsp;&nbsp;- Brian O'Toole (@BrianOToole - Account Executive @whatsnextmkting)<br/><br/>
+				"Nice job with YT Playlist. I like the nice, simple interface. Keep up the good work."<br/>
+				&nbsp;&nbsp;&nbsp;- Feross Aboukhadijeh (@FreeTheFeross - Creator of YTInstant)<br/><br/>
+				"This genius web site will be revolutionizing your YouTube experience. Very neat interface, and innovative features provided. With this, why would I ever need to come to YouTube again?"<br/>
+				&nbsp;&nbsp;&nbsp;- Brian Lein<br/><br/>
+				"http://ytplaylist.com/ evolutionize your internet"<br/>
+				&nbsp;&nbsp;&nbsp;- Jason Bach (@the_real_jbach)<br/><br/>
+				"If you use youtube to listen to music check this genius stuff out http://ytplaylist.com you kan make a playlist"<br/>
+				&nbsp;&nbsp;&nbsp;- Gene Erico (@smiLey_Geez)<br/><br/>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div id="sidebar">
+			<div id="tabs">
+				<div id="tab_playlist" class="tab first"><a href="javascript:void(0);" onclick="ymfSwitchSideBar('tab_playlist');">Playlist</a></div>
+				<div id="tab_search_results" class="tab"><a href="javascript:void(0);" onclick="ymfSwitchSideBar('tab_search_results');">Search Results</a></div>
+				<div class="clear"></div>
+			</div>
+			<div id="sidebar_content">
+				<ul id="playlist"></ul>
+				<ul id="search_results"></ul>
+				<div class="buttons">
+					<a href="javascript:ymfBtnPrev();" title="Play previous item">Prev</a>
+					<a href="javascript:ymfBtnPlay();" id="ymf_btn_play">Play</a>
+					<a href="javascript:ymfBtnNext();" title="Play next item">Next</a>
+					<a href="javascript:ymfBtnMute();" id="ymf_btn_mute">Mute</a>
+					<a href="javascript:ymfBtnRepeat();" id="ymf_btn_repeat" title="Repeat current item">Repeat</a>
+					<a href="javascript:ymfBtnShuffle();" id="ymf_btn_shuffle" title="Randomize the next item to play">Shuffle</a>
+				</div>
+			</div>
+			<div id="yt_video_urls" class="ymf_sidebar_section">
+				<div class="title">YouTube Video Urls <span id="ymf_expand_yt_urls"><a href="javascript:ymfExpand('yt_urls')"></a></span></div>
+				<form id="ymf_yt_urls" action="#" method="post" onsubmit="return ymfReadUrls();">
+					<textarea></textarea>
+					<input class="button" type="submit" value="Add To Playlist"/>
+				</form>
+			</div>
+			<div id="ymf_credits" class="ymf_sidebar_section">
+				<div class="title"><b>Developed by the YumeFave team:</b></div>
+				<ul>
+					<li><a href="vnitus.html">Alex Ho</a></li>
+					<li><a href="ston.html">Steven Ton</a></li>
+					<li><a href="ntran.html">Ngoc Tran</a></li>
+				</ul>
+				<p>
+					Unique visitors:
+					<span>
+					<!-- Start of StatCounter Code -->
+					<script type="text/javascript">
+					var sc_project = 6443180; 
+					var sc_invisible = 0; 
+					var sc_security = "33539a84"; 
+					var sc_text = 2; 
+					</script>
+
+					<script type="text/javascript"
+					src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+					class="statcounter"><a title="counter for tumblr"
+					href="http://statcounter.com/tumblr/" target="_blank"><img
+					class="statcounter"
+					src="http://c.statcounter.com/6443180/0/33539a84/0/"
+					alt="counter for tumblr" ></a></div></noscript>
+					<!-- End of StatCounter Code -->
+					</span>
+				</p>
+				<div class="btn fb_l">
+					<fb:like href="http://www.ytplaylist.com/" layout="button_count" show_faces="false" width="95"></fb:like>
+				</div>
+				<a href="http://www.youtube.com" target="_blank" title="This application utilizes Youtube API"><img src="ytp_powered_by.png" border="0"/></a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<script src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+	<script type="text/javascript" src="ytp.js"></script>
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-20080781-1']);
+	_gaq.push(['_trackPageview']);
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	</script>
+	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+</body>
+</html>

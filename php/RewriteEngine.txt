@@ -1,0 +1,5 @@
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !/projects/ie/index.html$
+RewriteCond %{HTTP_USER_AGENT} MSIE [NC]
+RewriteRule ^(.*)$ /projects/ie/index.html [L]

@@ -1,0 +1,24 @@
+*{margin:0px;padding:0px;font-family:Cambria,Serif}
+body{background:#DDD;font:12pt Cambria,Serif;margin:20px 30px;}
+h1{color:#AAA;width:180px;z-index:2;position:relative;font-size:32px}
+#sudoku{position:relative;top:-7px;z-index:1}
+#grid {border-bottom:1px solid #666;border-right:1px solid;float:left;text-align:center;background:#FFF;}
+#grid div{float:left;height:49px;line-height:49px;border-left:1px solid #666;border-top:1px solid #666;cursor:pointer;color:#33F;width:49px;}
+#input {line-height:49px;text-align:center;border-bottom:1px solid;border-right:1px solid;float:left;position:absolute;background:#FFF;z-index:3}
+#input div {float:left;width:49px;border-left:1px solid;border-top:1px solid;cursor:pointer;font-size:12pt}
+#description {margin-top:20px;width:200px;float:left;text-align:justify;margin-left:10px;color:#555;line-height:150%;font-size:8pt}
+#stuff {font-size:8pt;position:absolute;top:14px;left:300px;z-index:4;width:300px}
+#stuff q{color:#999}
+.hidden {display:none}
+.dark {background:#EEE}
+.orig {color:#000 !important;cursor:default !important}
+a {text-decoration:none}
+li a {display:block;color:#000;line-height:40px;text-align:center;}
+li a:hover {background:#FFF}
+span{font:8px Cambria;display:block;text-align:left;color:#999}
+ul{list-style:none;clear:left;line-height:20px;float:left;height:50px;margin-top:5px;}
+li{float:left;font-size:8pt;margin-right:10px;width:80px}
+input{position:relative;top:2px}
+select {width:80px;font-size:8pt}
+img{position:absolute;top:30px;left:200px;}
+/* Also a mess ;_; */

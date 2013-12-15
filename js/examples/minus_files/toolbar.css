@@ -1,0 +1,289 @@
+div#toolbar, div#minus_toolbar {
+overflow:hidden;
+font-size: 12px;
+width: 100%;
+height: 25px;
+/*position: absolute;*/
+bottom:0;
+left:0;
+color:#555;
+padding:0;
+margin:0;
+border: 0;
+background: #fff;
+}
+
+div#toolbar_container {
+position:fixed;
+width: 100%;
+bottom:0;
+left:0;
+background-color: #FFFFFF;
+transition:background-color .4s linear;
+-o-transition:background-color .4s linear;
+-moz-transition:background-color .4s linear;
+-webkit-transition:background-color .4s linear;
+}
+
+.dark div#toolbar_container {
+background-color: #272727;
+}
+
+div#minus_toolbar #toolbar_copyright {
+ /*color:#aaa;*/
+ color:#999;
+ cursor:default;
+}
+
+div#minus_toolbar .content,#minus_toolbar .option_button {
+/*position:relative;*/
+display: block;
+float:left;
+line-height: 12px;
+margin:0;
+margin-top: 1px;
+padding: 6px 7px;
+}
+
+#minus_toolbar .option_button {
+line-height: 16px;
+margin-top: 1px;
+padding: 4px 7px;
+}
+
+#minus_toolbar .menu_button_text {
+color:#0044CC;
+line-height: 12px;
+padding: 6px 12px;
+}
+
+#minus_toolbar .menu_button {
+display: block;
+float: left;
+margin:0;
+margin-top: 1px;
+padding: 6px 0;
+}
+
+#minus_toolbar .feed_num {
+/*position: fixed;*/
+/*margin-left: 92px;*/
+float:left;
+margin-top: 2px;
+margin-left: -16px;
+background: #333333;
+color: #FFFFFF;
+font-weight: bold;
+font-size: 11px;
+-moz-border-radius:8px;
+border-bottom-left-radius: 8px 8px;
+border-bottom-right-radius: 8px 8px;
+border-top-left-radius: 8px 8px;
+border-top-right-radius: 8px 8px;
+}
+
+#minus_toolbar .feed_num span, #minus_toolbar .feed_num a{
+padding: 3px;
+}
+
+#minus_toolbar .feed_num a, #minus_toolbar .feed_num a:hover{
+color: #FFFFFF;
+text-decoration: none;
+}
+
+div#minus_user {
+/*position: absolute;
+bottom:30px;
+right:0;
+*/
+margin-right: 10px;
+font-size: 10pt;
+padding-bottom:8px;
+text-align:right;
+}
+
+#minus_user a {
+color:#737373;
+cursor:pointer;
+font-weight: bold;
+text-decoration:none;
+}
+
+#minus_user a:hover {
+cursor:pointer;
+color:#0044CC;
+text-decoration:underline;
+}
+
+.dark #minus_user a {
+color:#737373;
+cursor:pointer;
+font-weight: bold;
+text-decoration:none;
+}
+
+.dark #minus_user a:hover {
+cursor:pointer;
+color:#FFFFFF;
+text-decoration:underline;
+}
+
+#minus_user span {
+color: #333;
+/*font-weight: bold;*/
+cursor:default;
+}
+
+.dark #minus_user span {
+color: #888888;
+}
+
+/*
+#minus_toolbar .menu_button a, #minus_toolbar .menu_button span  {
+line-height: 12px;
+padding: 6px 7px;
+}
+*/
+
+.divider {
+/*position: relative;*/
+height: 19px;
+/*width: 2px;*/
+width: 0;
+display: inline-block;
+/*background-color: #FFFFFF;*/
+/*background-color: #000000;*/
+border-right: solid #ddd 0px;
+border-bottom: none;
+border-top: none;
+top:2px;
+margin: 2px 0;
+float:left;
+}
+
+#minus_toolbar a {
+color:#999;
+cursor:pointer;
+text-decoration:none;
+}
+#minus_toolbar a:hover {
+cursor:pointer;
+color:#0044CC;
+text-decoration:underline;
+}
+
+div#toolbar_menu .content, div#toolbar_menu .content a, div#toolbar_menu .content a:hover, #minus_toolbar .menu_button, #minus_toolbar .menu_button a, #minus_toolbar .menu_button a:hover {
+font-weight: bold;
+/*font-size:13px;*/
+font-size:14px;
+}
+
+span.register_button {
+color:#E20E18 !important;
+}
+
+span.register_button:hover {
+color:#0044CC;
+}
+
+div#toolbar_menu .toolbar_username {
+font-weight: normal !important;
+/*cursor: default !important;*/
+margin-right: 10px;
+}
+
+div#toolbar_menu .toolbar_username a {
+text-decoration: none;
+font-weight: normal !important;
+}
+
+div#toolbar_menu .toolbar_username a:hover {
+text-decoration: underline;
+}
+
+#toolbar_menu .sign_in_button, #toolbar_menu .sign_out_button{
+color: #0044CC;
+cursor: pointer;
+}
+
+#minus_toolbar .signed_in_name {
+position: absolute;
+text-align: right;
+margin-top: -20px;
+width: 220px;
+right: 7px;
+color: #777777;
+font-weight: bold;
+}
+
+#minus_toolbar .darker_button {
+/*
+background: #d2d2d2;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#A2A2A2');
+background: -webkit-gradient(linear, left top, left bottom, from(#FFFFFF), to(#A2A2A2));
+background: -moz-linear-gradient(top,  #FFFFFF, #A2A2A2);
+*/
+}
+
+#minus_toolbar .button, #minus_toolbar .button_hover {
+cursor: pointer;
+text-decoration:none;
+}
+
+#minus_toolbar .button_hover {
+/*background: #FFFFFF !important;
+background: #CCCCCC !important;*/
+}
+
+/*
+#minus_toolbar .button_hover span:hover, #minus_toolbar .menu_button span:hover {
+color:#0044CC;
+text-decoration: underline !important;
+}
+*/
+
+.option_description {
+color: #777777;
+font-size: 8pt;
+z-index:10500;
+}
+
+#minus_toolbar .menu_button_text:hover, #minus_toolbar span.menu_button_text:hover {
+text-decoration:underline;
+color:#0044CC;
+background: #DFEAF4;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+padding: 3px 12px 2px;
+}
+
+#minus_toolbar .menu_button_text.active, #minus_toolbar .active, #minus_toolbar .menu_button_text.active:hover, #minus_toolbar .active:hover{
+border: 1px solid #CCCCCC;
+padding: 2px 12px 1px !important;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+margin: 0 2px;
+color: #555555;
+}
+
+#minus_toolbar a.menu_button_text.active {
+display:none;
+}
+
+#minus_toolbar span.menu_button_text.active, #minus_toolbar span.menu_button_text.active:hover {
+color: #111111;
+text-decoration: none;
+cursor: default;
+background: #FFFFFF;
+}
+
+#minus_toolbar .menu_button_text.active:hover, #minus_toolbar .active:hover {
+text-decoration: none;
+cursor: default;
+}
+
+#minus_toolbar .menu_button_text.active:hover {
+background: #FFFFFF !important;
+}

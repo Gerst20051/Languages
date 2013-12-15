@@ -1,0 +1,214 @@
+<!-- Made by Joshua Lückers < http://joshualuckers.nl > -->
+<html>
+	<head>
+		<style>
+			body {
+				font-family: helvetica, arial, sans-serif;
+				font-size: 14px;
+				color: black;
+				overflow: hidden;
+				padding: 0;
+			}
+			h1 {
+				font-size: 156%;
+				font-weight: bold;
+				padding: 0;
+				margin: 0;
+			}
+			div.clear {
+				clear: both;
+			}
+			div#wrap {
+				margin: 10px;
+				padding-top: 20px;
+			}
+			div#options {
+				margin-top: 20px;
+				font-weight: bold;
+				font-size: 99%;
+				border-top: 1px solid #B5C7DE;
+				background-color: #EBEFF9;
+				padding-bottom: 2px;
+				padding-left: 5px;
+				padding-top: 3px;
+			}
+			div#header h1 {
+				background: url("icons/48.png") 0px 20px no-repeat;
+				display: inline;
+				margin: 0;
+				padding-bottom: 43px;
+				padding-left: 50px;
+				padding-top: 40px;
+			}
+			div#pastebin, div#extension {
+				padding-bottom: 5px;
+				padding-left: 5px;
+				border-bottom: 1px solid #CDCDCD;
+				margin-bottom: 10px;
+			}
+			div#pastebin {
+				height: 185px;
+			}
+			div#extension {
+				height: 75px;
+			}
+			div#pastebin p, div#extension p {
+				font-weight: bold;
+			}
+			div.form_left {
+				float: left;
+				width: 150px;
+				height: 40px;
+			}
+			div.form_right {
+				float: right;
+				width: 400px;
+				height: 40px;
+				text-align: left;
+			}
+			div.form {
+				width: 550px;
+				clear: both;
+			}
+			span#msg {
+				background: #FDFFBD none repeat scroll 0px 0px;
+				display: none;
+				padding: 3px 10px;
+				font-weight: bold;
+			}
+		</style>
+		<script type="text/javascript" src="jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="options.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				checkFirstRun();
+				getDefaultSettings();
+				$('input[type=text], input[type=email]').keyup(function() {
+					$('input[type=button]')[0].disabled = false;
+					$('input[type=button]')[1].disabled = false;
+				});
+				$('select, input:radio').change(function() {
+					$('input[type=button]')[0].disabled = false;
+					$('input[type=button]')[1].disabled = false;
+				});
+			});
+			
+			function getDefaultSettings() {
+				//$('#paste_format option:contains(' +getSyntax()+ ')').attr("selected", true);
+				$('#paste_format').val(getSyntax());
+				//$('#paste_expire_date option:contains(' +getExpiration()+ ')').attr("selected", true);
+				$('#paste_expire_date').val(getExpiration());
+				//$('#paste_private option:contains(' +getExposure()+ ')').attr("selected", true);
+				$('#paste_private').val(getExposure());
+				$('#paste_name').val(getName());
+				$('input:radio[value=' +getPostedOption()+ ']').attr('checked', 'checked');
+			}
+			
+			function save() {
+				setSyntax($('#paste_format :selected').val());
+				setExpiration($('#paste_expire_date :selected').val());
+				setExposure(parseInt($('#paste_private :selected').val()));
+				setName($('#paste_name').val());
+				setPostedOption($('input[name=url]:checked').val());
+				$('#msg').fadeIn('fast');
+				$('#msg').fadeOut(7500);
+				$('input[type=button]')[0].disabled = true;
+				$('input[type=button]')[1].disabled = true;
+			}
+			
+			function cancel() {
+				getDefaultSettings();
+				$('input[type=button]')[0].disabled = true;
+				$('input[type=button]')[1].disabled = true;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="wrap">
+			<div id="header">
+				<h1>Pastebin.com</h1>
+			</div>
+			
+			<form onsubmit="save();">
+				<div id="options">
+					Options
+				</div>
+				<div id="pastebin">
+					<p>Pastebin</p>
+
+					<div class="form">
+						<div class="form_left">
+							Syntax highlighting:
+						</div>
+						<div class="form_right">
+							<select name="paste_format" class="post_select" id="paste_format">
+								<option value="teft">None</option><option value="bash">Bash</option><option value="c">C</option><option value="csharp">C#</option><option value="cpp">C++</option><option value="css">CSS</option><option value="html4strict">HTML</option><option value="html5">HTML 5</option><option value="java">Java</option><option value="javascript">JavaScript</option><option value="lua">Lua</option><option value="text">None</option><option value="perl">Perl</option><option value="php">PHP</option><option value="python">Python</option><option value="rails">Rails</option><option value="1">-------------</option><option value="4cs">4CS</option><option value="6502acme">6502 ACME Cross Assembler</option><option value="6502kickass">6502 Kick Assembler</option><option value="6502tasm">6502 TASM/64TASS</option><option value="abap">ABAP</option><option value="actionscript">ActionScript</option><option value="actionscript3">ActionScript 3</option><option value="ada">Ada</option><option value="algol68">ALGOL 68</option><option value="apache">Apache Log</option><option value="applescript">AppleScript</option><option value="apt_sources">APT Sources</option><option value="asm">ASM (NASM)</option><option value="asp">ASP</option><option value="autoconf">autoconf</option><option value="autohotkey">Autohotkey</option><option value="autoit">AutoIt</option><option value="avisynth">Avisynth</option><option value="awk">Awk</option><option value="bascomavr">BASCOM AVR</option><option value="bash">Bash</option><option value="basic4gl">Basic4GL</option><option value="bibtex">BibTeX</option><option value="blitzbasic">Blitz Basic</option><option value="bnf">BNF</option><option value="boo">BOO</option><option value="bf">BrainFuck</option><option value="c">C</option><option value="c_mac">C for Macs</option><option value="cil">C Intermediate Language</option><option value="csharp">C#</option>
+								<option value="cpp">C++</option><option value="cpp-qt">C++ (with QT extensions)</option><option value="c_loadrunner">C: Loadrunner</option><option value="caddcl">CAD DCL</option><option value="cadlisp">CAD Lisp</option><option value="cfdg">CFDG</option><option value="chaiscript">ChaiScript</option><option value="clojure">Clojure</option><option value="klonec">Clone C</option><option value="klonecpp">Clone C++</option><option value="cmake">CMake</option><option value="cobol">COBOL</option><option value="coffeescript">CoffeeScript</option><option value="cfm">ColdFusion</option><option value="css">CSS</option><option value="cuesheet">Cuesheet</option><option value="d">D</option><option value="dcs">DCS</option><option value="delphi">Delphi</option><option value="oxygene">Delphi Prism (Oxygene)</option><option value="diff">Diff</option><option value="div">DIV</option><option value="dos">DOS</option><option value="dot">DOT</option><option value="e">E</option><option value="ecmascript">ECMAScript</option><option value="eiffel">Eiffel</option><option value="email">Email</option><option value="epc">EPC</option><option value="erlang">Erlang</option><option value="fsharp">F#</option><option value="falcon">Falcon</option><option value="fo">FO Language</option><option value="f1">Formula One</option><option value="fortran">Fortran</option><option value="freebasic">FreeBasic</option><option value="gambas">GAMBAS</option><option value="gml">Game Maker</option><option value="gdb">GDB</option><option value="genero">Genero</option><option value="genie">Genie</option><option value="gettext">GetText</option><option value="go">Go</option><option value="groovy">Groovy</option><option value="gwbasic">GwBasic</option><option value="haskell">Haskell</option><option value="hicest">HicEst</option><option value="hq9plus">HQ9 Plus</option><option value="html4strict">HTML</option>
+								<option value="html5">HTML 5</option><option value="icon">Icon</option><option value="idl">IDL</option><option value="ini">INI file</option><option value="inno">Inno Script</option><option value="intercal">INTERCAL</option><option value="io">IO</option><option value="j">J</option><option value="java">Java</option><option value="java5">Java 5</option><option value="javascript">JavaScript</option><option value="jquery">jQuery</option><option value="kixtart">KiXtart</option><option value="latex">Latex</option><option value="lb">Liberty BASIC</option><option value="lsl2">Linden Scripting</option><option value="lisp">Lisp</option><option value="llvm">LLVM</option><option value="locobasic">Loco Basic</option><option value="logtalk">Logtalk</option><option value="lolcode">lolcode</option><option value="lotusformulas">Lotus Formulas</option><option value="lotusscript">Lotus Script</option><option value="lscript">LScript</option><option value="lua">Lua</option><option value="m68k">M68000 Assembler</option><option value="magiksf">MagikSF</option><option value="make">Make</option><option value="mapbasic">MapBasic</option><option value="matlab">MatLab</option><option value="mirc">mIRC</option><option value="mmix">MIX Assembler</option><option value="modula2">Modula 2</option><option value="modula3">Modula 3</option><option value="68000devpac">Motorola 68000 HiSoft Dev</option><option value="mpasm">MPASM</option><option value="mxml">MXML</option><option value="mysql">MySQL</option><option value="newlisp">newLISP</option><option value="text" selected="selected">None</option><option value="nsis">NullSoft Installer</option><option value="oberon2">Oberon 2</option><option value="objeck">Objeck Programming Langua</option><option value="objc">Objective C</option><option value="ocaml-brief">OCalm Brief</option><option value="ocaml">OCaml</option><option value="pf">OpenBSD PACKET FILTER</option>
+								<option value="glsl">OpenGL Shading</option><option value="oobas">Openoffice BASIC</option><option value="oracle11">Oracle 11</option><option value="oracle8">Oracle 8</option><option value="oz">Oz</option><option value="pascal">Pascal</option><option value="pawn">PAWN</option><option value="pcre">PCRE</option><option value="per">Per</option><option value="perl">Perl</option><option value="perl6">Perl 6</option><option value="php">PHP</option><option value="php-brief">PHP Brief</option><option value="pic16">Pic 16</option><option value="pike">Pike</option><option value="pixelbender">Pixel Bender</option><option value="plsql">PL/SQL</option><option value="postgresql">PostgreSQL</option><option value="povray">POV-Ray</option><option value="powershell">Power Shell</option><option value="powerbuilder">PowerBuilder</option><option value="proftpd">ProFTPd</option><option value="progress">Progress</option><option value="prolog">Prolog</option><option value="properties">Properties</option><option value="providex">ProvideX</option><option value="purebasic">PureBasic</option><option value="pycon">PyCon</option><option value="python">Python</option><option value="q">q/kdb+</option><option value="qbasic">QBasic</option><option value="rsplus">R</option><option value="rails">Rails</option><option value="rebol">REBOL</option><option value="reg">REG</option><option value="robots">Robots</option><option value="rpmspec">RPM Spec</option><option value="ruby">Ruby</option><option value="gnuplot">Ruby Gnuplot</option><option value="sas">SAS</option><option value="scala">Scala</option><option value="scheme">Scheme</option><option value="scilab">Scilab</option><option value="sdlbasic">SdlBasic</option><option value="smalltalk">Smalltalk</option><option value="smarty">Smarty</option><option value="sql">SQL</option><option value="systemverilog">SystemVerilog</option>
+								<option value="tsql">T-SQL</option><option value="tcl">TCL</option><option value="teraterm">Tera Term</option><option value="thinbasic">thinBasic</option><option value="typoscript">TypoScript</option><option value="unicon">Unicon</option><option value="uscript">UnrealScript</option><option value="vala">Vala</option><option value="vbnet">VB.NET</option><option value="verilog">VeriLog</option><option value="vhdl">VHDL</option><option value="vim">VIM</option><option value="visualprolog">Visual Pro Log</option><option value="vb">VisualBasic</option><option value="visualfoxpro">VisualFoxPro</option><option value="whitespace">WhiteSpace</option><option value="whois">WHOIS</option><option value="winbatch">Win Batch</option><option value="xbasic">XBasic</option><option value="xml">XML</option><option value="xorg_conf">Xorg Config</option><option value="xpp">XPP</option><option value="yaml">YAML</option><option value="z80">Z80 Assembler</option><option value="zxbasic">ZXBasic</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form">
+						<div class="form_left">
+							Post expiration:
+						</div>
+						<div class="form_right">
+							<select name="paste_expire_date" class="post_select" id="paste_expire_date">
+								<option value="N">Never</option>
+								<option value="10M">10 Minutes</option>
+								<option value="1H">1 Hour</option>
+								<option value="1D">1 Day</option>
+								<option value="1M">1 Month</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form">
+						<div class="form_left">
+							Post exposure:
+						</div>
+						<div class="form_right">
+							<select name="paste_private" id="paste_private" class="post_select">
+								<option value="0">Public</option>
+								<option value="1">Private</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form">
+						<div class="form_left">
+							Name / Title:
+						</div>
+						<div class="form_right">
+							<input type="text" name="paste_name" size="20" id="paste_name" class="post_input" placeholder="Anonymous">
+						</div>
+					</div>
+
+				</div>
+				
+				<div id="extension">
+					<p>Extension</p>
+					
+					<div class="form">
+						<div class="form_left">
+							When paste has been posted:
+						</div>
+						<div class="form_right">
+							<input type="radio" name="url" value="show" />Show the url.<br />
+							<input type="radio" name="url" value="open" />Open the url.
+						</div>
+					</div>
+				</div>
+				
+				<input type="button" onclick="save();" value="Save" disabled /> <input type="button" value="Restore" id="cancel();" onclick="cancel();" disabled />
+				<span id="msg">
+					Changes saved!
+				</span>
+			</form>
+			<p id="donation">Do you like this extension? Consider a <a href="http://joshualuckers.nl/portfolio/donate/" target="_blank">small donation</a> to reward my work.</p>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+body { margin:0; background-color:#000; font-family: sans-serif;	color:#fff; }
+#led { background-color:#000; }
+#controls input { font-size:1.4em; }
+#controls { text-align:center; width: 800px; }
+#controls > table { width:100%; }
+#ledColour {	font-weight:bold; }
+td.left { text-align:right; }
+td {	text-align:left; }
+#msgText { width: 400px; }

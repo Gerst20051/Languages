@@ -1,0 +1,50 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script> 
+</head>
+<body>
+<div class="twitter_container">
+<form id="twittersearch" method="post" action="">
+<input name="twitterq" type="text" id="twitterq" />
+<button type="submit">Search</button>
+</form>
+<div id="twitter-results"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+var twitterq = '';
+
+function displayTweet(){
+	var i = 0;
+	var limit = $("#twitter-results > div").size();
+	var myInterval = window.setInterval(function(){
+	var element = $("#twitter-results div:last-child");
+	$("#twitter-results").prepend(element);
+	element.fadeIn("slow");
+	i++;
+	if(i == limit){
+		window.setTimeout(function(){
+			clearInterval(myInterval);
+		});
+	}
+	},2000);
+}
+
+$("form#twittersearch").submit(function(){
+	twitterq = $('#twitterq').attr('value');
+	$.ajax({
+		type: "POST",
+		url: "search.php",
+		cache: false,
+		data: "twitterq="+ twitterq,
+		success: function(html){
+			$("#twitter-results").html(html);
+			displayTweet();
+		}
+	});
+	return false;
+});
+});
+</script>
+</body>
+</html>

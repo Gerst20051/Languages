@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset=utf-8 />
+  <title>ify tests</title>
+</head>
+<body>
+<div id="log"></div>
+<script src="ify.js"></script>
+<script>
+log('RB @TrainWreckRadio: "@AmyisImaginary Lead your heart away........ are YOU still wide awake?" TY ♫ http://blip.fm/~c9s82');
+log('http://bit.ly/CONg1: "dl: what is it good for?" (@codepo8 @rossbruniges - would love a response!)');
+log("@sazp $('#clickable-element-id').click(function () { $('#other-element-id').removeClass('old').addClass('new'); }) - easy! ;-)");
+log('New #WP blog http://tinyurl.com/nlphxt Tips for trolls, NINtards, eStalkers, etc #FuckAUF ♫ http://blip.fm/~c9s5g');
+log('List of Twitter developers in the @WiredUK photo: @nuxnix/uk-twitterati #devnest: http://www.wired.co.uk/wired-magazine/archive/2009/12/start/wired%27s-guide-to-the-uk-twitterati.aspx');
+log('New Post: Foodie Friday: Thanksgiving &#8216;09 &#8211; The Verdict http://bit.ly/612s4V');
+log('http://images.google.com/images?q=bacon+log');
+log('http://www.youtube.com/watch?v=vdiTmEvxamM#t=1m15s #video');
+
+function log(s) {
+  document.querySelector('#log').innerHTML += '<p>' + ify.clean(s) + '</p>';
+}
+</script>
+</body>
+</html>

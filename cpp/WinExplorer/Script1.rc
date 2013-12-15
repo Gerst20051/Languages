@@ -1,0 +1,656 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) (unknown sub-lang: 0x0) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, 0x0
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FIND DIALOG FIXED IMPURE  30, 73, 236, 86
+STYLE DS_MODALFRAME | DS_3DLOOK | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Find"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Fi&nd what:",IDC_STATIC,4,8,42,8
+    EDITTEXT        1152,47,7,128,12,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "Match &case",1041,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,39,64,12
+    DEFPUSHBUTTON   "&Find Next",1,182,5,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",2,182,23,50,14
+    CONTROL         "Find any part of field",IDC_FIND_ANY_PART,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,27,85,10
+    GROUPBOX        "Find in",IDC_STATIC,98,25,73,49
+    CONTROL         "Window Text",501,"Button",BS_AUTORADIOBUTTON,105,36,59,
+                    9
+    CONTROL         "Class Name",502,"Button",BS_AUTORADIOBUTTON,105,49,59,9
+    CONTROL         "Item ID",503,"Button",BS_AUTORADIOBUTTON,105,62,59,9
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_FIND, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 80
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // English (U.S.) (unknown sub-lang: 0x0) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAIN                ICON    DISCARDABLE     "main.ico"
+IDI_PROGMAN             ICON    DISCARDABLE     "progman.ico"
+IDI_UNKNOWN             ICON    DISCARDABLE     "unknown.ico"
+IDI_VB5                 ICON    DISCARDABLE     "vb5.ico"
+IDI_MYCOMPUTER          ICON    DISCARDABLE     "mycomput.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+480                     BITMAP  FIXED IMPURE    "bmp480.bmp"
+481                     BITMAP  FIXED IMPURE    "bmp481.bmp"
+486                     BITMAP  FIXED IMPURE    "bmp486.bmp"
+489                     BITMAP  FIXED IMPURE    "bmp489.bmp"
+490                     BITMAP  FIXED IMPURE    "bmp490.bmp"
+491                     BITMAP  FIXED IMPURE    "bmp491.bmp"
+493                     BITMAP  FIXED IMPURE    "bmp493.bmp"
+497                     BITMAP  FIXED IMPURE    "bmp497.bmp"
+1020                    BITMAP  FIXED IMPURE    "bmp1020.bmp"
+102                     BITMAP  FIXED IMPURE    "bmp102.bmp"
+101                     BITMAP  FIXED IMPURE    "bmp101.bmp"
+100                     BITMAP  FIXED IMPURE    "bmp100.bmp"
+1050                    BITMAP  FIXED IMPURE    "bmp1050.bmp"
+1051                    BITMAP  FIXED IMPURE    "bmp1051.bmp"
+1080                    BITMAP  FIXED IMPURE    "bmp1080.bmp"
+1090                    BITMAP  FIXED IMPURE    "bmp1090.bmp"
+1110                    BITMAP  FIXED IMPURE    "bmp1110.bmp"
+1130                    BITMAP  FIXED IMPURE    "bmp1130.bmp"
+485                     BITMAP  FIXED IMPURE    "bmp485.bmp"
+488                     BITMAP  FIXED IMPURE    "bmp488.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Cursor
+//
+
+IDD_HAND                CURSOR  DISCARDABLE     "idd_hand.cur"
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_DELPHI              ICON    DISCARDABLE     "delphi.ico"
+IDI_DELPHI2             ICON    DISCARDABLE     "delphi2.ico"
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Unknown language: 0xD, 0x1 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_HEB)
+#ifdef _WIN32
+LANGUAGE 0xD, 0x1
+#pragma code_page(1255)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOG DISCARDABLE  0, 0, 408, 254
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU
+CAPTION "WinExplorer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    PUSHBUTTON      "&Close",IDC_CLOSE,357,8,44,12
+    CONTROL         "Tree1",IDC_TREE1,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,4,4,348,128
+    PUSHBUTTON      "&Refresh",IDC_REFRESH,357,28,44,12
+    CONTROL         "Tab1",IDC_PROPS_TAB,"SysTabControl32",WS_BORDER | 
+                    WS_TABSTOP,7,137,396,110
+    PUSHBUTTON      "&Options",IDC_OPTIONS,357,48,44,12
+    PUSHBUTTON      "&Find",IDC_FIND_WIN,357,68,44,12
+    PUSHBUTTON      "&About",IDC_ABOUT,357,89,44,12
+END
+
+IDD_PROPS_GENERAL DIALOG DISCARDABLE  0, 0, 388, 108
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Handle:",IDC_STATIC,5,10,28,8
+    EDITTEXT        IDC_WIN_HANDLE,43,8,48,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Class:",IDC_STATIC,104,10,24,8
+    EDITTEXT        IDC_WIN_CLASSNAME,131,8,115,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "ItemID:",IDC_STATIC,281,8,24,8
+    EDITTEXT        IDC_WIN_ITEMID,317,7,58,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Caption:",IDC_STATIC,5,56,29,8
+    EDITTEXT        IDC_WIN_CAPTION,43,54,297,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Modify",IDC_MODIFY,343,54,32,12
+    LTEXT           "Visible:",IDC_STATIC,5,72,28,8
+    CONTROL         "",IDC_WIN_VISIBLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    44,72,8,8
+    LTEXT           "Enabled:",IDC_STATIC,70,72,28,8
+    CONTROL         "",IDC_WIN_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    107,72,8,8
+    PUSHBUTTON      "Destroy Window",IDC_DESTROY,305,70,70,12
+    GROUPBOX        "Properties",IDC_STATIC,2,0,379,86
+    LTEXT           "Instance:",IDC_STATIC,5,24,30,8
+    EDITTEXT        IDC_WIN_HINSTANCE,43,22,48,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "User Data:",IDC_STATIC,95,24,35,8
+    EDITTEXT        IDC_WIN_USER_DATA,131,22,58,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "Extra Bytes:",IDC_STATIC,5,40,38,8
+    EDITTEXT        IDC_WIN_EXTRA_BYTES,43,38,330,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_PROPS_POSITION DIALOG DISCARDABLE  0, 0, 368, 96
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "General",IDC_STATIC,4,4,148,76
+    LTEXT           "Left:",IDC_STATIC,12,16,20,8
+    EDITTEXT        IDC_LEFT,35,14,36,12,ES_AUTOHSCROLL
+    LTEXT           "Top:",IDC_STATIC,80,16,20,8
+    EDITTEXT        IDC_TOP,104,15,36,12,ES_AUTOHSCROLL
+    LTEXT           "Width:",IDC_STATIC,12,34,24,8
+    EDITTEXT        IDC_WIDTH,36,32,36,12,ES_AUTOHSCROLL
+    LTEXT           "Height:",IDC_STATIC,80,34,24,8
+    EDITTEXT        IDC_HEIGHT,104,32,36,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "Modify",IDC_MODIFY,12,50,32,12
+    CONTROL         "Normal",IDC_WINSTATE_NORMAL,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,164,16,64,12
+    CONTROL         "Maximized",IDC_WINSTATE_MAX,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,164,32,64,12
+    CONTROL         "Minimized",IDC_WINSTATE_MIN,"Button",BS_AUTORADIOBUTTON | 
+                    WS_TABSTOP,164,48,64,12
+    PUSHBUTTON      "Bring To Top",IDC_WINTOP,266,16,72,12
+    PUSHBUTTON      "Bring To Bottom",IDC_WINBOTTOM,266,32,72,12
+    PUSHBUTTON      "Set To Topmost",IDC_WINTOPMOST,266,48,72,12
+    PUSHBUTTON      "Set To No Topmost",IDC_WINNOTOPMOST,266,64,72,12
+    GROUPBOX        "Window State",IDC_STATIC,156,4,92,76
+    GROUPBOX        "Z Order",IDC_STATIC,252,4,100,76
+END
+
+IDD_PROPS_FONT DIALOG DISCARDABLE  0, 0, 332, 92
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Name:",IDC_STATIC,12,10,32,8
+    EDITTEXT        IDC_FONT_NAME,44,8,180,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Size:",IDC_STATIC,12,42,20,8
+    EDITTEXT        IDC_FONT_SIZE,44,40,32,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "CharSet:",IDC_STATIC,11,26,32,8
+    EDITTEXT        IDC_FONT_CHARSET,44,24,180,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CHECKBOX        "Italic",IDC_FONT_ITALIC,245,17,40,8
+    GROUPBOX        "Style",IDC_STATIC,236,4,76,64
+    CHECKBOX        "Bold",IDC_FONT_BOLD,245,30,40,8
+    CHECKBOX        "Underline",IDC_FONT_UNDERLINE,245,41,48,8
+    CHECKBOX        "StrikeOut",IDC_FONT_STRIKEOUT,245,54,48,8
+END
+
+IDD_PROPS_CLASS DIALOG DISCARDABLE  0, 0, 388, 107
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Name:",IDC_STATIC,9,8,32,8
+    EDITTEXT        IDC_CLASS_NAME,41,7,115,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Class Extra:",IDC_STATIC,169,8,38,8
+    EDITTEXT        IDC_CLASS_EXTRA,212,6,56,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Window Extra:",IDC_STATIC,277,8,47,8
+    EDITTEXT        IDC_WIN_EXTRA,327,6,52,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Module:",IDC_STATIC,9,27,32,8
+    EDITTEXT        IDC_INSTANCE,42,26,50,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Atom:",IDC_STATIC,98,27,20,8
+    EDITTEXT        IDC_ATOM,119,26,36,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Class Icon:",IDC_STATIC,168,27,40,8
+    EDITTEXT        IDC_ICON1,212,26,56,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "WndProc:",IDC_STATIC,278,27,40,8
+    EDITTEXT        IDC_WNDPROC,327,26,52,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Filename:",IDC_STATIC,9,44,32,8
+    EDITTEXT        IDC_MODULE,41,42,339,12,ES_AUTOHSCROLL | ES_READONLY
+    ICON            "",IDC_CLASS_ICON,327,57,20,20,WS_BORDER
+    LTEXT           "Class Icon:",IDC_STATIC,278,60,35,8
+    LTEXT           "Style",IDC_STATIC,10,59,23,8
+    EDITTEXT        IDC_CLASS_STYLE,41,58,60,12,ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_PROPS_STYLE DIALOG DISCARDABLE  0, 0, 392, 104
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    GROUPBOX        "General Windows Style",IDC_STATIC,0,0,188,88,WS_GROUP
+    CONTROL         "WS_MAXIMIZEBOX",5000,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,8,10,88,8
+    CONTROL         "WS_MINIMIZEBOX",5001,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,19,88,8
+    CONTROL         "WS_THICKFRAME",5002,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,8,28,88,8
+    CONTROL         "WS_SYSMENU",5003,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,38,88,8
+    CONTROL         "WS_HSCROLL",5004,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,48,88,8
+    CONTROL         "WS_VSCROLL",5005,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,57,88,8
+    CONTROL         "WS_DLGFRAME",5006,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,66,88,8
+    CONTROL         "WS_BORDER",5007,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,
+                    76,88,8
+    CONTROL         "WS_MAXIMIZE",5008,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    96,10,88,8
+    CONTROL         "WS_CLIPCHILDREN",5009,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,96,19,88,8
+    CONTROL         "WS_CLIPSIBLINGS",5010,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,96,28,88,8
+    CONTROL         "WS_DISABLED",5011,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    96,38,88,8
+    CONTROL         "WS_VISIBLE",5012,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    96,48,88,8
+    CONTROL         "WS_MINIMIZE",5013,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    96,57,88,8
+    CONTROL         "WS_CHILD",5014,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,
+                    67,88,8
+    CONTROL         "WS_POPUP",5015,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,
+                    76,88,8
+    CONTROL         "",5016,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,
+                    208,10,88,8
+    CONTROL         "",5017,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,19,88,
+                    8
+    CONTROL         "",5018,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,28,88,
+                    8
+    CONTROL         "",5019,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,38,88,
+                    8
+    CONTROL         "",5020,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,48,88,
+                    8
+    CONTROL         "",5021,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,57,88,
+                    8
+    CONTROL         "",5022,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,66,88,
+                    8
+    CONTROL         "",5023,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,76,88,
+                    8
+    CONTROL         "",5024,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,10,88,
+                    8
+    CONTROL         "",5025,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,19,88,
+                    8
+    CONTROL         "",5026,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,28,88,
+                    8
+    CONTROL         "",5027,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,38,88,
+                    8
+    CONTROL         "",5028,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,48,88,
+                    8
+    CONTROL         "",5029,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,57,88,
+                    8
+    CONTROL         "",5030,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,67,88,
+                    8
+    CONTROL         "",5031,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,296,76,88,
+                    8
+    GROUPBOX        "Specific Styles",IDC_STATIC,200,0,188,88
+END
+
+IDD_PROPS_EXSTYLE DIALOG DISCARDABLE  0, 0, 392, 100
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "WS_EX_DLGMODALFRAME",6000,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,4,124,8
+    CONTROL         "Unknown",6001,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,12,14,124,8
+    CONTROL         "WS_EX_NOPARENTNOTIFY",6002,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,24,124,8
+    CONTROL         "WS_EX_TOPMOST",6003,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,12,34,124,8
+    CONTROL         "WS_EX_ACCEPTFILES",6004,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,44,124,8
+    CONTROL         "WS_EX_TRANSPARENT",6005,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,54,124,8
+    CONTROL         "WS_EX_MDICHILD",6006,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,64,124,8
+    CONTROL         "WS_EX_MDICHILD",6007,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,12,73,124,8
+    CONTROL         "WS_EX_WINDOWEDGE",6008,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,137,4,124,8
+    CONTROL         "WS_EX_CLIENTEDGE",6009,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,137,14,124,8
+    CONTROL         "WS_EX_CONTEXTHELP",6010,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,137,24,124,8
+    CONTROL         "Unknown",6011,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,137,34,124,8
+    CONTROL         "WS_EX_RIGHT",6012,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,137,44,124,8
+    CONTROL         "WS_EX_RTLREADING",6013,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,137,54,124,8
+    CONTROL         "WS_EX_LEFTSCROLLBAR",6014,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,137,64,124,8
+    CONTROL         "Unknown",6015,"Button",BS_AUTOCHECKBOX | WS_GROUP | 
+                    WS_TABSTOP,137,73,124,8
+    CONTROL         "WS_EX_CONTROLPARENT",6016,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,268,4,124,8
+    CONTROL         "WS_EX_STATICEDGE",6017,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,268,14,124,8
+    CONTROL         "WS_EX_APPWINDOW",6018,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,268,24,124,8
+END
+
+IDD_OPTIONS DIALOG DISCARDABLE  30, 30, 226, 122
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WinExplorer Options"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,107,101,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,163,101,50,14
+    CONTROL         "Hide top hidden windows",IDC_HIDE_TOP_HIDDEN_WINDOWS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,8,164,8
+    CONTROL         "Show full windows hierarchy",IDC_FULL_TREE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,24,164,8
+    CONTROL         "Catch window by mouse position",IDC_CATCHWIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,40,122,8
+    CONTROL         "HotKey1",IDC_CATCH_HOTKEY,"msctls_hotkey32",WS_BORDER | 
+                    WS_TABSTOP,131,38,79,12
+    CONTROL         "Use window icon in top windows",IDC_USE_APP_ICONS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,164,8
+    CONTROL         "Automatically refresh each",IDC_AUTO_REFRESH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,69,96,10
+    EDITTEXT        IDC_REFRESH_SECONDS,105,68,21,12,ES_AUTOHSCROLL
+    LTEXT           "Seconds",IDC_STATIC,130,70,31,8
+END
+
+IDD_PROPS_MORE DIALOG DISCARDABLE  0, 0, 379, 93
+STYLE WS_CHILD
+FONT 8, "MS Sans Serif"
+BEGIN
+    LTEXT           "Process ID:",IDC_STATIC,6,11,38,10
+    LTEXT           "Thread ID:",IDC_STATIC,102,11,34,10
+    EDITTEXT        IDC_PROCESSID,47,10,45,12,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_THREADID,144,10,45,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Process:",IDC_STATIC,6,29,34,10
+    EDITTEXT        IDC_PROCESS_PATH,46,28,320,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    GROUPBOX        "Process Information",IDC_STATIC,2,0,370,61
+    LTEXT           "Module:",IDC_STATIC,6,44,34,10
+    EDITTEXT        IDC_MODULE_PATH,46,44,320,12,ES_AUTOHSCROLL | 
+                    ES_READONLY
+END
+
+IDD_ABOUT DIALOG DISCARDABLE  0, 0, 186, 84
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About WinExplorer"
+FONT 8, "MS Sans Serif"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,125,63,43,14
+    ICON            IDI_MAIN,IDC_STATIC,18,18,20,20
+    LTEXT           "",IDC_MAIN_TEXT,48,14,120,25
+    LTEXT           "Static",IDC_URL,49,45,96,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 401
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 247
+    END
+
+    IDD_PROPS_GENERAL, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 381
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 101
+    END
+
+    IDD_PROPS_POSITION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 361
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 89
+    END
+
+    IDD_PROPS_FONT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 325
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 85
+    END
+
+    IDD_PROPS_CLASS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 381
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 100
+    END
+
+    IDD_PROPS_STYLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 385
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 97
+    END
+
+    IDD_PROPS_EXSTYLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 385
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 93
+    END
+
+    IDD_OPTIONS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 219
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 115
+    END
+
+    IDD_PROPS_MORE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 372
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 86
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 6
+        BOTTOMMARGIN, 77
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_WIN1                ICON    DISCARDABLE     "icon1.ico"
+IDI_BUTTON              ICON    DISCARDABLE     "ico00001.ico"
+IDI_WIN_HIDE            ICON    DISCARDABLE     "ico00002.ico"
+IDI_EDIT                ICON    DISCARDABLE     "ico00003.ico"
+IDI_COMBO               ICON    DISCARDABLE     "ico00004.ico"
+IDI_LIST                ICON    DISCARDABLE     "ico00005.ico"
+IDI_STATIC              ICON    DISCARDABLE     "ico00006.ico"
+IDI_LISTVIEW            ICON    DISCARDABLE     "ico00007.ico"
+IDI_TREEVIEW            ICON    DISCARDABLE     "ico00008.ico"
+IDI_WIN1_NOCAPTION      ICON    DISCARDABLE     "win2.ico"
+IDI_WIN_HIDE_NOCAPTION  ICON    DISCARDABLE     "win_hide.ico"
+IDI_EDIT_PASS           ICON    DISCARDABLE     "edit1.ico"
+IDI_TABCONTROL          ICON    DISCARDABLE     "ico00009.ico"
+IDI_CHECK               ICON    DISCARDABLE     "ico00010.ico"
+IDI_OPTION              ICON    DISCARDABLE     "ico00011.ico"
+IDI_FRAME               ICON    DISCARDABLE     "ico00012.ico"
+IDI_PICTURE             ICON    DISCARDABLE     "ico00013.ico"
+IDI_SCROLLBAR           ICON    DISCARDABLE     "ico00014.ico"
+IDI_MDICLIENT           ICON    DISCARDABLE     "System-268.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,3,0,0
+ PRODUCTVERSION 1,3,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "NirSoft\0"
+            VALUE "FileDescription", "WinExplorer\0"
+            VALUE "FileVersion", "1.30\0"
+            VALUE "InternalName", "WinExplorer\0"
+            VALUE "LegalCopyright", "Copyright © 1999 - 2003 Nir Sofer\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "winexp.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "WinExplorer\0"
+            VALUE "ProductVersion", "1.30\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // Unknown language: 0xD, 0x1 resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

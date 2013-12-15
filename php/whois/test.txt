@@ -1,0 +1,119 @@
+// Country domains
+
+ae		nic.ae
+ag		nic.ag
+at		nic.at
+au		telstra.com.au
+be		nic.be
+br		registro.br
+ca		cira.ca
+ch		creart.ch blaueskreuz.ch
+cn		china.cn
+cz		nic.cz
+de		4ever.de ks2-hanau.de
+fi		ficora.fi
+fm		dot.fm
+fr		nic.fr lemonade.fr
+hu		nic.hu
+ie		domainregistry.ie
+in		registry.in
+is		isnic.is
+it		nic.it
+li		nic.li
+lt      domreg.lt
+lu		dns.lu
+mx		nic.mx
+nl		domain-registry.nl
+nu		nunames.nu
+nz		dnc.org.nz
+pl		nic.pl
+pt		dns.pt
+ru		nic.ru
+sc		admin.sc
+se		nic-se.se
+si		arnes.si
+su		news.su
+uk		olsns.co.uk
+us		neustar.us
+ve		nic.ve
+ws		samoanic.ws surf.ws
+.co.za	sex.co.za
+.org.za	sex.org.za
+
+// .com/.net/.tv/.jobs
+
+alldomains	alldomains.com
+ascio		ascio.com
+corenic		corenic.com
+directnic	directnic.com
+domainbank	domainbank.com
+domaincontender domaincontender.com
+domaindiscover  buydomains.com
+dotster		dotster.com namesdirect.com dotregistrar.com
+encirca		nic.jobs
+enom		enom.com
+fabulous	fabulous.com
+godaddy		godaddy.com
+iana		example.com
+interdomain	interdominio.com
+joker		joker.com
+melbourneit     inww.com
+moniker		moniker.com
+namejuice	namejuice.com
+nameking	nameking.com
+networksolutions		networksolutions.com
+nicco		nicco.com
+nicline		nicline.com
+nominalia	nominalia.com
+onlinenic	onlinenic.com
+opensrs		tucows.com
+ovh			ovh.com
+publicdomainregistry	directi.com
+psiusa		urllog.net
+register	register.com
+rrpproxy	rrpproxy.net
+schlund		schlund.com
+srsplus		olsns.com
+namevault	namevault.com
+tmagnic     antiquea.com
+tvcorp		www.tv
+wwdomains	wildwestdomains.com
+
+// Other
+
+aero	nic.aero
+asia	nic.asia
+biz		neulevel.biz
+cat		dominis.cat
+coop	smile.coop nic.coop
+edu		berkeley.edu
+eu		eurid.eu
+info	afilias.info
+int		who.int
+me		domain.me
+mobi	mtld.mobi
+museum	nic.museum
+name	peter.morgan.name
+org		example.org
+pro		registrypro.pro
+tel		nic.tel
+travel	whois.travel
+za.net	sex.za.net
+
+// IP whois
+
+afrinic		66.18.70.6
+apnic		218.165.121.114
+arin		207.217.120.54
+arin+rwhois	70.84.47.210
+arin+whois	63.95.254.3
+bripw		200.165.206.74
+krnic		210.178.148.129
+lacnic		200.44.33.31
+ripe		62.97.102.115
+
+// ASN
+
+arin		AS220
+
+

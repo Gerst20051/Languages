@@ -1,0 +1,86 @@
+td {
+	font-family: Arial;
+	color: #000000;
+	font-size: 11px;
+}
+
+input {
+	font-family: Arial;
+	color: #000000;
+	font-size: 11px;
+}
+select {
+	font-family: Arial;
+	color: #000000;
+	font-size: 11px;
+}
+textarea {
+	width: 350px;
+	height: 300px;
+	font-size: 11px;
+}
+
+form {
+	margin: 0px;
+}
+
+.red { color: #FF0000; text-decoration: none; font-family: arial }
+A.red:link { color: #FF0000; text-decoration: none; font-family: arial }
+A.red:visited { color: #FF0000; text-decoration: none; font-family: arial }
+A.red:hover { color: #000000; text-decoration: none; font-family: arial }
+A.red:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.black { color: #000000; text-decoration: none; font-family: arial;font-size: 10px }
+A.black:link { color: #000000; text-decoration: none; font-family: arial }
+A.black:visited { color: #000000; text-decoration: none; font-family: arial }
+A.black:hover { color: #0099FF; text-decoration: none; font-family: arial }
+A.black:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.blacktwo { color: #000000; text-decoration: none; font-family: arial }
+A.blacktwo:link { color: #000000; text-decoration: none; font-family: arial }
+A.blacktwo:visited { color: #000000; text-decoration: none; font-family: arial }
+A.blacktwo:hover { color: #000000; text-decoration: underline; font-family: arial }
+A.blacktwo:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+
+.grey { color: #999999; text-decoration: none; font-family: arial; font-size: 10px }
+A.grey:link { color: #999999; text-decoration: none; font-family: arial }
+A.grey:visited { color: #999999; text-decoration: none; font-family: arial }
+A.grey:hover { color: #FF0000; text-decoration: none; font-family: arial }
+A.grey:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+
+.green { color: #117192; text-decoration: none; font-family: arial; font-size: 12px; font-weight: bold }
+A.green:link { color: #117192; text-decoration: none; font-family: arial }
+A.green:visited { color: #117192; text-decoration: none; font-family: arial }
+A.green:hover { color: #FF0000; text-decoration: none; font-family: arial }
+A.green:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.green_small { color: #117192; text-decoration: none; font-family: arial; font-size: 10px }
+A.green_small:link { color: #117192; text-decoration: none; font-family: arial }
+A.green_small:visited { color: #117192; text-decoration: none; font-family: arial }
+A.green_small:hover { color: #FF0000; text-decoration: none; font-family: arial }
+A.green_small:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.green_big { color: #117192; text-decoration: none; font-family: arial; font-size: 12px }
+A.green_big:link { color: #117192; text-decoration: none; font-family: arial }
+A.green_big:visited { color: #117192; text-decoration: none; font-family: arial }
+A.green_big:hover { color: #FF0000; text-decoration: none; font-family: arial }
+A.green_big:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.orange { color: #FF9900; text-decoration: none; font-family: arial }
+A.orange:link { color: #FF9900; text-decoration: none; font-family: arial }
+A.orange:visited { color: #FF9900; text-decoration: none; font-family: arial }
+A.orange:hover { color: #000000; text-decoration: none; font-family: arial }
+A.orange:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+.white: { color: #FFFFFF; text-decoration: none; font-family: arial }
+A.white:link { color: #FFFFFF; text-decoration: none; font-family: arial }
+A.white:visited { color: #FFFFFF; text-decoration: none; font-family: arial }
+A.white:hover { color: #999999; text-decoration: none; font-family: arial }
+A.white:active { text-decoration: none; font-family: arial; color: #999999; background-color: #000000}
+
+
+.box { BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #000000 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #000000 1px solid; BORDER-BOTTOM: #cccccc 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #FFFFFF ; none: }
+
+.button { BORDER-RIGHT: #000000 1px solid; BORDER-TOP: #FFFFFF 1px solid; FONT-SIZE: 11px; BORDER-LEFT: #FFFFFF 1px solid; BORDER-BOTTOM: #000000 1px solid; FONT-FAMILY: Arial, Helvetica, sans-serif; BACKGROUND-COLOR: #cccccc ; none: }

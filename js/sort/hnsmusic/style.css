@@ -1,0 +1,131 @@
+* {
+-khtml-user-select:none;
+-moz-user-select:none;
+-o-user-select:none;
+-webkit-user-select:none;
+user-select:none;
+}
+
+html,
+body {
+background-color:#333332;
+}
+
+body {
+color:#fff;
+font-family:HelveticaNeue,Helvetica,"lucida grande",tahoma,verdana,arial;
+font-size:12px;
+margin:0;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+
+header {
+text-align:center;
+}
+
+#sresultcount {
+font-size:14pt;
+position:relative;
+right:4px;
+top:4px;
+}
+
+#sB {
+background-color:#666;
+color:#fff;
+font-size:16pt;
+margin:5px;
+padding:5px;
+-khtml-user-select:text;
+-moz-user-select:text;
+-o-user-select:text;
+-webkit-user-select:text;
+user-select:text;
+}
+
+.i {
+background-color:#2d2d2d;
+border-top:1px solid #3c3c3c;
+border-bottom:1px solid #000;
+cursor:pointer;
+height:35px;
+padding:0;
+position:relative;
+-moz-transition-duration:.4s;
+-webkit-transition-duration:.4s;
+-o-transition-duration:.4s;
+transition-duration:.4s;
+-moz-transition-property:background-color;
+-webkit-transition-property:background-color;
+-o-transition-property:background-color;
+transition-property:background-color;
+}
+
+.i:hover {
+background-color:#373737;
+-moz-transition-duration:.1s;
+-o-transition-duration:.1s;
+-webkit-transition-duration:.1s;
+transition-duration:.1s
+-moz-transition-property:background-color;
+-o-transition-property:background-color;
+-webkit-transition-property:background-color;
+transition-property:background-color;
+}
+
+.i.un {
+cursor:default;
+filter:alpha(opacity=50);
+-moz-opacity:.5;
+opacity:.5;
+}
+
+.i.on,
+.i.off {
+background-color:#292929;
+}
+
+.i.none {
+cursor:default;
+font-size:14pt;
+padding-top:12px;
+text-align:center;
+}
+
+.ti {
+color:#d9d9d9;
+float:left;
+font-family:"lucida grande",tahoma,verdana,arial;
+font-size:11px;
+left:31px;
+letter-spacing:.019em;
+padding-top:4px;
+position:relative;
+text-shadow:#000 0 1px 1px;
+width:544px;
+z-index:1;
+}
+
+.tt {
+font-weight:bold;
+letter-spacing:.019em;
+padding:0 15px 0 7px;
+}
+
+.a {
+color:#838383;
+font-family:"lucida grande",tahoma,verdana,arial;
+font-size:11px;
+letter-spacing:0;
+padding-left:7px;
+padding-right:15px;
+}
+
+.tt,
+.a {
+overflow:hidden;
+-o-text-overflow:ellipsis;
+text-overflow:ellipsis;
+white-space:nowrap;
+}

@@ -1,0 +1,29 @@
+
+<!-- saved from url=(0039)http://10k.aneventapart.com/Uploads/29/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		<title>3 Square</title>
+		<link rel="stylesheet" href="./15squares_files/style.css" type="text/css">
+		<script src="./15squares_files/square.js"></script>
+		<script>
+			var records = [
+				"0.01 seconds if you must know",
+				"7.93 seconds",
+				"23.56 seconds",
+				"1:31.98 minutes",
+				"2:52.22 minutes",
+				"4:36.23 minutes"
+			];			
+		</script>
+	</head>
+	<body onload="drawTable(4);" onkeydown="keyHandle(event)">
+		<input id="timer"><br>
+		<button onclick="drawTable(size-1)">-</button>
+		<button onclick="scramble()">SCRAMBLE!</button>
+		<button onclick="drawTable(size+1)">+</button>
+		<div id="grid"><table><tbody><tr><td class="red" onmousedown="clickHandle(this)" id="0.0">1</td><td onmousedown="clickHandle(this)" id="0.1" class="">2</td></tr><tr><td class="red" onmousedown="clickHandle(this)" id="1.0">3</td><td onmousedown="clickHandle(this)" id="1.1" class="blank">:)</td></tr></tbody></table></div>
+		<span id="record">Chris' Score: 0.01 seconds if you must know<br>
+</span>
+		Arrow Key Control: 
+		<span style="font-family:Arial;font-size:10pt;"><input type="checkbox" style="vertical-align:top" onclick="invertKeys()">Invert</span>
+	
+</body></html>

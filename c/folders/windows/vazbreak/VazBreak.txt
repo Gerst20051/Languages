@@ -1,0 +1,160 @@
+VAZBREAK Game Design Notes (Apr 16, 2003)
+
+Based on Andre Lamothe's game demo freakout.cpp in
+Tricks of the Windows Game Programming Gurus (1999, 1st edition)
+
+For WIN32 game, Visual C++ compiler, GDI graphics only (no DirectX)
+
+=======================================================================
+
+GAME STATES for "VazBreak"
+
+GAME_STATE_DEMO_INIT  = 0
+GAME_STATE_DEMO_RUN   = 1
+GAME_STATE_GAME_INIT  = 2
+GAME_STATE_GAME_RUN   = 3
+GAME_STATE_GAME_RESET = 4
+GAME_STATE_GAME_PAUSE = 5
+
+=======================================================================
+
+GLOBAL VARS and initial values
+
+int game_state = DEMO_INIT;  // initial game state
+
+int game_score = 0;          // game score
+
+int game_level = 1;          // game level (starts at 1)
+
+int blocks_hit = 0;          // number of blocks hit
+
+int paddles_left = 0;        // number of paddles left
+                             // (0 since at Game Over paddles = 0)
+
+int xball, yball;            // x and y ball position
+
+int xmove, ymove;            // x and y ball movement
+                             // (velocity = -3/+3 slow, -6/+6 medium, -9/+9 fast)
+                             // ball starts slow, if hit middle block go medium
+                             // if hit highest block, go fast
+                             
+int xpaddle;                 // x paddle position only (since y is constant)
+
+=======================================================================
+
+PSEUDO CODE for "VazBreak"
+
+When DEMO_INIT
+
+  Clear Screen
+  Draw Border
+  Draw Blocks
+  Draw Text "VazBreak" and instructions (above blocks)
+  Display score/level/paddles (bottom of screen)
+  Set ball position and movement (move fast for demo)
+  
+  Set state to DEMO_RUN
+    
+
+When DEMO_RUN
+
+  Move ball (bounce off walls and bottom)
+  Wait for <space bar> key
+  IF <space bar> pressed, set state to GAME_INIT
+  
+  Otherwise, leave state at DEMO_RUN
+    
+
+When GAME_INIT
+
+  Clear Screen
+  Draw Border
+  Draw Blocks
+  Set score = 0, level = 1, paddles = 3
+  Display score/level/paddles (bottom of screen)
+  Set ball position and movement (move slow)
+  Set paddle position (middle of screen)
+  
+  Set state to GAME_RUN
+      
+
+When GAME_RUN
+
+  Move ball (bounce off wall, paddle, blocks)
+  Move paddle (check arrow keys, left/right)
+  Check collision with block/paddle
+  
+  IF paddle hit ball, deflect at different angles    
+  IF paddle missed ball subtract one from paddles
+  IF paddles = 0, set state to DEMO_INIT (game over)
+  
+  IF collision with block
+    Remove block, update score, add one to blocks_hit
+  IF ALL blocks hit, set state to GAME_RESET
+  
+  IF "p" key pressed, set state to GAME_PAUSE
+  
+  Otherwise, leave state at GAME_RUN
+      
+
+When GAME_RESET
+
+  Clear Screen
+  Draw Border
+  Draw Blocks
+  Add 500 to score, add one to level
+  Display score/level/paddles (bottom of screen)
+  Set ball position and movement (move slow)
+  Set paddle position (middle of screen)
+  
+  Set state to GAME_RUN
+  
+
+When GAME_PAUSE
+
+  Stop all movement (by not updating ball/paddle)
+  Wait for <space bar> key to resume
+  If <space bar> key pressed, set state to GAME_RUN
+  
+  Otherwise, leave state at GAME_PAUSE
+  
+========================================================================
+
+VAZBREAK block diagram (border rects and block positions)
+
+BLOCK_WIDTH  = 47  (total = 50 with gap)
+BLOCK_HEIGHT = 15  (total = 18 with gap)
+BLOCK_GAP    =  3
+
+borders = (  0,0 to 25,600  ) WHITE
+          (  0,0 to 800,25  ) WHITE
+          (778,0 to 800,600)  WHITE
+
+
+*(0,0)---                                                                  *(778,0)---
+
+                                                                          ---(800,25)*
+                                                                          
+                                       BLOCKS
+                                                                                     
+       B1  B2  B3   B4   B5   B6   B7   B8   B9   B10  B11  B12  B13  B14  B15                               
+                                                                                  
+     X=28--78--128--178--228--278--328--378--428--478--528--578--628--678--728--                                                                        
+                                                                                  
+RED Y= 128                                                                                 
+RED Y= 146
+RED Y= 164
+BLU Y= 182
+BLU Y= 200
+BLU Y= 218
+GRN Y= 236
+GRN Y= 254
+GRN Y= 272
+            Min X=28----------------------------------------------------Max X=745
+           Y=560                           PADDLE-WHITE
+
+---*(25,600)  SCORE = XXX   LEVEL = XX   PADDLES = X  VazBreak (c) 2003  ---(800,600)*
+
+=======================================================================================
+
+END OF DESIGN NOTES

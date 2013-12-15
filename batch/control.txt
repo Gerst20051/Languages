@@ -1,0 +1,88 @@
+Many times you will have an automated process running that 
+you want shut down at a certain time of day. 
+
+Try this:
+http://www.sysinternals.com/ntw2k/freeware/pstools.shtml
+The SysInternals web site has loads of incredible free 
+utilities. I don't know how they do it.
+
+Also, check out the Resource Kit for your OS. For example, 
+the Windows 2000 Resource Kit has a program called PTREE. 
+Unfortunately, you have to buy the RK (it isn't available 
+as a free download). Find out more about the W2K-RK here:
+http://www.microsoft.com/windows2000/techinfo/reskit/rktour/server/S_tools.asp
+
+If you don't have Windows 2000, you might investigate what 
+utilities are available as part of the resource kit or are 
+in the "Zero Administration" kit:
+http://www.microsoft.com/ntserver/nts/downloads/recommended/ntkit/default.asp
+http://www.microsoft.com/windows98/downloads/contents/WURecommended/S_WUFeatured/W98ZAK/Default.asp
+
+PC Magazine wrote a nice utility called "EndItAll 2". 
+It's free (as long as you pay for it first) and it 
+will allow you batch control shutting down any program. 
+Search www.pcmag.com for the term "EndItAll" or try:
+http://www.pcmag.com/article/0,2997,a%253D13656,00.asp
+http://www.pcmag.com/search_results/0%2C3015%2C%2C00.asp?query=EndItAll&selected_site=PC+Magazine
+
+
+
+
+Finally, if none of the above pre-built solutions are 
+available, you can use Windows Scripting. Scripting is 
+standard with Win98 and newer. If you don't have it, 
+it's available as a free download. See 
+http://www.microsoft.com/scripting
+Here is a simple VBS script that will shut down Notepad
+by sending an Alt-F4 keystroke:
+
+Dim wsh
+Set wsh = CreateObject("WScript.Shell")
+wsh.AppActivate "Notepad"
+wsh.SendKeys "%{F4}"
+
+All you have to do is change the "Notepad" above to match 
+the title bar (or just the beginning or end of the title 
+bar) of your program. 
+
+To use a VBS script, just save the text with a file 
+extension of VBS. If the icon doesn't change to a blue 
+scroll, try using quotes around the file name when you 
+save it. As a batch file programmer, you'll probably 
+want to run your script with a command line like this:
+cscript.exe "C:\Path\script.vbs"
+Or 
+start /wait cscript.exe "C:\Path\script.vbs"
+
+
+If you have Windows 2000, ME, or newer, you have WMI. If you have 
+an older operating system (Win9x), you can download WMI here:
+http://download.microsoft.com/download/platformsdk/wmi9x/1.5/W9X/EN-US/wmi9x.exe
+WMI allows you to kill processes based on their executable name. 
+Here is a VBS script that uses WMI to kill all instances of Notepad:
+
+Set objWMIService = GetObject("winmgmts:\\.\root\cimv2")
+strQuery = "Select * from Win32_Process where Name='Notepad.exe'"
+Set colItems = objWMIService.ExecQuery(strQuery,,48)
+For Each objItem in colItems
+    objItem.Terminate
+Next
+
+
+
+
+Finally, the time of day problem. Your basic approach here 
+is to schedule a program to run at a certain time of day. 
+This scheduled program will then kill your other program.
+
+Frankly, you might want to read the Windows help on the 
+"System Agent" (for Win9x), the "AT" command (a 
+command-line program in NT, 2K, and XP), or 
+"Scheduled Tasks" (GUI application in NT, 2K, and XP).  
+McAfee and Norton Antivirus both include a scheduler 
+as well. Finally (a last resort!), I wrote a scheduling 
+program:
+http://www.ericphelps.com/schedule/index.htm
+
+
+http://www.ericphelps.com

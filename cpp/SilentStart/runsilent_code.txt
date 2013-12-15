@@ -1,0 +1,110 @@
+DWORD RunSilent(char* strFunct, char* strstrParams)
+{
+	STARTUPINFO StartupInfo;
+	PROCESS_INFORMATION ProcessInfo;
+	char Args[4096];
+	char *pEnvCMD = NULL;
+	char *pDefaultCMD = "CMD.EXE";
+	ULONG rc;
+	
+	memset(&StartupInfo, 0, sizeof(StartupInfo));
+	StartupInfo.cb = sizeof(STARTUPINFO);
+	StartupInfo.dwFlags = STARTF_USESHOWWINDOW;
+	StartupInfo.wShowWindow = SW_HIDE;
+
+	Args[0] = 0;
+
+	pEnvCMD = getenv("COMSPEC");
+
+	if(pEnvCMD){
+		
+		strcpy(Args, pEnvCMD);
+	}
+	else{
+		strcpy(Args, pDefaultCMD);
+	}
+
+	// "/c" option - Do the command then terminate the command window
+
+	strcat(Args, " /c "); 
+	//the application you would like to run from the command window
+
+	strcat(Args, strFunct);  
+	strcat(Args, " "); 
+	//the parameters passed to the application being run from the command window.
+
+	strcat(Args, strstrParams); 
+
+	if (!CreateProcess( NULL, Args, NULL, NULL, FALSE,
+		CREATE_NEW_CONSOLE, 
+		NULL, 
+		NULL,
+		&StartupInfo,
+		&ProcessInfo))
+	{
+		return GetLastError();		
+	}
+
+	WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+	if(!GetExitCodeProcess(ProcessInfo.hProcess, &rc))
+		rc = 0;
+
+	CloseHandle(ProcessInfo.hThread);
+	CloseHandle(ProcessInfo.hProcess);
+
+	return rc;
+	
+}
+
+// Documentation
+
+Introduction
+
+Arrrgh! So you need to run your console app via a primary application, well ye've come to the right place. This article is intended for those who need to run one of those pesky little console applications without the console window popping up over your main app or worse popping up when calling it from a service.
+
+So now matey lets dive into it and see how to avoid the console windows from sinking our application. Prepare the app for silent running.
+
+Walking the Plank
+
+Ok! That's enough of the pirate stuff. On with the show..
+You have probably searched the web and have seen many developers show examples of how to spawn applications using the CreateProcess function. Well I shall do the same thing but with a twist. I will do it in such a way that the application that you would like to spawn does not show up when run.
+
+There are several caveats to this process and many gotcha's. The main one is that if this program you wish to run is interactive, that is requires input from the user outside of what can be passed in through the command line, then blindly using this code will cause your program to hang. To recap! How can you input information into a program if you can't see the window. Ok! Think you get the point.
+
+There are ways of doing this but they will not be covered in this article.
+
+Running Silent
+
+The trick to running a console window silent is burried in the STARTUPINFO structure that we will populate then pass into the CreateProcess function. STARTUPINFO specifies the main window properties. There are many items in the STARTUPINFO structure that we just don't care about. The ones that are of interest to us are the
+DWORD cb
+DWORD dwFlags
+WORD wShowWindow
+First the STARTUPINFO is instantiated
+ Collapse
+  STARTUPINFO StartupInfo;
+then the memory is cleared for the length of the structure.
+ Collapse
+  memset(&StartupInfo, 0, sizeof(StartupInfo));
+or
+ Collapse
+  ::ZeroMemory(&StartupInfo, sizeof(StartupInfo));  
+If this is not done our data within our STARTUPINFO object could be corrupt rendering it useless and possible crashing the application.
+Next we will fill our structure with the relevant code that will tell our console window to start up without showing itself.
+
+ Collapse
+  // set the size of the structure
+
+  StartupInfo.cb = sizeof(STARTUPINFO);
+  // tell the application that we are setting the window display 
+
+  // information within this structure
+
+  StartupInfo.dwFlags = STARTF_USESHOWWINDOW;
+  // set the window display to HIDE
+
+  StartupInfo.wShowWindow = SW_HIDE;
+Well that's not much of a trick but remember unless you specify the dwFlags to the flag STARTF_USESHOWWINDOW the setting in wShowWindow will not be recognized and your window will not be hidden.
+Davy Jones' Locker
+
+Well this is where I will leave you to it.
+To test this use the function source below and paste it into your application or Download the project file above and test it out. The application will open the IPConfig.exe application in a hidden window, pipe the text to a file and then display the contents of that file in the main application window

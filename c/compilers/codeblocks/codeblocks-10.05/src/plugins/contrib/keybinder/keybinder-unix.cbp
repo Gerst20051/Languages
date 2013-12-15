@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="C::B KeyBinder" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="KeyBinder plugin">
+				<Option output="../../../devel/share/codeblocks/plugins/libkeybinder.so" prefix_auto="0" extension_auto="0" />
+				<Option object_output="../../../.objs/plugins/contrib/keybinder" />
+				<Option type="3" />
+				<Option compiler="gcc" />
+				<Option parameters="--debug-log -ns -ni" />
+				<Option host_application="../../../devel/codeblocks" />
+				<Compiler>
+					<Add directory="../../../include" />
+					<Add directory="../../../sdk/wxscintilla/include" />
+				</Compiler>
+				<Linker>
+					<Add library="libcodeblocks.a" />
+					<Add directory="../../../devel" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="All" targets="KeyBinder plugin;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-g" />
+			<Add option="-Ulinux" />
+			<Add option="-Uunix" />
+			<Add option="`wx-config --cflags`" />
+			<Add option="-fmessage-length=0" />
+			<Add option="-fexceptions" />
+			<Add option="-Winvalid-pch" />
+			<Add option="-fPIC" />
+			<Add option="-DcbDEBUG" />
+			<Add option="-DCB_PRECOMP" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs`" />
+		</Linker>
+		<ExtraCommands>
+			<Add after="zip -j9 ../../../devel/share/codeblocks/keybinder.zip manifest.xml" />
+			<Mode after="always" />
+		</ExtraCommands>
+		<Unit filename="cbkeybinder.cpp">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="cbkeybinder.h">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="debugging.h">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="keybinder.cpp">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="keybinder.h">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="menuutils.cpp">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Unit filename="menuutils.h">
+			<Option target="default" />
+			<Option target="KeyBinder plugin" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

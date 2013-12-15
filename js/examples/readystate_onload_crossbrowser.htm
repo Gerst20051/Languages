@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+ <head>
+  <title>Busted3!</title>
+  <meta name="author" content="Dean Edwards"/>
+  <!-- keeping code tidy!! -->
+  <meta name="copyright" content="&copy; copyright 2006, Dean Edwards"/>
+  <style>
+  	#message {
+  	 background-color: red;
+  	 color: white;
+  	 font-weight: bold;
+  	 font-size: 2em;
+  	 text-align: center;
+  	}
+  </style>
+  <script type="text/javascript">
+	function init() {
+		// quit if this function has already been called
+		if (arguments.callee.done) return;
+		
+		// flag this function so we don't do the same thing twice
+		arguments.callee.done = true;
+		
+		// kill the timer
+		if (_timer) {
+			clearInterval(_timer);
+			_timer = null;
+		}
+		
+		// create the "page loaded" message
+		var text = document.createTextNode("Page loaded!");
+		var message = document.getElementById("message");
+		message.appendChild(text);
+	};
+	
+	/* for Mozilla */
+	if (document.addEventListener) {
+		document.addEventListener("DOMContentLoaded", init, false);
+	}
+	
+	/* for Internet Explorer */
+	/*@cc_on @*/
+	/*@if (@_win32)
+		document.write("<script id=__ie_onload defer src=javascript:void(0)><\/script>");
+		var script = document.getElementById("__ie_onload");
+		script.onreadystatechange = function() {
+			if (this.readyState == "complete") {
+				init(); // call the onload handler
+			}
+		};
+	/*@end @*/
+	
+	/* for Safari */
+	if (/WebKit/i.test(navigator.userAgent)) { // sniff
+		var _timer = setInterval(function() {
+			if (/loaded|complete/.test(document.readyState)) {
+				init(); // call the onload handler
+			}
+		}, 10);
+	}
+	
+	/* for other browsers */
+	window.onload = init;
+  </script>
+ </head>
+ <body>
+  <h1>Busted3!</h1>
+  <p id="message"></p>
+  <script type="text/javascript">
+   // create a unique image source so that this page works with continued testing
+   var src = "http://www.nasa.gov/images/content/84857main_EC04-0325-23_lg.jpg?" + Number(new Date);
+   document.write("<img src=" + src + " height=240 width=300>");
+  </script>
+ </body>
+</html>

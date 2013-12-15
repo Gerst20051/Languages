@@ -1,0 +1,55 @@
+# 
+# PROJEKTFIL genererad av "Pelles C for Windows, version 4.50".
+# VARNING! REDIGERA INTE DENNA FIL.
+# 
+
+POC_PROJECT_VERSION = 4.00#
+POC_PROJECT_TYPE = 3#
+POC_PROJECT_ARGUMENTS = #
+POC_PROJECT_WORKPATH = #
+POC_PROJECT_EXECUTOR = #
+CC = pocc.exe#
+AS = poasm.exe#
+RC = porc.exe#
+LINK = polink.exe#
+CCFLAGS = -Tx86-coff -Ot -W1 -Gd#
+ASFLAGS = -AIA32 -Gd#
+RCFLAGS = #
+LINKFLAGS = -release -subsystem:console -machine:ix86 kernel32.lib advapi32.lib delayimp.lib#
+
+.SILENT:
+
+# 
+# Bygg md5.exe.
+# 
+md5.exe: \
+	output\md5_x86.obj \
+	output\md5_x86.obj \
+	output\md5_c.obj \
+	output\main.obj
+	$(LINK) $(LINKFLAGS) -out:"$@" $**
+
+# 
+# Bygg md5_x86.obj.
+# 
+output\md5_x86.obj: \
+	md5_x86.asm \
+	md5.inc
+	$(AS) $(ASFLAGS) -Fo"$@" "$!"
+
+.EXCLUDEDFILES:
+
+# 
+# Bygg md5_c.obj.
+# 
+output\md5_c.obj: \
+	md5_c.c \
+	md5.h
+	$(CC) $(CCFLAGS) "$!" -Fo"$@"
+
+# 
+# Bygg main.obj.
+# 
+output\main.obj: \
+	main.c
+	$(CC) $(CCFLAGS) "$!" -Fo"$@"

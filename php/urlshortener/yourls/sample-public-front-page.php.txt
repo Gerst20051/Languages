@@ -1,0 +1,122 @@
+<?php 
+// Start YOURLS engine
+require_once( dirname(__FILE__).'/includes/load-yourls.php' );
+?>
+<html>
+<head>
+<title>YOURLS Public Interface Sample</title>
+<style>
+body {
+	background:#E3F3FF;
+	color:#595441;
+	font:16px/30px verdana,arial,sans-serif;
+}
+a, a:visited {color:#2A85B3}
+h1 {text-align:center; color:#2A85B3}
+h2 {
+	border-bottom:1px solid #2A85B3;
+	color:#2A85B3;
+	margin-left:-10px;
+	padding-left:25px;
+	width:80%;
+}
+#container {
+	width: 780px;
+	margin-left: auto;
+	margin-right: auto; 
+	background-color: #fff;
+	border: 3px solid #2A85B3;
+	padding: 10px;
+	margin-top: -13px;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+}
+#footer {
+	text-align:center;
+	margin-top:20px;
+}
+#footer p {
+	padding:5px;
+	background:white;
+	margin:0 auto;
+	width:750px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	-webkit-border-radius:10px;
+	border:1px solid #2A85B3;
+	-moz-border-radius-bottomleft:35px;
+	-moz-border-radius-bottomright:35px;
+	-webkit-border-bottom-left-radius:25px;
+	-webkit-border-bottom-right-radius:25px;
+}
+#footer p a {
+	background:#fff url(http://yourls.org/images/favicon.gif) 2px center no-repeat;
+	padding-left:20px;
+}
+div#copybox { width:600px; height:auto;}
+div#sharebox {height:auto; width:600px; margin-top: 20px}
+</style>
+<link rel="stylesheet" href="<?php echo YOURLS_SITE; ?>/css/share.css?v=<?php echo YOURLS_VERSION; ?>" type="text/css" media="screen" />
+<script src="<?php echo YOURLS_SITE; ?>/js/jquery-1.3.2.min.js" type="text/javascript"></script>
+<script src="<?php echo YOURLS_SITE; ?>/js/ZeroClipboard.js?v=<?php echo YOURLS_VERSION; ?>" type="text/javascript"></script>
+<script type="text/javascript">ZeroClipboard.setMoviePath( '<?php echo YOURLS_SITE; ?>/js/ZeroClipboard.swf' );</script>
+<script src="<?php echo YOURLS_SITE; ?>/js/share.js?v=<?php echo YOURLS_VERSION; ?>" type="text/javascript"></script>
+</head>
+
+<body>
+<h1>YOURLS: Your Own URL Shortener</h1>
+
+<div id="container">
+
+	<?php
+
+	// Part to be executed if FORM has been submitted
+	if ( isset($_REQUEST['url']) ) {
+
+		$url     = yourls_sanitize_url( $_REQUEST['url'] );
+		$keyword = isset( $_REQUEST['keyword'] ) ? yourls_sanitize_keyword( $_REQUEST['keyword'] ): '' ;
+		$title   = isset( $_REQUEST['title'] ) ? yourls_sanitize_title( $_REQUEST['title'] ) : '' ;
+
+		$return  = yourls_add_new_link( $url, $keyword, $title );
+		
+		$shorturl = isset( $return['shorturl'] ) ? $return['shorturl'] : '';
+		$message  = isset( $return['message'] ) ? $return['message'] : '';
+		$title    = isset( $return['title'] ) ? $return['title'] : '';
+		
+		echo <<<RESULT
+		<h2>URL has been shortened</h2>
+		<p>Original URL: <code><a href="$url">$url</a></code></p>
+		<p>Short URL: <code><a href="$shorturl">$shorturl</a></code></p>
+		<p><strong>$message</strong></p>
+RESULT;
+		
+		// Include the Copy box and the Quick Share box
+		yourls_share_box( $url, $shorturl, $title );
+
+	// Part to be executed when no form has been submitted
+	} else {
+	
+		$site = YOURLS_SITE;
+
+		echo <<<HTML
+		<h2>Enter a new URL to shorten</h2>
+		<form method="post" action="">
+		<p><label>URL: <input type="text" name="url" value="http://" size="70" /></label></p>
+		<p><label>Optional custom keyword: $site/<input type="text" name="keyword" size="8" /></label></p>
+		<p><label>Optional title: <input type="text" name="title" size="57" /></label></p>
+		<p><input type="submit" value="Shorten" /></p>
+		</form>	
+HTML;
+
+	}
+
+	?>
+
+	<!-- Example bookmarklet. Be sure to rename the link target from "sample-public-front-page.php" to whatever you'll use (probably index.php) -->
+	<p><a href="javascript:void(location.href='<?php echo YOURLS_SITE; ?>/sample-public-front-page.php?format=simple&action=shorturl&url='+escape(location.href))">bookmarklet</a>
+
+</div>
+
+<div id="footer"><p>Powered by <a href="http://yourls.org/" title="YOURLS">YOURLS</a> v<?php echo YOURLS_VERSION; ?></p></div>
+</body>
+</html>

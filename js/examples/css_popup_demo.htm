@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>CSS PopUp Demo</title>
+<script type="text/javascript" src="csspopup.js"></script>
+<style type="text/css">
+<!--
+#blanket {
+   background-color:#111;
+   opacity: 0.65;
+   position:absolute;
+   z-index: 9001; /*ooveeerrrr nine thoussaaaannnd*/
+   top:0px;
+   left:0px;
+   width:100%;
+}
+#popUpDiv {
+	position:absolute;
+	background-color:#eeeeee;
+	width:300px;
+	height:300px;
+	z-index: 9002; /*ooveeerrrr nine thoussaaaannnd*/
+}
+-->
+</style>
+<!--[if gte IE 5]> <style type="text/css"> #blanket {filter:alpha(opacity=65);}</style><![endif]-->
+</head>
+<body>
+	<div id="blanket" style="display:none;"></div>
+	<div id="popUpDiv" style="display:none;">
+		<a href="#" onclick="popup('popUpDiv')">Click Me To Close</a>
+	</div>	
+  <h1><a href="#" onclick="popup('popUpDiv')">Click Here To Open The Pop Up</a></h1>
+  <h2><a href="http://www.pat-burt.com/web-development/how-to-do-a-css-popup-without-opening-a-new-window/">Click Here To Find Out How To Do This</a></h2>
+</body>
+</html>

@@ -1,0 +1,54 @@
+#prevButton { position: absolute; left:   168px; top: 233px; }
+#nextButton { position: absolute; left:   283px; top: 233px; }
+#playButton { position: absolute; left:   197px; top: 233px; }
+
+#prevStation {
+    position: absolute;
+    left: 0px;
+    top: 236px;
+    width: 162px;
+    height: 32px;
+    color: #202020;
+    overflow: hidden;
+    text-align: right;
+    font-size: 100%;
+    line-height: 1.5;
+}
+#nextStation {
+    position: absolute;
+    left: 318px;
+    top: 236px;
+    width: 162px;
+    height: 32px;
+    color: #202020;
+    overflow: hidden;
+    text-align: left;
+    font-size: 100%;
+    line-height: 1.5;
+}
+
+#sleepSw    { position: absolute; left: 153px; top: 505px; }
+#shiftTglSw { position: absolute; left: 182px; top: 505px; }
+#sinTglSw   { position: absolute; left: 211px; top: 505px; }
+#cwTglSw    { position: absolute; left: 240px; top: 505px; }
+#noiseTglSw { position: absolute; left: 269px; top: 505px; }
+#helpSw     { position: absolute; left: 298px; top: 505px; }
+
+#sleepTimerIndicator { position: absolute; left: 164px; top: 498px; }
+#shiftSwIndicator    { position: absolute; left: 193px; top: 498px; }
+#sinSwIndicator      { position: absolute; left: 222px; top: 498px; }
+#cwSwIndicator       { position: absolute; left: 251px; top: 498px; }
+#noiseSwIndicator    { position: absolute; left: 280px; top: 498px; }
+
+#sleepCountDown {
+    position: absolute;
+    left: 109px;
+    top: 508px;
+    width: 40px;
+    height: 32px;
+    color: #202020;
+    overflow: hidden;
+    text-align: right;
+    font-size: 100%;
+    line-height: 1.5;
+}

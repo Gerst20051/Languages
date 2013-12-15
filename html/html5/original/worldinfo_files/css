@@ -1,0 +1,32 @@
+@media screen {
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Yanone Kaffeesatz Light'), local('YanoneKaffeesatz-Light'), url('http://themes.googleusercontent.com/font?kit=We_iSDqttE3etzfdfhuPRX4NhRhUVU1NOvrEWRXSCoI') format('truetype');
+}
+}
+@media screen {
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Yanone Kaffeesatz Regular'), local('YanoneKaffeesatz-Regular'), url('http://themes.googleusercontent.com/font?kit=YDAoLskQQ5MOAgvHUQCcLbvy90DtE_Pg_qiF9bHvTzw') format('truetype');
+}
+}
+@media screen {
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Yanone Kaffeesatz Bold'), local('YanoneKaffeesatz-Bold'), url('http://themes.googleusercontent.com/font?kit=We_iSDqttE3etzfdfhuPRUgbSk09ekaEjkXjfj0Ujx8') format('truetype');
+}
+}
+@media screen {
+@font-face {
+  font-family: 'Yanone Kaffeesatz';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Yanone Kaffeesatz Thin'), local('YanoneKaffeesatz-Thin'), url('http://themes.googleusercontent.com/font?kit=We_iSDqttE3etzfdfhuPRQqTbvZhoFeVhlHCS0LaBIg') format('truetype');
+}
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://moo4q.com/Demos/captions/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>Multiple Matches</title>
+	<style type="text/css" media="screen">
+		body {
+			font-family: Times, "Times New Roman";
+		}
+		
+		img {
+			padding: 1px;
+			border: solid 1px #ccc;
+		}
+		
+		span.caption {
+			float: left;
+			clear: left;
+			margin: 1em 1em 1em 0;
+			text-align: center;
+		}
+		
+		span.caption span {
+			display: block;
+			font-family: helvetica, arial;
+			font-style: italic;
+			font-size: 80%;
+			color: #585858;
+		}
+		
+		span.caption-1 {
+			float: right;
+			margin: 1em 0 1em 1em;
+		}
+	</style>
+<script type="text/javascript" async="" src="./moo4q_multiple_matches_files/ga.js"></script></head>
+<body>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-16348013-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+</script>
+
+<p>
+	<span class="caption caption-0"><img src="./moo4q_multiple_matches_files/d4g_chile10-hp.gif" alt="Doodle4Google Winner Chile - (Chile)"><span>Doodle4Google Winner Chile - (Chile)</span></span> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p class="second">
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <span class="caption caption-1"><img src="./moo4q_multiple_matches_files/oz10-hp.gif" alt="71st Anniversary of The Wizard of Oz"><span>71st Anniversary of The Wizard of Oz</span></span> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p>
+	<span class="caption caption-2"><img src="./moo4q_multiple_matches_files/july4thgoldberg10-hp.png" alt="Happy 4th of July and Happy Birthday Rube Goldberg!"><span>Happy 4th of July and Happy Birthday Rube Goldberg!</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+<p>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</p>
+
+
+<script type="text/javascript" charset="utf-8" src="./moo4q_multiple_matches_files/moo4q-yui.js"></script>
+<script>
+
+var ImageCaption = new Class({
+	
+	Implements: Options,
+	
+	options: {
+		wrapTag: 'div',
+		wrapOptions: {
+			'class': 'caption'
+		},
+		indexedClassName: 'caption'
+	},
+	
+	jQuery: 'caption',
+	
+	initialize: function(selector, options){
+		this.setOptions(options);
+		this.jQuery = jQuery(selector);
+		this.bound = this.createCaption.bind(this);
+		this.jQuery.each(this.bound);
+	},
+	
+	createCaption: function(index, element){
+		var el = jQuery(element);
+		var wrap = jQuery('<' + this.options.wrapTag + '/>', this.options.wrapOptions).addClass(this.options.indexedClassName + '-' + index);
+		var caption = jQuery('<span>' + el.attr('alt') + '</span>');
+		el.wrap(wrap).after(caption);
+	}
+	
+});
+
+// can match multiple elements, make sure to use jQuery.each on them somewhere in the class
+$('img').caption({wrapTag: 'span'});
+
+</script>
+
+
+</body></html>

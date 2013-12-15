@@ -1,0 +1,23 @@
+## Uncomment to disable annoying 404-pages
+#ErrorDocument 404 /
+#ErrorDocument 403 /
+
+DirectoryIndex index.php index.html index.htm
+
+## Uncomment to disable charset encoding for Russian Apache
+#CharsetDisable On
+
+## mod_rewrite configuration
+RewriteEngine on
+
+RewriteRule ^[a-zA-Z]$ /display.php?action=search&by=$0
+RewriteRule ^([a-zA-Z])\/$ /$1 [R]
+
+RewriteRule ^([A-Z]+)([a-z)]+)([0-9)]+)\.html$ /display.php?action=search&by=$1&nr_page=$3
+
+RewriteRule ^([^/]+)(.html)$ /display.php?action=show&word=$1
+
+RewriteRule ^admin$ /$0.php
+RewriteRule ^(admin)\/$ /$1 [R]
+
+#Options -Indexes IncludesNOEXEC FollowSymLinks

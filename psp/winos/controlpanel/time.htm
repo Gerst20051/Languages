@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>Time Page</title>
+
+<style type="text/css">
+<!--
+body {
+	background-color: #EBE9ED;
+}
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+function ChangeSettings(){
+	top.icookies.document.settings.noAutoTime.value=document.getElementById('noAuto').checked;
+	top.icookies.document.settings.submit();
+	top.ApplySettings();
+}
+</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<center>
+<p>
+Disabling the automatic clock may make some applications and games run slightly faster, and may reduce interference.
+</p>
+<p>
+<label><input type="checkbox" id="noAuto" name="noAuto" value="checkbox">Disable auto-refresh clock (you will have to click on the clock to update it) - <strong>this will also disable the screensaver!</strong></label>
+</p>
+<p>
+<input name="OK" type="button" id="OK" onClick="location='index.htm';ChangeSettings();" value="OK" style="width:60">
+<input name="Cancel" type="button" id="Cancel" onClick="location='index.htm';" value="Cancel" style="width:60">
+</p>
+</center>
+  <script language="javascript" type="text/javascript">
+	if(top.document.icookies.document.getElementById('noAutoTime').value=="true"){
+		noAuto.checked=true;
+	}else{
+		noAuto.checked=false;
+	}
+  </script>
+</body>
+</html>

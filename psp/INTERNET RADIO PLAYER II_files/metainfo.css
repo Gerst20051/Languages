@@ -1,0 +1,25 @@
+#metaInfo {
+    position: absolute;
+    margin: 1;
+    left: 2px; top: 19px;
+    width: 476px; height:20px;
+    color: #202020;
+    text-align: center;
+    overflow: hidden;
+    font-family: Helvetica;
+    font-size: 100%;
+    font-weight: bold;
+    line-height: 1.5;
+}
+#stationInfo {
+    position: absolute;
+    margin: 1;
+    left: 2px; top: 42px;
+    width: 476px; height:32px;
+    color: #303030;
+    text-align: center;
+    overflow: hidden;
+    font-family: Helvetica;
+    font-size: 75%;
+    line-height: 1.2;
+}

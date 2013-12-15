@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!-- saved from url=(0073)http://pupunzi.com/#mb.components/mb.miniAudioPlayer/miniAudioPlayer.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>mb.ideas.repository - components - jQuery.mb.miniAudioPlayer</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+	<meta name="title" content="mb.ideas.repository - Matteo Bicocchi&#39;s personal website">
+	<meta name="description" content="Matteo Bicocchi ideas repository, find out the jQuery mb.components and change the user experience on your web pages!">
+	<meta name="keywords" content="Matteo Bicocchi, pupunzi, jquery components, plug in, teamwork, webwork, morethanicons, patapage, bugsVoice,Licorize, jquery, components, javascript, mbContainerPlus, mbMenu, mb.ideas, mb.components">
+	<meta name="AUTHOR" content="Matteo Bicocchi, Open Lab">
+	<meta name="Copyright" content="Copyright 2010, Matteo Bicochi Open Lab">
+	<meta name="owner" content="Matteo Bicocchi, Open Lab srl">
+	<meta content="Webwork4 by OpenLab" name="GENERATOR">
+	<meta name="alexaVerifyID" content="xxjno3i8HOTTaByN0V2ixH9NDb4">
+	<meta name="robots" content="ALL">
+
+	<meta http-equiv="PRAGMA" content="NO-CACHE">
+
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!--Google fonts-->
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/css" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/css(1)" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/css(2)" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/css(3)" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/css(4)" rel="stylesheet" type="text/css">
+
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.site.02.reset.css" media="all" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8 ]>
+	<link href="css/mb.site.02_ie.css" media="all" rel="stylesheet" type="text/css">
+	<![endif]-->
+
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.site.02.css" media="all" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.retweet.css" media="all" rel="stylesheet" type="text/css">
+	<link href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/prettify.css" media="all" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.min.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.easing.1.3.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.mb.core.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.ideas.02.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.history.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.activity.min.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/prettify.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.mb.retweet.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.jgfeed.js"></script>
+	<script type="text/javascript" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/jquery.mb.sounds.js"></script>
+
+	<!--[if lte IE 8 ]>
+	<script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+</head>
+<body style="background-image: url(http://pupunzi.com/media/bgnds/10.jpg); overflow-x: auto; overflow-y: auto; ">
+<div id="site" style="display: block; ">
+	<header id="header" style="display: none; ">
+		<h1>mb.ideas.repository</h1>
+	</header>
+
+	<div id="navigation"><h1 style="margin-left: 0px; ">/mb.jquery</h1>
+		
+
+		<!--General menu-->
+
+		<nav id="menu">
+
+			<a id="welcome" href="http://pupunzi.com/#" class="ajax" style="opacity: 1; ">.Welcome</a>
+			<a id="components" class="ajax sel" href="http://pupunzi.com/#mb.components/components.html" style="opacity: 0.1; ">.mb.jquery</a>
+			<a id="news" class="ajax" href="http://pupunzi.com/#mb.news/news.html">.What's.new</a>
+			<a id="network" class="ajax" href="http://pupunzi.com/#mb.network/network.html">.my.network</a>
+			<a id="about" class="ajax" href="http://pupunzi.com/#mb.info/info.html">.About.me</a>
+			<a id="creativity" class="ajax" href="http://pupunzi.com/#mb.creativity/creativity.html">.creativity</a>
+
+		</nav>
+
+		<!--
+
+			<div style="padding:6px;position:absolute;z-index:1000; bottom:10px; right:10px; -webkit-border-radius:7px;-moz-border-radius:7px;border:2px solid white; background:#000;text-align:center;color:white;">
+				Please support my work<br>with a free donation!<br><br>
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=V6ZS8JPMZC446&amp;lc=GB&amp;item_name=mb%2eideas&amp;item_number=MBIDEAS&amp;currency_code=EUR&amp;bn=PP%2dDonationsBF%3abtn_donateCC_LG_global%2egif%3aNonHosted">
+					<img alt="PayPal" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG_global.gif" border="0">
+				</a>
+			</div>
+	-->
+
+		<!--Sub menus -->
+
+		<nav class="sideContent" data-id="components" style="display: block; ">
+			<h2></h2>
+
+			<a data-id="menu" href="http://pupunzi.com/#mb.components/components.html" class="ajax">back to components page</a>
+
+			<div class="column">
+				<h3>.interface</h3>
+				<div>
+					<a id="mb-menu" class="ajax" href="http://pupunzi.com/#mb.components/mb._menu/menu.html">jquery.mb.menu </a>
+					<a id="mb-containerPlus" class="ajax" href="http://pupunzi.com/#mb.components/mb.containerPlus/containerPlus.html">jquery.mb.containerPlus</a>
+					<a id="mb-extruder" class="ajax" href="http://pupunzi.com/#mb.components/mb.extruder/extruder.html">jquery.mb.extruder</a>
+					<a id="mb-tabset" class="ajax" href="http://pupunzi.com/#mb.components/mb.tabset/tabset.html">jquery.mb.tabset</a>
+					<a id="mb-tooltip" class="ajax" href="http://pupunzi.com/#mb.components/mb.tooltip/tooltip.html">jquery.mb.tooltip</a>
+					<a id="mb-scrollable" class="ajax" href="http://pupunzi.com/#mb.components/mb.scrollable/scrollable.html">jquery.mb.scrollable</a>
+					<a id="mb-verticalSlider" class="ajax" href="http://pupunzi.com/#mb.components/mb.verticalSlider/verticalSlider.html">jquery.mb.verticalSlider</a>
+					<a id="mb-valueSlider" class="ajax" href="http://pupunzi.com/#mb.components/mb.valueSlider/valueSlider.html">jquery.mb.valueSlider</a>
+				</div>
+			</div>
+			<div class="column">
+				<h3>.media</h3>
+				<div>
+					<a id="mb-bgndGallery" class="ajax" href="http://pupunzi.com/#mb.components/mb.bgndGallery/bgndGallery.html">jquery.mb.bgndGallery</a>
+					<a id="mb-miniAudioPlayer" class="ajax selected" href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.ideas.repository - components - jQuery.mb.miniAudioPlayer.htm">jquery.mb.miniAudioPlayer</a>
+					<!--<a id="mb-sounds" class="ajax" href="mb.components/mb.sounds/sounds.html">jquery.mb.sounds</a>-->
+					<a id="mb-gallery" class="ajax" href="http://pupunzi.com/#mb.components/mb.gallery/gallery.html">jquery.mb.gallery</a>
+					<a id="mb-YTPlayer" class="ajax" href="http://pupunzi.com/#mb.components/mb.YTPlayer/YTPlayer.html">jquery.mb.YTPlayer</a>
+					<a id="mb-maskedGallery" class="ajax" href="http://pupunzi.com/#mb.components/mb.maskedGallery/maskedGallery.html">jquery.mb.maskedGallery</a>
+					<a id="mb-imageNavigator" class="ajax" href="http://pupunzi.com/#mb.components/mb.imageNavigator/imageNavigator.html">jquery.mb.imageNavigator</a>
+					<a id="mb-mediaEmbedder" class="ajax" href="http://pupunzi.com/#mb.components/mb.mediaEmbedder/mediaEmbedder.html">jquery.mb.mediaEmbedder</a>
+				</div>
+			</div>
+			<!--
+				 <div class="column">
+					 <h3>.other</h3>
+					 <div>
+						 <a id="mb-ile" class="ajax" href="mb.components/mb.ile/ile.html">jquery.mb.ile α</a>
+						 <a id="mb-retweet" class="ajax" href="mb.components/mb.retweet/retweet.html">jquery.mb.retweet</a>
+						 <a id="mb-domHunter" class="ajax" href="mb.components/mb.domHunter/domHunter.html">jquery.mb.domHunter</a>
+						 <a id="mb-articolize" class="ajax" href="mb.components/mb.articolize/articolize.html">jquery.mb.articolize</a>
+						 <a id="mb-emoticons" class="ajax" href="mb.components/mb.emoticons/emoticons.html">jquery.mb.emoticons</a>
+						 <a id="mb-txtEffects" href="mb.components/mb.txtEffects/txtEffects.html">jquery.mb.txtEffects</a>
+					 </div>
+				 </div>
+	 -->
+		</nav>
+
+		<nav class="sideContent" data-id="creativity">
+			<h2></h2>
+
+			<a data-id="menu" href="http://pupunzi.com/#mb.creativity/creativity.html" class="ajax">back to creativity page</a>
+			<br>
+			<a id="mb-photo" class="ajax" href="http://pupunzi.com/#mb.creativity/photos.html">my.photos</a>
+			<a id="mb-drawings" class="ajax" href="http://pupunzi.com/#mb.creativity/drawings.html">my.drawings</a>
+			<a id="mb-video" class="ajax" href="http://pupunzi.com/#mb.creativity/videos.html">my.videos</a>
+			<!--<a id="mb-mags" class="ajax" href="mb.creativity/mags.html">my.Mags</a>-->
+		</nav>
+
+		<nav class="sideContent" data-id="about">
+			<h2></h2>
+			<a id="mb-mail" href="mailto:matteo@open-lab.com?subject=from%20mbideasrepository">email.me</a>
+			<a id="mb-place" class="" href="http://pupunzi.open-lab.com/" target="_blank">my.blog</a>
+		</nav>
+
+		<aside class="sideContent" data-id="welcome">
+			<h2 class="dontRefill">Spot light</h2>
+
+			<div id="spotlight"><div class="rss_container" style=""><div class="rss__entry_placeHolder" style=""><span class="rss_entry_date" style="">1 months ago</span><h3 class="rss_entry_title" style="">Take a look at the video preview of Adslife alpha game</h3></div></div></div>
+
+		</aside>
+
+		
+
+	<div class="bgndPlaceHolders"><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div><div class="bgndIcon loaded"></div></div></div>
+
+	<div id="wrapper" style="display: block; left: 0px; top: 0px; opacity: 1; ">
+		<!--twitter button-->
+		<div id="twitterBtn">
+			<div id="soundManager" title="audio on/off">V</div>
+			<span class="mbRetweetSpan" style="position:relative;width:160px"><a class="mbretweet self" href="javascript:void(0)" title="share on twitter" style="display: inline-block; "><span class="mbretweetLabel" style="background-color: rgba(0, 0, 0, 0.597656); "><span>&nbsp;</span></span><span class="mbretweetStats">191</span></a></span>
+			<span id="facebookShare" title="share on facebook"></span>
+
+
+		</div>
+		<div id="content" style="left: -100%; "><div id="dinaContent" data-transition="slideright" data-music="none"><!--data-image='media/bgnds/9.jpg'-->
+
+	
+
+
+	<style type="text/css">
+
+		#wrapper #content {
+			background: rgba(255, 255, 255,.9);
+		}
+		#component_img{
+			margin-left:0;
+		}
+
+	</style>
+
+	<div class="spacer"></div>
+	<h1>jQuery.mb.miniAudioPlayer</h1>
+
+	<h2 class="componentTitle">An HTML5 player for your music!</h2>
+
+	<div id="componentsTools" class="demo_ribbonbar">
+		<a class="demo" href="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/demo.htm"><span>See the demo</span></a>
+		<a href="http://pupunzi.open-lab.com/jquery-mb-miniaudioplayer/" target="_blank"><span>Download &amp; more...</span></a>
+		<a href="http://jquery.pupunzi.com/" target="_blank"><span>Have questions?</span></a>
+		<br>
+		<a class="expl" href="http://pupunzi.com/mb.components/mb.miniAudioPlayer/miniAudioPlayer.explane.html"><span>how to:</span></a>
+
+	</div>
+
+	<img id="component_img" src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/mb.miniAudioPlayer.png" alt="">
+	<div class="spacer"></div>
+	<p>If you need an audio player for your music or for your podcast, this is what you where looking for.
+	<br>
+		This full featured small player makes advantage of the new HTML5 AUDIO tag with a flash fallback for browsers that doesn't support it.
+		It is a GUI implementation of the <a href="http://www.jplayer.org/" target="_blank">jPlayer plugin</a> realized by Happyworm.
+	</p>
+
+
+	<div class="spacer"></div>
+
+</div></div>
+	</div>
+
+	<div id="html5">
+		<!--img  src="media/logotype/HTML5_Badge_512.png">
+		<img  src="media/logotype/HTML5_Styling_512.png"-->
+
+<a href="http://www.w3.org/html/logo/">
+<img src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/html5-badge-h-css3-multimedia-semantics.png" alt="HTML5 Powered with CSS3 / Styling, Multimedia, and Semantics" title="HTML5 Powered with CSS3 / Styling, Multimedia, and Semantics">
+</a>
+	</div>
+
+
+</div>
+
+<div id="ieAlert" style="display:none">
+	<h1>
+		Although you can see and navigate this site, I recommend you to use a modern browser to reach the maximum user experience.
+		Your browser actually doesn't support many new features the web can offers.<br><br>
+		Here are some good choices:<br><br>
+		<a href="http://www.mozilla.com/it/firefox">Firefox</a><br>
+		<a href="http://www.google.com/chrome">Chrome</a><br>
+		<a href="http://www.apple.com/safari/">Safari</a><br><br>
+		<div class="notNow" onclick="notNow()" style="cursor:pointer; color:#000; text-align:right;">not now, go on please.</div>
+	</h1>
+</div>
+
+
+<div class="turnOnAudio" style="display: none; ">audio is ON</div>
+
+<script type="text/javascript">
+
+	var mySound={
+		Mureau:{ogg:"sounds/Cage-John_Mureau_1_1972.ogg",mp3:"sounds/Cage-John_Mureau_1_1972.mp3",loop:true, volume:100,fade:3000},
+		birds:{ogg:"sounds/birds.ogg",mp3:"sounds/birds.mp3", loop:true, volume:60,fade:3000},
+		subway_station_nyc:{ogg:"sounds/subway_station_nyc.ogg",mp3:"sounds/subway_station_nyc.mp3", loop:true, volume:100,fade:3000},
+		jaspertine:{ogg:"sounds/jaspertine_-_pling.ogg",mp3:"sounds/jaspertine_-_pling.mp3", loop:true, volume:100,fade:3000},
+		naturesoundsfor:{ogg:"sounds/naturesoundsfor.ogg",mp3:"sounds/naturesoundsfor.mp3", loop:true, volume:100,fade:3000},
+		light:{ogg:"sounds/light.ogg",mp3:"sounds/light.mp3",loop:true, volume:100,fade:3000},
+		untitled:{ogg:"sounds/Kato_Hideki_and_Urular_Scherrer_-_05_-_Untitled.ogg",mp3:"sounds/Kato_Hideki_and_Urular_Scherrer_-_05_-_Untitled.mp3",loop:true, volume:100,fade:3000}
+	};
+
+	$.extend($.mbAudio.sounds,mySound);
+
+	$(function(){
+
+		$("#facebookShare").click(function(){
+			window.open("http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(self.location.href));
+		});
+
+		/*anti spam*/
+		var email= $("#mb-mail").attr("href");
+		email= email.replace("[at]","@");
+		$("#mb-mail").attr("href",email);
+
+		$("#site").hide();
+		setTimeout(function(){
+			if($.browser.msie && $.browser.version<9)
+				$("#site").fadeOut(1000,function(){
+					$("#ieAlert").css({opacity:.9}).fadeIn(1000);
+				});
+			else
+				$("#site").fadeIn(2000);
+
+		},2000);
+
+		$("#soundManager").toggle(
+				function(){
+					$.mbAudio.muteAllSounds();
+					$("#soundManager").html("V");
+					$.fn.mb_setCookie("audioOff","true",10);
+					audioMessage();
+				},
+				function(){
+					$.mbAudio.unMuteAllSounds();
+					$("#soundManager").html("Vm");
+					$.fn.mb_removeCookie("audioOff");
+					audioMessage();
+				})
+	});
+
+	if($.fn.mb_getCookie("audioOff")==null)
+		audioMessage();
+
+	$(document).one("beforeContentShow",function() {
+		if($.fn.mb_getCookie("audioOff")=="true")
+			$("#soundManager").click();
+	});
+
+
+	function notNow(){
+		$("#site").fadeIn();
+		$("#ieAlert").fadeOut("slow");
+	}
+</script>
+<iframe src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/preloader.htm" style="position: absolute; top: -5000px; left: -5000px; "></iframe><iframe src="./mb.ideas.repository - components - jQuery.mb.miniAudioPlayer_files/demo.htm" class="mbWin" style="top: 0px; "></iframe><div class="close_mbWin" style="">Close</div><div class="new_mbWin" style="">Open in a new window</div></body></html>

@@ -1,0 +1,637 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>	
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>YOURLS: Your Own URL Shortener</title>
+	<style type="text/css" media="screen">
+		/* Default Style */
+		body {
+			font-family: Verdana, Arial;
+			font-size: 12px;
+			color: #595441;
+			background:#F3FAFD;
+		}
+		p {
+			padding-left: 10px;
+		}
+		code {
+			background:#eaeaef;
+			padding:0 2px;
+		}
+		tt {
+			background:#ffc;
+			padding:0 2px;		
+		}
+		pre tt {
+			display:block;
+		}
+		blockquote {
+			margin: 10px 20px 0px 20px;
+			padding: 10px;
+			border: 1px solid #8d8d8d;
+			background-color: #f5f5f5;
+		}
+		li {
+			margin-top: 20px;
+		}
+		ul li ul li {
+			margin-top: 10px;
+		}
+		a, a:active, a:link, a:visited {
+			color: #5b87b4;
+			text-decoration: none;
+		}
+		a:hover {
+			color: #5577a5;
+			text-decoration: underline;
+		}
+		div.sshot {
+		}
+		div.sshot p {
+			color:#5577a5;
+			font-size:90%;
+		}
+		div.sshot img {
+			margin-bottom:1em;
+			border-bottom:1px solid #ccc;
+		}
+		/* Place Holder Style */
+		#Container {
+			width: 780px;
+			margin-left: auto;
+			margin-right: auto; 
+		}
+		#Content {
+			background-color: #fff;
+			border: 1px solid #2A85B3;
+			padding: 10px;
+			margin-top: -13px;
+			-moz-border-radius:15px;
+			-webkit-border-radius:15px;
+		}
+		/* Title Style */
+		h1 {
+			font-family: Verdana, Arial;
+			font-size: 22px;
+			font-weight: bold;
+			color: #2a85b3;
+			border-bottom: 1px solid #2a85b3;
+			margin-bottom: 10px;
+			background:transparent url(http://yourls.org/images/yourls-logo.png) top center no-repeat;
+			padding-top:90px;
+		}
+		h1:hover span {
+			color: #73A4D6;
+		}
+		h2 {
+			font-family: Verdana, Arial;
+			font-size: 18px;
+			font-weight: bold;
+			color: #5b87b4;
+		}
+		h2:before {
+			content: '\00BB';
+			color:#BFE0FE;
+		}
+		h3 {
+			font-family: Verdana, Arial;
+			font-size: 14px;
+			font-weight: bold;
+			color: #73a4d6;
+			margin-top:2em;
+		}
+		h3:before {
+			content: '\00BB';
+			color:#BFE0FE;
+		}
+		/* Tabs */
+		ul#Tabs {
+			font-family: Verdana, Arial;
+			font-size: 12px;
+			font-weight: bold;
+			list-style-type: none;
+			padding-bottom: 28px;
+			border-bottom: 1px solid #2A85B3;
+			margin-bottom: 12px;
+			margin-right:30px;
+			margin-left:30px;
+			z-index: 1;
+		}
+		#Tabs li.Tab {
+			float: right;
+			height: 25px;
+			background-color: #deedfb;
+			margin: 2px 0px 0px 5px;
+			border: 1px solid #2A85B3;
+			-moz-border-radius-topleft:5px;
+			-moz-border-radius-topright:5px;
+			-webkit-border-top-left-radius:5px;
+			-webkit-border-top-right-radius:5px;
+		}
+		#Tabs li.Tab a {
+			float: left;
+			display: block;
+			color: #666666;
+			text-decoration: none;
+			padding: 5px;
+		}
+		#Tabs li.Tab a:hover {
+			background-color: #bfe0fe;
+			border-bottom: 1px solid #bfe0fe;
+		}
+		/* Selected Tab */
+		#Tabs li.SelectedTab {
+			float: right;
+			height: 25px;
+			background-color: #fff;
+			margin: 2px 0px 0px 5px;
+			border-top: 1px solid #2A85B3;
+			border-right: 1px solid #2A85B3;
+			border-bottom: 1px solid #fafafa;
+			border-left: 1px solid #2A85B3;
+			-moz-border-radius-topleft:3px;
+			-moz-border-radius-topright:3px;
+			-webkit-border-top-left-radius:3px;
+			-webkit-border-top-right-radius:3px;
+		}
+		#Tabs li.SelectedTab a {
+			float: left;
+			display: block;
+			color: #666666;
+			text-decoration: none;
+			padding: 5px;
+			cursor: default;
+		}
+		/* Copyright */
+		#Copyright {
+			text-align:center;
+			margin-top:20px;
+		}
+		#Copyright p {
+			padding:10px;
+			background:white;
+			margin:0 auto;
+			width:750px;
+			-moz-border-radius:10px;
+			-webkit-border-radius:10px;
+			border:1px solid #2A85B3;
+			-moz-border-radius-bottomleft:30px;
+			-moz-border-radius-bottomright:30px;
+			-webkit-border-bottom-left-radius:25px;
+			-webkit-border-bottom-right-radius:25px;
+		}
+		#Copyright p a {
+			background:#fff url(http://yourls.org/images/favicon.gif) 2px center no-repeat;
+			padding-left:20px;
+		}
+	</style>
+</head>
+<body>
+<div id="Container">
+	<!-- Title -->
+	<h1>YOURLS: <span>Y</span>our <span>O</span>wn <span>URL</span> <span>S</span>hortener</h1>
+
+	<!-- Tabs -->
+	<ul id="Tabs">
+		<li id="ShowcaseTab" class="Tab"><a href="#Showcase" onclick="toggle(this);">More</a></li>
+		<li id="FAQTab" class="Tab"><a href="#FAQ" onclick="toggle(this);">FAQ</a></li>
+		<li id="APITab" class="Tab"><a href="#API" onclick="toggle(this);">API</a></li>
+		<li id="PluginTab" class="Tab"><a href="#Plugin" onclick="toggle(this);">WordPress plugin</a></li>
+		<li id="PluginsTab" class="Tab"><a href="#Plugins" onclick="toggle(this);">YOURLS plugins</a></li>
+		<li id="ConfigTab" class="Tab"><a href="#Config" onclick="toggle(this);">Configuration</a></li>
+		<li id="InstallTab" class="Tab"><a href="#Install" onclick="toggle(this);">Install/Upgrade</a></li>
+		<li id="AboutTab" class="SelectedTab"><a href="#About" onclick="toggle(this);">About</a></li>
+	</ul>
+
+	<!-- Content -->
+	<div id="Content">
+		<!-- Index -->
+		<div id="AboutDiv">
+			<h2>About YOURLS</h2>
+			
+			<h3>What is YOURLS</h3>
+			<p>YOURLS is a small set of PHP scripts that will allow you to run your own URL shortening service (<em>a la</em> TinyURL). You can make it private or public, you can pick custom keyword URLs, it comes with its own API. You will love it.</p>
+			<p>There's a <a href="#Plugin" onclick="toggle(this);">WordPress plugin</a> available for YOURLS, making integration with your blog a snap: create short URLs and tweet them automagically as you publish blog posts.</p>
+			
+			<h3>YOURLS Features</h3>
+			<ul>
+				<li><tt>Private</tt> (your links only) or <tt>Public</tt> (everybody can create short links, fine for an intranet)</li>
+				<li>Sequential or custom URL keyword</li>
+				<li>Handy <tt>bookmarklets</tt> to easily shorten and share links</li>
+				<li>Awesome <tt>stats</tt>: historical click reports, referrers tracking, visitors geo-location</li>
+				<li>Neat <tt>Ajaxed</tt> interface</li>
+				<li>Terrific <tt>Plugin</tt> architecture to easily implement new features</li>
+				<li>Cool developer <tt>API</tt></li>
+				<li>Friendly <tt>installer</tt></li>
+				<li><tt>Sample files</tt> to create your own public interface and more</li>
+			</ul>
+			
+			<h3>Screenshots</h3>
+			
+			<div class="sshot">
+				<p>Main admin dashboard</p>
+				<img src="http://yourls.org/images/admin-dashboard.gif" />
+				
+				<p>Stats for each short URL</p>
+				<img src="http://yourls.org/images/stats-anim.gif" />
+				
+				<p>See a live example of YOURLS stats on <a href="http://yourls.org/download+">http://yourls.org/download+</a></p>
+			</div>
+			
+			<h2>Download</h2>
+			
+			<p><a href="http://yourls.org/download">Download YOURLS</a> from Google Code</p>
+			<p>You can follow YOURLS' development on the <a href="http://yourls.org/revisions">revision list</a> and get current snapshot <a href="http://yourls.org/svnco">using SVN</a></p>
+			
+			<h2>Credits</h2>
+			
+			<p>YOURLS is made by:</p>
+			<ul>
+				<li><a href="http://yourls.org/lesterchan" title="Visit Lester Chan's site">Lester Chan</a> &ndash <a href="http://twitter.com/gamerz">@GamerZ</a> on Twitter (initial idea)</li>
+				<li><a href="http://yourls.org/ozh" title"Visit Ozh's site">Ozh Richard</a> &ndash <a href="http://twitter.com/ozh">@Ozh</a> on Twitter (development)</li>
+			</ul>
+		</div>
+
+		<!-- Installation Instructions -->
+		<div id="InstallDiv" style="display: none;">
+			<h2>Fresh Install</h2>
+			<ol>
+				<li>Unzip the YOURLS archive</li>
+				<li>Copy <code>includes/config-sample.php</code> to <code>user/config.php</code></li>
+				<li>Open <code>user/config.php</code> with a raw text editor (like Notepad) and fill in the required settings</li>
+				<li>Upload the unzipped files to your domain <code>public_html</code> or <code>www</code> folder</li>
+				<li>Create a new database (see <a href="#Config" onclick="toggle(this);">Configuration</a> &ndash; you can also use an existing one)</li>
+				<li>Point your browser to <code>http://yoursite.com/admin/</code></li>
+			</ol>
+			
+			<h2>Upgrade from YOURLS 1.4.x</h2>
+			<ol>
+				<li><strong>Backup the database!</strong></li>
+				<li>Unzip the YOURLS archive</li>
+				<li>Upload files to your server, overwriting your existing install</li>
+				<li>Point your browser to <code>http://yoursite.com/admin/</code></li>
+				<li>Tip: you can now move your <code>config.php</code> file to the <code>/user</code> directory</li>
+			</ol>
+			
+			<h2>Upgrade from YOURLS 1.3 or earlier</h2>
+			<ol>
+				<li><strong>Backup the database!</strong></li>
+				<li>Make a copy of your <code>config.php</code></li>
+				<li>Delete all files including <code>.htaccess</code> in YOURLS root directory</li>
+				<li>Unzip the YOURLS archive, upload the files</li>
+				<li>Copy <code>config-sample.php</code> to <code>config.php</code> and fill in details. <strong>Don't start with your old config file</strong>, use the new sample config file.</li>
+				<li>In your new <code>config.php</code>, add the <em>defines</em> for <code>YOURLS_DB_TABLE_URL</code> and <code>YOURLS_DB_TABLE_NEXTDEC</code> you had in your previous config file
+				<li>Point your browser to <code>http://yoursite.com/admin/</code> and follow instructions</li>
+				<li>After upgrade is well and over, remove the define <code>YOURLS_DB_TABLE_NEXTDEC</code> from your config file</li>
+			</ol>
+			
+		</div>
+
+		<!-- Configuration Instructions -->	
+		<div id="ConfigDiv" style="display: none;">
+			<h2>Configuration (in includes/config.php)</h2>
+			<h3>MySQL settings</h3>
+			<ul>
+				<li><code>YOURLS_DB_USER</code><br/>
+				your MySQL username<br/>
+				<em>Example:</em> <tt>'joe'</tt></li>
+				<li><code>YOURLS_DB_PASS</code><br/>
+				your MySQL password<br/>
+				<em>Example:</em> <tt>'MySeCreTPaSsW0rd'</tt></li>
+				<li><code>YOURLS_DB_NAME</code>:
+				The database name<br/>
+				<em>Example:</em> <tt>'yourls'</tt></li>
+				<li><code>YOURLS_DB_HOST</code><br/>
+				The database host<br/>
+				<em>Example:</em> <tt>'localhost'</tt></li>
+				<li><code>YOURLS_DB_PREFIX</code><br/>
+				The name prefix for all the tables YOURLS will need<br/>
+				<em>Example:</em> <tt>'yourls_'</tt></li>
+			</ul>
+			
+			<h3>Site options</h3>
+			<ul>
+				<li><code>YOURLS_SITE</code><br/>
+				Your (short) domain URL, no trailing slash<br/>
+				<em>Example:</em> <tt>'http://ozh.in'</tt></li>
+				<li><code>YOURLS_HOURS_OFFSET</code><br/>
+				Timezone GMT offset<br/>
+				<em>Example:</em> <tt>'-5'</tt></li>
+				<li><code>YOURLS_PRIVATE</code><br/>
+				Private means protected with login/pass as defined below. Set to false for public usage (on an intranet for instance)<br/>
+				<em>Example:</em> <tt>'true'</tt></li>
+				<li><code>YOURLS_UNIQUE_URLS</code><br/>
+				Allow multiple short URLs for a same long URL<br/>
+				Set to <tt>true</tt> to allow only one pair of shortURL/longURL (default YOURLS behavior), or to <tt>false</tt> to allow creation of multiple short URLs pointing to the same long URL (as bit.ly does)<br/>
+				<em>Example:</em> <tt>'true'</tt></li>
+				<li><code>YOURLS_COOKIEKEY</code><br/>
+				A random secret hash used to encrypt cookies. You don't have to remember it, make it long and complicated. Hint: generate a unique one at <a href="http://yourls.org/cookie">http://yourls.org/cookie</a><br/>
+				<em>Example:</em> <tt>'qQ4KhL_pu|s@Zm7n#%:b^{A[vhm'</tt></li>
+				<li><code>yourls_user_passwords</code><br/>
+				A list of username(s) and password(s) allowed to access the site if private<br/>
+				<em>Example:</em> <tt>'joe' => 'mypassword'</tt></li>
+			</ul>
+			
+			<h3>URL Shortening settings</h3>
+			<ul>
+				<li><code>YOURLS_URL_CONVERT</code><br/>
+				URL shortening method: base <tt>36</tt> or <tt>62</tt>. See <a onclick="toggle(this);" href="#FAQ">FAQ</a> for more explanations</li>
+				<li><code>yourls_reserved_URL</code><br/>
+				A list of reserved keywords that won't be used as short URLs. Define here negative, unwanted or potentially misleading keywords<br/>
+				<em>Example:</em> <tt>'porn', 'faggot', 'sex', 'nigger', 'fuck', 'cunt', 'dick', 'gay'</tt></li>
+			</ul>
+			
+			<h3>Optional settings</h3>
+			<ul>
+				<li><code>YOURLS_PRIVATE_INFOS</code><br/>
+				If <code>YOURLS_PRIVATE</code> is set to <tt>true</tt>, you can still easily make your individual stat pages public. To do so, override the global private setting with:<br/>
+				<tt>define('YOURLS_PRIVATE_INFOS', false);</tt>
+				</li>
+				<li><code>YOURLS_PRIVATE_API</code><br/>
+				If <code>YOURLS_PRIVATE</code> is set to <tt>true</tt>, you can still easily make your API public. To do so, override the global private setting with:<br/>
+				<tt>define('YOURLS_PRIVATE_API', false);</tt>
+				<li><code>YOURLS_NOSTATS</code><br/>
+				If <code>YOURLS_NOSTATS</code> is set to <tt>true</tt>, redirects won't be logged and there will be not stats available.<br/>
+				</li>
+			</ul>
+			
+			<h3>Advanced settings</h3>
+			<p>File <code>includes/yourls-load.php</code> contains a few more undocumented but self explanatory and commented settings. Add them to your own <code>config.php</code> if you know what you're doing</p>
+		</div>
+		
+		<!-- WordPress plugin -->
+		<div id="PluginDiv" style="display:none">
+			<h2>WordPress Plugin</h2>
+			
+			<h3>Features</h3>
+			<ul>
+				<li>Generate short URLs for each new post or page</li>
+				<li>Generate short URLs for all your old posts and pages if wished</li>
+				<li>Send a tweet on your Twitter account with the post title and short URL as you publish them</li>
+				<li>Works if YOURLS is hosted on the same server or on a remote server</li>
+				<li>Also compatible with tr.im, is.gd, tinyurl.com and bit.ly for maximum fun</li>
+			</ul>
+			
+			<h3>Screenshot</h3>
+			<div class="sshot">
+			<img src="http://yourls.org/images/wpplugin.gif"/>
+			</div>
+			
+			<h3>Download &amp; more informations</h3>
+			<ul>
+				<li>Download <a href="http://yourls.org/plugin">YOURLS: WordPress to Twitter</a> from the official WordPress plugin repository</li>
+				<li>More information, tips and feedback on <a href="http://yourls.org/plugindoc">the plugin page</a> from planetOzh</li>
+			</ul>
+		
+		</div>
+		
+		<!-- YOURLS plugins -->
+		<div id="PluginsDiv" style="display:none">
+			<h2>Plugins for YOURLS</h2>
+			
+			<h3>Plugins?</h3>
+			<p>Plugins are additional PHP scripts that extend the functionalities or features of YOURLS. The core of YOURLS is designed to be as light as possible and avoid bloat (implementing functions not everybody needs) and to allow for easy customization.</p>
+			<p>Using the plugin architecture, you can add new features to YOURLS without having to modify core files. This way, your changes won't be lost when you upgrade your YOURLS installation.</p>
+
+			<h3>Documentation</h3>
+			<p>Several sample plugins are included in the archive. Read the source and learn the concept. It's easy and fun!</p>
+			<p>Check the <a href="http://yourls.org/pluginapi">plugin API documentation</a> to learn more</p>
+		
+		</div>
+		
+		<!-- API -->
+		<div id="APIDiv" style="display:none">
+			<h2>YOURLS' API</h2>
+			
+			<h3>Features</h3>
+			<ul>
+				<li>Generate or get existing short URLs, with sequential or custom keyword</li>
+				<li>Get some statistics about your links: top clicked links, least clicked links, newest links</li>
+				<li>Output format: JSON, XML, or simple raw text</li>
+				<li>Authentify either with login/password or using a secure passwordless mechanism</li>
+			</ul>
+			
+			<h3>Usage</h3>
+			<p>You need to send parameters to <code>http://yoursite.com/yourls-api.php</code> either via <code>GET</code> or <code>POST</code>. These parameters are:</p>
+			<ul>
+				<li>A valid <code>username</code> / <code>password</code> pair, or your <code>signature</code> (see <a href="http://code.google.com/p/yourls/wiki/PasswordlessAPI">Passwordless API requests</a>)</li>
+				<li>The requested <code>action</code>: <tt>"shorturl"</tt> (get short URL for a link), <tt>"expand"</tt> (get long URL of a shorturl), <tt>"url-stats"</tt> (get stats about one short URL) or <tt>"stats"</tt> (get stats about your links)</li>
+				<li>With <tt>action = "shorturl"</tt> :
+					<ul>
+						<li>the <code>url</code> to shorten</li>
+						<li>optional <code>keyword</code> for custom short URLs</li>
+						<li>output <code>format</code>: either <tt>"json"</tt>, <tt>"xml"</tt> or <tt>"simple"</tt></li>
+					</ul>
+				</li>
+				<li>With <tt>action = "expand"</tt> :
+					<ul>
+						<li>the <code>shorturl</code> to expand (can be either 'abc' or 'http://site/abc')</li>
+						<li>output <code>format</code>: either <tt>"json"</tt>, <tt>"xml"</tt> or <tt>"simple"</tt></li>
+					</ul>
+				</li>
+				<li>With <tt>action = "url-stats"</tt> :
+					<ul>
+						<li>the <code>shorturl</code> for which to get stats (can be either 'abc' or 'http://site/abc')</li>
+						<li>output <code>format</code>: either <tt>"json"</tt> or <tt>"xml"</tt></li>
+					</ul>
+				</li>
+				<li>With <tt>action = "stats"</tt> :
+					<ul>
+						<li>the <code>filter</code>: either <tt>"top"</tt>, <tt>"bottom"</tt> , <tt>"rand"</tt> or <tt>"last"</tt></li>
+						<li>the <code>limit</code> (maximum number of links to return)</li>
+						<li>output <code>format</code>: either <tt>"json"</tt> or <tt>"xml"</tt></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<h3>Sample return</h3>
+			<pre><tt>&lt;result&gt;
+	&lt;url&gt;
+		&lt;id&gt;62019439011&lt;/id&gt;
+		&lt;keyword&gt;shorter&lt;/keyword&gt;
+		&lt;url&gt;http://somereallylongurlyouneedtoshrink.com/&lt;/url&gt;
+		&lt;date&gt;2009-06-23 18:08:07&lt;/date&gt;
+		&lt;ip&gt;127.0.0.1&lt;/ip&gt;
+	&lt;/url&gt;
+	&lt;status&gt;success&lt;/status&gt;
+	&lt;message&gt;http://somereallylongurlyouneedtoshrink.com/ (ID: shorter) added to database&lt;/message&gt;
+	&lt;shorturl&gt;http://yoursite.com/shorter&lt;/shorturl&gt;
+&lt;/result&gt;</tt></pre>
+
+			<h3>Sample file</h3>
+			<p>There's a sample file included that serves as an example on how to play with the API</p>
+
+		</div>
+		
+
+		<!-- FAQ Instructions -->	
+		<div id="FAQDiv" style="display: none;">
+			<h2>FAQ</h2>
+
+			<h3>Server requirements</h3>
+			<ol>
+				<li>A server with <strong>mod_rewrite</strong> enabled</li>
+				<li>At least <strong>PHP 4.3</strong></li>
+				<li>At least <strong>MYSQL 4.1</strong></li>
+				<li><em>Note</em>: YOURLS can also run on <a href="http://foolrulez.org/blog/2009/08/foolz-us-make-yourls-work-on-ngin/">Nginx</a> and <a href="http://www.ututech.com/2010/10/configuring-yourls-to-work-with-cherokee-web-server/">Cherokee</a></li>
+			</ol>
+
+			<h3>Server recommendations</h3>
+			<ul>
+				<li>PHP <a href="http://www.php.net/curl">CURL extension</a> installed if you plan on playing with the API</li>
+			</ul>
+			
+			<h3>Limitations</h3>
+			<ul>
+				<li>Maximum length of long URLs to be shortened is <strong>2000 characters</strong></li>
+				<li>Maximum length of custom keyword is <strong>200 characters</strong></li>
+				<li>That makes about <strong>8 sexdecillions of centillions</strong> of available URLs (<a href="http://en.wikipedia.org/wiki/Names_of_large_numbers">seriously</a>. That's a 355 digits number). </li>
+			</ul>
+			
+			<h3>Difference Between Base 36 And Base 62 Encoding</h3>
+			<ul>
+				<li>Base 36 encoding uses <code>0123456789abcdefghijklmnopqrstuvwxyz</code></li>
+				<li>Base 62 encoding uses <code>0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz</code></li>
+				<li>Stick to one setting, don't change after you've created links as it will change all your short URLs!</li>
+				<li>Base 36 is the default and should be picked.</li>
+			</ul>
+			
+			<h3>Getting a short domain name for your YOURLS install</h3>
+			<ul>
+				<li>Unless you plan on making it public, any shared hosting should be fine</li>
+				<li><a href="http://domai.nr/">Domainr</a> is a fun search tool that might inspire and help you</li>
+				<li>Aim for exotic top level domains (.in, .im, .li ...), they're often cheap and a lot are still available. <a href="https://www.gandi.net/domain/buy/search/">Gandi</a> is a pretty comprehensive registrar, for instance.</li>
+			</ul>
+
+			<h3>YOURLS needs its own .htaccess</h3>
+			<ul>
+				<li>You cannot install YOURLS and, say, WordPress, in the same directory. Both of them need to handle URLs differently</li>
+				<li>If you want to install YOURLS on the same domain than your blog, give it its own (short) subdirectory, such as yourblog.com/s/ (for "short") or yourblog.com/x/ (for "exit")</li>
+			</ul>
+			
+			<h3>If YOURLS generates 404 for your short URLs</h3>
+			<ul>
+				<li>Make sure <strong>mod_rewrite</strong> is enabled with your Apache server</li>
+				<li>Make sure your .htaccess file looks like <a href="http://yourls.org/htaccess">this one</a></li>
+			</ul>
+			
+			<h3>Feedback, feature requests and bug reporting</h3>
+			<ul>
+				<li>Please don't get in touch directly by mail or Twitter. <a href="http://yourls.org/support">Please</a>.</li>
+				<li>Check the <a href="http://code.google.com/p/yourls/wiki/RoadMap">Road Map</a> for future features</li>
+				<li>Raise an <a href="http://yourls.org/issues">issue here</a> and give all the details. Thanks!</li>
+			</ul>
+
+		</div>
+		
+		
+				<!-- Showcase -->	
+		<div id="ShowcaseDiv" style="display: none;">
+			<h2>Showcase</h2>
+
+			<h3>Here are a few examples of sites running YOURLS with a unique design or concept</h3>
+			
+			<ul>
+				<li><a href="http://mrte.ch/">http://mrte.ch/</a><br/>
+				Mr Tech's public YOURLS setup, listing top links and some stats</li>
+				<li><a href="http://xib.me/">http://xib.me/</a></br/>
+				A nicely styled YOURLS public interface</li>
+				<li><a href="http://s4c.in/">http://s4c.in/</a><br/>
+				Shorten 4 Charity, a public YOURLS setup with shortened links displayed within a frame containing ads for charities	</li>
+				<li><a href="http://girv.in/">http://girv.in/</a><br/>
+				John Girvin's YOURLS setup with all links in a sortable display</li>
+				<li><a href="http://www.iyeman.net/">http://www.iyeman.net/</a><br/>
+				Example of portal for your online self with links to your places (blog, Twitter) and your URL shortener</li>
+				<li>http://vb.ly/ (early adopter, now <a href="http://www.readwriteweb.com/archives/libya_shuts_down_vbly_bitly_owly_next.php">defunct</a>)<br/>
+				Public YOURLS setup run by famous sex writer Violet Blue as "the internet's first and only sex-positive url shortener"</li>
+			</ul>
+			
+			<h2>More stuff about or with YOURLS</h2>
+			
+			<ul>
+				<li><a href="http://screenr.com/nTs">http://screenr.com/nTs</a><br/>
+				A screencast explaining how to setup YOURLS</li>
+				
+				<li><a href="http://v007.me/836">YOURLS: Short URL Widget</a><br/>
+				Creates a fully configurable widget that outputs the short URL to the current post or page</li>
+				
+				<li><a href="http://foolrulez.org/blog/2009/09/yourls-widget-released">YOURLS Widget for WordPress</a><br/>
+				This widget adds a convenient short URL service into your sidebar. Check the above link for a live example</li>
+				
+				<li><a href="http://www.stewartallen.org/2010/08/yourls-twitter-tools-wordpress-plugin/">Twitter Tools & YOURLS</a><br/>
+				Companion plugin for Alex King's Twitter Tool for WordPress, that enables YOURLS support</li>
+				
+				<li><a href="http://github.com/pjain/WWW-Shorten-Yourls">WWW-Shorten-Yourls</a><br/>
+				A Perl module to shorten URLs using YOURLS</li>
+				
+				<li><a href="https://rubygems.org/gems/yourls">YOURLS Ruby</a><br/>
+				A Ruby wrapper for the YOURLS API</li>
+				
+				<li><a href="http://www.chrismarquardt.com/blog.php?id=7952283233607249761">Textexpander and YOURLS</a><br/>
+				Making YOURLS and Textexpander on the Mac play together</li>
+				
+				<li><a href="http://www.eugenegordin.com/etc/how-to-use-your-custom-yourls-shortener-with-tweetie-2.html">YOURLS and Tweetie 2</a><br/>
+				How to set up Tweetie2 so it uses your own service</li>
+				
+				<li><a href="http://remkusdevries.com/how-to-setup-tweetdeck-with-yourls/">YOURLS and TweetDeck</a><br/>
+				How to set up TweetDeck so it uses your own service</li>
+				
+				<li><a href="http://mt-hacks.com/AzaZ">YOURLS with Movable Type</a><br/>
+				Twitter Tools for Movable Type supports custom YOURLS setup</li>
+				
+				<li><a href="http://www.mrtech.com/forums/index.php/topic,2524.0.html">YOURLS hacks</a><br/>
+				Hacks to enhance YOURLS for spam control/throttling, unshortening and weekly stats
+				
+				<li><a href="http://code.google.com/p/yourls/issues/detail?id=137">Export URLS as text list</a><br/>
+				A simple script to list all URLs, one per line, in plain text (for using as an indexer config file, for example)</li>
+				
+				<li>YOURLS featured on <a href="http://lifehacker.com/5335216/make-your-own-url-shortening-service">Lifehacker</a></li>
+			</ul>
+
+		</div>
+	</div> <!-- content -->
+</div> <!-- container -->
+
+<div id="Copyright"><p><a href="http://yourls.org/">YOURLS</a>: Your Own URL Shortener<br />All Free & GPL &ndash; 2009</p></div>
+
+	<script type="text/javascript">
+	/* <![CDATA[*/
+	// Dynamically get tabs
+	function getTabs() {
+		var d = document.getElementById('Tabs');
+		var matches = d.innerHTML.match(/<li id="(.+?)Tab"/g);
+		var tabs = []
+		for (i in matches) {
+		  tabs[i]= matches[i].replace('<li id="','').replace('Tab"', '');
+		}
+		tabs = tabs.reverse();
+		return (tabs)
+	}
+	// Toggle tab display
+	function toggle(el) {
+		//var tabs = ["About", "Install", "Config", "Plugin", "FAQ"];
+		var target = el.toString().replace(/^.*#/, '');
+		for (var tab in tabs) {
+			// reinit tabs
+			document.getElementById(tabs[tab]+'Tab').className = 'Tab';
+			// reinit divs
+			document.getElementById(tabs[tab]+'Div').style.display= 'none';
+		}
+		// highlight & display target
+		document.getElementById(target+'Div').style.display = 'block';
+		document.getElementById(target+'Tab').className = 'SelectedTab';
+		try { el.blur(); } catch(err) {}
+	}
+	// Get tab list
+	var tabs = getTabs();
+	// On page load/refresh display required tab
+	if (location.hash) {
+		toggle(location.hash);
+	}
+	/* ]]> */
+	</script>
+
+
+</body>
+</html>

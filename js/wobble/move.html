@@ -1,0 +1,71 @@
+<html>
+<script type="text/javascript">
+function movableObj(startX, startY, endX, endY, delay, speed, refId) { // movableObj() -- Creates a new movable object
+	this.sX = startX;
+	this.sY = startY;
+	this.eX = endX;
+	this.eY = endY;
+	this.de = delay;
+	this.sp = speed;
+	this.ref = refId;
+
+	xL = endX - startX;
+	yL = endY - startY;
+
+	with (Math) {
+		if (abs(xL) > abs(yL)) {
+			this.xS = (xL > 0) ? 1 : -1;
+			this.yS = (yL > 0) ? abs(yL / xL) : -abs(yL / xL);
+			this.howManySteps = abs(xL / speed);
+		} else if (abs(yL) > abs(xL)) {
+			this.yS = (yL > 0) ? 1 : -1;
+			this.xS = (xL > 0) ? abs(xL / yL) : -abs(xL / yL);
+			this.howManySteps = abs(yL / speed);
+		} else {
+			this.yS = (yL > 0) ? 1 : -1;
+			this.xS = (xL > 0) ? 1 : -1;
+			this.howManySteps = abs(xL / speed);
+		}
+	}
+
+	this.startMovement = startMovement;
+}
+
+function startMovement() { // startMovement() -- starts the movement
+	ref = document[this.ref];
+	doDynamicMovement(this.sX, this.sY, this.eX, this.eY, this.de, this.xS, this.yS, ref, this.sp, this.howManySteps);
+}
+
+function doDynamicMovement(curX, curY, eX, eY, sp, xS, yS, ref, speed, hS) { // doDynamicMovement() -- does the Dynamic Movement
+	if (Math.floor(hS - 1) != 0) {
+		hS--;
+		curX += xS * speed;
+		curY += yS * speed; 
+		ref.left = Math.round(curX);
+		ref.top = Math.round(curY);
+		setTimeout("doDynamicMovement(" + curX + ", " + curY + ", " + eX + ", " + eY + ", " + sp + ", " + xS + ", " + yS + ", ref, " + speed + ", " + hS + ")", sp);
+	} else {
+		setPos(eX, eY, ref);    
+	}
+}
+
+function setPos(x, y, ref) { // setPos() -- sets the end position accurately when doDynamicMovement has done its job
+	ref.left = x;
+	ref.top = y;
+}
+
+dynaText = new movableObj(-100,-100,180,280,10,10,"wow"); // Here we define the movable object
+</script>
+
+<body>
+<div align="center"><h1>Dynamic Movement</h1></div>
+<p>Dynamic Movement brings you some very cool DHTML functionality in both Netscape 4.0+ and MSIE 4.0+. You can basically move any object that is positioned absolutely from any point to another.</p>
+<p>In this demo, we move a DIV object from point (-100,-100) (in other words, off the screen and therefore invisible) to (180,280).</p>
+<form>
+<input type="button" onClick="dynaText.startMovement()" value="Do the movement!">
+</form>
+<div id="wow" style="position: absolute; left: -100; top: -100; width: 300; font-family: Verdana, Arial, Helvetica; font-size: 20pt; color: #ff0000">
+This is a dynamic object in motion.
+</div>
+</body>
+</html>

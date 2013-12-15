@@ -1,0 +1,46 @@
+table.terrarium {
+  position: absolute;
+  left:20em;
+  top:5em;
+  border-collapse: collapse;
+  background-color: black;
+}
+
+table.terrarium td {
+  
+  width: 20px;
+  height: 30px;
+  padding: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+table.terrarium td.test.hello {
+  color: red;
+}
+table.terrarium td.Player {
+  color: white;
+}
+table.terrarium td.Chameleon {
+  color: red;
+}
+table.terrarium td.Random {
+  color: blue;
+}
+table.terrarium td.Stupid {
+  color: green;
+}
+table.terrarium td.Bouncing {
+  color: yellow;
+}
+
+table.terrarium td.empty {
+
+  color: white;
+  
+}
+table.terrarium td.wall {
+
+  color: white;
+}
+
+

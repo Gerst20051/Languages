@@ -1,0 +1,2 @@
+http://code.google.com/p/support/wiki/ImportingFromGit
+http://eikke.com/importing-a-git-tree-into-a-subversion-repository/
