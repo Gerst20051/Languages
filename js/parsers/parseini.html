@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>INI Parser</title>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="parseini.js"></script>
+<style>
+body {
+	font: 12pt arial #000;
+}
+
+#main {
+	margin: 0 auto;
+	width: 70%;
+}
+
+#header {
+	margin: 12px 0;
+}
+
+.title {
+	font-size: 28pt;
+}
+
+textarea {
+	font-family: "courier new", courier, monospace;
+	height: 400px;
+	width: 100%;
+}
+
+#panel {
+	height: 300px;
+	margin-top: 10px;
+}
+
+#output {
+	height: 400px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	width: 100%;
+	word-wrap: break-word;
+}
+</style>
+</head>
+<body>
+<div id="main">
+<div id="header"><span class="title">INI Parser</span></div>
+<textarea id="input" spellcheck="false">
+searchengine=http://www.google.com/search?q=$1
+spitfulness=9.7
+
+; comments are preceded by a semicolon...
+; these are sections, concerning individual enemies
+[larry]
+fullname=Larry Doe
+type=kindergarten bully
+website=http://www.geocities.com/CapeCanaveral/11451
+
+[gargamel]
+fullname=Gargamel
+type=evil sorcerer
+outputdir=/home/marijn/enemies/gargamel
+</textarea>
+<div id="panel"><pre><div id="output"></div></pre></div>
+</div>
+<script>
+function updateOutput() {
+	if (0 < arguments.length) {
+		console.log(arguments[0]);
+		$("#output").text(JSON.stringify(arguments[0], null, '\t'));
+	} else $("#output").empty();
+}
+
+function parseInput() {
+	$("#output").empty();
+	var string = $.trim($("#input").val());
+	updateOutput(parseINI(string));
+}
+
+$(document).ready(function(){
+$("#input").keyup(function(){
+	if (0 < $.trim($("#input").val()).length) parseInput();
+	else { $("#input").val(''); updateOutput(); }
+});
+parseInput();
+});
+</script>
+</body>
+</html>
